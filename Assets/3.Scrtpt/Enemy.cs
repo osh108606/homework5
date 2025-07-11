@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     public int mhp;
-    public Scrollbar scrollbar;
-    public Canvas canvas;
+    public Image HpBar;
     int hp;
     float z;
     float y;
@@ -25,7 +24,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        
+        HpBar.fillAmount = (float)hp/(float)mhp;
     }
     
 
@@ -33,9 +32,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("bullet"))
         {
-            Debug.Log(hp);
             hp--;
-            scrollbar.size--;
         }
     }
 }

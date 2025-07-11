@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         t+=Time.deltaTime;
-        Debug.Log(t);
+        
         if(t>5f)
         {
             for(int i=0; i<5; i++)
