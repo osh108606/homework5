@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public int mhp;
+    public float mhp;
     public Image HpBar;
-    int hp;
+    float hp;
     float z;
     float y;
     public float movespeed;
@@ -18,13 +18,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        y -= Time.deltaTime * movespeed;
-        transform.position = new Vector2(transform.position.x,y);
-        if (hp <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-        HpBar.fillAmount = (float)hp/(float)mhp;
+        //y -= Time.deltaTime * movespeed;
+        //transform.position = new Vector2(transform.position.x,y);
+        //if (hp <= 0)
+        //{
+        //    Destroy(this.gameObject);
+        //}
+
+        HpBar.fillAmount = hp/mhp;
     }
     
 
