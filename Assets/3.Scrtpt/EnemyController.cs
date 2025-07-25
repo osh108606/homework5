@@ -1,15 +1,25 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
+    public static EnemyController instance;
     public GameObject enemyobj;
     public Transform[] points;
-    
+    public Transform spawnPoint;
     float t = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
-        Spawn();
+        
+        //Spawn();
+        StartCoroutine(Spawn());
     }
 
     // Update is called once per frame
@@ -33,14 +43,24 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    public void Spawn()
+    IEnumerator CoStart()
+    {
+        Debug.Log("CoStart() 1");
+        yield return new WaitForSeconds(5);
+        Debug.Log("CoStart() 2");
+    }
+    //points[idx].position
+    IEnumerator Spawn()
     {
         int currentIdx = Random.Range(0, points.Length);
         int spawnCount = 6;
         for (int i = 0; i < spawnCount; i++)
         {
             int idx = (currentIdx + i) % points.Length;
-            Instantiate(enemyobj, points[idx].position, Quaternion.identity);
+            yield return new WaitForSeconds(1);
+            GameObject obj = Instantiate(enemyobj, spawnPoint.position, Quaternion.identity);
+            Enemy e = obj.GetComponent<Enemy>();
+            e.desPoint = points[idx].position;
         }
     }
 }
