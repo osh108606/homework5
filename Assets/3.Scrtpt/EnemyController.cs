@@ -7,7 +7,12 @@ public class EnemyController : MonoBehaviour
     public GameObject enemyobj;
     public Transform[] points;
     public Transform spawnPoint;
-    float t = 0f;
+    
+    public int spawnCount=6;
+    public int enemiesCount=0;
+    //float t = 0f;
+    Enemy[] enemies;
+    bool spawnAll = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
@@ -18,8 +23,6 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         
-        //Spawn();
-        StartCoroutine(Spawn());
     }
 
     // Update is called once per frame
@@ -39,7 +42,19 @@ public class EnemyController : MonoBehaviour
         //    }
 
         //    t = 0;
-        //}   
+        //}
+
+        // 적 개수가 0일때
+        if(enemiesCount == 0)
+        {
+            StartCoroutine(Spawn());
+        }
+        
+        if (enemiesCount == spawnCount)
+        {
+            cheakArrive();
+        }
+        
         
     }
 
@@ -50,17 +65,43 @@ public class EnemyController : MonoBehaviour
         Debug.Log("CoStart() 2");
     }
     //points[idx].position
+    
     IEnumerator Spawn()
     {
+        
         int currentIdx = Random.Range(0, points.Length);
-        int spawnCount = 6;
+        enemies = new Enemy[spawnCount];
         for (int i = 0; i < spawnCount; i++)
         {
             int idx = (currentIdx + i) % points.Length;
             yield return new WaitForSeconds(1);
+            
             GameObject obj = Instantiate(enemyobj, spawnPoint.position, Quaternion.identity);
-            Enemy e = obj.GetComponent<Enemy>();
-            e.desPoint = points[idx].position;
+            enemiesCount++;
+            enemies[i] = obj.GetComponent<Enemy>();
+            enemies[i].desPoint = points[idx].position;
         }
+        
     }
+    public int cheak =0;
+
+    void cheakArrive()
+    {
+        for (int i = 0; i < spawnCount; i++)
+        {
+            if (enemies[i].arrived == true)
+            {
+                cheak++;
+            }   
+        }
+        if(cheak == spawnCount)
+        {
+            for (int i = 0; i < spawnCount; i++)
+            {
+                enemies[i].Move();
+            }
+        }
+        cheak = 0;
+    }
+    
 }
