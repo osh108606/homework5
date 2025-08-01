@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
 {
     
     public Rigidbody2D rb2d;
-    public GameObject bulletObjectPrefab;
-    public Bullet bulletPrefab;
+    public GameObject[] weapons;
+    
     public float speed = 0;
     private void Awake()
     {
@@ -24,29 +24,26 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 dir = (touchPos - (Vector2)transform.position).normalized;
+            for(int i = 0; i< weapons.Length; i++)
+            {
+                if (weapons[i])
+                {
 
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-
-            transform.rotation = q;
-            //Debug.Log("화면클릭");
-            Vector2 screenPoint = Input.mousePosition;
-            Vector2 worldPoint= Camera.main.ScreenToWorldPoint(screenPoint); ;
-            Vector2 directtion = worldPoint - (Vector2)transform.position;
-
-
-            //Debug.Log(screenPoint);
-            //Debug.Log(worldPoint);
-
-            Bullet bullet = Instantiate(bulletPrefab);
-            bullet.gameObject.transform.position = transform.position;
-            bullet.Shoot(directtion.normalized);
+                }
+            }
         }
-
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+        }
+        
         Move();
     }
     public void Move()
