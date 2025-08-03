@@ -1,10 +1,12 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     public GameObject Enemy;
     public float movespeed;
-    Vector2 direction;
+    public float damge;
+    public Vector2 direction;
     float t = 0f;
     public void Shoot (Vector2 dir)
     {
@@ -12,7 +14,7 @@ public class Bullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         t += Time.deltaTime;
         if (t > 2f)
@@ -21,11 +23,11 @@ public class Bullet : MonoBehaviour
         }
             transform.position = (Vector2)transform.position + direction* movespeed *Time.deltaTime;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-           
+            collision.GetComponent<Enemy>().TakeDamage(damge);
             Destroy(this.gameObject);
         }
     }

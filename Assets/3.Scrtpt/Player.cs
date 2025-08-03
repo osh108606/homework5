@@ -26,25 +26,31 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            for(int i = 0; i< weapons.Length; i++)
-            {
-                if (weapons[i])
-                {
-
-                }
-            }
+            WeaponChange(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            WeaponChange(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            WeaponChange(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            WeaponChange(3);
         }
         
         Move();
+    }
+    public void WeaponChange(int slot)
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i].SetActive(false);
+        }
+
+        weapons[slot].SetActive(true);
     }
     public void Move()
     {

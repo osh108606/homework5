@@ -20,12 +20,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         HpBar.fillAmount = hp/mhp;
-        if (hp <= 0)
-        {
-            EnemyController.instance.enemiesCount--;
-            EnemyController.instance.cheak--;
-            Destroy(this.gameObject);
-        }
+        
 
         
         
@@ -51,12 +46,15 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector2(transform.position.x, y);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void TakeDamage(float damage)
     {
-        if (collision.CompareTag("bullet"))
+        hp-= damage;
+        if (hp <= 0)
         {
-            hp--;
-            
+            EnemyController.instance.enemiesCount--;
+            EnemyController.instance.cheak--;
+            Destroy(this.gameObject);
         }
     }
+    
 }

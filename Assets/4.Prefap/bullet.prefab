@@ -163,3 +163,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 1555842828338428630, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
   movespeed: 90
+  damge: 1
+  direction: {x: 0, y: 0}
