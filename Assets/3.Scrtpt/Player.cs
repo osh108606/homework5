@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
+    public static Player instance;
     public Rigidbody2D rb2d;
     public GameObject[] weapons;
     
     public float speed = 0;
     private void Awake()
     {
+        instance = this;
         //Debug.Log("Awake");
         rb2d = GetComponent<Rigidbody2D>();
     }
