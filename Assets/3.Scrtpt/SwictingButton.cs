@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SwictingButton", menuName = "Scriptable Objects/SButton")]
-public class SwictingButton : ScriptableObject
+
+public class SwictingButton : MonoBehaviour
 {
-    
-    public void OnClickB(int value)
+    public int clickValue;
+    public void OnClickB()
     {
-        Player.instance.WeaponChange(value);
+        Player.instance.WeaponChange(clickValue);
     }
 }

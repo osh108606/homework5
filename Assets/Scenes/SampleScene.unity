@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 83415201}
   - component: {fileID: 83415200}
   - component: {fileID: 83415199}
+  - component: {fileID: 83415202}
   m_Layer: 5
   m_Name: Weapon1
   m_TagString: Untagged
@@ -233,10 +234,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: a01ec6dcab49d7b4da8d00a64d3d1038, type: 2}
+      - m_Target: {fileID: 83415202}
         m_TargetAssemblyTypeName: SwictingButton, Assembly-CSharp
         m_MethodName: OnClickB
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -283,6 +284,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83415197}
   m_CullTransparentMesh: 1
+--- !u!114 &83415202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83415197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff6874553fbb0448b70b89030496e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickValue: 0
 --- !u!1 &203386396
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709d3338a0bda4443bee3d01f097a033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7239680103594177017, guid: 1769464c9eddb224dbb50e7e99278813, type: 3}
+  weaponData: {fileID: 0}
+  key: Weapon4
 --- !u!4 &203386398
 Transform:
   m_ObjectHideFlags: 0
@@ -402,6 +417,7 @@ GameObject:
   - component: {fileID: 466522375}
   - component: {fileID: 466522374}
   - component: {fileID: 466522373}
+  - component: {fileID: 466522376}
   m_Layer: 5
   m_Name: Weapon3
   m_TagString: Untagged
@@ -473,10 +489,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: a01ec6dcab49d7b4da8d00a64d3d1038, type: 2}
+      - m_Target: {fileID: 466522376}
         m_TargetAssemblyTypeName: SwictingButton, Assembly-CSharp
         m_MethodName: OnClickB
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -523,6 +539,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466522371}
   m_CullTransparentMesh: 1
+--- !u!114 &466522376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466522371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff6874553fbb0448b70b89030496e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickValue: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1055,7 @@ GameObject:
   - component: {fileID: 1105970123}
   - component: {fileID: 1105970122}
   - component: {fileID: 1105970121}
+  - component: {fileID: 1105970124}
   m_Layer: 5
   m_Name: Weapon4
   m_TagString: Untagged
@@ -1097,10 +1127,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: a01ec6dcab49d7b4da8d00a64d3d1038, type: 2}
+      - m_Target: {fileID: 1105970124}
         m_TargetAssemblyTypeName: SwictingButton, Assembly-CSharp
         m_MethodName: OnClickB
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1147,6 +1177,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105970119}
   m_CullTransparentMesh: 1
+--- !u!114 &1105970124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105970119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff6874553fbb0448b70b89030496e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickValue: 3
 --- !u!1 &1152035408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,6 +1629,7 @@ GameObject:
   - component: {fileID: 1417352329}
   - component: {fileID: 1417352328}
   - component: {fileID: 1417352327}
+  - component: {fileID: 1417352330}
   m_Layer: 5
   m_Name: Weapon2
   m_TagString: Untagged
@@ -1657,10 +1701,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: a01ec6dcab49d7b4da8d00a64d3d1038, type: 2}
+      - m_Target: {fileID: 1417352330}
         m_TargetAssemblyTypeName: SwictingButton, Assembly-CSharp
         m_MethodName: OnClickB
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1707,6 +1751,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417352325}
   m_CullTransparentMesh: 1
+--- !u!114 &1417352330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417352325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff6874553fbb0448b70b89030496e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickValue: 1
 --- !u!1 &1423205966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,7 +1861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2848d87df9b78a84b94275910332884c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1746735079809394367, guid: 93e0a78adbb5ae548961f7762f069f77, type: 3}
+  weaponData: {fileID: 0}
+  key: Weapon2
   atkLmit: 0.2
   atkSpeed: 0
 --- !u!4 &1643747026
@@ -2128,7 +2186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec495f9b125b6d49ac538bd7206813b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1746735079809394367, guid: d5af7bc4839f81d43a724562cab550a3, type: 3}
+  weaponData: {fileID: 0}
+  key: Weapon1
 --- !u!4 &1894041621
 Transform:
   m_ObjectHideFlags: 0
@@ -2204,7 +2263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70e9ee8ee5ea8943ac891486b1f078f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1746735079809394367, guid: d5af7bc4839f81d43a724562cab550a3, type: 3}
+  weaponData: {fileID: 0}
+  key: Weapon3
 --- !u!4 &2048708217
 Transform:
   m_ObjectHideFlags: 0

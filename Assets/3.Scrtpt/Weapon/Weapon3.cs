@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon3 : Weapon1
+public class Weapon3 : Weapon
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     public override void Update()
@@ -26,21 +22,21 @@ public class Weapon3 : Weapon1
 
 
 
-        Bullet bullet = Instantiate(bulletPrefab);
+        Bullet bullet = Instantiate(weaponData.bulletPrefab);
         bullet.gameObject.transform.position = transform.position;
-        bullet.Shoot(directtion.normalized);
+        bullet.Shoot(directtion.normalized, this);
 
         float angle = 45f;
         Vector2 leftDirection = Quaternion.Euler(0, 0, angle) * directtion.normalized;
         Vector2 rightDirection = Quaternion.Euler(0, 0, -angle) * directtion.normalized;
 
         //directtion 방향 왼쪽45도
-        Bullet bulletLeft = Instantiate(bulletPrefab);
+        Bullet bulletLeft = Instantiate(weaponData.bulletPrefab);
         bulletLeft.gameObject.transform.position = transform.position;
-        bulletLeft.Shoot(leftDirection.normalized);
+        bulletLeft.Shoot(leftDirection.normalized, this);
         //directtion 방향 오른쪽45도
-        Bullet bulletRight = Instantiate(bulletPrefab);
+        Bullet bulletRight = Instantiate(weaponData.bulletPrefab);
         bulletRight.gameObject.transform.position = transform.position;
-        bulletRight.Shoot(rightDirection.normalized);
+        bulletRight.Shoot(rightDirection.normalized, this);
     }
 }

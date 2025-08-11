@@ -5,12 +5,13 @@ public class Bullet : MonoBehaviour
 {
     public GameObject Enemy;
     public float movespeed;
-    public float damge;
+    public Weapon weapon;
     public Vector2 direction;
     float t = 0f;
-    public void Shoot (Vector2 dir)
+    public void Shoot (Vector2 dir,Weapon weapon)
     {
         direction = dir;
+        this.weapon = weapon;
     }
 
     // Update is called once per frame
@@ -27,7 +28,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<Enemy>().TakeDamage(damge);
+            collision.GetComponent<Enemy>().TakeDamage(weapon.weaponData.damage);
             Destroy(this.gameObject);
         }
     }

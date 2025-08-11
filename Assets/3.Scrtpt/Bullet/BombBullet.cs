@@ -8,11 +8,7 @@ public class BombBullet : Bullet
     public Transform tr;
     public float sDamge;
     public bool colCheck=false;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    
 
     // Update is called once per frame
     public override void Update()

@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ff6874553fbb0448b70b89030496e5a, type: 3}
-  m_Name: SwictingButton
+  m_Script: {fileID: 11500000, guid: 098f8ab1811ef50448a1b60594c4732e, type: 3}
+  m_Name: Weapon2
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  damage: 0.5
+  atkSpeed: 0
+  maxAmmo: 0
+  bulletPrefab: {fileID: 1746735079809394367, guid: d5af7bc4839f81d43a724562cab550a3, type: 3}
