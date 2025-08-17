@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   atkSpeed: 0
-  maxAmmo: 0
+  maxAmmo: 8
   bulletPrefab: {fileID: 1746735079809394367, guid: d5af7bc4839f81d43a724562cab550a3, type: 3}

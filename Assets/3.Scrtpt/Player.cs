@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public static Player instance;
     public Rigidbody2D rb2d;
     public GameObject[] weapons;
-    
+    public Weapon currentWeapon;
     public float speed = 0;
     private void Awake()
     {
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        //Debug.Log("Start");
+        WeaponChange(0);
     }
     // Update is called once per frame
     
@@ -41,8 +41,13 @@ public class Player : MonoBehaviour
         {
             WeaponChange(3);
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            currentWeapon.Reload();
+        }
         Move();
+
     }
     public void WeaponChange(int slot)
     {
@@ -52,6 +57,7 @@ public class Player : MonoBehaviour
         }
 
         weapons[slot].SetActive(true);
+        currentWeapon = weapons[slot].GetComponent<Weapon>();
     }
     public void Move()
     {
