@@ -13,7 +13,7 @@ public class Weapon2 : Weapon
     public override void Update()
     {
         atkSpeed += Time.deltaTime;
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)&&Player.instance.currentWeapon == this)
         {
             if(atkSpeed >= atkLmit)
             {

@@ -23,6 +23,10 @@ public class MainUI : MonoBehaviour
         {
             ReloadFill();
         }
+        else
+        {
+            reloadImage.fillAmount = 0;
+        }
     }
     public void ReloadFill()
     {

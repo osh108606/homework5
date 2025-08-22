@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    
+    public int idx;
     public WeaponData weaponData;
     public string key;
     public int currentAmmo;
     public bool reLoading;
+    
     // Start is called before the first frame update
-    public void Start()
+    public void Awake()
     {
         weaponData = Resources.Load<WeaponData>("WeaponData/"+ key);
         currentAmmo = weaponData.maxAmmo;
@@ -21,7 +22,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-        if (Input.GetMouseButtonDown(0) )
+        if (Input.GetMouseButtonDown(0) && Player.instance.currentWeapon == this)
         {
             Shoot();
             
@@ -83,6 +84,7 @@ public class Weapon : MonoBehaviour
         Bullet bullet = Instantiate(weaponData.bulletPrefab);
         bullet.gameObject.transform.position = transform.position;
         bullet.Shoot(directtion.normalized, this);
+        UserManager.Instance.Shooted();
         return true;
     }
 }

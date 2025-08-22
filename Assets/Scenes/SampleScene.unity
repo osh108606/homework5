@@ -313,7 +313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &203386397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709d3338a0bda4443bee3d01f097a033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idx: 3
   weaponData: {fileID: 11400000, guid: fda4404b7cbd62b4d9348e0e3005d8fe, type: 2}
   key: Weapon4
   currentAmmo: 0
@@ -936,7 +937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6579013464b0da47a581255fb92edbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoStat: {fileID: 571734074}
 --- !u!1 &591291967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,6 +1134,50 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 528645118}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &619278376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 619278378}
+  - component: {fileID: 619278377}
+  m_Layer: 0
+  m_Name: UserManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &619278377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619278376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f68be9d38be0fd4e9676be19f0483d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &619278378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619278376}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &645899949
 GameObject:
@@ -2153,7 +2197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1643747025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2166,6 +2210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2848d87df9b78a84b94275910332884c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idx: 1
   weaponData: {fileID: 11400000, guid: 00292b50cb1f9d64ba006d7ce447e56a, type: 2}
   key: Weapon2
   currentAmmo: 0
@@ -2496,6 +2541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec495f9b125b6d49ac538bd7206813b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idx: 0
   weaponData: {fileID: 11400000, guid: ac88cfdc4920c8a4a9be78d9eb4527ea, type: 2}
   key: Weapon1
   currentAmmo: 0
@@ -2564,7 +2610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2048708216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2577,6 +2623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70e9ee8ee5ea8943ac891486b1f078f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idx: 2
   weaponData: {fileID: 11400000, guid: 52351fc2978805343a6c3a15501f3e48, type: 2}
   key: Weapon3
   currentAmmo: 0
@@ -2731,3 +2778,4 @@ SceneRoots:
   - {fileID: 528645118}
   - {fileID: 28463617}
   - {fileID: 1836596457}
+  - {fileID: 619278378}

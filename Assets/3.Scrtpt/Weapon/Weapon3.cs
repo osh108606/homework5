@@ -6,14 +6,7 @@ public class Weapon3 : Weapon
 {
     
 
-    // Update is called once per frame
-    public override void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
-    }
+    
     public override bool Shoot()
     {
         bool result = base.Shoot(); 

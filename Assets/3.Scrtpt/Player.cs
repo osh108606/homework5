@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
     public Rigidbody2D rb2d;
-    public GameObject[] weapons;
+    public Weapon[] weapons;
     public Weapon currentWeapon;
     public float speed = 0;
     private void Awake()
@@ -51,12 +51,12 @@ public class Player : MonoBehaviour
     }
     public void WeaponChange(int slot)
     {
-        for (int i = 0; i < weapons.Length; i++)
-        {
-            weapons[i].SetActive(false);
-        }
+        //for (int i = 0; i < weapons.Length; i++)
+        //{
+        //    weapons[i].SetActive(false);
+        //}
 
-        weapons[slot].SetActive(true);
+        //weapons[slot].SetActive(true);
         currentWeapon = weapons[slot].GetComponent<Weapon>();
     }
     public void Move()
