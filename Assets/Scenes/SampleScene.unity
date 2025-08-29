@@ -1419,6 +1419,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 528645118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1179855953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1179855954}
+  - component: {fileID: 1179855955}
+  m_Layer: 0
+  m_Name: WeaponGun5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1179855954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179855953}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1836596457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1179855955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179855953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec495f9b125b6d49ac538bd7206813b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idx: 4
+  weaponData: {fileID: 11400000, guid: ea367201ce9495847b448d427f238037, type: 2}
+  key: Weapon5
+  currentAmmo: 0
+  reLoading: 0
+  reloadTimer: 0
+  maxReloadTime: 3
 --- !u!1 &1259406299
 GameObject:
   m_ObjectHideFlags: 0
@@ -2432,10 +2483,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2d: {fileID: 1836596454}
   weapons:
-  - {fileID: 1894041619}
-  - {fileID: 1643747024}
-  - {fileID: 2048708215}
-  - {fileID: 203386396}
+  - {fileID: 1894041620}
+  - {fileID: 1643747025}
+  - {fileID: 2048708216}
+  - {fileID: 203386397}
+  - {fileID: 1179855955}
   currentWeapon: {fileID: 0}
   speed: 5
 --- !u!212 &1836596456
@@ -2510,6 +2562,7 @@ Transform:
   - {fileID: 1643747026}
   - {fileID: 2048708217}
   - {fileID: 203386398}
+  - {fileID: 1179855954}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1894041619

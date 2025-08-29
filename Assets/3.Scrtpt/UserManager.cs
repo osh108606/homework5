@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UserManager : MonoBehaviour
@@ -14,9 +15,15 @@ public class UserManager : MonoBehaviour
         if(userData == null)
         {
             userData = new UserData();
-            for (int i = 0; i < userData.ammos.Length; i++)
-            {
-                userData.ammos[i] = Player.instance.weapons[i].weaponData.maxAmmo;
+            for (int i = 0; i < Player.instance.weapons.Length; i++)
+            { 
+                UserAmmo userAmmo = new UserAmmo();
+                int maxAmmo = Player.instance.weapons[i].weaponData.maxAmmo;
+                string key = Player.instance.weapons[i].key;
+                userAmmo.count = maxAmmo;
+                userAmmo.key = key;
+                userData.userAmmos.Add(userAmmo);
+
             }
             //ÀúÀå
             SaveManager.SaveData("UserData.json", userData);
@@ -27,11 +34,19 @@ public class UserManager : MonoBehaviour
 
     public void Shooted()
     {
-        userData.ammos[Player.instance.currentWeapon.idx] = Player.instance.currentWeapon.currentAmmo;
+        userData.userAmmos[Player.instance.currentWeapon.idx].count = Player.instance.currentWeapon.currentAmmo;
         SaveManager.SaveData("UserData.json", userData);
     }
 }
+[System.Serializable]
 public class UserData
 {
-    public int[] ammos = new int[4];
+    public List<UserAmmo> userAmmos = new List<UserAmmo>();
+}
+
+[System.Serializable]
+public class UserAmmo
+{
+    public string key;
+    public int count;
 }

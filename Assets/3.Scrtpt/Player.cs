@@ -20,9 +20,7 @@ public class Player : MonoBehaviour
     {
         WeaponChange(0);
     }
-    // Update is called once per frame
     
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -41,7 +39,10 @@ public class Player : MonoBehaviour
         {
             WeaponChange(3);
         }
-
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            WeaponChange(4);
+        }
         if (Input.GetKeyDown(KeyCode.R))
         {
             currentWeapon.Reload();
