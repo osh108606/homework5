@@ -12,11 +12,11 @@ public class UserManager : MonoBehaviour
     private void Start()
     {
         userData = SaveManager.LoadData<UserData>("UserData.json");
-        if(userData == null)
+        if (userData == null)
         {
             userData = new UserData();
             for (int i = 0; i < Player.instance.weapons.Length; i++)
-            { 
+            {
                 UserAmmo userAmmo = new UserAmmo();
                 int maxAmmo = Player.instance.weapons[i].weaponData.maxAmmo;
                 string key = Player.instance.weapons[i].key;
@@ -28,14 +28,26 @@ public class UserManager : MonoBehaviour
             //ÀúÀå
             SaveManager.SaveData("UserData.json", userData);
         }
-        
+
     }
-    
+
 
     public void Shooted()
-    {
-        userData.userAmmos[Player.instance.currentWeapon.idx].count = Player.instance.currentWeapon.currentAmmo;
+    { 
         SaveManager.SaveData("UserData.json", userData);
+    }
+
+    public UserAmmo GetUserAmmo(string key)
+    {
+        for(int i = 0; i<userData.userAmmos.Count;i++ )
+        {
+            if (userData.userAmmos[i].key == key)
+            {
+                return userData.userAmmos[i];
+            }
+        }
+        
+        return null;
     }
 }
 [System.Serializable]

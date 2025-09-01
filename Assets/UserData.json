@@ -2,15 +2,15 @@
     "userAmmos": [
         {
             "key": "Weapon1",
-            "count": 6
+            "count": 8
         },
         {
             "key": "Weapon2",
-            "count": 7
+            "count": 29
         },
         {
             "key": "Weapon3",
-            "count": 8
+            "count": 6
         },
         {
             "key": "Weapon4",
@@ -18,7 +18,7 @@
         },
         {
             "key": "Weapon5",
-            "count": 0
+            "count": 10
         }
     ]
 }

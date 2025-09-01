@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1173
     height: 1333
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 8}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -450,7 +450,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/3.Scrtpt
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -460,16 +460,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/3.Scrtpt
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GitHub\homework5
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 108c0000
-    m_LastClickedID: 35856
-    m_ExpandedIDs: 00000000108c0000128c0000
+    m_SelectedIDs: 728c0000
+    m_LastClickedID: 35954
+    m_ExpandedIDs: 000000008e8c0000908c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -498,7 +498,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000108c0000128c0000
+    m_ExpandedIDs: 000000008e8c0000908c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -646,7 +646,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e6faffff
+      m_ExpandedIDs: a0e4ffffe6faffff548b00006e8b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1250,9 +1250,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 202.94925, y: 79.03528, z: -1.4318283}
+    m_Target: {x: 134.57774, y: 162.43546, z: -2.32619}
     speed: 2
-    m_Value: {x: 202.94925, y: 79.03528, z: -1.4318283}
+    m_Value: {x: 134.57774, y: 162.43546, z: -2.32619}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1302,9 +1302,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 153.18275
+    m_Target: 242.61911
     speed: 2
-    m_Value: 153.18275
+    m_Value: 242.61911
   m_Ortho:
     m_Target: 1
     speed: 2

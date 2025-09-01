@@ -7,18 +7,22 @@ public class Weapon : MonoBehaviour
     public int idx;
     public WeaponData weaponData;
     public string key;
-    public int currentAmmo;
+    public UserAmmo userAmmo;
     public bool reLoading;
     
     // Start is called before the first frame update
     public void Awake()
     {
         weaponData = Resources.Load<WeaponData>("WeaponData/"+ key);
-        currentAmmo = weaponData.maxAmmo;
+        
         reLoading = false;
     }
 
-
+    public void AmmoMatch()//다른이름 생각해보기
+    {
+        //총알 매치
+        userAmmo = UserManager.Instance.GetUserAmmo(key); 
+    }
     // Update is called once per frame
     public virtual void Update()
     {
@@ -53,20 +57,20 @@ public class Weapon : MonoBehaviour
             reloadTimer -= Time.deltaTime;// 
         }
 
-        currentAmmo = weaponData.maxAmmo;
+        userAmmo.count = weaponData.maxAmmo;
         reLoading = false;
     }
     // 여기까지 보면 수정할것
     public virtual bool Shoot()
     {
         
-        if(currentAmmo <= 0)
+        if(userAmmo.count <= 0)
         {
             return false;
         }
         if (reLoading == true)
             return false;
-        currentAmmo--;
+        userAmmo.count--;
         Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = (touchPos - (Vector2)transform.position).normalized;
 

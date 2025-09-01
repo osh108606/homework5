@@ -1,2 +1,4 @@
 # 프로젝트 README
-Player.cs의 무리 currentWeapon 관련 버그 수정
+UI로 무기 "장착혹은 해제"구현
+시작무기는 1개로 시작
+무기는 구입하도록

@@ -52,13 +52,8 @@ public class Player : MonoBehaviour
     }
     public void WeaponChange(int slot)
     {
-        //for (int i = 0; i < weapons.Length; i++)
-        //{
-        //    weapons[i].SetActive(false);
-        //}
-
-        //weapons[slot].SetActive(true);
         currentWeapon = weapons[slot].GetComponent<Weapon>();
+        currentWeapon.AmmoMatch();
     }
     public void Move()
     {
