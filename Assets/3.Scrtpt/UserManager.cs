@@ -15,6 +15,10 @@ public class UserManager : MonoBehaviour
         if (userData == null)
         {
             userData = new UserData();
+            UserWeapon userWeapon = new UserWeapon();
+            userWeapon.weaponEuiped = true;
+            userWeapon.key = "Weapon1";
+            userData.userWeapons.Add(userWeapon);
             for (int i = 0; i < Player.instance.weapons.Length; i++)
             {
                 UserAmmo userAmmo = new UserAmmo();
@@ -31,6 +35,10 @@ public class UserManager : MonoBehaviour
 
     }
 
+    public void WeaponHandle()
+    {
+        SaveManager.SaveData("UserData.json", userData);
+    }
 
     public void Shooted()
     { 
@@ -53,6 +61,7 @@ public class UserManager : MonoBehaviour
 [System.Serializable]
 public class UserData
 {
+    public List<UserWeapon> userWeapons = new List<UserWeapon>();
     public List<UserAmmo> userAmmos = new List<UserAmmo>();
 }
 
@@ -61,4 +70,11 @@ public class UserAmmo
 {
     public string key;
     public int count;
+}
+
+[System.Serializable]
+public class UserWeapon
+{
+    public string key;
+    public bool weaponEuiped;
 }

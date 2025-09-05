@@ -1,8 +1,9 @@
 {
+    "userWeapons": [],
     "userAmmos": [
         {
             "key": "Weapon1",
-            "count": 8
+            "count": 6
         },
         {
             "key": "Weapon2",

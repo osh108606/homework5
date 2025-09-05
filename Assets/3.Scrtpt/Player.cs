@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public Weapon[] weapons;
     public Weapon currentWeapon;
     public float speed = 0;
+    public GameObject inventory;
     private void Awake()
     {
         instance = this;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         WeaponChange(0);
+        inventory.SetActive(false);
     }
     
     private void Update()
@@ -49,6 +51,18 @@ public class Player : MonoBehaviour
         }
         Move();
 
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (inventory.activeSelf == true)
+            {
+                inventory.SetActive(false);
+            }
+            else
+            {
+                inventory.SetActive(true);
+            }
+
+        }
     }
     public void WeaponChange(int slot)
     {
