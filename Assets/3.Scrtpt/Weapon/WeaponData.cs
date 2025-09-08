@@ -7,4 +7,6 @@ public class WeaponData : ScriptableObject
     public float atkSpeed;
     public int maxAmmo;
     public Bullet bulletPrefab;
+    public Sprite sprite;
+    public string weaponName;
 }

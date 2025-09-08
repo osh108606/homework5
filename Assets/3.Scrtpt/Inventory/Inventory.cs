@@ -19,7 +19,9 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < UserManager.Instance.userData.userWeapons.Count; i++)
         {
             GameObject panel = Instantiate(weaponPanelPrefab, weaponList.transform);
-
+            string key = UserManager.Instance.userData.userWeapons[i].key;
+            panel.GetComponent<GearPanel>().SetData(key);
+            weaponPanels.Add(panel);
         }
            
     }

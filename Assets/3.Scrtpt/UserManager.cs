@@ -5,20 +5,24 @@ public class UserManager : MonoBehaviour
 {
     public static UserManager Instance;
     public UserData userData;
+    
     public void Awake()
     {
         Instance = this;
     }
     private void Start()
     {
+        
         userData = SaveManager.LoadData<UserData>("UserData.json");
         if (userData == null)
-        {
+        {   
             userData = new UserData();
             UserWeapon userWeapon = new UserWeapon();
             userWeapon.weaponEuiped = true;
             userWeapon.key = "Weapon1";
             userData.userWeapons.Add(userWeapon);
+            userData.currentWeapon = userWeapon;
+            Player.instance.currentWeapon = Player.instance.weapons[0].GetComponent<Weapon>(); 
             for (int i = 0; i < Player.instance.weapons.Length; i++)
             {
                 UserAmmo userAmmo = new UserAmmo();
@@ -63,6 +67,7 @@ public class UserData
 {
     public List<UserWeapon> userWeapons = new List<UserWeapon>();
     public List<UserAmmo> userAmmos = new List<UserAmmo>();
+    public UserWeapon currentWeapon = null;
 }
 
 [System.Serializable]
@@ -77,4 +82,5 @@ public class UserWeapon
 {
     public string key;
     public bool weaponEuiped;
+    
 }
