@@ -3,12 +3,20 @@
         {
             "key": "Weapon1",
             "weaponEuiped": true
+        },
+        {
+            "key": "Weapon2",
+            "weaponEuiped": false
+        },
+        {
+            "key": "Weapon3",
+            "weaponEuiped": false
         }
     ],
     "userAmmos": [
         {
             "key": "Weapon1",
-            "count": 9
+            "count": 0
         },
         {
             "key": "Weapon2",
@@ -16,7 +24,7 @@
         },
         {
             "key": "Weapon3",
-            "count": 7
+            "count": 8
         },
         {
             "key": "Weapon4",
@@ -26,9 +34,5 @@
             "key": "Weapon5",
             "count": 10
         }
-    ],
-    "currentWeapon": {
-        "key": "Weapon1",
-        "weaponEuiped": true
-    }
+    ]
 }

@@ -16,3 +16,5 @@ MonoBehaviour:
   atkSpeed: 0
   maxAmmo: 6
   bulletPrefab: {fileID: 7239680103594177017, guid: 1769464c9eddb224dbb50e7e99278813, type: 3}
+  sprite: {fileID: 0}
+  weaponName: Weapon4

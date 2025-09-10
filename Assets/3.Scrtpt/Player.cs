@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
     {
         currentWeapon = weapons[slot].GetComponent<Weapon>();
         currentWeapon.AmmoMatch();
-        SaveManager.SaveData("UserData.json", UserManager.Instance.userData);
+        UserManager.Instance.ChangeWeapon(currentWeapon.key);
     }
     public void Move()
     {

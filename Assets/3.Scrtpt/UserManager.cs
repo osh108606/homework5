@@ -21,7 +21,7 @@ public class UserManager : MonoBehaviour
             userWeapon.weaponEuiped = true;
             userWeapon.key = "Weapon1";
             userData.userWeapons.Add(userWeapon);
-            userData.currentWeapon = userWeapon;
+            
             Player.instance.currentWeapon = Player.instance.weapons[0].GetComponent<Weapon>(); 
             for (int i = 0; i < Player.instance.weapons.Length; i++)
             {
@@ -38,10 +38,46 @@ public class UserManager : MonoBehaviour
         }
 
     }
-
-    public void WeaponHandle()
+    
+    // 기존무기 장착 비활성화 새무기 장착
+    public void ChangeWeapon(string key)
     {
+        UserWeapon preUserWeapon = GetCurrentUserWeapon();
+        if (preUserWeapon != null)
+            preUserWeapon.weaponEuiped = false;
+
+        UserWeapon userWeapon = GetUserWeapon(key);
+        userWeapon.weaponEuiped = true;
+
+
         SaveManager.SaveData("UserData.json", userData);
+    }
+
+    // 특정유저무기 반환
+    public UserWeapon GetUserWeapon(string key)
+    {
+        for (int i = 0; i < userData.userWeapons.Count; i++)
+        {
+            if (userData.userWeapons[i].key == key)
+            {
+                return userData.userWeapons[i];
+               
+            }
+        }
+        return null;
+    }
+
+    //현재 장착중인 무기의 상태를 반환
+    public UserWeapon GetCurrentUserWeapon()
+    {
+        for (int i = 0; i < userData.userWeapons.Count; i++)
+        {
+            if (userData.userWeapons[i].weaponEuiped == true)
+            {
+                return userData.userWeapons[i];
+            }
+        }
+        return null;
     }
 
     public void Shooted()
@@ -61,13 +97,22 @@ public class UserManager : MonoBehaviour
         
         return null;
     }
+    public void RemoveWeapon(string key)
+    {
+        UserWeapon deleteWeapon = GetUserWeapon(key);
+
+        userData.userWeapons.Remove(deleteWeapon);
+    }
 }
+
+
+
 [System.Serializable]
 public class UserData
 {
     public List<UserWeapon> userWeapons = new List<UserWeapon>();
     public List<UserAmmo> userAmmos = new List<UserAmmo>();
-    public UserWeapon currentWeapon = null;
+    
 }
 
 [System.Serializable]
