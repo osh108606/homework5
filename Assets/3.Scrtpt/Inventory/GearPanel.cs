@@ -7,6 +7,7 @@ public class GearPanel : MonoBehaviour
     public TMP_Text text;
     public UserWeapon userWeapon;
     public string key;
+    public bool select = false;
     // 유저매니저로 보유한 무기정보의 무기데이터구분자를 받고 그것을 반영하여 내보낸다
     public void SetData(string key)
     {
@@ -24,6 +25,19 @@ public class GearPanel : MonoBehaviour
         {
             image.color = Color.black;
         }
+    }
+    public UserWeapon OnClicked()
+    {
+        //1번클릭했을시 선택상태
+        if (select == false)
+        {
+            select = true;
+        } 
+        else
+        {
+            select = false;
+        }
+        return UserManager.Instance.GetUserWeapon(key);
     }
     public void OnClickedRemove()
     {

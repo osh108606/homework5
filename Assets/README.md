@@ -4,8 +4,8 @@
 
 //주 구현목록
 
-//public void RemoveWeapon(string key)함수 완성시키기 (userWeapons리스트의 요소 자유는것)
-//gearPanel UI로 아이템 버리기 기능구현과 관련버튼 제작
+
+
 // Inventory클래스의 UpdateCanvas() 함수 수정(현재 장착중인게 아닌 기어페널을 눌른아이템으로 표기되도록)
 
 //인벤토리에서 다른 무기 클릭 시 클릭한 무기로 교체 + UI 갱신

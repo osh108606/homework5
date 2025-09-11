@@ -9,10 +9,17 @@ public class Inventory : MonoBehaviour
     public List<GameObject> weaponPanels;
     public TMP_Text curWeaponNameText;
     public Image curWeaponImage;
+    public UserWeapon selectWeapon;
     public void UpdateCanvas()
     {
-        UserWeapon curUserWeapon = UserManager.Instance.GetCurrentUserWeapon();
-        WeaponData weapnData = Resources.Load<WeaponData>("WeaponData/"+ curUserWeapon.key);
+        
+        //for (int i = 0; i < weaponPanels.Count; i++)
+        //{
+        //    selectWeapon = weaponPanels[i].GetComponent<GearPanel>().OnClicked();
+        //}
+        UserWeapon selectWeapon = UserManager.Instance.GetCurrentUserWeapon();
+        //UserManager.Instance.GetCurrentUserWeapon();
+        WeaponData weapnData = Resources.Load<WeaponData>("WeaponData/"+ selectWeapon.key);
         curWeaponNameText.text = weapnData.weaponName;
         curWeaponImage.sprite = weapnData.sprite;
     }
