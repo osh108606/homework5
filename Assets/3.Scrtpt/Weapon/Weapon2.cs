@@ -4,24 +4,5 @@ using UnityEngine;
 
 public class Weapon2 : Weapon
 {
-    public float atkLmit;
-    public float atkSpeed;
-    
-    
-
-    // Update is called once per frame
-    public override void Update()
-    {
-        atkSpeed += Time.deltaTime;
-        if (Input.GetMouseButton(0)&&Player.instance.currentWeapon == this)
-        {
-            if(atkSpeed >= atkLmit)
-            {
-                Shoot();
-                atkSpeed = 0;
-            }
-            
-        }
-    }
     
 }

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int idx;
-    public WeaponData weaponData;
     public string key;
-    public UserAmmo userAmmo;
+    public int idx;
+    public float atkLmit;
+    public float atkSpeed;
     public bool reLoading;
+    public WeaponData weaponData;
+    public UserAmmo userAmmo;
     
-    // Start is called before the first frame update
     public void Awake()
     {
         weaponData = Resources.Load<WeaponData>("WeaponData/"+ key);
@@ -23,15 +24,22 @@ public class Weapon : MonoBehaviour
         //총알 매치
         userAmmo = UserManager.Instance.GetUserAmmo(key); 
     }
-    // Update is called once per frame
+    
     public virtual void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Player.instance.currentWeapon == this)
+        atkSpeed += Time.deltaTime;
+        if (Input.GetMouseButtonDown(0) && Player.instance.currentWeapon == this && weaponData.auto == false)
         {
             Shoot();
-            
         }
-        
+        else if (Input.GetMouseButton(0) && Player.instance.currentWeapon == this && weaponData.auto == true)
+        {
+            if (atkSpeed >= atkLmit)
+            {
+                Shoot();
+                atkSpeed = 0;
+            }
+        }
     }
 
     public void Reload()
@@ -54,13 +62,13 @@ public class Weapon : MonoBehaviour
                 break;
 
             yield return null;
-            reloadTimer -= Time.deltaTime;// 
+            reloadTimer -= Time.deltaTime;
         }
 
         userAmmo.count = weaponData.maxAmmo;
         reLoading = false;
     }
-    // 여기까지 보면 수정할것
+    
     public virtual bool Shoot()
     {
         

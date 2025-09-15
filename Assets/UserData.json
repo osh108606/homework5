@@ -8,7 +8,7 @@
     "userAmmos": [
         {
             "key": "Weapon1",
-            "count": 8
+            "count": 9
         },
         {
             "key": "Weapon2",
@@ -26,5 +26,12 @@
             "key": "Weapon5",
             "count": 10
         }
-    ]
+    ],
+    "userEquipments": [
+        {
+            "key": "Equipment1-1",
+            "equipmentEuiped": true
+        }
+    ],
+    "userItems": []
 }

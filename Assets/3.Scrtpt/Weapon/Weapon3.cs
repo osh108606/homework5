@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Weapon3 : Weapon
 {
-    
-
-    
     public override bool Shoot()
     {
         bool result = base.Shoot(); 

@@ -4,9 +4,14 @@
 
 //주 구현목록
 
+**떨어진 [무기 또는 아이템] 줍기**- Player 가 가까이갔을 때 F키 눌러서 습득 가능
+
+1. 아이템의 키를 가지고 있는 DropItem를 구현하기! 
+2. Player 가 가까이갔을 때 F키 눌러서 습득하기
+3. Key의 아이템을 UserManager UserData에 추가함
+4. WeaponInventory, NormalInventory 인벤토리 구현해서 보여줌
 
 
-// Inventory클래스의 UpdateCanvas() 함수 수정(현재 장착중인게 아닌 기어페널을 눌른아이템으로 표기되도록)
 
 //인벤토리에서 다른 무기 클릭 시 클릭한 무기로 교체 + UI 갱신
 

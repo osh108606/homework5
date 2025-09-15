@@ -9,42 +9,45 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb2d;
     public Weapon[] weapons;
     public Weapon currentWeapon;
+    public Equipment[] equipments;
     public float speed = 0;
     public GameObject inventory;
     private void Awake()
     {
         instance = this;
-        //Debug.Log("Awake");
         rb2d = GetComponent<Rigidbody2D>();
     }
     private void Start()
     {
-        WeaponChange(0);
+        UserWeapon userWeapon = UserManager.Instance.GetCurrentUserWeapon();
+        ChangeWeapon(userWeapon.key);
         inventory.SetActive(false);
     }
     
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            WeaponChange(0);
+            ChangeWeapon(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            WeaponChange(1);
+            ChangeWeapon(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            WeaponChange(2);
+            ChangeWeapon(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            WeaponChange(3);
+            ChangeWeapon(3);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            WeaponChange(4);
+            ChangeWeapon(4);
         }
+        */
         if (Input.GetKeyDown(KeyCode.R))
         {
             currentWeapon.Reload();
@@ -64,11 +67,25 @@ public class Player : MonoBehaviour
 
         }
     }
-    public void WeaponChange(int slot)
+    public void ChangeWeapon(string key)
     {
-        currentWeapon = weapons[slot].GetComponent<Weapon>();
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            if (key == weapons[i].key)
+            {
+                currentWeapon = weapons[i].GetComponent<Weapon>();
+                break;
+            }
+        }
+        
         currentWeapon.AmmoMatch();
         UserManager.Instance.ChangeWeapon(currentWeapon.key);
+    }
+
+    public void ChangeEquipment(string key)
+    {
+
+        //UserManager.Instance.ChangeEquipment(equipments[i].key);
     }
     public void Move()
     {

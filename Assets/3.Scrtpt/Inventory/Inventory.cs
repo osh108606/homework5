@@ -10,6 +10,7 @@ public class Inventory : MonoBehaviour
     public TMP_Text curWeaponNameText;
     public Image curWeaponImage;
     public UserWeapon selectWeapon;
+    
     public void UpdateCanvas()
     {
         
@@ -40,6 +41,26 @@ public class Inventory : MonoBehaviour
             weaponPanels.Add(panel);
             
         }
-           
+        Selected(null);
+    }
+    public void Selected(WeaponData weaponData)
+    {
+        if(weaponData == null)
+        {
+            curWeaponNameText.enabled = false;
+            curWeaponImage.enabled = false;
+            return;
+        }
+
+        UserManager.Instance.ChangeWeapon(weaponData.key);
+        Player.instance.ChangeWeapon(weaponData.key);
+        
+        
+
+        curWeaponNameText.enabled = true;
+        curWeaponImage.enabled = true;
+
+        curWeaponNameText.text = weaponData.weaponName;
+        curWeaponImage.sprite= weaponData.sprite;
     }
 }
