@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 
@@ -64,9 +65,28 @@ public class Player : MonoBehaviour
             {
                 inventory.SetActive(true);
             }
-
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            PickUp();
+        }
+            
     }
+
+    public void PickUp()
+    {
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 3,LayerMask.GetMask("DropItem"));
+        if (cols.Length <= 0)
+        {
+            return;
+        }
+        
+        
+        DropItem item = cols[0].GetComponent<DropItem>();
+        UserManager.Instance.userData.userItems.Add(item)
+        
+    }
+
     public void ChangeWeapon(string key)
     {
         for (int i = 0; i < weapons.Length; i++)

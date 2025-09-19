@@ -43,6 +43,21 @@ public class UserManager : MonoBehaviour
         }
 
     }
+    //아이템 추가
+    public void Additem(string key)
+    {
+        UserItem userItem = GetUserItem(key);
+
+        if(userItem == null)
+        {
+            userItem = new UserItem();
+            userItem.key = key;
+            userItem.itemEuiped = false;
+            userItem.count = 0;
+            userData.userItems.Add(userItem);
+        }
+        userItem.count += 1;
+    }
     
     // 기존아이템 장착 비활성화 새무기 장착
     public void ChangeWeapon(string key)//무기
@@ -91,6 +106,18 @@ public class UserManager : MonoBehaviour
             {
                 return userData.userEquipments[i];
 
+            }
+        }
+        return null;
+    }
+
+    public UserItem GetUserItem(string key)//아이템
+    {
+        for (int i = 0; i < userData.userItems.Count; i++)
+        {
+            if (userData.userItems[i].key == key)
+            {
+                return userData.userItems[i];
             }
         }
         return null;
