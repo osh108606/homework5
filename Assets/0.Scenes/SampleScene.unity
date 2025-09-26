@@ -935,7 +935,7 @@ MonoBehaviour:
   atkLmit: 0
   atkSpeed: 0
   reLoading: 0
-  weaponData: {fileID: 11400000, guid: fda4404b7cbd62b4d9348e0e3005d8fe, type: 2}
+  weaponData: {fileID: 0}
   userAmmo:
     key: 
     count: 0
@@ -1855,7 +1855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &527358202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1918,7 +1918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &528645118
 Transform:
   m_ObjectHideFlags: 0
@@ -3884,63 +3884,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049182384}
   m_CullTransparentMesh: 1
---- !u!1001 &1063922706
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5743244237139953847, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_Name
-      value: DropItemObject
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735306149019239106, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.741593
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735306149019239106, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6.698539
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735306149019239106, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735306149019239106, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735306149019239106, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735306149019239106, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735306149019239106, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735306149019239106, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735306149019239106, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735306149019239106, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
 --- !u!1 &1078420852
 GameObject:
   m_ObjectHideFlags: 0
@@ -6290,7 +6233,7 @@ MonoBehaviour:
   atkLmit: 0.2
   atkSpeed: 0
   reLoading: 0
-  weaponData: {fileID: 11400000, guid: 00292b50cb1f9d64ba006d7ce447e56a, type: 2}
+  weaponData: {fileID: 0}
   userAmmo:
     key: 
     count: 0
@@ -7564,7 +7507,7 @@ MonoBehaviour:
   atkLmit: 0
   atkSpeed: 0
   reLoading: 0
-  weaponData: {fileID: 11400000, guid: ac88cfdc4920c8a4a9be78d9eb4527ea, type: 2}
+  weaponData: {fileID: 0}
   userAmmo:
     key: 
     count: 0
@@ -8100,7 +8043,7 @@ MonoBehaviour:
   atkLmit: 0
   atkSpeed: 0
   reLoading: 0
-  weaponData: {fileID: 11400000, guid: 52351fc2978805343a6c3a15501f3e48, type: 2}
+  weaponData: {fileID: 0}
   userAmmo:
     key: 
     count: 0
@@ -8298,4 +8241,3 @@ SceneRoots:
   - {fileID: 619278378}
   - {fileID: 527358203}
   - {fileID: 528645118}
-  - {fileID: 1063922706}

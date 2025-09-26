@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     float y;
     public float movespeed;
     public Vector2 desPoint;
+    public GameObject dropItemPrifap;
     void Start()
     {
         
@@ -53,8 +54,16 @@ public class Enemy : MonoBehaviour
         {
             EnemyController.instance.enemiesCount--;
             EnemyController.instance.cheak--;
+            Death();
             Destroy(this.gameObject);
         }
     }
     
+    public void Death()
+    {
+        
+       GameObject drop = Instantiate(dropItemPrifap);
+       drop.GetComponent<DropItem>().SetItemKey("Weapon2");
+        drop.transform.position = transform.position;
+    }
 }

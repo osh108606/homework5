@@ -83,8 +83,9 @@ public class Player : MonoBehaviour
         
         
         DropItem item = cols[0].GetComponent<DropItem>();
-        UserManager.Instance.userData.userItems.Add(item)
         
+        UserManager.Instance.Additem(item.key);
+        Destroy(item.gameObject);
     }
 
     public void ChangeWeapon(string key)
