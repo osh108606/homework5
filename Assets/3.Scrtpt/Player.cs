@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -69,10 +70,26 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             PickUp();
+            Talk();
         }
             
     }
 
+    public void Talk()
+    {
+        if(gameObject.CompareTag("Npc"))
+        {
+            Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 3);
+
+            if (cols.Length <= 0)
+            {
+                return;
+            }
+            NPC npc = cols[0].GetComponent<NPC>();
+            npc.TalkUI();
+        } 
+    }
+    
     public void PickUp()
     {
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 3,LayerMask.GetMask("DropItem"));
