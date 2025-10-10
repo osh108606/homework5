@@ -10,7 +10,7 @@ public class NPC : MonoBehaviour
     public Collider2D col;
     public GameObject canvasObjede;
     public Image HpBar;
-     
+    public StageSelect stageSelect;
     bool arrived = false;
     float y;
     public Vector2 desPoint;
@@ -64,7 +64,14 @@ public class NPC : MonoBehaviour
 
     public void TalkUI()
     {
-
+        if (stageSelect.gameObject.activeSelf == true)
+        {
+            stageSelect.gameObject.SetActive(false);
+        }
+        else
+        {
+            stageSelect.gameObject.SetActive(true);
+        }
     }
 
     //자유이동

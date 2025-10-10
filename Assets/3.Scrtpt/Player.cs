@@ -71,23 +71,31 @@ public class Player : MonoBehaviour
         {
             PickUp();
             Talk();
+
         }
             
     }
 
     public void Talk()
     {
-        if(gameObject.CompareTag("Npc"))
-        {
-            Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 3);
+        
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 3);
 
-            if (cols.Length <= 0)
+        if (cols.Length <= 0)
+        {
+            return;
+        }
+        for (int i = 0;i < cols.Length; i++) 
+        {
+            if (cols[i].CompareTag("Npc"))
             {
-                return;
+                NPC npc = cols[i].GetComponent<NPC>();
+                npc.TalkUI();
             }
-            NPC npc = cols[0].GetComponent<NPC>();
-            npc.TalkUI();
-        } 
+        }
+
+        
+        
     }
     
     public void PickUp()

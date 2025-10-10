@@ -20,12 +20,6 @@ public class EnemyController : MonoBehaviour
         instance = this;
     }
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         //t+=Time.deltaTime;
@@ -54,7 +48,6 @@ public class EnemyController : MonoBehaviour
         {
             cheakArrive();
         }
-        
         
     }
 
