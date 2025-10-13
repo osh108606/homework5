@@ -7,20 +7,20 @@ public class Dungeon : MonoBehaviour
     public Transform playerSpawnPoint;
     //던전이동포인트&첫리스폰포인트
     
-    public GameObject[] zone;
+    public DungeonZone[] zones;
     //던전내 구역
+    public void Awake()
+    {
+        zones = GetComponentsInChildren<DungeonZone>();
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        DungeonStart();
+       
     }
 
     public void DungeonStart()
     {
-        for (int i = 0; i < zone.Length; i++)
-        {
-            zone[i].GetComponent<DungeonZone>().ZoneStart();
-        }
-        
+        zones[0].GetComponent<DungeonZone>().ZoneStart();
     }
     public void DungeonEnd()
     {
