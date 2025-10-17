@@ -139,32 +139,37 @@ public class Player : MonoBehaviour
     }
     public void Move()
     {
+        Rigidbody2D rd2d = GetComponent<Rigidbody2D>();
         Vector2 dir= new Vector2();
         if (Input.GetKey(KeyCode.W))
         {
-            dir.x = 0;
-            dir.y = 1;
-            transform.position += (Vector3)dir* moveSpeed * Time.deltaTime;
+            dir.x += 0;
+            dir.y += 1;
+            
             Debug.Log(dir);
         }
-        else if (Input.GetKey(KeyCode.S))
+
+        if (Input.GetKey(KeyCode.S))
         {
-            dir.x = 0;
-            dir.y = -1;
-            transform.position = transform.position + (Vector3)dir * moveSpeed * Time.deltaTime;
+            dir.x += 0;
+            dir.y += -1;
+            
         }
-        else if (Input.GetKey(KeyCode.A))
+
+        if (Input.GetKey(KeyCode.A))
         {
-            dir.x = -1;
-            dir.y = 0;
-            transform.position += (Vector3)dir * moveSpeed * Time.deltaTime;
+            dir.x += -1;
+            dir.y += 0;
+            
         }
-        else if (Input.GetKey(KeyCode.D))
+
+        if (Input.GetKey(KeyCode.D))
         {
-            dir.x = 1;
-            dir.y = 0;
-            transform.position += (Vector3)dir * moveSpeed * Time.deltaTime;
+            dir.x += 1;
+            dir.y += 0;
+            
         }
+        rd2d.linearVelocity = dir.normalized * moveSpeed;
     }
     
 }
