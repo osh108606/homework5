@@ -5,7 +5,7 @@ public class NPC : MonoBehaviour
 {
     public float mhp; //최대 체력
     public float hp; // 현재 체력
-    public float movespeed; // 이동 속도
+    public float moveSpeed; // 이동 속도
 
     public Collider2D col;
     public GameObject canvasObjede;
@@ -57,7 +57,7 @@ public class NPC : MonoBehaviour
         y = transform.position.y;
         if (arrived == true)
         {
-            y -= Time.deltaTime * movespeed;
+            y -= Time.deltaTime * moveSpeed;
             transform.position = new Vector2(transform.position.x, y);
         }
     }

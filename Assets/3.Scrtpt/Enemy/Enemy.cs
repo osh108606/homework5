@@ -64,10 +64,10 @@ public class Enemy : MonoBehaviour
         GameObject drop = Instantiate(dropItemPrifap);
         drop.GetComponent<DropItem>().SetItemKey("Weapon2");
         drop.transform.position = transform.position;
-        DungeonZone zone = GetComponentInParent<DungeonZone>();
+        IEnemySpawner zone = GetComponentInParent<IEnemySpawner>();
         if (zone != null)
         {
-            zone.ZoneEnemyDie();
+            zone.KilledEnemy(this);
         }
     }
 

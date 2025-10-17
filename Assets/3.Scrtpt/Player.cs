@@ -12,8 +12,12 @@ public class Player : MonoBehaviour
     public Weapon[] weapons;
     public Weapon currentWeapon;
     public Equipment[] equipments;
-    public float speed = 0;
+    
     public GameObject inventory;
+
+    public float mhp; //최대 체력
+    public float hp; // 현재 체력
+    public float moveSpeed = 0;
     private void Awake()
     {
         instance = this;
@@ -140,26 +144,26 @@ public class Player : MonoBehaviour
         {
             dir.x = 0;
             dir.y = 1;
-            transform.position += (Vector3)dir* speed *Time.deltaTime;
+            transform.position += (Vector3)dir* moveSpeed * Time.deltaTime;
             Debug.Log(dir);
         }
         else if (Input.GetKey(KeyCode.S))
         {
             dir.x = 0;
             dir.y = -1;
-            transform.position = transform.position + (Vector3)dir * speed * Time.deltaTime;
+            transform.position = transform.position + (Vector3)dir * moveSpeed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             dir.x = -1;
             dir.y = 0;
-            transform.position += (Vector3)dir * speed * Time.deltaTime;
+            transform.position += (Vector3)dir * moveSpeed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.D))
         {
             dir.x = 1;
             dir.y = 0;
-            transform.position += (Vector3)dir * speed * Time.deltaTime;
+            transform.position += (Vector3)dir * moveSpeed * Time.deltaTime;
         }
     }
     
