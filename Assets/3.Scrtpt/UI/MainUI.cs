@@ -8,18 +8,18 @@ public class MainUI : MonoBehaviour
     public Image reloadImage;
     
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         instance = this;
     }
 
     
-   
-    // Update is called once per frame
     void Update()
     {
-        ammoStat.text = $"{Player.instance.currentWeapon.userAmmo.count}/{Player.instance.currentWeapon.weaponData.maxAmmo}";
+        if (Player.instance.currentWeapon != null &&  Player.instance.currentWeapon.weaponData != null)
+        {
+            ammoStat.text = $"{Player.instance.currentWeapon.userAmmo.count}/{Player.instance.currentWeapon.weaponData.maxAmmo}";
+        }
 
         if (Player.instance.currentWeapon.reLoading)
         {
@@ -29,7 +29,7 @@ public class MainUI : MonoBehaviour
         {
             reloadImage.fillAmount = 0;
         }
-
+        
         
     }
     public void ReloadFill()

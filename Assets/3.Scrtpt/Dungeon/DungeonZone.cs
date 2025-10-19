@@ -6,10 +6,10 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
     public string key;
     public Transform playerRespawnPoint;
     //던전 구역 플레이어 리스폰포인트
-    public Transform[] enemySpawnPoint;
+    public Transform[] enemySpawnPoints;
     //던전구역 시작 적 스폰포인트
     public DungeonWave[] dungeonWaves;
-
+    //던전구역 웨이브들
 
     public Enemy enemyPrefab;
     public int firstEnmey;
@@ -19,19 +19,19 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
     public void Awake()
     {
         zoneEnd = false;
-
+        firstEnmey = 0;
         dungeonWaves = GetComponentsInChildren<DungeonWave>();
+        //enemySpawnPoints = GetComponentsInChildren<Transform>();
     }
 
     public void ZoneStart()
     {
-        zoneEnd = false;
+        Debug.Log("DungeonZone Start");
         waveCount = dungeonWaves.Length;
-        for (int i = 0; i < enemySpawnPoint.Length; i++)
+        for (int i = 0; i < enemySpawnPoints.Length; i++)
         {
-
-            Enemy enemy = Instantiate(enemyPrefab, enemySpawnPoint[i].transform.position, Quaternion.identity);
-            enemy.transform.parent = transform;
+            Enemy enemy = Instantiate(enemyPrefab, enemySpawnPoints[i].transform.position, Quaternion.identity);
+            enemy.transform.parent = enemySpawnPoints[i].transform;
             firstEnmey++;
         }
 
@@ -39,9 +39,11 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
 
     public void WaveEnd()
     {
+        Debug.Log("WaveEnd");
         waveCount--;
         if (waveCount == 0)
         {
+            zoneEnd = true;
             GetComponentInParent<Dungeon>().ZoneEnd();
         }
         for(int i = 1; i< dungeonWaves.Length; i++ )
@@ -58,8 +60,10 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
     public void KilledEnemy(Enemy e)
     {
         firstEnmey--;
+        Debug.Log(firstEnmey);
         if (firstEnmey == 0)
         {
+            Debug.Log("FirstEnemy End");
             dungeonWaves[0].StartWave();
         }
     }

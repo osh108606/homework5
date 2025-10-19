@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098f8ab1811ef50448a1b60594c4732e, type: 3}
   m_Name: Weapon5
   m_EditorClassIdentifier: 
-  damage: 1
-  atkSpeed: 0
-  maxAmmo: 10
-  bulletPrefab: {fileID: -4520408312267104753, guid: 2ee526ac8ab30d544ad645af3967b01f, type: 3}
-  sprite: {fileID: 0}
+  key: Weapon5
+  idx: 0
   weaponName: Weapon5
+  damage: 1
+  atkSpeed: 0.2
+  maxAmmo: 10
+  Pellets: 1
+  auto: 0
+  SpreadShot: 0
+  sprite: {fileID: 0}
+  bulletPrefab: {fileID: -4520408312267104753, guid: 2ee526ac8ab30d544ad645af3967b01f, type: 3}

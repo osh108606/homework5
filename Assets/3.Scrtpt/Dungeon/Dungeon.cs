@@ -13,6 +13,7 @@ public class Dungeon : MonoBehaviour
     //던전내 구역
     public void Awake()
     {
+        zoneCount = 0;
         zones = GetComponentsInChildren<DungeonZone>();
     }
     public void OnTriggerEnter2D(Collider2D collision)
@@ -20,20 +21,15 @@ public class Dungeon : MonoBehaviour
        
     }
 
-    public void Update()
-    {
-        if (zoneCount == 0)
-        {
-            DungeonEnd();
-        }
-    }
     public void DungeonStart()
     {
+        Debug.Log("DungeonStart");
         zoneCount = zones.Length;
         zones[0].GetComponent<DungeonZone>().ZoneStart();
     }
     public void DungeonEnd()
     {
+        Debug.Log("DungeonEnd");
         //보상
         //던전 비활성화
     }
@@ -41,6 +37,19 @@ public class Dungeon : MonoBehaviour
     public void ZoneEnd()
     {
         zoneCount--;
+        Debug.Log("Zone End");
+        for (int i = 1; i < zones.Length; i++)
+        {
+            if (zones[i - 1].zoneEnd == true && zones[i].zoneEnd == false)
+            {
+                zones[i].ZoneStart();
+                break;
+            }
+        }
+        if (zoneCount == 0)
+        {
+            DungeonEnd();
+        }
     }
 
 }

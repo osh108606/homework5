@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
         //{
         //    selectWeapon = weaponPanels[i].GetComponent<GearPanel>().OnClicked();
         //}
-        UserWeapon selectWeapon = UserManager.Instance.GetCurrentUserWeapon();
+        UserWeapon selectWeapon = UserManager.Instance.GetEuipedUserWeapon();
         //UserManager.Instance.GetCurrentUserWeapon();
         WeaponData weapnData = Resources.Load<WeaponData>("WeaponData/"+ selectWeapon.key);
         curWeaponNameText.text = weapnData.weaponName;

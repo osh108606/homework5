@@ -23,8 +23,6 @@ public class StageSelect : MonoBehaviour
                 Player.instance.transform.position = dungeons[i].playerSpawnPoint.transform.position;
                 dungeons[i].DungeonStart();
                 gameObject.SetActive(false);
-
-           
             }
         }
        

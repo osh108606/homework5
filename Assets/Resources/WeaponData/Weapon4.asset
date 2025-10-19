@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098f8ab1811ef50448a1b60594c4732e, type: 3}
   m_Name: Weapon4
   m_EditorClassIdentifier: 
-  damage: 2
-  atkSpeed: 0
-  maxAmmo: 6
-  bulletPrefab: {fileID: 7239680103594177017, guid: 1769464c9eddb224dbb50e7e99278813, type: 3}
-  sprite: {fileID: 0}
+  key: Weapon4
+  idx: 0
   weaponName: Weapon4
+  damage: 2
+  atkSpeed: 0.2
+  maxAmmo: 6
+  Pellets: 1
+  auto: 0
+  SpreadShot: 0
+  sprite: {fileID: 0}
+  bulletPrefab: {fileID: 7239680103594177017, guid: 1769464c9eddb224dbb50e7e99278813, type: 3}

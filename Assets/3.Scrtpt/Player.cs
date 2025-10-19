@@ -12,9 +12,10 @@ public class Player : MonoBehaviour
     public Weapon[] weapons;
     public Weapon currentWeapon;
     public Equipment[] equipments;
-    
     public GameObject inventory;
+    public Weapon[] weaponSlots = new Weapon[4];
 
+    public int slotIdx = 0;
     public float mhp; //최대 체력
     public float hp; // 현재 체력
     public float moveSpeed = 0;
@@ -22,14 +23,22 @@ public class Player : MonoBehaviour
     {
         instance = this;
         rb2d = GetComponent<Rigidbody2D>();
+        weaponSlots = GetComponentsInChildren<Weapon>();    
     }
     private void Start()
     {
-        UserWeapon userWeapon = UserManager.Instance.GetCurrentUserWeapon();
+        for (int i = 0; i < weaponSlots.Length; i++)//각 슬롯에 장착된 무기데이터 넣기
+        {
+            weaponSlots[i].weaponData = UserManager.Instance.GetEuipedUserWeapons(i).weaponData;
+            weaponSlots[i].ApplyWeaponData();
+        }
+        currentWeapon = weaponSlots[0];
+        UserWeapon userWeapon = UserManager.Instance.GetEuipedUserWeapon();
         ChangeWeapon(userWeapon.key);
         inventory.SetActive(false);
+        
     }
-    
+
     private void Update()
     {
         /*
@@ -77,7 +86,33 @@ public class Player : MonoBehaviour
             Talk();
 
         }
-            
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if(slotIdx >= weaponSlots.Length)
+            {
+                slotIdx = 0;
+                ChangeDrawWeapon(slotIdx);
+            }
+            else
+            {
+                slotIdx++;
+                ChangeDrawWeapon(slotIdx);
+            }
+                
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (slotIdx <= 0)
+            {
+                slotIdx = weaponSlots.Length;
+                ChangeDrawWeapon(slotIdx);
+            }
+            else
+            {
+                slotIdx--;
+                ChangeDrawWeapon(slotIdx);
+            }
+        }
     }
 
     public void Talk()
@@ -97,8 +132,6 @@ public class Player : MonoBehaviour
                 npc.TalkUI();
             }
         }
-
-        
         
     }
     
@@ -116,14 +149,25 @@ public class Player : MonoBehaviour
         UserManager.Instance.Additem(item.key);
         Destroy(item.gameObject);
     }
+    //무기슬롯교체
+    public void ChangeDrawWeapon(int slotIdx)
+    {
+        for (int i = 0; i < weaponSlots.Length; i++)
+        {
+            currentWeapon = weaponSlots[i].GetComponent<Weapon>();
+        }
 
+        currentWeapon.AmmoMatch();
+        UserManager.Instance.ChangeDrawWeapon(currentWeapon.key);
+    }
+    //무기장착변경
     public void ChangeWeapon(string key)
     {
-        for (int i = 0; i < weapons.Length; i++)
+        for (int i = 0; i < weaponSlots.Length; i++)
         {
-            if (key == weapons[i].key)
+            if (key == weaponSlots[i].key)
             {
-                currentWeapon = weapons[i].GetComponent<Weapon>();
+                currentWeapon = weaponSlots[i].GetComponent<Weapon>();
                 break;
             }
         }
@@ -145,29 +189,24 @@ public class Player : MonoBehaviour
         {
             dir.x += 0;
             dir.y += 1;
-            
-            Debug.Log(dir);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             dir.x += 0;
-            dir.y += -1;
-            
+            dir.y += -1;            
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             dir.x += -1;
-            dir.y += 0;
-            
+            dir.y += 0;           
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             dir.x += 1;
-            dir.y += 0;
-            
+            dir.y += 0;            
         }
         rd2d.linearVelocity = dir.normalized * moveSpeed;
     }

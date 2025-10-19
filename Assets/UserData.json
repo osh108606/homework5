@@ -1,30 +1,54 @@
 {
     "userWeapons": [
         {
+            "key": "Weapon2",
+            "weaponEuiped": true,
+            "weaponDraw": true,
+            "weaponData": {
+                "instanceID": 35394
+            }
+        },
+        {
+            "key": "Weapon5",
+            "weaponEuiped": true,
+            "weaponDraw": false,
+            "weaponData": {
+                "instanceID": 35398
+            }
+        },
+        {
             "key": "Weapon1",
-            "weaponEuiped": true
+            "weaponEuiped": true,
+            "weaponDraw": false,
+            "weaponData": {
+                "instanceID": 35334
+            }
+        },
+        {
+            "key": "Weapon4",
+            "weaponEuiped": true,
+            "weaponDraw": false,
+            "weaponData": {
+                "instanceID": 35454
+            }
         }
     ],
     "userAmmos": [
         {
-            "key": "Weapon1",
-            "count": 0
-        },
-        {
             "key": "Weapon2",
-            "count": 30
-        },
-        {
-            "key": "Weapon3",
-            "count": 8
-        },
-        {
-            "key": "Weapon4",
-            "count": 6
+            "count": 26
         },
         {
             "key": "Weapon5",
             "count": 10
+        },
+        {
+            "key": "Weapon1",
+            "count": 10
+        },
+        {
+            "key": "Weapon4",
+            "count": 6
         }
     ],
     "userEquipments": [
@@ -33,11 +57,5 @@
             "equipmentEuiped": true
         }
     ],
-    "userItems": [
-        {
-            "key": "Weapon2",
-            "itemEuiped": false,
-            "count": 1
-        }
-    ]
+    "userItems": []
 }

@@ -9,11 +9,12 @@ public class DungeonWave : MonoBehaviour
     public void Awake()
     {
         waveEnd = false;
+        squedCount = 0;
         enemySpanwers = GetComponentsInChildren<EnemySpanwer>();
     }
     public void StartWave()
     {
-        waveEnd = false;
+        Debug.Log("StartWave");
         squedCount = enemySpanwers.Length;
         for (int i = 0; i < enemySpanwers.Length; i++)
         {

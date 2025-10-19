@@ -13,8 +13,7 @@ public class EnemyController : MonoBehaviour
     //float t = 0f;
     public Enemy[] enemies;
     public bool spawnAll = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+    
     private void Awake()
     {
         instance = this;

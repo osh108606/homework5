@@ -11,16 +11,16 @@ public class NPC : MonoBehaviour
     public GameObject canvasObjede;
     public Image HpBar;
     public StageSelect stageSelect;
-    bool arrived = false;
-    float y;
+    public bool arrived = false;
+    public float y;
     public Vector2 desPoint;
-    
-    void Start()
+
+    public virtual void Start()
     {
         hp = mhp;
     }
    
-    void Update()
+    public virtual void Update()
     {
         HpBar.fillAmount = hp / mhp;
 
@@ -52,7 +52,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    public void Move()
+    public virtual void Move()
     {
         y = transform.position.y;
         if (arrived == true)
@@ -91,7 +91,7 @@ public class NPC : MonoBehaviour
     }
 
     //NPC가 데미지를 입을때 발동
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         hp -= damage;
         if (hp <= 0)
@@ -101,7 +101,7 @@ public class NPC : MonoBehaviour
         }
     }
     //NPC가 죽을때 발동
-    public void Death()
+    public virtual void Death()
     {
  
     }
