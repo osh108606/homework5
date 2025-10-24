@@ -9,13 +9,14 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
     public Rigidbody2D rb2d;
-    public Weapon[] weapons;
-    public Weapon currentWeapon;
+    //public Weapon[] weapons = new Weapon[4]; // 무기장착슬롯
+    public Weapon currentWeapon; // 현재 "들고있는" 무기
+    public WeaponSlot[] slots = new WeaponSlot[4];// 무기슬롯
     public Equipment[] equipments;
     public GameObject inventory;
-    public Weapon[] weaponSlots = new Weapon[4];
+    
 
-    public int slotIdx = 0;
+    public int slotIdx;
     public float mhp; //최대 체력
     public float hp; // 현재 체력
     public float moveSpeed = 0;
@@ -23,46 +24,25 @@ public class Player : MonoBehaviour
     {
         instance = this;
         rb2d = GetComponent<Rigidbody2D>();
-        weaponSlots = GetComponentsInChildren<Weapon>();    
+        //weapons = GetComponentsInChildren<Weapon>();
+        slots = GetComponentsInChildren<WeaponSlot>();
     }
     private void Start()
     {
-        for (int i = 0; i < weaponSlots.Length; i++)//각 슬롯에 장착된 무기데이터 넣기
+        for (int i = 0; i < slots.Length; i++)
         {
-            weaponSlots[i].weaponData = UserManager.Instance.GetEuipedUserWeapons(i).weaponData;
-            weaponSlots[i].ApplyWeaponData();
+            slots[i].WeaponEquip();
         }
-        currentWeapon = weaponSlots[0];
-        UserWeapon userWeapon = UserManager.Instance.GetEuipedUserWeapon();
-        ChangeWeapon(userWeapon.key);
+        
+        UserWeapon userWeapon = UserManager.instance.GetDrawUserWeapon();
+        ChangeDrawWeapon(userWeapon.key);
         inventory.SetActive(false);
         
     }
 
     private void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeWeapon(0);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeWeapon(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangeWeapon(2);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            ChangeWeapon(3);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            ChangeWeapon(4);
-        }
-        */
+      
         if (Input.GetKeyDown(KeyCode.R))
         {
             currentWeapon.Reload();
@@ -86,9 +66,11 @@ public class Player : MonoBehaviour
             Talk();
 
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+
+        //q와e로 무기슬롯 변경
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if(slotIdx >= weaponSlots.Length)
+            if(slotIdx >= slots.Length)
             {
                 slotIdx = 0;
                 ChangeDrawWeapon(slotIdx);
@@ -100,11 +82,11 @@ public class Player : MonoBehaviour
             }
                 
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (slotIdx <= 0)
             {
-                slotIdx = weaponSlots.Length;
+                slotIdx = slots.Length;
                 ChangeDrawWeapon(slotIdx);
             }
             else
@@ -113,6 +95,24 @@ public class Player : MonoBehaviour
                 ChangeDrawWeapon(slotIdx);
             }
         }
+        //숫자키 무기슬롯변경
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ChangeDrawWeapon(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ChangeDrawWeapon(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ChangeDrawWeapon(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ChangeDrawWeapon(3);
+        }
+        
     }
 
     public void Talk()
@@ -146,34 +146,45 @@ public class Player : MonoBehaviour
         
         DropItem item = cols[0].GetComponent<DropItem>();
         
-        UserManager.Instance.Additem(item.key);
+        UserManager.instance.Additem(item.key);
         Destroy(item.gameObject);
     }
     //무기슬롯교체
-    public void ChangeDrawWeapon(int slotIdx)
+    public void ChangeDrawWeapon(int Idx)
     {
-        for (int i = 0; i < weaponSlots.Length; i++)
-        {
-            currentWeapon = weaponSlots[i].GetComponent<Weapon>();
-        }
+        currentWeapon = slots[Idx].weapon;
 
         currentWeapon.AmmoMatch();
-        UserManager.Instance.ChangeDrawWeapon(currentWeapon.key);
+        UserManager.instance.ChangeDrawWeapon(currentWeapon.key);
     }
-    //무기장착변경
+    public void ChangeDrawWeapon(string key)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].weapon.key == key)
+            {
+                currentWeapon = slots[i].weapon;
+                slotIdx = i;
+                break;
+            }
+        }
+        currentWeapon.AmmoMatch();
+        UserManager.instance.ChangeDrawWeapon(currentWeapon.key);
+    }
+    //인벤토리에서 무기장착변경
     public void ChangeWeapon(string key)
     {
-        for (int i = 0; i < weaponSlots.Length; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
-            if (key == weaponSlots[i].key)
+            if (key == slots[i].weapon.key)
             {
-                currentWeapon = weaponSlots[i].GetComponent<Weapon>();
+                currentWeapon = slots[i].weapon;
                 break;
             }
         }
         
         currentWeapon.AmmoMatch();
-        UserManager.Instance.ChangeWeapon(currentWeapon.key);
+        UserManager.instance.ChangeWeapon(currentWeapon.key);
     }
 
     public void ChangeEquipment(string key)
@@ -183,7 +194,7 @@ public class Player : MonoBehaviour
     }
     public void Move()
     {
-        Rigidbody2D rd2d = GetComponent<Rigidbody2D>();
+        
         Vector2 dir= new Vector2();
         if (Input.GetKey(KeyCode.W))
         {
@@ -208,7 +219,7 @@ public class Player : MonoBehaviour
             dir.x += 1;
             dir.y += 0;            
         }
-        rd2d.linearVelocity = dir.normalized * moveSpeed;
+        rb2d.linearVelocity = dir.normalized * moveSpeed;
     }
     
 }

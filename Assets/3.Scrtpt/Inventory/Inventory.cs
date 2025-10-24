@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
         //{
         //    selectWeapon = weaponPanels[i].GetComponent<GearPanel>().OnClicked();
         //}
-        UserWeapon selectWeapon = UserManager.Instance.GetEuipedUserWeapon();
+        UserWeapon selectWeapon = UserManager.instance.GetEuipedUserWeapon();
         //UserManager.Instance.GetCurrentUserWeapon();
         WeaponData weapnData = Resources.Load<WeaponData>("WeaponData/"+ selectWeapon.key);
         curWeaponNameText.text = weapnData.weaponName;
@@ -33,10 +33,10 @@ public class Inventory : MonoBehaviour
         }
         weaponPanels.Clear();
         
-        for (int i = 0; i < UserManager.Instance.userData.userWeapons.Count; i++)
+        for (int i = 0; i < UserManager.instance.userData.userWeapons.Count; i++)
         {
             GameObject panel = Instantiate(weaponPanelPrefab, weaponList.transform);
-            string key = UserManager.Instance.userData.userWeapons[i].key;
+            string key = UserManager.instance.userData.userWeapons[i].key;
             panel.GetComponent<GearPanel>().SetData(key);
             weaponPanels.Add(panel);
             
@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        UserManager.Instance.ChangeWeapon(weaponData.key);
+        UserManager.instance.ChangeWeapon(weaponData.key);
         Player.instance.ChangeWeapon(weaponData.key);
         
         

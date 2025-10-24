@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 098f8ab1811ef50448a1b60594c4732e, type: 3}
-  m_Name: Weapon3
+  m_Name: Glock
   m_EditorClassIdentifier: 
-  key: Weapon3
+  key: Glock
   idx: 0
-  weaponName: Weapon3
+  weaponName: Glock
   damage: 1
-  atkSpeed: 0.2
-  maxAmmo: 8
-  Pellets: 8
+  RPM: 500
+  maxAmmo: 15
+  Pellets: 1
   auto: 0
-  SpreadShot: 1
+  SpreadShot: 0
   sprite: {fileID: 0}
   bulletPrefab: {fileID: 1746735079809394367, guid: d5af7bc4839f81d43a724562cab550a3, type: 3}
+  weaponType: 0
+  weaponSoltType: 1

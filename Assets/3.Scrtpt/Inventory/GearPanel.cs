@@ -19,7 +19,7 @@ public class GearPanel : MonoBehaviour
        
 
 
-        userWeapon = UserManager.Instance.GetUserWeapon(key);
+        userWeapon = UserManager.instance.GetUserWeapon(key);
         if (userWeapon.weaponEuiped == true)
         {
             image.color = Color.white;
@@ -48,7 +48,7 @@ public class GearPanel : MonoBehaviour
     {
         if(userWeapon.weaponEuiped == false)
         {
-            UserManager.Instance.RemoveWeapon(key);
+            UserManager.instance.RemoveWeapon(key);
             Destroy(this.gameObject);
         }
         else

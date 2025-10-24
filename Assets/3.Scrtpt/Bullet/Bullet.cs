@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     public Weapon weapon;
     public Vector2 direction;
     float t = 0f;
-    public void Shoot (Vector2 dir,Weapon weapon)
+    public void Shoot (Vector2 dir, Weapon weapon)
     {
         direction = dir;
         this.weapon = weapon;

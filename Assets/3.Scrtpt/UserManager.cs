@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class UserManager : MonoBehaviour
 {
-    public static UserManager Instance;
+    public static UserManager instance;
     public UserData userData;
-    
+    public Weapon[] startWeaponPrefab;
     public void Awake()
     {
-        Instance = this;
+        instance = this;
     }
     private void Start()
     { 
@@ -22,30 +22,38 @@ public class UserManager : MonoBehaviour
             UserWeapon userWeapon1 = new UserWeapon();//1번무기
             userWeapon1.weaponDraw = true;
             userWeapon1.weaponEuiped = true;
-            userWeapon1.key = "Weapon2";
+            userWeapon1.key = "M4";
             userWeapon1.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon1.key);
             userData.userWeapons.Add(userWeapon1);
+            Weapon weapon1 = Instantiate(startWeaponPrefab[0], Player.instance.slots[0].transform.parent.position, Quaternion.identity);
+            weapon1.transform.parent = Player.instance.slots[0].transform;
 
             UserWeapon userWeapon2 = new UserWeapon();//2번무기
             userWeapon2.weaponDraw = false;
             userWeapon2.weaponEuiped = true;
-            userWeapon2.key = "Weapon5";
+            userWeapon2.key = "MP5";
             userWeapon2.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon2.key);
             userData.userWeapons.Add(userWeapon2);
+            Weapon weapon2 = Instantiate(startWeaponPrefab[1], Player.instance.slots[1].transform.parent.position, Quaternion.identity);
+            weapon2.transform.parent = Player.instance.slots[1].transform;
 
             UserWeapon userWeapon3 = new UserWeapon();//3번무기
             userWeapon3.weaponDraw = false;
             userWeapon3.weaponEuiped = true;
-            userWeapon3.key = "Weapon1";
+            userWeapon3.key = "Glock";
             userWeapon3.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon3.key);
             userData.userWeapons.Add(userWeapon3);
+            Weapon weapon3 = Instantiate(startWeaponPrefab[2], Player.instance.slots[2].transform.parent.position, Quaternion.identity);
+            weapon3.transform.parent = Player.instance.slots[2].transform;
 
             UserWeapon userWeapon4= new UserWeapon();//4번무기
             userWeapon4.weaponDraw = false;
             userWeapon4.weaponEuiped = true;
-            userWeapon4.key = "Weapon4";
+            userWeapon4.key = "grenadelauncher";
             userWeapon4.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon4.key);
             userData.userWeapons.Add(userWeapon4);
+            Weapon weapon4 = Instantiate(startWeaponPrefab[3], Player.instance.slots[3].transform.parent.position, Quaternion.identity);
+            weapon4.transform.parent = Player.instance.slots[3].transform;
 
             //*장비*
             UserEquipment userEquipment = new UserEquipment();
@@ -59,13 +67,13 @@ public class UserManager : MonoBehaviour
             {
                 UserAmmo userAmmo = new UserAmmo();
                 int maxAmmo = userData.userWeapons[i].weaponData.maxAmmo;
-                string key = userData.userWeapons[i].key;
+                WeaponType type = userData.userWeapons[i].weaponData.weaponType;
                 userAmmo.count = maxAmmo;
-                userAmmo.key = key;
+                userAmmo.weapontype = type;
                 userData.userAmmos.Add(userAmmo);
 
             }
-            Player.instance.currentWeapon = Player.instance.weaponSlots[0].GetComponent<Weapon>(); 
+            Player.instance.currentWeapon = Player.instance.slots[0].GetComponent<Weapon>(); 
             //저장
             SaveManager.SaveData("UserData.json", userData);
         }
@@ -92,8 +100,11 @@ public class UserManager : MonoBehaviour
     {
         UserWeapon preUserWeapon = GetEuipedUserWeapon();
         if (preUserWeapon != null)
+        {
             preUserWeapon.weaponEuiped = false;
-
+            preUserWeapon.weaponDraw = false;
+        }
+            
         UserWeapon userWeapon = GetUserWeapon(key);
         userWeapon.weaponEuiped = true;
 
@@ -103,16 +114,11 @@ public class UserManager : MonoBehaviour
     // 장착중인 무기중 들고있는거 변경
     public void ChangeDrawWeapon(string key)
     {
-        UserWeapon preUserWeapon = GetEuipedUserWeapon();
+        UserWeapon preUserWeapon = GetDrawUserWeapon();//기존에 들고있던 무기
         if (preUserWeapon != null)
-        {
-            preUserWeapon.weaponEuiped = false;
             preUserWeapon.weaponDraw = false;
-        }
-            
 
-        UserWeapon userWeapon = GetUserWeapon(key);
-        userWeapon.weaponEuiped = true;
+        UserWeapon userWeapon = GetEuipedUserWeapon(key);//장착중 들게만들 무기
         userWeapon.weaponDraw = true;
 
 
@@ -170,6 +176,19 @@ public class UserManager : MonoBehaviour
         return null;
     }
 
+    //현재 들고있는 무기 상태를 반환
+    public UserWeapon GetDrawUserWeapon()//1개
+    {
+        for (int i = 0; i < userData.userWeapons.Count; i++)
+        {
+            if (userData.userWeapons[i].weaponDraw == true)
+            {
+                return userData.userWeapons[i];
+            }
+        }
+        return null;
+    }
+
     //현재 장착중인 아이템의 상태를 반환
     //*무기*
     public UserWeapon GetEuipedUserWeapon()//1개
@@ -183,7 +202,18 @@ public class UserManager : MonoBehaviour
         }
         return null;
     }
-
+ 
+    public UserWeapon GetEuipedUserWeapon(string key)//1개
+    {
+        for (int i = 0; i < userData.userWeapons.Count; i++)
+        {
+            if (userData.userWeapons[i].weaponEuiped == true && userData.userWeapons[i].key == key)
+            {
+                return userData.userWeapons[i];
+            }
+        }
+        return null;
+    }
     public UserWeapon GetEuipedUserWeapons(int index)//여러개
     {
         int equippedCount = 0;
@@ -218,11 +248,11 @@ public class UserManager : MonoBehaviour
         SaveManager.SaveData("UserData.json", userData);
     }
 
-    public UserAmmo GetUserAmmo(string key)
+    public UserAmmo GetUserAmmo(WeaponType weaponType)
     {
         for(int i = 0; i<userData.userAmmos.Count;i++ )
         {
-            if (userData.userAmmos[i].key == key)
+            if (userData.userAmmos[i].weapontype == weaponType)
             {
                 return userData.userAmmos[i];
             }
@@ -257,6 +287,7 @@ public class UserData
 [System.Serializable]
 public class UserAmmo
 {
+    public WeaponType weapontype;
     public string key;
     public int count;
 }
