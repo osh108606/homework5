@@ -1,0 +1,69 @@
+{
+    "userWeapons": [
+        {
+            "key": "M4",
+            "weaponEuiped": true,
+            "weaponDraw": true,
+            "weaponEquipSlot": 0,
+            "weaponData": {
+                "instanceID": 35346
+            }
+        },
+        {
+            "key": "MP5",
+            "weaponEuiped": true,
+            "weaponDraw": false,
+            "weaponEquipSlot": 1,
+            "weaponData": {
+                "instanceID": 35406
+            }
+        },
+        {
+            "key": "Glock",
+            "weaponEuiped": true,
+            "weaponDraw": false,
+            "weaponEquipSlot": 2,
+            "weaponData": {
+                "instanceID": 35350
+            }
+        },
+        {
+            "key": "grenadelauncher",
+            "weaponEuiped": true,
+            "weaponDraw": false,
+            "weaponEquipSlot": 3,
+            "weaponData": {
+                "instanceID": 35466
+            }
+        }
+    ],
+    "userAmmos": [
+        {
+            "weapontype": 1,
+            "key": "",
+            "count": 25
+        },
+        {
+            "weapontype": 2,
+            "key": "",
+            "count": 30
+        },
+        {
+            "weapontype": 0,
+            "key": "",
+            "count": 15
+        },
+        {
+            "weapontype": 7,
+            "key": "",
+            "count": 6
+        }
+    ],
+    "userEquipments": [
+        {
+            "key": "Equipment1-1",
+            "equipmentEuiped": true
+        }
+    ],
+    "userItems": []
+}

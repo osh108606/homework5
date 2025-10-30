@@ -5,16 +5,13 @@ public class UserManager : MonoBehaviour
 {
     public static UserManager instance;
     public UserData userData;
-    public Weapon[] startWeaponPrefab;
     public void Awake()
     {
         instance = this;
-    }
-    private void Start()
-    { 
         userData = SaveManager.LoadData<UserData>("UserData.json"); //저장된 데이터 불러오기
+        
         if (userData == null)// 저장된 데이터가 없을경우
-        {   
+        {
             userData = new UserData();//새 데이터 생성
 
             //기본아이템 지급
@@ -23,44 +20,44 @@ public class UserManager : MonoBehaviour
             userWeapon1.weaponDraw = true;
             userWeapon1.weaponEuiped = true;
             userWeapon1.key = "M4";
+            userWeapon1.weaponEquipSlot = WeaponEquipSlot.main1;
             userWeapon1.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon1.key);
             userData.userWeapons.Add(userWeapon1);
-            Weapon weapon1 = Instantiate(startWeaponPrefab[0], Player.instance.slots[0].transform.parent.position, Quaternion.identity);
-            weapon1.transform.parent = Player.instance.slots[0].transform;
+            
 
             UserWeapon userWeapon2 = new UserWeapon();//2번무기
             userWeapon2.weaponDraw = false;
             userWeapon2.weaponEuiped = true;
             userWeapon2.key = "MP5";
+            userWeapon2.weaponEquipSlot = WeaponEquipSlot.main2;
             userWeapon2.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon2.key);
             userData.userWeapons.Add(userWeapon2);
-            Weapon weapon2 = Instantiate(startWeaponPrefab[1], Player.instance.slots[1].transform.parent.position, Quaternion.identity);
-            weapon2.transform.parent = Player.instance.slots[1].transform;
+            
 
             UserWeapon userWeapon3 = new UserWeapon();//3번무기
             userWeapon3.weaponDraw = false;
             userWeapon3.weaponEuiped = true;
             userWeapon3.key = "Glock";
+            userWeapon3.weaponEquipSlot = WeaponEquipSlot.sub;
             userWeapon3.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon3.key);
             userData.userWeapons.Add(userWeapon3);
-            Weapon weapon3 = Instantiate(startWeaponPrefab[2], Player.instance.slots[2].transform.parent.position, Quaternion.identity);
-            weapon3.transform.parent = Player.instance.slots[2].transform;
+            
 
-            UserWeapon userWeapon4= new UserWeapon();//4번무기
+            UserWeapon userWeapon4 = new UserWeapon();//4번무기
             userWeapon4.weaponDraw = false;
             userWeapon4.weaponEuiped = true;
             userWeapon4.key = "grenadelauncher";
+            userWeapon4.weaponEquipSlot = WeaponEquipSlot.special;
             userWeapon4.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon4.key);
             userData.userWeapons.Add(userWeapon4);
-            Weapon weapon4 = Instantiate(startWeaponPrefab[3], Player.instance.slots[3].transform.parent.position, Quaternion.identity);
-            weapon4.transform.parent = Player.instance.slots[3].transform;
+            
 
             //*장비*
             UserEquipment userEquipment = new UserEquipment();
             userEquipment.equipmentEuiped = true;
             userEquipment.key = "Equipment1-1";
             userData.userEquipments.Add(userEquipment);
-            
+
 
             //*총알*
             for (int i = 0; i < userData.userWeapons.Count; i++)//조건문 무기종류갯수만큼으로 변경예정
@@ -73,10 +70,15 @@ public class UserManager : MonoBehaviour
                 userData.userAmmos.Add(userAmmo);
 
             }
-            Player.instance.currentWeapon = Player.instance.slots[0].GetComponent<Weapon>(); 
+            //Player.instance.currentWeapon = Player.instance.slots[0].weapon;
             //저장
             SaveManager.SaveData("UserData.json", userData);
         }
+    }
+    private void Start()
+    { 
+        
+        
 
     }
     //아이템 추가
@@ -151,6 +153,22 @@ public class UserManager : MonoBehaviour
         }
         return null;
     }
+
+    public UserWeapon GetEquipUserWeapon(WeaponEquipSlot slot)
+    {
+        for(int i = 0; i< userData.userWeapons.Count; i++)
+        {
+            if (userData.userWeapons[i].weaponEuiped == true)
+            {
+                if(userData.userWeapons[i].weaponEquipSlot == slot)
+                {
+                    return userData.userWeapons[i];
+                }
+            }
+        }
+        return null;
+    }
+
     public UserEquipment GetUserEquipment(string key)//장비
     {
         for (int i = 0; i < userData.userEquipments.Count; i++)
@@ -298,6 +316,7 @@ public class UserWeapon
     public string key;
     public bool weaponEuiped; //장착중인지
     public bool weaponDraw; //들고있는지
+    public WeaponEquipSlot weaponEquipSlot;
     public WeaponData weaponData;
 }
 [System.Serializable]

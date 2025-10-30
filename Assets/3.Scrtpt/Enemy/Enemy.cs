@@ -6,6 +6,26 @@ public class Enemy : NPC
     public GameObject dropItemPrifap;
     public EnemyState enemyState;
     public Rigidbody2D rg2d;
+    public Transform attackPointTr;//공격 시작포인트
+    public EnemyInfo enemyInfo; //적정보
+
+    public float sightRange; //추적범위
+    public float attackRange; //공격범위
+    public float attackSpeed; //공격 속도 ex총알을 얼마나 빨리쏘는가 (아직 사용결정 x)
+    public float attackDelay;  //공격행위 주기
+    public float attackDamage; //데미지
+
+    public override void Awake()
+    {
+        base.Awake();
+        mhp = enemyInfo.Maxhp;
+        attackRange = enemyInfo.attackRange;
+        moveSpeed = enemyInfo.moveSpeed;
+        attackDelay = enemyInfo.attackDelay;
+        attackDamage = enemyInfo.attackDamage;
+
+    }
+
     public override void Start()
     {
         base.Start();
@@ -15,20 +35,13 @@ public class Enemy : NPC
         //EnemyController.instance.cheak++;
     }
 
-    public void SetState(EnemyState eState)
-    {
-        enemyState = eState;
-        
-    }
+    
 
-    public float sightRange = 10f;
-    public float attackRange = 4f;
-    public float attackSpeed = 3f;
-    float attackTime = 0f;
+    
     public override void Update()
     {
         base.Update();
-        attackTime += Time.deltaTime;
+        attackDelay += Time.deltaTime;
         if (enemyState == EnemyState.Idle)
         {
             //어떤 계산이 필요한가요?
@@ -49,11 +62,16 @@ public class Enemy : NPC
             //float attackTimer 
         }
     }
+    //상태변경
+    public void SetState(EnemyState eState)
+    {
+        enemyState = eState;
+    }
 
     public virtual void IdleState()
     {
         float distance = Vector2.Distance(transform.position, Player.instance.transform.position);
-        if (distance <= sightRange)
+        if (distance >= attackRange&& distance < sightRange)// 조건 좀더 생각해볼것
         {
             SetState(EnemyState.Approching);
             return;
@@ -83,10 +101,10 @@ public class Enemy : NPC
         Debug.Log("Enemy Attack");
 
         rg2d.linearVelocity = Vector2.zero;
-        if (attackSpeed <= attackTime) //공격할 수 있음!
+        if (attackSpeed <= attackDelay) //공격할 수 있음!
         {
             Attack();
-            attackTime = 0;
+            attackDelay = 0;
         }
         else
         {

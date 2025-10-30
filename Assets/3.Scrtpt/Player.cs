@@ -29,16 +29,14 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            slots[i].WeaponEquip();
-        }
-        
+        UpdateSlot();
         UserWeapon userWeapon = UserManager.instance.GetDrawUserWeapon();
         ChangeDrawWeapon(userWeapon.key);
         inventory.SetActive(false);
         
     }
+
+    
 
     private void Update()
     {
@@ -70,30 +68,22 @@ public class Player : MonoBehaviour
         //q와e로 무기슬롯 변경
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(slotIdx >= slots.Length)
+            slotIdx++;
+            if (slotIdx >= slots.Length)
             {
                 slotIdx = 0;
-                ChangeDrawWeapon(slotIdx);
             }
-            else
-            {
-                slotIdx++;
-                ChangeDrawWeapon(slotIdx);
-            }
-                
+            ChangeDrawWeapon(slotIdx);
+
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (slotIdx <= 0)
+            slotIdx--;
+            if (slotIdx < 0)
             {
-                slotIdx = slots.Length;
-                ChangeDrawWeapon(slotIdx);
+                slotIdx = slots.Length -1;
             }
-            else
-            {
-                slotIdx--;
-                ChangeDrawWeapon(slotIdx);
-            }
+            ChangeDrawWeapon(slotIdx);
         }
         //숫자키 무기슬롯변경
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -128,8 +118,8 @@ public class Player : MonoBehaviour
         {
             if (cols[i].CompareTag("Npc"))
             {
-                NPC npc = cols[i].GetComponent<NPC>();
-                npc.TalkUI();
+                StageSelectNpc stageSelectnNpc = cols[i].GetComponent<StageSelectNpc>();
+                stageSelectnNpc.TalkUI();
             }
         }
         
@@ -221,5 +211,22 @@ public class Player : MonoBehaviour
         }
         rb2d.linearVelocity = dir.normalized * moveSpeed;
     }
-    
+
+    public void UpdateSlot()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].WeaponEquip();
+        }
+    }
+    public void TakeDamage(float damage)
+    {
+
+        hp -= damage;
+        Debug.Log(hp);
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

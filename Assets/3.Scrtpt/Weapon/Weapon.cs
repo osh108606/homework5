@@ -110,7 +110,7 @@ public class Weapon : MonoBehaviour
 
         transform.rotation = q;
 
-        //Debug.Log("화면클릭");
+        Debug.Log("화면클릭");
         Vector2 screenPoint = Input.mousePosition;
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
         Vector2 directtion = worldPoint - (Vector2)transform.position;

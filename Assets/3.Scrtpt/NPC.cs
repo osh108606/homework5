@@ -7,13 +7,17 @@ public class NPC : MonoBehaviour
     public float hp; // 현재 체력
     public float moveSpeed; // 이동 속도
 
-    public Collider2D col;
-    public GameObject canvasObjede;
+    
     public Image HpBar;
-    public StageSelect stageSelect;
+    
     public bool arrived = false;
     public float y;
     public Vector2 desPoint;
+
+    public virtual void Awake()
+    {
+
+    }
 
     public virtual void Start()
     {
@@ -37,20 +41,7 @@ public class NPC : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canvasObjede.SetActive(true);
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canvasObjede.SetActive(false);
-        }
-    }
+    
 
     public virtual void Move()
     {
@@ -62,17 +53,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    public void TalkUI()
-    {
-        if (stageSelect.gameObject.activeSelf == true)
-        {
-            stageSelect.gameObject.SetActive(false);
-        }
-        else
-        {
-            stageSelect.gameObject.SetActive(true);
-        }
-    }
+    
 
     //자유이동
     public void RandomMove()
