@@ -26,12 +26,16 @@ public class Weapon : MonoBehaviour
     public string key;
     public int idx;
     public int pellets;
+    public int maxAmmo;
+    public int currentAmmo;
     public float rpm;
     public float fireInterval; // 발사 간격(초)
     public float nextFireTime; // 마지막 발사시간
+    public float reloadTimer; // 재장전까지 남은 시간
+    public float maxReloadTime = 3f;
     public bool reLoading;
     public bool auto;
-    public bool SpreadShot;
+    public bool SpreadShot;   
     public WeaponData weaponData;
     public UserAmmo userAmmo;
     public WeaponType weaponType;
@@ -46,36 +50,50 @@ public class Weapon : MonoBehaviour
         rpm = weaponData.RPM;
         pellets = weaponData.Pellets;
         weaponType = weaponData.weaponType;
+        maxAmmo = weaponData.maxAmmo;
         fireInterval = 60f / rpm;
         nextFireTime = 0f;
+        maxReloadTime = weaponData.reloadTime;
     }
 
 
     public void AmmoMatch()//다른이름 생각해보기
     {
         //총알 매치
-        userAmmo = UserManager.instance.GetUserAmmo(weaponType); 
+        userAmmo = UserManager.instance.GetUserAmmo(weaponType);
     }
     
     public virtual void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Time.time <= nextFireTime)
+        if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime && Player.instance.currentWeapon == this)
         {
             Shoot();
             nextFireTime = Time.time + fireInterval;
         }
     }
 
-    public void Reload()
+    public virtual void Reload()
     {
         if (reLoading == true)
             return;
-        StartCoroutine(CoReload());
+        if(userAmmo.count <= 0) 
+            return;
+        if (currentAmmo < maxAmmo)
+        {
+            StartCoroutine(CoReload1());
+        }
+        else if (currentAmmo == maxAmmo)//일부총기 한정 약실시스템
+        {
+            StartCoroutine(CoReload2());
+        }
+
+        else if (currentAmmo >= maxAmmo + 1)
+            return;
+            
     }
     
-    public float reloadTimer; // 재장전까지 남은 시간
-    public float maxReloadTime = 3f;
-    IEnumerator CoReload()
+    
+    public virtual IEnumerator CoReload1()
     {
         reLoading = true;
         reloadTimer = maxReloadTime;
@@ -89,17 +107,41 @@ public class Weapon : MonoBehaviour
             reloadTimer -= Time.deltaTime;
         }
 
-        userAmmo.count = weaponData.maxAmmo;
+        userAmmo.count -= (maxAmmo - currentAmmo);
+        currentAmmo += (maxAmmo - currentAmmo);
+            reLoading = false;
+    }
+    public virtual IEnumerator CoReload2()
+    {
+        reLoading = true;
+        reloadTimer = maxReloadTime/2;
+
+        while (true) //reloadTimer가 0일때까지 기다리는 코드
+        {
+            if (reloadTimer <= 0)
+                break;
+
+            yield return null;
+            reloadTimer -= Time.deltaTime;
+        }
+
+        currentAmmo++;
+        userAmmo.count--;
+
         reLoading = false;
     }
-    
+
+
     public virtual bool Shoot()
     {
-        if(userAmmo.count <= 0) //총알 없으면 발사 불가
+        if (currentAmmo <= 0) //총알 없으면 발사 불가
+        {
             return false;
+        }
+            
         if (reLoading == true) //재장전 중이면 발사 불가
             return false;
-        userAmmo.count--; //총알 감소
+        currentAmmo--;//사용중인 총알
 
         // 마우스 방향으로 조준 회전
         Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);

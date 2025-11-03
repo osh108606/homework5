@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 
@@ -9,10 +10,9 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
     public Rigidbody2D rb2d;
-    //public Weapon[] weapons = new Weapon[4]; // 무기장착슬롯
     public Weapon currentWeapon; // 현재 "들고있는" 무기
     public WeaponSlot[] slots = new WeaponSlot[4];// 무기슬롯
-    public Equipment[] equipments;
+    public Ammor[] ammors;
     public GameObject inventory;
     
 
@@ -74,7 +74,6 @@ public class Player : MonoBehaviour
                 slotIdx = 0;
             }
             ChangeDrawWeapon(slotIdx);
-
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -135,15 +134,28 @@ public class Player : MonoBehaviour
         
         
         DropItem item = cols[0].GetComponent<DropItem>();
-        
-        UserManager.instance.Additem(item.key);
+        if(item.itemType == ItemType.Weapon)
+        {
+            UserManager.instance.AddWeapon(item.key);
+            SaveManager.SaveData("UserData.json", UserManager.instance.userData);
+        }
+        else if(item.itemType == ItemType.Ammor)
+        {
+            UserManager.instance.AddWeapon(item.key);
+            SaveManager.SaveData("UserData.json", UserManager.instance.userData);
+        }
+        else if (item.itemType == ItemType.Consume)
+        {
+            UserManager.instance.Additem(item.key);
+            SaveManager.SaveData("UserData.json", UserManager.instance.userData);
+        }
+            
         Destroy(item.gameObject);
     }
     //무기슬롯교체
     public void ChangeDrawWeapon(int Idx)
     {
         currentWeapon = slots[Idx].weapon;
-
         currentWeapon.AmmoMatch();
         UserManager.instance.ChangeDrawWeapon(currentWeapon.key);
     }

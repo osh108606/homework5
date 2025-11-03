@@ -17,6 +17,7 @@ MonoBehaviour:
   weaponName: Glock
   damage: 1
   RPM: 500
+  reloadTime: 3
   maxAmmo: 15
   Pellets: 1
   auto: 0

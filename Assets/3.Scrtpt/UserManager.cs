@@ -50,26 +50,60 @@ public class UserManager : MonoBehaviour
             userWeapon4.weaponEquipSlot = WeaponEquipSlot.special;
             userWeapon4.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon4.key);
             userData.userWeapons.Add(userWeapon4);
-            
+
 
             //*장비*
-            UserEquipment userEquipment = new UserEquipment();
-            userEquipment.equipmentEuiped = true;
-            userEquipment.key = "Equipment1-1";
-            userData.userEquipments.Add(userEquipment);
+            UserAmmor userAmmor = new UserAmmor();
+            userAmmor.ammorEuiped = true;
+            userAmmor.key = "Ammor1-1";
+            userData.userAmmors.Add(userAmmor);
 
 
             //*총알*
-            for (int i = 0; i < userData.userWeapons.Count; i++)//조건문 무기종류갯수만큼으로 변경예정
             {
-                UserAmmo userAmmo = new UserAmmo();
-                int maxAmmo = userData.userWeapons[i].weaponData.maxAmmo;
-                WeaponType type = userData.userWeapons[i].weaponData.weaponType;
-                userAmmo.count = maxAmmo;
-                userAmmo.weapontype = type;
-                userData.userAmmos.Add(userAmmo);
+                UserAmmo userAmmo0 = new UserAmmo();
+                WeaponType type0 = WeaponType.HG;
+                userAmmo0.count = 900;
+                userAmmo0.weapontype = type0;
+                userData.userAmmos.Add(userAmmo0);
 
+                UserAmmo userAmmo1 = new UserAmmo();
+                WeaponType type1 = WeaponType.AR;
+                userAmmo1.count = 810;
+                userAmmo1.weapontype = type1;
+                userData.userAmmos.Add(userAmmo1);
+
+                UserAmmo userAmmo2 = new UserAmmo();
+                WeaponType type2 = WeaponType.SMG;
+                userAmmo2.count = 900;
+                userAmmo2.weapontype = type2;
+                userData.userAmmos.Add(userAmmo2);
+
+                UserAmmo userAmmo3 = new UserAmmo();
+                WeaponType type3 = WeaponType.MG;
+                userAmmo3.count = 900;
+                userAmmo3.weapontype = type3;
+                userData.userAmmos.Add(userAmmo3);
+
+                UserAmmo userAmmo4 = new UserAmmo();
+                WeaponType type4 = WeaponType.RF;
+                userAmmo4.count = 420;
+                userAmmo4.weapontype = type4;
+                userData.userAmmos.Add(userAmmo4);
+
+                UserAmmo userAmmo5 = new UserAmmo();
+                WeaponType type5 = WeaponType.SR;
+                userAmmo5.count = 120;
+                userAmmo5.weapontype = type5;
+                userData.userAmmos.Add(userAmmo5);
+
+                UserAmmo userAmmo6 = new UserAmmo();
+                WeaponType type6 = WeaponType.SG;
+                userAmmo6.count = 144;
+                userAmmo6.weapontype = type6;
+                userData.userAmmos.Add(userAmmo6);
             }
+
             //Player.instance.currentWeapon = Player.instance.slots[0].weapon;
             //저장
             SaveManager.SaveData("UserData.json", userData);
@@ -96,7 +130,21 @@ public class UserManager : MonoBehaviour
         }
         userItem.count += 1;
     }
-    
+
+    public void AddWeapon(string key)
+    {
+        UserWeapon userWeapon = new UserWeapon();
+        userWeapon.key = key;
+        userWeapon.weaponEuiped = false;
+        userData.userWeapons.Add(userWeapon);
+    }
+    public void Addammor(string key)
+    {
+        UserAmmor userAmmor = new UserAmmor();
+        userAmmor.key = key;
+        userAmmor.ammorEuiped = false;
+        userData.userAmmors.Add(userAmmor);
+    }
     // 기존아이템 장착 비활성화 새무기 장착
     public void ChangeWeapon(string key)//무기
     {
@@ -127,14 +175,14 @@ public class UserManager : MonoBehaviour
         SaveManager.SaveData("UserData.json", userData);
     }
 
-    public void ChangeEquipment(string key)//장비
+    public void ChangeAmmor(string key)//장비
     {
-        UserEquipment preUserEquipment = GetUserEquipment();
-        if (preUserEquipment != null)
-            preUserEquipment.equipmentEuiped = false;
+        UserAmmor preUserAmmor = GetUserAmmor();
+        if (preUserAmmor != null)
+            preUserAmmor.ammorEuiped = false;
 
-        UserEquipment userEquipment = GetUserEquipment(key);
-        userEquipment.equipmentEuiped = true;
+        UserAmmor userAmmor = GetUserAmmor(key);
+        userAmmor.ammorEuiped = true;
 
 
         SaveManager.SaveData("UserData.json", userData);
@@ -169,13 +217,13 @@ public class UserManager : MonoBehaviour
         return null;
     }
 
-    public UserEquipment GetUserEquipment(string key)//장비
+    public UserAmmor GetUserAmmor(string key)//장비
     {
-        for (int i = 0; i < userData.userEquipments.Count; i++)
+        for (int i = 0; i < userData.userAmmors.Count; i++)
         {
             if (userData.userWeapons[i].key == key)
             {
-                return userData.userEquipments[i];
+                return userData.userAmmors[i];
 
             }
         }
@@ -249,13 +297,13 @@ public class UserManager : MonoBehaviour
         return null;
     }
 
-    public UserEquipment GetUserEquipment()//장비
+    public UserAmmor GetUserAmmor()//장비
     {
-        for (int i = 0; i < userData.userEquipments.Count; i++)
+        for (int i = 0; i < userData.userAmmors.Count; i++)
         {
-            if (userData.userEquipments[i].equipmentEuiped == true)
+            if (userData.userAmmors[i].ammorEuiped == true)
             {
-                return userData.userEquipments[i];
+                return userData.userAmmors[i];
             }
         }
         return null;
@@ -279,15 +327,13 @@ public class UserManager : MonoBehaviour
         return null;
     }
     //아이템 제거
-    public void RemoveWeapon(string key)//무기
+    public void RemoveWeapon(UserWeapon userWeapon)//무기
     {
-        UserWeapon deleteWeapon = GetUserWeapon(key);
-        userData.userWeapons.Remove(deleteWeapon);
+        userData.userWeapons.Remove(userWeapon);
     }
-    public void RemoveEquipment(string key)//장비
+    public void RemoveAmmor(UserAmmor userAmmor)//장비
     {
-        UserEquipment deleteEquipment = GetUserEquipment(key);
-        userData.userEquipments.Remove(deleteEquipment);
+        userData.userAmmors.Remove(userAmmor);
     }
 }
 
@@ -296,10 +342,12 @@ public class UserManager : MonoBehaviour
 [System.Serializable]
 public class UserData
 {
-    public List<UserWeapon> userWeapons = new List<UserWeapon>();
-    public List<UserAmmo> userAmmos = new List<UserAmmo>();
-    public List<UserEquipment> userEquipments = new List<UserEquipment>();
-    public List<UserItem> userItems = new List<UserItem>();
+    public List<UserWeapon> userWeapons = new List<UserWeapon>();//무기
+    public List<UserAmmo> userAmmos = new List<UserAmmo>();//총알
+    public List<UserAmmor> userAmmors = new List<UserAmmor>();//갑옷
+
+   
+    public List<UserItem> userItems = new List<UserItem>();// 기타모든 아이템
 }
 
 [System.Serializable]
@@ -320,10 +368,10 @@ public class UserWeapon
     public WeaponData weaponData;
 }
 [System.Serializable]
-public class UserEquipment
+public class UserAmmor
 {
     public string key;
-    public bool equipmentEuiped;
+    public bool ammorEuiped;
 }
 [System.Serializable]
 public class UserItem

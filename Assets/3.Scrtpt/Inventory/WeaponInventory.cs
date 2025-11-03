@@ -1,29 +1,33 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-public class Inventory : MonoBehaviour
+
+public class WeaponInventory : SubInventory
 {
     public GameObject weaponPanelPrefab;
-    public GameObject weaponList;
+    public GridLayoutGroup weaponList;
     public List<GameObject> weaponPanels;
-    public TMP_Text curWeaponNameText;
-    public Image curWeaponImage;
-    public UserWeapon selectWeapon;
-    
-    public void UpdateCanvas()
+    public override void Awake()
     {
-        
+        base.Awake();
+        weaponList = GetComponentInChildren<GridLayoutGroup>();
+    }
+
+    public override void UpdateCanvas()
+    {
+
         //for (int i = 0; i < weaponPanels.Count; i++)
         //{
         //    selectWeapon = weaponPanels[i].GetComponent<GearPanel>().OnClicked();
         //}
         UserWeapon selectWeapon = UserManager.instance.GetEuipedUserWeapon();
         //UserManager.Instance.GetCurrentUserWeapon();
-        WeaponData weapnData = Resources.Load<WeaponData>("WeaponData/"+ selectWeapon.key);
-        curWeaponNameText.text = weapnData.weaponName;
-        curWeaponImage.sprite = weapnData.sprite;
+        WeaponData weapnData = Resources.Load<WeaponData>("WeaponData/" + selectWeapon.key);
+        curEuiptmentNameText.text = weapnData.weaponName;
+        curEuiptmentImage.sprite = weapnData.sprite;
     }
+
     private void OnEnable()
     {
         UpdateCanvas();
@@ -32,35 +36,35 @@ public class Inventory : MonoBehaviour
             Destroy(weaponPanels[i]);
         }
         weaponPanels.Clear();
-        
+
         for (int i = 0; i < UserManager.instance.userData.userWeapons.Count; i++)
         {
             GameObject panel = Instantiate(weaponPanelPrefab, weaponList.transform);
-            string key = UserManager.instance.userData.userWeapons[i].key;
-            panel.GetComponent<GearPanel>().SetData(key);
+            UserWeapon userWeapon = UserManager.instance.userData.userWeapons[i];
+            panel.GetComponent<WeaponPanel>().SetData(userWeapon);
             weaponPanels.Add(panel);
-            
+
         }
-        Selected(null);
+        WeaponSelected(null);
     }
-    public void Selected(WeaponData weaponData)
+    public void WeaponSelected(WeaponData weaponData)
     {
-        if(weaponData == null)
+        if (weaponData == null)
         {
-            curWeaponNameText.enabled = false;
-            curWeaponImage.enabled = false;
+            curEuiptmentNameText.enabled = false;
+            curEuiptmentImage.enabled = false;
             return;
         }
 
         UserManager.instance.ChangeWeapon(weaponData.key);
         Player.instance.ChangeWeapon(weaponData.key);
-        
-        
 
-        curWeaponNameText.enabled = true;
-        curWeaponImage.enabled = true;
 
-        curWeaponNameText.text = weaponData.weaponName;
-        curWeaponImage.sprite= weaponData.sprite;
+
+        curEuiptmentNameText.enabled = true;
+        curEuiptmentImage.enabled = true;
+
+        curEuiptmentNameText.text = weaponData.weaponName;
+        curEuiptmentImage.sprite = weaponData.sprite;
     }
 }

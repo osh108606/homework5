@@ -11,14 +11,19 @@ public class MainUI : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        ammoStat= GetComponentInChildren<TMP_Text>();
     }
 
     
     void Update()
     {
-        if (Player.instance.currentWeapon != null &&  Player.instance.currentWeapon.weaponData != null)
+        if (Player.instance.currentWeapon != null &&  Player.instance.currentWeapon.weaponData != null && Player.instance.currentWeapon.weaponData.weaponType != WeaponType.HG)
         {
-            ammoStat.text = $"{Player.instance.currentWeapon.userAmmo.count}/{Player.instance.currentWeapon.weaponData.maxAmmo}";
+            ammoStat.text = $"{Player.instance.currentWeapon.currentAmmo}\n{Player.instance.currentWeapon.userAmmo.count}";
+        }
+        else if(Player.instance.currentWeapon != null && Player.instance.currentWeapon.weaponData != null)
+        {
+            ammoStat.text = $"{Player.instance.currentWeapon.currentAmmo}\n{"endless"}";
         }
 
         if (Player.instance.currentWeapon.reLoading)

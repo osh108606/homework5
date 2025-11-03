@@ -17,6 +17,7 @@ MonoBehaviour:
   weaponName: grenadelauncher
   damage: 2
   RPM: 0
+  reloadTime: 3
   maxAmmo: 6
   Pellets: 1
   auto: 0

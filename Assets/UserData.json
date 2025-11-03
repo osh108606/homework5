@@ -6,7 +6,7 @@
             "weaponDraw": true,
             "weaponEquipSlot": 0,
             "weaponData": {
-                "instanceID": 35346
+                "instanceID": 35374
             }
         },
         {
@@ -15,7 +15,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 1,
             "weaponData": {
-                "instanceID": 35406
+                "instanceID": 35434
             }
         },
         {
@@ -24,7 +24,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 2,
             "weaponData": {
-                "instanceID": 35350
+                "instanceID": 35378
             }
         },
         {
@@ -33,36 +33,51 @@
             "weaponDraw": false,
             "weaponEquipSlot": 3,
             "weaponData": {
-                "instanceID": 35466
+                "instanceID": 35494
             }
         }
     ],
     "userAmmos": [
         {
+            "weapontype": 0,
+            "key": "",
+            "count": 900
+        },
+        {
             "weapontype": 1,
             "key": "",
-            "count": 25
+            "count": 810
         },
         {
             "weapontype": 2,
             "key": "",
-            "count": 30
+            "count": 900
         },
         {
-            "weapontype": 0,
+            "weapontype": 3,
             "key": "",
-            "count": 15
+            "count": 900
         },
         {
-            "weapontype": 7,
+            "weapontype": 4,
             "key": "",
-            "count": 6
+            "count": 420
+        },
+        {
+            "weapontype": 5,
+            "key": "",
+            "count": 120
+        },
+        {
+            "weapontype": 6,
+            "key": "",
+            "count": 144
         }
     ],
-    "userEquipments": [
+    "userAmmors": [
         {
-            "key": "Equipment1-1",
-            "equipmentEuiped": true
+            "key": "Ammor1-1",
+            "ammorEuiped": true
         }
     ],
     "userItems": []

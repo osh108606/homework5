@@ -13,11 +13,13 @@ public class SG : Weapon
 
     public virtual bool SpreadShoot()
     {
-        if (userAmmo.count <= 0) //총알 없으면 발사 불가
+        if (currentAmmo <= 0) //총알 없으면 발사 불가
+        {
             return false;
+        }
         if (reLoading == true) //재장전 중이면 발사 불가
             return false;
-        userAmmo.count--; //총알 감소
+        currentAmmo--;//사용중인 총알
 
         // 마우스 방향으로 조준 회전
         Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);

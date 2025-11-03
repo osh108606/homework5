@@ -17,6 +17,7 @@ MonoBehaviour:
   weaponName: M4
   damage: 1
   RPM: 950
+  reloadTime: 3
   maxAmmo: 25
   Pellets: 1
   auto: 1

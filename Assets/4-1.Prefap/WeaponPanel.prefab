@@ -332,7 +332,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1782312069578084102}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GearPanel, Assembly-CSharp
         m_MethodName: OnClickedRemove
         m_Mode: 1
@@ -565,9 +565,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2575085743026046829}
   - component: {fileID: 2779765665412640970}
-  - component: {fileID: 1782312069578084102}
+  - component: {fileID: 4063851386348870980}
   m_Layer: 5
-  m_Name: GearPanel
+  m_Name: WeaponPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -605,7 +605,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8762758119239765360}
   m_CullTransparentMesh: 1
---- !u!114 &1782312069578084102
+--- !u!114 &4063851386348870980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -614,16 +614,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 8762758119239765360}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1318be3c9941cc47959b54d203ab452, type: 3}
+  m_Script: {fileID: 11500000, guid: 62c97019aea76ea4d8733c73d6238b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2289562442655531060}
   text: {fileID: 1676213633908177173}
+  select: 0
   userWeapon:
     key: 
     weaponEuiped: 0
-  key: 
-  select: 0
+    weaponDraw: 0
+    weaponEquipSlot: 0
+    weaponData: {fileID: 0}
+  weaponData: {fileID: 0}
 --- !u!1 &9113672046689056696
 GameObject:
   m_ObjectHideFlags: 0

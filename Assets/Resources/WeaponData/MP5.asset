@@ -17,6 +17,7 @@ MonoBehaviour:
   weaponName: MP5
   damage: 1
   RPM: 1000
+  reloadTime: 3
   maxAmmo: 30
   Pellets: 1
   auto: 1
