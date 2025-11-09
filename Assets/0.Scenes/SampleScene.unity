@@ -340,13 +340,14 @@ GameObject:
   m_Component:
   - component: {fileID: 100791447}
   - component: {fileID: 100791448}
+  - component: {fileID: 100791449}
   m_Layer: 5
   m_Name: MainInventoryPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100791447
 RectTransform:
   m_ObjectHideFlags: 0
@@ -387,6 +388,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100791446}
   m_CullTransparentMesh: 1
+--- !u!114 &100791449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100791446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6f4c60328783245ad4f1f1bf9fb56d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectWeapon:
+    key: 
+    weaponEuiped: 0
+    weaponDraw: 0
+    weaponEquipSlot: 0
+    weaponData: {fileID: 0}
+  selectAmmor:
+    key: 
+    ammorEuiped: 0
+  weaponInventory: {fileID: 1604296282}
+  weaponSlotPanels: []
+  ammorInventory: {fileID: 0}
+  ammorPanels: []
 --- !u!1 &116073706
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 650, y: 320}
+  m_AnchoredPosition: {x: 660, y: 320}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &118489136
@@ -521,21 +547,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 118489134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c97019aea76ea4d8733c73d6238b27, type: 3}
+  m_Script: {fileID: 11500000, guid: 27fef3aaa9384224e941ddd8534630b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  text: {fileID: 0}
-  select: 0
-  userWeapon:
-    key: 
-    weaponEuiped: 0
-    weaponDraw: 0
-    weaponEquipSlot: 0
-    weaponData: {fileID: 0}
-  weaponData: {fileID: 0}
   weaponEquipSlot: 2
-  weaponSoltType: 1
+  weaponSlotType: 1
+  weaponData: {fileID: 0}
+  thumImage: {fileID: 0}
+  weaponName: {fileID: 0}
 --- !u!1 &135349931
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 445, y: -100}
+  m_AnchoredPosition: {x: 450, y: -120}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &161457561
@@ -1074,7 +1093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 240, y: -100}
+  m_AnchoredPosition: {x: 240, y: -120}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &219057395
@@ -1255,7 +1274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 445, y: 425}
+  m_AnchoredPosition: {x: 450, y: 430}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &259962123
@@ -1275,21 +1294,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 259962121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c97019aea76ea4d8733c73d6238b27, type: 3}
+  m_Script: {fileID: 11500000, guid: 27fef3aaa9384224e941ddd8534630b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  text: {fileID: 0}
-  select: 0
-  userWeapon:
-    key: 
-    weaponEuiped: 0
-    weaponDraw: 0
-    weaponEquipSlot: 0
-    weaponData: {fileID: 0}
-  weaponData: {fileID: 0}
   weaponEquipSlot: 3
-  weaponSoltType: 2
+  weaponSlotType: 2
+  weaponData: {fileID: 0}
+  thumImage: {fileID: 0}
+  weaponName: {fileID: 0}
 --- !u!1001 &265733038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1660,7 +1672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 240, y: 110}
+  m_AnchoredPosition: {x: 240, y: 100}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &338897975
@@ -1716,7 +1728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponEquipSlot: 3
-  weaponSoltType: 2
+  weaponSlotType: 0
   weapon: {fileID: 0}
 --- !u!1 &424529001
 GameObject:
@@ -3018,8 +3030,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1049182390}
-        m_TargetAssemblyTypeName: MainInventory, Assembly-CSharp
+      - m_Target: {fileID: 2098614920}
+        m_TargetAssemblyTypeName: WeaponSlotPanel, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -3793,7 +3805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponEquipSlot: 0
-  weaponSoltType: 0
+  weaponSlotType: 0
   weapon: {fileID: 0}
 --- !u!1 &816392912
 GameObject:
@@ -4118,7 +4130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 650, y: -100}
+  m_AnchoredPosition: {x: 660, y: -120}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &832645591
@@ -4733,13 +4745,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 259962121}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 259962124}
+        m_TargetAssemblyTypeName: WeaponSlotPanel, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4820,7 +4832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 445, y: 110}
+  m_AnchoredPosition: {x: 450, y: 100}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1034430867
@@ -4918,9 +4930,8 @@ GameObject:
   - component: {fileID: 1049182388}
   - component: {fileID: 1049182387}
   - component: {fileID: 1049182386}
-  - component: {fileID: 1049182390}
   - component: {fileID: 1049182392}
-  - component: {fileID: 1049182391}
+  - component: {fileID: 1049182393}
   m_Layer: 5
   m_Name: InventoryCanvas
   m_TagString: Untagged
@@ -5013,65 +5024,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1049182390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1049182384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c6f4c60328783245ad4f1f1bf9fb56d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectWeapon:
-    key: 
-    weaponEuiped: 0
-    weaponDraw: 0
-    weaponEquipSlot: 0
-    weaponData: {fileID: 0}
-  selectAmmor:
-    key: 
-    ammorEuiped: 0
-  weaponInventory: {fileID: 1604296282}
-  weaponPanels:
-  - {fileID: 2098614920}
-  - {fileID: 1577281966}
-  - {fileID: 118489137}
-  - {fileID: 259962124}
-  ammorInventory: {fileID: 0}
-  ammorPanels: []
---- !u!114 &1049182391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1049182384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.047058824}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1049182392
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5080,6 +5032,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049182384}
   m_CullTransparentMesh: 1
+--- !u!114 &1049182393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049182384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a9bf48cfb9a8d478d17f53e74f8cb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainInventory: {fileID: 0}
+  weaponInventory: {fileID: 0}
+  ammorInventory: {fileID: 0}
 --- !u!1 &1062570014
 GameObject:
   m_ObjectHideFlags: 0
@@ -5275,7 +5242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponEquipSlot: 1
-  weaponSoltType: 0
+  weaponSlotType: 0
   weapon: {fileID: 0}
 --- !u!1 &1078420852
 GameObject:
@@ -6307,7 +6274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponEquipSlot: 2
-  weaponSoltType: 1
+  weaponSlotType: 0
   weapon: {fileID: 0}
 --- !u!1 &1341137284
 GameObject:
@@ -6541,13 +6508,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 118489134}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 118489137}
+        m_TargetAssemblyTypeName: WeaponSlotPanel, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6993,13 +6960,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1577281963}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1577281966}
+        m_TargetAssemblyTypeName: WeaponSlotPanel, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7141,7 +7108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 445, y: 5}
+  m_AnchoredPosition: {x: 450, y: -10}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1486403067
@@ -7654,7 +7621,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 445, y: 320}
+  m_AnchoredPosition: {x: 450, y: 320}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1577281965
@@ -7674,21 +7641,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1577281963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c97019aea76ea4d8733c73d6238b27, type: 3}
+  m_Script: {fileID: 11500000, guid: 27fef3aaa9384224e941ddd8534630b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  text: {fileID: 0}
-  select: 0
-  userWeapon:
-    key: 
-    weaponEuiped: 0
-    weaponDraw: 0
-    weaponEquipSlot: 0
-    weaponData: {fileID: 0}
-  weaponData: {fileID: 0}
   weaponEquipSlot: 1
-  weaponSoltType: 0
+  weaponSlotType: 0
+  weaponData: {fileID: 0}
+  thumImage: {fileID: 0}
+  weaponName: {fileID: 0}
 --- !u!1 &1604296278
 GameObject:
   m_ObjectHideFlags: 0
@@ -7753,6 +7713,8 @@ MonoBehaviour:
   weaponPanelPrefab: {fileID: 8762758119239765360, guid: 93c5af5c01722b947b7484d620774818, type: 3}
   weaponList: {fileID: 1792076241}
   weaponPanels: []
+  weaponEquipSlot: 0
+  weaponSlotType: 0
 --- !u!1 &1631940323
 GameObject:
   m_ObjectHideFlags: 0
@@ -8301,7 +8263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 445, y: 215}
+  m_AnchoredPosition: {x: 450, y: 210}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1742529814
@@ -8349,7 +8311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 240, y: 215}
+  m_AnchoredPosition: {x: 240, y: 210}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1743246715
@@ -8537,7 +8499,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 680, y: 10}
+  m_AnchoredPosition: {x: 345, y: -60}
   m_SizeDelta: {x: 450, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1792076241
@@ -8838,7 +8800,6 @@ MonoBehaviour:
   - {fileID: 1322944444}
   - {fileID: 368429784}
   ammors: []
-  inventory: {fileID: 1049182384}
   slotIdx: 0
   mhp: 5
   hp: 0
@@ -8988,7 +8949,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 240, y: 5}
+  m_AnchoredPosition: {x: 240, y: -10}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1842370540
@@ -9822,21 +9783,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2098614917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c97019aea76ea4d8733c73d6238b27, type: 3}
+  m_Script: {fileID: 11500000, guid: 27fef3aaa9384224e941ddd8534630b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  text: {fileID: 0}
-  select: 0
-  userWeapon:
-    key: 
-    weaponEuiped: 0
-    weaponDraw: 0
-    weaponEquipSlot: 0
-    weaponData: {fileID: 0}
-  weaponData: {fileID: 0}
   weaponEquipSlot: 0
-  weaponSoltType: 0
+  weaponSlotType: 0
+  weaponData: {fileID: 0}
+  thumImage: {fileID: 0}
+  weaponName: {fileID: 0}
 --- !u!1 &2121606736
 GameObject:
   m_ObjectHideFlags: 0

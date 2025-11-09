@@ -9,7 +9,7 @@ public enum WeaponEquipSlot
 public class WeaponSlot : MonoBehaviour
 {
     public WeaponEquipSlot weaponEquipSlot;
-    public WeaponSoltType weaponSoltType;
+    public WeaponSlotType weaponSlotType;
     public Weapon weapon;
 
     public void WeaponEquip()

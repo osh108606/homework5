@@ -18,5 +18,5 @@ public class WeaponData : ScriptableObject
     public Sprite sprite;
     public Bullet bulletPrefab;
     public WeaponType weaponType;//무기 종류
-    public WeaponSoltType weaponSoltType;//무기 장착슬롯
+    public WeaponSlotType weaponSlotType;//무기 장착슬롯
 }

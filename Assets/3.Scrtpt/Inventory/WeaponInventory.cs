@@ -8,10 +8,45 @@ public class WeaponInventory : SubInventory
     public GameObject weaponPanelPrefab;
     public GridLayoutGroup weaponList;
     public List<GameObject> weaponPanels;
-    public override void Awake()
+    public WeaponEquipSlot weaponEquipSlot;
+    public WeaponSlotType weaponSlotType;
+    
+    public override void OnEnable()
     {
-        base.Awake();
         weaponList = GetComponentInChildren<GridLayoutGroup>();
+        curEuiptmentImage = GetComponentInChildren<Image>();
+        curEuiptmentNameText = GetComponentInChildren<TMP_Text>();
+    }
+    public void Open(WeaponEquipSlot EquipSlot, WeaponSlotType SlotType)
+    {
+        weaponEquipSlot = EquipSlot;
+        weaponSlotType = SlotType;
+        gameObject.SetActive(true);
+
+        UpdateCanvas();
+        for (int i = 0; i < weaponPanels.Count; i++)
+        {
+            Destroy(weaponPanels[i]);
+        }
+        weaponPanels.Clear();
+
+        for (int i = 0; i < UserManager.instance.userData.userWeapons.Count; i++)
+        {
+            string key = UserManager.instance.userData.userWeapons[i].key;
+            WeaponData weaponData = Resources.Load<WeaponData>("WeaponData/" + key);
+            if (weaponData.weaponSlotType == weaponSlotType)
+            {
+                GameObject panel = Instantiate(weaponPanelPrefab, weaponList.transform);
+                UserWeapon userWeapon = UserManager.instance.userData.userWeapons[i];
+                panel.GetComponent<WeaponPanel>().SetData(userWeapon);
+                weaponPanels.Add(panel);
+            }
+        }
+        WeaponSelected(null);
+    }
+    public void Close()
+    {
+        gameObject.SetActive(false);
     }
 
     public override void UpdateCanvas()
@@ -28,25 +63,6 @@ public class WeaponInventory : SubInventory
         curEuiptmentImage.sprite = weapnData.sprite;
     }
 
-    private void OnEnable()
-    {
-        UpdateCanvas();
-        for (int i = 0; i < weaponPanels.Count; i++)
-        {
-            Destroy(weaponPanels[i]);
-        }
-        weaponPanels.Clear();
-
-        for (int i = 0; i < UserManager.instance.userData.userWeapons.Count; i++)
-        {
-            GameObject panel = Instantiate(weaponPanelPrefab, weaponList.transform);
-            UserWeapon userWeapon = UserManager.instance.userData.userWeapons[i];
-            panel.GetComponent<WeaponPanel>().SetData(userWeapon);
-            weaponPanels.Add(panel);
-
-        }
-        WeaponSelected(null);
-    }
     public void WeaponSelected(WeaponData weaponData)
     {
         if (weaponData == null)

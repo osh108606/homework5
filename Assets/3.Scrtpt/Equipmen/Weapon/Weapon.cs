@@ -14,7 +14,7 @@ public enum WeaponType
     SP
 }
 
-public enum WeaponSoltType
+public enum WeaponSlotType
 {
     Main,
     Sub,
@@ -39,7 +39,7 @@ public class Weapon : MonoBehaviour
     public WeaponData weaponData;
     public UserAmmo userAmmo;
     public WeaponType weaponType;
-    public WeaponSoltType weaponSoltType;
+    public WeaponSlotType weaponSlotType;
     
     public void Awake()
     {

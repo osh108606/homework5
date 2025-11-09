@@ -8,4 +8,5 @@ public class AmmorData : ScriptableObject
     public int armorPoint;
     public string ammorName;
     public Sprite sprite;
+    public AmmorEquipSlot ammorEquipSlot;
 }

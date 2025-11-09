@@ -11,32 +11,55 @@ public class MainInventory : MonoBehaviour
     public UserWeapon selectWeapon;
     public UserAmmor selectAmmor;
     public WeaponInventory weaponInventory;
-    public WeaponPanel[] weaponPanels;
+    public WeaponSlotPanel[] weaponSlotPanels;
     public AmmorInventory ammorInventory;
     public AmmorPanel[] ammorPanels;
-    public void Awake()
+    
+
+    private void OnEnable()
     {
-        weaponInventory = GetComponentInChildren<WeaponInventory>();
-        ammorInventory = GetComponentInChildren<AmmorInventory>();
-        weaponPanels = GetComponentsInChildren<WeaponPanel>();
-        ammorPanels = GetComponentsInChildren<AmmorPanel>();
+        if (weaponInventory == null) 
+            weaponInventory = GetComponentInChildren<WeaponInventory>(true);
+        if (ammorInventory == null) 
+            ammorInventory = GetComponentInChildren<AmmorInventory>(true);
+        if (weaponSlotPanels == null || weaponSlotPanels.Length == 0)
+            weaponSlotPanels = GetComponentsInChildren<WeaponSlotPanel>(true);
+        if (ammorPanels == null || ammorPanels.Length == 0)
+            ammorPanels = GetComponentsInChildren<AmmorPanel>(true);
+        Refresh();
     }
 
-    public void OnClick()
+    public void Start()
     {
-        for(int i = 0; i <= weaponPanels.Length; i++)
+        
+    }
+
+    public void Refresh()
+    {
+        for (int i = 0; i < weaponSlotPanels.Length; i++)
         {
-            if(weaponPanels[i].weaponSoltType == WeaponSoltType.Main)
-            {
+            UserWeapon userWeapon = UserManager.instance.GetEquipUserWeapon(weaponSlotPanels[i].weaponEquipSlot);
+            weaponSlotPanels[i].SetUserWeapon(userWeapon);
+        }
+    }
 
-            }
-            else if(weaponPanels[i].weaponSoltType == WeaponSoltType.Sub)
-            {
+    public void Open()
+    {
+        gameObject.SetActive(true);
+    }
 
-            }
-            else if (weaponPanels[i].weaponSoltType == WeaponSoltType.Special)
-            {
+    public void Close()
+    { 
+        gameObject.SetActive(false); 
+    }
 
+    public void OnClick(WeaponSlotType weaponSlotType)
+    {
+        for (int i = 0; i <= weaponSlotPanels.Length; i++)
+        {
+            if (weaponSlotPanels[i].weaponSlotType == weaponSlotType)
+            {
+                InventoryCanvas.Instance.OpenWeaponInventory(weaponSlotPanels[i].weaponEquipSlot, weaponSlotPanels[i].weaponSlotType);
             }
         }
     }

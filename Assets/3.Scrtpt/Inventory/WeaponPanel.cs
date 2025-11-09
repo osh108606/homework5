@@ -6,7 +6,7 @@ public class WeaponPanel : GearPanel
     public UserWeapon userWeapon;
     public WeaponData weaponData;
     public WeaponEquipSlot weaponEquipSlot;
-    public WeaponSoltType weaponSoltType;
+    public WeaponSlotType weaponSlotType;
     public void Awake()
     {
         image = GetComponentInChildren<Image>();
@@ -17,7 +17,7 @@ public class WeaponPanel : GearPanel
         weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon.key);
         text.text = weaponData.weaponName;
         image.sprite = weaponData.sprite;
-        weaponSoltType = weaponData.weaponSoltType;
+        weaponSlotType = weaponData.weaponSlotType;
 
 
         this.userWeapon = userWeapon;
@@ -33,17 +33,17 @@ public class WeaponPanel : GearPanel
     public override void OnClicked()
     {
         //1번클릭했을시 선택상태
-        if (select == false)
-        {
-            select = true;
-            GetComponentInParent<WeaponInventory>().WeaponSelected(weaponData);
-        }
-        else
-        {
-            select = false;
-            GetComponentInParent<WeaponInventory>().WeaponSelected(null);
-        }
-
+        //if (select == false)
+        //{
+        //    select = true;
+        //    GetComponentInParent<WeaponInventory>().WeaponSelected(weaponData);
+        //}
+        //else
+        //{
+        //    select = false;
+        //    GetComponentInParent<WeaponInventory>().WeaponSelected(null);
+        //}
+        //InventoryCanvas.Instance.OpenWeaponInventory();
     }
     public void OnClickedRemove()
     {

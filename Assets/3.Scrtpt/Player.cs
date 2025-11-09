@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     public Weapon currentWeapon; // 현재 "들고있는" 무기
     public WeaponSlot[] slots = new WeaponSlot[4];// 무기슬롯
     public Ammor[] ammors;
-    public GameObject inventory;
     
 
     public int slotIdx;
@@ -31,9 +30,7 @@ public class Player : MonoBehaviour
     {
         UpdateSlot();
         UserWeapon userWeapon = UserManager.instance.GetDrawUserWeapon();
-        ChangeDrawWeapon(userWeapon.key);
-        inventory.SetActive(false);
-        
+        ChangeDrawWeapon(userWeapon.key);   
     }
 
     
@@ -49,14 +46,32 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (inventory.activeSelf == true)
+            if (InventoryCanvas.Instance.gameObject.activeSelf == false)
             {
-                inventory.SetActive(false);
+                InventoryCanvas.Instance.OpenMainInventory();
             }
             else
             {
-                inventory.SetActive(true);
+                InventoryCanvas.Instance.OpenMainInventory();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            ///인벤토리 관련
+            if (InventoryCanvas.Instance.mainInventory.gameObject.activeSelf == true)
+                InventoryCanvas.Instance.mainInventory.Close();
+
+            if (InventoryCanvas.Instance.weaponInventory.gameObject.activeSelf == true)
+            {
+                InventoryCanvas.Instance.weaponInventory.Close();
+                InventoryCanvas.Instance.mainInventory.Open();
+            }
+            if (InventoryCanvas.Instance.ammorInventory.gameObject.activeSelf == true)
+            {
+                InventoryCanvas.Instance.ammorInventory.Close();
+                InventoryCanvas.Instance.mainInventory.Open();
+            }
+
         }
         if (Input.GetKeyDown(KeyCode.F))
         {

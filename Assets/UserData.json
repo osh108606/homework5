@@ -6,7 +6,7 @@
             "weaponDraw": true,
             "weaponEquipSlot": 0,
             "weaponData": {
-                "instanceID": 35374
+                "instanceID": 0
             }
         },
         {
@@ -15,7 +15,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 1,
             "weaponData": {
-                "instanceID": 35434
+                "instanceID": 0
             }
         },
         {
@@ -24,7 +24,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 2,
             "weaponData": {
-                "instanceID": 35378
+                "instanceID": 0
             }
         },
         {
@@ -33,7 +33,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 3,
             "weaponData": {
-                "instanceID": 35494
+                "instanceID": 0
             }
         }
     ],

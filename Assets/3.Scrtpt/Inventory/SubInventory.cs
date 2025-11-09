@@ -6,10 +6,11 @@ public class SubInventory : MonoBehaviour
 {
     public TMP_Text curEuiptmentNameText;
     public Image curEuiptmentImage;
-    public virtual void Awake()
+
+    public virtual void OnEnable()
     {
-        curEuiptmentNameText = GetComponentInChildren<TMP_Text>();
         curEuiptmentImage = GetComponentInChildren<Image>();
+        curEuiptmentNameText = GetComponentInChildren<TMP_Text>();
     }
     public virtual void UpdateCanvas()
     {
