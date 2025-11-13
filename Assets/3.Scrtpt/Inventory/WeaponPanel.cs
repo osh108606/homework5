@@ -7,11 +7,7 @@ public class WeaponPanel : GearPanel
     public WeaponData weaponData;
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponSlotType weaponSlotType;
-    public void Awake()
-    {
-        image = GetComponentInChildren<Image>();
-        text = GetComponentInChildren<TMP_Text>();
-    }
+    
     public override void SetData(UserWeapon userWeapon)
     {
         weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon.key);

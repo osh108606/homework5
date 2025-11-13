@@ -4,13 +4,14 @@ public class AmmorPanel : GearPanel
 {
     public UserAmmor userAmmor;
     public AmmorData ammorData;
+    public AmmorEquipSlot ammorEquipSlot;
 
     public override void SetData(UserAmmor userAmmor)
     {
         ammorData = Resources.Load<AmmorData>("AmmorData/" + userAmmor.key);
         text.text = ammorData.ammorName;
         image.sprite = ammorData.sprite;
-
+        ammorEquipSlot = ammorData.ammorEquipSlot;
 
 
         this.userAmmor = userAmmor;
@@ -26,16 +27,16 @@ public class AmmorPanel : GearPanel
     public override void OnClicked()
     {
         //1번클릭했을시 선택상태
-        if (select == false)
-        {
-            select = true;
-            GetComponentInParent<AmmorInventory>().AmmorSelected(ammorData);
-        }
-        else
-        {
-            select = false;
-            GetComponentInParent<AmmorInventory>().AmmorSelected(null);
-        }
+        //if (select == false)
+        //{
+        //    select = true;
+        //    GetComponentInParent<AmmorInventory>().AmmorSelected(ammorData);
+        //}
+        //else
+        //{
+        //    select = false;
+        //    GetComponentInParent<AmmorInventory>().AmmorSelected(null);
+        //}
 
     }
     public void OnClickedRemove()

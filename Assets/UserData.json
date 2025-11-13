@@ -6,8 +6,9 @@
             "weaponDraw": true,
             "weaponEquipSlot": 0,
             "weaponData": {
-                "instanceID": 0
-            }
+                "instanceID": 35540
+            },
+            "ammoCount": 25
         },
         {
             "key": "MP5",
@@ -15,8 +16,9 @@
             "weaponDraw": false,
             "weaponEquipSlot": 1,
             "weaponData": {
-                "instanceID": 0
-            }
+                "instanceID": 35598
+            },
+            "ammoCount": 0
         },
         {
             "key": "Glock",
@@ -24,8 +26,9 @@
             "weaponDraw": false,
             "weaponEquipSlot": 2,
             "weaponData": {
-                "instanceID": 0
-            }
+                "instanceID": 35542
+            },
+            "ammoCount": 0
         },
         {
             "key": "grenadelauncher",
@@ -33,8 +36,9 @@
             "weaponDraw": false,
             "weaponEquipSlot": 3,
             "weaponData": {
-                "instanceID": 0
-            }
+                "instanceID": 35648
+            },
+            "ammoCount": 0
         }
     ],
     "userAmmos": [
@@ -46,7 +50,7 @@
         {
             "weapontype": 1,
             "key": "",
-            "count": 810
+            "count": 735
         },
         {
             "weapontype": 2,
@@ -72,12 +76,21 @@
             "weapontype": 6,
             "key": "",
             "count": 144
+        },
+        {
+            "weapontype": 7,
+            "key": "",
+            "count": 24
         }
     ],
     "userAmmors": [
         {
             "key": "Ammor1-1",
-            "ammorEuiped": true
+            "ammorEuiped": true,
+            "ammorEquipSlot": 0,
+            "ammorData": {
+                "instanceID": 0
+            }
         }
     ],
     "userItems": []

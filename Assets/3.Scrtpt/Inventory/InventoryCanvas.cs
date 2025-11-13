@@ -25,6 +25,26 @@ public class InventoryCanvas : MonoBehaviour
         ammorInventory = GetComponentInChildren<AmmorInventory>(true);
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (mainInventory.gameObject.activeSelf == true)
+                mainInventory.Close();
+
+            if (weaponInventory.gameObject.activeSelf == true)
+            {
+                weaponInventory.Close();
+                mainInventory.Open();
+            }
+            if (ammorInventory.gameObject.activeSelf == true)
+            {
+                ammorInventory.Close();
+                mainInventory.Open();
+            }
+        }
+    }
+
     public void OpenMainInventory()
     {
         

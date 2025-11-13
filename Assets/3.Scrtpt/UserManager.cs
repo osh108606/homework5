@@ -23,7 +23,7 @@ public class UserManager : MonoBehaviour
             userWeapon1.weaponEquipSlot = WeaponEquipSlot.main1;
             userWeapon1.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon1.key);
             userData.userWeapons.Add(userWeapon1);
-            
+
 
             UserWeapon userWeapon2 = new UserWeapon();//2번무기
             userWeapon2.weaponDraw = false;
@@ -102,6 +102,12 @@ public class UserManager : MonoBehaviour
                 userAmmo6.count = 144;
                 userAmmo6.weapontype = type6;
                 userData.userAmmos.Add(userAmmo6);
+
+                UserAmmo userAmmo7 = new UserAmmo();
+                WeaponType type7 = WeaponType.SP;
+                userAmmo7.count = 24;
+                userAmmo7.weapontype = type7;
+                userData.userAmmos.Add(userAmmo7);
             }
 
             //Player.instance.currentWeapon = Player.instance.slots[0].weapon;
@@ -109,11 +115,21 @@ public class UserManager : MonoBehaviour
             SaveManager.SaveData("UserData.json", userData);
         }
     }
-    private void Start()
-    { 
-        
-        
+    public void Relord(Weapon weapon ,UserWeapon userWeapon)
+    {
+        if (weapon.userWeapon.ammoCount < 0)
+            return;
+        UserAmmo userAmmo = weapon.userAmmo;
+        int reloadCount = weapon.weaponData.maxAmmo;
+        int remain = userAmmo.count - weapon.weaponData.maxAmmo;
+        if(remain<0)
+        {
+            reloadCount = userAmmo.count;
+        }
+        userAmmo.count -= reloadCount;
+        userWeapon.ammoCount = reloadCount;
 
+        SaveManager.SaveData("UserData.json", userData);
     }
     //아이템 추가
     public void Additem(string key)
@@ -211,6 +227,21 @@ public class UserManager : MonoBehaviour
                 if(userData.userWeapons[i].weaponEquipSlot == slot)
                 {
                     return userData.userWeapons[i];
+                }
+            }
+        }
+        return null;
+    }
+
+    public UserAmmor GetEquipUserAmmor(AmmorEquipSlot slot)
+    {
+        for (int i = 0; i < userData.userAmmors.Count; i++)
+        {
+            if (userData.userAmmors[i].ammorEuiped == true)
+            {
+                if (userData.userAmmors[i].ammorEquipSlot == slot)
+                {
+                    return userData.userAmmors[i];
                 }
             }
         }
@@ -366,12 +397,15 @@ public class UserWeapon
     public bool weaponDraw; //들고있는지
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponData weaponData;
+    public int ammoCount; //현제 장착중인 총의 총알갯수
 }
 [System.Serializable]
 public class UserAmmor
 {
     public string key;
-    public bool ammorEuiped;
+    public bool ammorEuiped; //장착중인지
+    public AmmorEquipSlot ammorEquipSlot;
+    public AmmorData ammorData;
 }
 [System.Serializable]
 public class UserItem

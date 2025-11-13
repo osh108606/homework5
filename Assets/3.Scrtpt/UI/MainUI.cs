@@ -19,11 +19,11 @@ public class MainUI : MonoBehaviour
     {
         if (Player.instance.currentWeapon != null &&  Player.instance.currentWeapon.weaponData != null && Player.instance.currentWeapon.weaponData.weaponType != WeaponType.HG)
         {
-            ammoStat.text = $"{Player.instance.currentWeapon.currentAmmo}\n{Player.instance.currentWeapon.userAmmo.count}";
+            ammoStat.text = $"{Player.instance.currentWeapon.userWeapon.ammoCount}\n{Player.instance.currentWeapon.userAmmo.count}";
         }
         else if(Player.instance.currentWeapon != null && Player.instance.currentWeapon.weaponData != null)
         {
-            ammoStat.text = $"{Player.instance.currentWeapon.currentAmmo}\n{"endless"}";
+            ammoStat.text = $"{Player.instance.currentWeapon.userWeapon.ammoCount}\n{"endless"}";
         }
 
         if (Player.instance.currentWeapon.reLoading)

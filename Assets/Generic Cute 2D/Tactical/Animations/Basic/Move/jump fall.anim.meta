@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 819b372b53302364abd4e716c427236a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 246829
+  packageName: Generic Cute 2D - Tactical Weapon & Animation Extension
+  packageVersion: 1.1
+  assetPath: Assets/Generic Cute 2D/Tactical/Animations/Basic/Move/jump fall.anim
+  uploadId: 572864
