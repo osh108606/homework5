@@ -366,6 +366,22 @@ public class UserManager : MonoBehaviour
     {
         userData.userAmmors.Remove(userAmmor);
     }
+
+    public UserDungeon GetUserDungeon(string key)
+    {
+        for (int i = 0; i < userData.userDungeons.Count; i++)
+        {
+            if (userData.userDungeons[i].key == key)
+            { 
+                return userData.userDungeons[i];
+            }
+        }
+
+        UserDungeon userDungeon = new UserDungeon();
+        userDungeon.key = key;
+        userData.userDungeons.Add(userDungeon);
+        return userDungeon;
+    }
 }
 
 
@@ -379,6 +395,9 @@ public class UserData
 
    
     public List<UserItem> userItems = new List<UserItem>();// 기타모든 아이템
+
+
+    public List<UserDungeon> userDungeons = new List<UserDungeon>();// 던전 클리어 정보
 }
 
 [System.Serializable]
@@ -413,4 +432,14 @@ public class UserItem
     public string key;
     public bool itemEuiped;
     public int count;
+}
+
+[System.Serializable]
+public class UserDungeon
+{
+    public string key;
+    public int clearCount;
+    public int tryCount;
+    public int killCount;
+
 }

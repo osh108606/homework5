@@ -2,5 +2,4 @@
 
 
 
-총알관련 살펴보고 생각하기 
-currentAmmo -> userAmmo.Cout로 바뀌어진 부분
+던전종료시 부분 구현

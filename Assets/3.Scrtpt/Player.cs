@@ -232,7 +232,12 @@ public class Player : MonoBehaviour
         Debug.Log(hp);
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            PlayerDie();
         }
+    }
+
+    public void PlayerDie()
+    {
+        Destroy(gameObject);
     }
 }

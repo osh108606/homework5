@@ -10,6 +10,9 @@ public class Dungeon : MonoBehaviour
     
     public DungeonZone[] zones;
     public int zoneCount;
+    [SerializeField]
+    public UserDungeon userDungeon;
+    
     //던전내 구역
     public void Awake()
     {
@@ -24,14 +27,22 @@ public class Dungeon : MonoBehaviour
     public void DungeonStart()
     {
         Debug.Log("DungeonStart");
+        userDungeon = UserManager.instance.GetUserDungeon(key);
         zoneCount = zones.Length;
         zones[0].GetComponent<DungeonZone>().ZoneStart();
+        userDungeon.tryCount++;
     }
     public void DungeonEnd()
     {
         Debug.Log("DungeonEnd");
+        userDungeon.clearCount++;
         //보상
         //던전 비활성화
+    }
+
+    public void DungeonFail()
+    {
+
     }
 
     public void ZoneEnd()

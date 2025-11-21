@@ -12,9 +12,8 @@ public class StageSelect : MonoBehaviour
         instance = this;
     }
 
-    public void OnClicked(string key)
+    public void SelectedDungeon(string key)
     {
-        Debug.Log("OnCliced");
         for (int i = 0; i < dungeons.Length; i++)
         {
             if (dungeons[i].key == key)
