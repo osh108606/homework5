@@ -9,6 +9,7 @@ public class Dungeon : MonoBehaviour
     //던전이동포인트&첫리스폰포인트
     
     public DungeonZone[] zones;
+    public DungeonZone curZone;
     public int zoneCount;
     [SerializeField]
     public UserDungeon userDungeon;
@@ -26,6 +27,7 @@ public class Dungeon : MonoBehaviour
 
     public void DungeonStart()
     {
+        DungeonManager.instance.curDungeon = this;
         Debug.Log("DungeonStart");
         userDungeon = UserManager.instance.GetUserDungeon(key);
         zoneCount = zones.Length;
@@ -34,6 +36,7 @@ public class Dungeon : MonoBehaviour
     }
     public void DungeonEnd()
     {
+        DungeonManager.instance.curDungeon = null;
         Debug.Log("DungeonEnd");
         userDungeon.clearCount++;
         //보상
@@ -42,7 +45,16 @@ public class Dungeon : MonoBehaviour
 
     public void DungeonFail()
     {
-
+        int pre = curZone.order - 1;
+        if (curZone.order <=0)
+        {
+            Player.instance.transform.position = playerSpawnPoint.position;
+        }
+        else
+        {
+            Player.instance.transform.position = zones[pre].playerRespawnPoint.position;
+        }
+        Player.instance.Rebone();
     }
 
     public void ZoneEnd()

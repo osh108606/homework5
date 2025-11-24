@@ -236,8 +236,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Rebone()
+    {
+        hp = mhp;
+    }
+
     public void PlayerDie()
     {
-        Destroy(gameObject);
+        if(DungeonManager.instance.curDungeon != null)
+        {
+            DungeonManager.instance.curDungeon.DungeonFail();
+        }
     }
 }

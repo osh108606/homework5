@@ -12,6 +12,7 @@ public class EnemyInfo : ScriptableObject
     
     public float sightRange; //추격범위
     public float attackDelay; //공격딜레이
+    public float attackSpeed;
 }
 
 
@@ -19,8 +20,6 @@ public enum EnemyType //적 타입
 {
     Melee,
     Ranged
-
-
 }
 
 public enum Enemyfaction //적 진형

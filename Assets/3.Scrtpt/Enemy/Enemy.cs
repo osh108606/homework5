@@ -3,27 +3,23 @@ using UnityEngine.UI;
 
 public class Enemy : NPC
 {
+    public EnemyType enemyType;
     public GameObject dropItemPrifap;
     public EnemyState enemyState;
     public Rigidbody2D rg2d;
     public Transform attackPointTr;//공격 시작포인트
     public EnemyInfo enemyInfo; //적정보
-
-    public float sightRange; //추적범위
-    public float attackRange; //공격범위
-    public float attackSpeed; //공격 속도 ex총알을 얼마나 빨리쏘는가 (아직 사용결정 x)
+    public Transform rootTr;
     public float attackDelay;  //공격행위 주기
-    public float attackDamage; //데미지
 
     public override void Awake()
     {
         base.Awake();
+        rootTr = transform.Find("Root");
+        enemyInfo = Resources.Load<EnemyInfo>($"Enemy/{enemyType}");
         mhp = enemyInfo.Maxhp;
-        attackRange = enemyInfo.attackRange;
-        moveSpeed = enemyInfo.moveSpeed;
         attackDelay = enemyInfo.attackDelay;
-        attackDamage = enemyInfo.attackDamage;
-
+        moveSpeed = enemyInfo.moveSpeed;
     }
 
     public override void Start()
@@ -71,25 +67,39 @@ public class Enemy : NPC
     public virtual void IdleState()
     {
         float distance = Vector2.Distance(transform.position, Player.instance.transform.position);
-        if (distance >= attackRange&& distance < sightRange)// 조건 좀더 생각해볼것
+        if (distance >= enemyInfo.attackRange && distance < enemyInfo.sightRange)// 조건 좀더 생각해볼것
         {
             SetState(EnemyState.Approching);
             return;
         }
-        rg2d.linearVelocity = Vector2.zero;
+        else if (enemyInfo.attackSpeed <= attackDelay)
+        {
+            SetState(EnemyState.Attack);
+        }
+            rg2d.linearVelocity = Vector2.zero;
     }
 
     public virtual void ApprochingState()
     {
         // 벡터 (방향 * 크기)= 목적지 - 출발지
         Vector2 dir = (Player.instance.transform.position - transform.position).normalized;
+        if (dir.x > 0)
+        {
+            //오른쪽
+            rootTr.localScale = new Vector2(-1, 1);
+        }
+        else
+        {
+            //왼쪽
+            rootTr.localScale = new Vector2(1, 1);
+        }
         float distance = Vector2.Distance(transform.position, Player.instance.transform.position);
-        if (distance > sightRange)
+        if (distance > enemyInfo.sightRange)
         {
             SetState(EnemyState.Approching);
         }
 
-        if (distance <= attackRange)
+        if (distance <= enemyInfo.attackRange)
         {
             SetState(EnemyState.Attack);
         }
@@ -101,7 +111,7 @@ public class Enemy : NPC
         Debug.Log("Enemy Attack");
 
         rg2d.linearVelocity = Vector2.zero;
-        if (attackSpeed <= attackDelay) //공격할 수 있음!
+        if (enemyInfo.attackSpeed <= attackDelay) //공격할 수 있음!
         {
             Attack();
             attackDelay = 0;

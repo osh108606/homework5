@@ -64,10 +64,18 @@ MonoBehaviour:
     the 2D Renderer in Universal RP.
   preview: {fileID: -3604256930052969394}
   dependencies:
+  - dependency: {fileID: 1276975157786200349, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 9b7096db88fde44f8832b5b59756fd1d, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 2800000, guid: 524f70c22b37d49ca9618f6d9158e0be, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 2800000, guid: 9e7612280b7a14490a221e310bc15183, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 2fd6421f253b4ef1a19526541f9ffc0c, type: 3}
     instantiationMode: 1
+  - dependency: {fileID: 2800000, guid: d663355bff50442f4ace9a1d8ba57ca4, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
     instantiationMode: 1
   - dependency: {fileID: 8762758119239765360, guid: 93c5af5c01722b947b7484d620774818, type: 3}
@@ -78,11 +86,19 @@ MonoBehaviour:
     instantiationMode: 0
   - dependency: {fileID: 11400000, guid: 749d991d77923104fbbd6071bff166fa, type: 2}
     instantiationMode: 1
+  - dependency: {fileID: 4707549330918206237, guid: 4a3601bd58f9bdd49ae755dc691b8af2, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 1276975157786200349, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 2800000, guid: e55eb978d144f4ed9af802947b997fa5, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 2800000, guid: ee148e281f3c41c5b4ff5f8a5afe5a6c, type: 3}
     instantiationMode: 1
   - dependency: {fileID: 2800000, guid: 1ce054b126e20e1449cbb04299b1db3d, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 1dc81e0e2050442788db8fae18227176, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 3211623765198393876, guid: 6f82c98ab18d52146b9d6f1148a2119f, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 12800000, guid: 22d695d85be9cb74eb0d4ef680cc1b14, type: 3}
     instantiationMode: 1

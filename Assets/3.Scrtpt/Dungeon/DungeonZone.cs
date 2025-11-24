@@ -4,12 +4,15 @@ using UnityEngine.UIElements;
 public class DungeonZone : MonoBehaviour, IEnemySpawner
 {
     public string key;
+    public int order;
     public Transform playerRespawnPoint;
     //던전 구역 플레이어 리스폰포인트
     public Transform[] enemySpawnPoints;
     //던전구역 시작 적 스폰포인트
     public DungeonWave[] dungeonWaves;
     //던전구역 웨이브들
+    public Dungeon dungeon;
+
 
     public Enemy enemyPrefab;
     public int firstEnmey;
@@ -18,6 +21,7 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
 
     public void Awake()
     {
+        dungeon = GetComponentInParent<Dungeon>(); ;
         zoneEnd = false;
         firstEnmey = 0;
         dungeonWaves = GetComponentsInChildren<DungeonWave>();
@@ -26,6 +30,7 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
 
     public void ZoneStart()
     {
+        dungeon.curZone = this;
         Debug.Log("DungeonZone Start");
         waveCount = dungeonWaves.Length;
         for (int i = 0; i < enemySpawnPoints.Length; i++)

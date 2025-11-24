@@ -6,9 +6,9 @@
             "weaponDraw": true,
             "weaponEquipSlot": 0,
             "weaponData": {
-                "instanceID": 35540
+                "instanceID": 0
             },
-            "ammoCount": 25
+            "ammoCount": 0
         },
         {
             "key": "MP5",
@@ -16,7 +16,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 1,
             "weaponData": {
-                "instanceID": 35598
+                "instanceID": 0
             },
             "ammoCount": 0
         },
@@ -26,7 +26,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 2,
             "weaponData": {
-                "instanceID": 35542
+                "instanceID": 0
             },
             "ammoCount": 0
         },
@@ -36,7 +36,17 @@
             "weaponDraw": false,
             "weaponEquipSlot": 3,
             "weaponData": {
-                "instanceID": 35648
+                "instanceID": 0
+            },
+            "ammoCount": 0
+        },
+        {
+            "key": "M4",
+            "weaponEuiped": false,
+            "weaponDraw": false,
+            "weaponEquipSlot": 0,
+            "weaponData": {
+                "instanceID": 0
             },
             "ammoCount": 0
         }
@@ -93,5 +103,19 @@
             }
         }
     ],
-    "userItems": []
+    "userItems": [],
+    "userDungeons": [
+        {
+            "key": "",
+            "clearCount": 0,
+            "tryCount": 0,
+            "killCount": 0
+        },
+        {
+            "key": "Dungeon1",
+            "clearCount": 0,
+            "tryCount": 1,
+            "killCount": 0
+        }
+    ]
 }
