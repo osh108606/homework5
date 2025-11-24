@@ -72,7 +72,7 @@ public class Enemy : NPC
             SetState(EnemyState.Approching);
             return;
         }
-        else if (enemyInfo.attackSpeed <= attackDelay)
+        else if (distance <= enemyInfo.attackRange && enemyInfo.attackSpeed <= attackDelay)
         {
             SetState(EnemyState.Attack);
         }

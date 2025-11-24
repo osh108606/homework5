@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -1648,7 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -1752,7 +1752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -1942,11 +1942,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Dungeon1Zone4
+  order: 0
   playerRespawnPoint: {fileID: 1356009693945423255}
   enemySpawnPoints:
   - {fileID: 7645173560756964572}
   dungeonWaves: []
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  dungeon: {fileID: 0}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   firstEnmey: 0
   waveCount: 4
   zoneEnd: 0
@@ -2235,11 +2237,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Dungeon1Zone1
+  order: 0
   playerRespawnPoint: {fileID: 4590872998760121750}
   enemySpawnPoints:
   - {fileID: 6587485255445945338}
   dungeonWaves: []
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  dungeon: {fileID: 0}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   firstEnmey: 0
   waveCount: 4
   zoneEnd: 0
@@ -2391,7 +2395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -2669,7 +2673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -2898,7 +2902,13 @@ MonoBehaviour:
   key: Dungeon1
   playerSpawnPoint: {fileID: 3611600297739207997}
   zones: []
+  curZone: {fileID: 0}
   zoneCount: 0
+  userDungeon:
+    key: 
+    clearCount: 0
+    tryCount: 0
+    killCount: 0
 --- !u!1 &3219516268075465757
 GameObject:
   m_ObjectHideFlags: 0
@@ -3536,7 +3546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -3775,7 +3785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -3879,7 +3889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -3983,7 +3993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -4256,7 +4266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -4595,11 +4605,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Dungeon1Zone2
+  order: 0
   playerRespawnPoint: {fileID: 4930531250245477800}
   enemySpawnPoints:
   - {fileID: 4326000703071603645}
   dungeonWaves: []
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  dungeon: {fileID: 0}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   firstEnmey: 0
   waveCount: 4
   zoneEnd: 0
@@ -4802,11 +4814,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Dungeon1Zone3
+  order: 0
   playerRespawnPoint: {fileID: 5544078308697806036}
   enemySpawnPoints:
   - {fileID: 2214360143450431228}
   dungeonWaves: []
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  dungeon: {fileID: 0}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   firstEnmey: 0
   waveCount: 4
   zoneEnd: 0
@@ -5176,7 +5190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
@@ -5451,7 +5465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583db69ef229084ba80392ee1b57edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9012804260296753389, guid: 1b1439b89876cbf409bb0b7c3ac1daf0, type: 3}
+  enemyPrefab: {fileID: 7583996871576272518, guid: bad885e8a6f8217438e34f1357f9ec3d, type: 3}
   count: 5
   interval: 0.5
   currentCount: 0
