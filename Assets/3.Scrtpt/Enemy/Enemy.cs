@@ -160,7 +160,10 @@ public class Enemy : NPC
             zone.KilledEnemy(this);
         }
     }
-
+    public void EnemyDelete()
+    {
+        Destroy(this.gameObject);
+    }
     public void Spawn(Vector2 startPos, Vector2 initArrPos)
     {
         transform.position = startPos;

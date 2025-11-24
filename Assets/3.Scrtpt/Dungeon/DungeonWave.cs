@@ -32,4 +32,11 @@ public class DungeonWave : MonoBehaviour
         }
        
     }
+    public void WaveClear()
+    {
+        for (int i = 0; i < enemySpanwers.Length; i++)
+        {
+            enemySpanwers[i].enemy.EnemyDelete();
+        }
+    }
 }

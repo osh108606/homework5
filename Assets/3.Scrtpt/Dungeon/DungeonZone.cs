@@ -27,7 +27,7 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
         dungeonWaves = GetComponentsInChildren<DungeonWave>();
         //enemySpawnPoints = GetComponentsInChildren<Transform>();
     }
-
+    Enemy enemy;
     public void ZoneStart()
     {
         dungeon.curZone = this;
@@ -35,7 +35,7 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
         waveCount = dungeonWaves.Length;
         for (int i = 0; i < enemySpawnPoints.Length; i++)
         {
-            Enemy enemy = Instantiate(enemyPrefab, enemySpawnPoints[i].transform.position, Quaternion.identity);
+            enemy = Instantiate(enemyPrefab, enemySpawnPoints[i].transform.position, Quaternion.identity);
             enemy.transform.parent = enemySpawnPoints[i].transform;
             firstEnmey++;
         }
@@ -60,7 +60,17 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
             }
         }
     }
-    
+    public void ZoneClear()
+    {
+        for (int i = 0; i < enemySpawnPoints.Length; i++)
+        {
+            enemy.EnemyDelete();
+        }
+        for (int i = 0; i < dungeonWaves.Length; i++)
+        {
+            dungeonWaves[i].WaveClear();
+        }
+    }
 
     public void KilledEnemy(Enemy e)
     {

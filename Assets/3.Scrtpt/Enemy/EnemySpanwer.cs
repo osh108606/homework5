@@ -26,13 +26,13 @@ public class EnemySpanwer : MonoBehaviour, IEnemySpawner
         }
     }
 
-
+    public Enemy enemy;
     IEnumerator CoSpawn()
     {
         for (int i = 0; i < count; i++)
         {
             yield return new WaitForSeconds(interval);
-            Enemy enemy = Instantiate(enemyPrefab, this.transform.position, Quaternion.identity);
+            enemy = Instantiate(enemyPrefab, this.transform.position, Quaternion.identity);
             enemy.transform.parent = transform;
         }
     }

@@ -79,6 +79,16 @@
                 "instanceID": 0
             },
             "ammoCount": 0
+        },
+        {
+            "key": "M4",
+            "weaponEuiped": false,
+            "weaponDraw": false,
+            "weaponEquipSlot": 0,
+            "weaponData": {
+                "instanceID": 0
+            },
+            "ammoCount": 0
         }
     ],
     "userAmmos": [
