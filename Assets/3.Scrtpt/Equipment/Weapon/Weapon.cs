@@ -170,7 +170,7 @@ public class Weapon : MonoBehaviour
 
         Bullet bullet = Instantiate(weaponData.bulletPrefab, transform.position, Quaternion.identity);
         bullet.Shoot(directtion.normalized, this);
-        UserManager.instance.Shooted();
+        UserManager.instance.Save();
         return true;
     }
 

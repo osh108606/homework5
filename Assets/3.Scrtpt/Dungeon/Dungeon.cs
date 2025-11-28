@@ -45,17 +45,10 @@ public class Dungeon : MonoBehaviour
 
     public void DungeonFail()
     {
+        curZone.ZoneStart();
         int cur = curZone.order;
-        if (curZone.order <=0)
-        {
-            Player.instance.transform.position = playerSpawnPoint.position;
-        }
-        else
-        {
-            Player.instance.transform.position = zones[cur].playerRespawnPoint.position;
-            zones[cur].ZoneClear();
-        }
         Player.instance.Rebone();
+        Player.instance.transform.position = zones[cur].playerRespawnPoint.position;
     }
 
     public void ZoneEnd()

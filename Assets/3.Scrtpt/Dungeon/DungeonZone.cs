@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,7 +14,7 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
     //던전구역 웨이브들
     public Dungeon dungeon;
 
-
+    List<Enemy> enemies = new List<Enemy>();
     public Enemy enemyPrefab;
     public int firstEnmey;
     public int waveCount;
@@ -27,15 +28,30 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
         dungeonWaves = GetComponentsInChildren<DungeonWave>();
         //enemySpawnPoints = GetComponentsInChildren<Transform>();
     }
-    Enemy enemy;
+    
     public void ZoneStart()
     {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if( enemies[i] != null )
+                enemies[i].EnemyDelete();
+        }
+        enemies.Clear();
+        
+        for (int i = 0; i < dungeonWaves.Length; i++)
+        {
+            dungeonWaves[i].Init();
+        }
+
+
         dungeon.curZone = this;
         Debug.Log("DungeonZone Start");
+        firstEnmey = 0;
         waveCount = dungeonWaves.Length;
         for (int i = 0; i < enemySpawnPoints.Length; i++)
         {
-            enemy = Instantiate(enemyPrefab, enemySpawnPoints[i].transform.position, Quaternion.identity);
+            Enemy enemy = Instantiate(enemyPrefab, enemySpawnPoints[i].transform.position, Quaternion.identity);
+            enemies.Add(enemy);
             enemy.transform.parent = enemySpawnPoints[i].transform;
             firstEnmey++;
         }
@@ -58,17 +74,6 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
                 dungeonWaves[i].StartWave();
                 break;
             }
-        }
-    }
-    public void ZoneClear()
-    {
-        for (int i = 0; i < enemySpawnPoints.Length; i++)
-        {
-            enemy.EnemyDelete();
-        }
-        for (int i = 0; i < dungeonWaves.Length; i++)
-        {
-            dungeonWaves[i].WaveClear();
         }
     }
 

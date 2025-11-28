@@ -340,7 +340,7 @@ public class UserManager : MonoBehaviour
         return null;
     }
 
-    public void Shooted()
+    public void Save()
     { 
         SaveManager.SaveData("UserData.json", userData);
     }
@@ -382,6 +382,13 @@ public class UserManager : MonoBehaviour
         userData.userDungeons.Add(userDungeon);
         return userDungeon;
     }
+
+    public void ClearDungeon(string key)
+    {
+        GetUserDungeon(key).clearCount++;
+        Save();
+    }
+
 }
 
 

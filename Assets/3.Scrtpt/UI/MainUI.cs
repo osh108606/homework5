@@ -34,8 +34,6 @@ public class MainUI : MonoBehaviour
         {
             reloadImage.fillAmount = 0;
         }
-        
-        
     }
     public void ReloadFill()
     {

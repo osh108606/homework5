@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyInfo : ScriptableObject
 {
     public EnemyType enemyType; // 적 타입
-    public Enemyfaction enemyfaction; // 적 진형
+    public Enemyfaction enemyFaction; // 적 진형
     public float Maxhp; // 최대체력
     public float moveSpeed; // 이동속도
     public float attackDamage; // 공격력

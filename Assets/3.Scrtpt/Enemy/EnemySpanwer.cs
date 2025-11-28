@@ -8,7 +8,7 @@ public class EnemySpanwer : MonoBehaviour, IEnemySpawner
     public int count;// 수
     public float interval;// 간격
     public int currentCount;// 현재수
-    
+    public List<Enemy>enemies = new List<Enemy>();
 
     public  virtual void StartSpawn()
     {
@@ -26,13 +26,13 @@ public class EnemySpanwer : MonoBehaviour, IEnemySpawner
         }
     }
 
-    public Enemy enemy;
     IEnumerator CoSpawn()
     {
         for (int i = 0; i < count; i++)
         {
             yield return new WaitForSeconds(interval);
-            enemy = Instantiate(enemyPrefab, this.transform.position, Quaternion.identity);
+            Enemy enemy = Instantiate(enemyPrefab, this.transform.position, Quaternion.identity);
+            enemies.Add(enemy);
             enemy.transform.parent = transform;
         }
     }

@@ -8,10 +8,24 @@ public class DungeonWave : MonoBehaviour
     public bool waveEnd;
     public void Awake()
     {
-        waveEnd = false;
-        squedCount = 0;
         enemySpanwers = GetComponentsInChildren<EnemySpanwer>();
     }
+
+    public void Init()
+    {
+        waveEnd = false;
+        squedCount = 0;
+        for (int i =0; i< enemySpanwers.Length; i++)
+        {
+            for(int j =0; j< enemySpanwers[i].enemies.Count; j++)
+            {
+                if(enemySpanwers[i].enemies[j] != null)
+                    enemySpanwers[i].enemies[j].EnemyDelete();
+            }
+            enemySpanwers[i].enemies.Clear();
+        }
+    }
+
     public void StartWave()
     {
         Debug.Log("StartWave");
@@ -31,12 +45,5 @@ public class DungeonWave : MonoBehaviour
             GetComponentInParent<DungeonZone>().WaveEnd();
         }
        
-    }
-    public void WaveClear()
-    {
-        for (int i = 0; i < enemySpanwers.Length; i++)
-        {
-            enemySpanwers[i].enemy.EnemyDelete();
-        }
     }
 }
