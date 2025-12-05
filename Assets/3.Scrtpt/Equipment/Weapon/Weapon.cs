@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum WeaponType
@@ -65,6 +64,7 @@ public class Weapon : MonoBehaviour
             Shoot();
             nextFireTime = Time.time + fireInterval;
         }
+        Aim();
     }
 
 
@@ -140,7 +140,17 @@ public class Weapon : MonoBehaviour
         reLoading = false;
     }
 
-
+    public virtual void Aim()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            CamaraManager.Instance.StartZoom();
+        }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            CamaraManager.Instance.EndZoom();
+        }
+    }
     public virtual bool Shoot()
     {
         if (userWeapon.ammoCount <= 0) //총알 없으면 발사 불가
