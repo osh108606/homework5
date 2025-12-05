@@ -167,7 +167,9 @@ public class Weapon : MonoBehaviour
         Vector2 directtion = worldPoint - (Vector2)transform.position;
 
 
-
+        //Player.instance.animator.SetTrigger("Fire");
+        int idx = Player.instance.animator.GetLayerIndex("UpperAim");
+        Player.instance.animator.Play("UP_fire light front",idx,0);
         Bullet bullet = Instantiate(weaponData.bulletPrefab, transform.position, Quaternion.identity);
         bullet.Shoot(directtion.normalized, this);
         UserManager.instance.Save();

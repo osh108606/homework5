@@ -9,23 +9,30 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     public static Player instance;
+    public Animator animator;
     public Rigidbody2D rb2d;
     public Weapon currentWeapon; // 현재 "들고있는" 무기
     public WeaponSlot[] weaponSlots = new WeaponSlot[4];// 무기슬롯
     public AmmorSlot[] ammorSlots = new AmmorSlot[6];
     public Ammor[] ammors;
-    
+    Camera mainCamera;
+    public Transform rootTr;
 
     public int slotIdx;
     public float mhp; //최대 체력
     public float hp; // 현재 체력
     public float moveSpeed = 0;
+    public float runSpeed = 1.2f;
+    public bool runTrigger;
     private void Awake()
     {
         instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         //weapons = GetComponentsInChildren<Weapon>();
         weaponSlots = GetComponentsInChildren<WeaponSlot>();
+        animator = GetComponentInChildren<Animator>();
+        mainCamera = Camera.main;
+        runTrigger = false;
     }
     private void Start()
     {
@@ -38,11 +45,46 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        
+        int idx = animator.GetLayerIndex("UpperAim");
+        if (DungeonManager.instance.curDungeon != null)
+        {
+            animator.SetLayerWeight(idx, 1);
+        }
+        else
+        {
+            animator.SetLayerWeight(idx, 0);
+        }
+        
         if (Input.GetKeyDown(KeyCode.R))
         {
             currentWeapon.Reload();
         }
+        
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            runTrigger = true;
+        }
+        else
+        {
+            runTrigger = false;
+        }
+
         Move();
+
+            Vector3 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dir = (worldPos - transform.position).normalized;
+        if (dir.x > 0)
+        {
+            //오른쪽
+            rootTr.localScale = new Vector2(1, 1);
+        }
+        else
+        {
+            //왼쪽
+            rootTr.localScale = new Vector2(-1, 1);
+        }
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -190,7 +232,6 @@ public class Player : MonoBehaviour
     }
     public void Move()
     {
-        
         Vector2 dir= new Vector2();
         if (Input.GetKey(KeyCode.W))
         {
@@ -201,7 +242,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
         {
             dir.x += 0;
-            dir.y += -1;            
+            dir.y += -1;
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -215,7 +256,33 @@ public class Player : MonoBehaviour
             dir.x += 1;
             dir.y += 0;            
         }
-        rb2d.linearVelocity = dir.normalized * moveSpeed;
+
+        if (dir.magnitude > 0 && runTrigger == false)
+        {
+            animator.SetBool("Walking", true);
+            animator.SetBool("Running", false);
+        }
+        else if(dir.magnitude > 0 && runTrigger == true)
+        {
+            animator.SetBool("Walking", false);
+            animator.SetBool("Running", true);
+        }
+        else if (dir.magnitude <= 0)
+        {
+            animator.SetBool("Walking", false);
+            animator.SetBool("Running", false);
+        }
+
+        //rb2d.linearVelocity = dir.normalized * moveSpeed
+        if (runTrigger == false)
+        {
+            rb2d.linearVelocity = dir.normalized * moveSpeed;
+        }//기본
+        else if(runTrigger == true)
+        {
+            rb2d.linearVelocity = dir.normalized * moveSpeed * runSpeed;
+        }//달릴때
+        
     }
 
     public void UpdateWeaponSlot()
@@ -232,6 +299,7 @@ public class Player : MonoBehaviour
         Debug.Log(hp);
         if (hp <= 0)
         {
+            //FallDown();
             PlayerDie();
         }
     }
@@ -240,7 +308,11 @@ public class Player : MonoBehaviour
     {
         hp = mhp;
     }
-
+    public void FallDown()
+    {
+        //다운 애니메이션->다운상태 대기
+        //다운상태 전환 함수
+    }
     public void PlayerDie()
     {
         if(DungeonManager.instance.curDungeon != null)
