@@ -17,12 +17,13 @@ public class Player : MonoBehaviour
     public Ammor[] ammors;
     Camera mainCamera;
     public Transform rootTr;
-
+    public HitBox middleHitBoxe;
     public int slotIdx;
     public float mhp; //최대 체력
     public float hp; // 현재 체력
     public float moveSpeed = 0;
     public float runSpeed = 1.2f;
+    
     public bool runTrigger;
     private void Awake()
     {
@@ -33,6 +34,8 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         mainCamera = Camera.main;
         runTrigger = false;
+        middleHitBoxe = GetComponentInChildren<HitBox>();
+        hp = mhp;
     }
     private void Start()
     {
@@ -71,9 +74,9 @@ public class Player : MonoBehaviour
             runTrigger = false;
         }
 
-        Move();
+        
 
-            Vector3 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = (worldPos - transform.position).normalized;
         if (dir.x > 0)
         {
@@ -85,7 +88,9 @@ public class Player : MonoBehaviour
             //왼쪽
             rootTr.localScale = new Vector2(-1, 1);
         }
-
+        Move();
+        float angle = Vector2.Angle(transform.up,dir);
+        //Debug.Log(angle);
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (InventoryCanvas.Instance.gameObject.activeSelf == false)
@@ -244,15 +249,23 @@ public class Player : MonoBehaviour
             dir.x += 0;
             dir.y += -1;
         }
-
+        float backWalk = 1f;
         if (Input.GetKey(KeyCode.A))
         {
+            if(rootTr.localScale.x > 0)
+            {
+                backWalk = 0.3f;
+            }
             dir.x += -1;
             dir.y += 0;           
         }
 
         if (Input.GetKey(KeyCode.D))
         {
+            if (rootTr.localScale.x < 0)
+            {
+                backWalk = 0.3f;
+            }
             dir.x += 1;
             dir.y += 0;            
         }
@@ -276,11 +289,11 @@ public class Player : MonoBehaviour
         //rb2d.linearVelocity = dir.normalized * moveSpeed
         if (runTrigger == false)
         {
-            rb2d.linearVelocity = dir.normalized * moveSpeed;
+            rb2d.linearVelocity = dir.normalized * moveSpeed* backWalk;
         }//기본
         else if(runTrigger == true)
         {
-            rb2d.linearVelocity = dir.normalized * moveSpeed * runSpeed;
+            rb2d.linearVelocity = dir.normalized * moveSpeed * runSpeed* backWalk;
         }//달릴때
         
     }
@@ -292,9 +305,25 @@ public class Player : MonoBehaviour
             weaponSlots[i].WeaponEquip();
         }
     }
+    public void TakeDamage(float damage, Collider2D collision)
+    {
+        HitBox hitBox = collision.GetComponent<HitBox>();
+        if (hitBox == null)
+        {
+            return;
+        }
+        float damageMultiplier = hitBox.GetDamageMultiplier();
+        hp -= damage * damageMultiplier;
+
+        Debug.Log(hp);
+        if (hp <= 0)
+        {
+            //FallDown();
+            PlayerDie();
+        }
+    }
     public void TakeDamage(float damage)
     {
-
         hp -= damage;
         Debug.Log(hp);
         if (hp <= 0)
@@ -303,7 +332,6 @@ public class Player : MonoBehaviour
             PlayerDie();
         }
     }
-
     public void Rebone()
     {
         hp = mhp;

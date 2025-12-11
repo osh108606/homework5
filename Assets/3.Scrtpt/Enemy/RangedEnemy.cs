@@ -9,7 +9,7 @@ public class RangedEnemy : Enemy
     {
         base.Attack();
         //Vector2 directtion = Player.instance.Bodytr.transform.position - attackPointTr.transform.position;
-        Vector2 directtion = Player.instance.transform.position - attackPointTr.transform.position;
+        Vector2 directtion = Player.instance.middleHitBoxe.transform.position - attackPointTr.transform.position;
         EnemyBullet bullet = Instantiate(bulletPrefab);
         bullet.enemyInfo = this.enemyInfo;
         bullet.gameObject.transform.position = attackPointTr.transform.position;

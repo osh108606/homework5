@@ -6,7 +6,7 @@
             "weaponDraw": true,
             "weaponEquipSlot": 0,
             "weaponData": {
-                "instanceID": 0
+                "instanceID": 37186
             },
             "ammoCount": 0
         },
@@ -16,7 +16,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 1,
             "weaponData": {
-                "instanceID": 0
+                "instanceID": 37256
             },
             "ammoCount": 0
         },
@@ -26,7 +26,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 2,
             "weaponData": {
-                "instanceID": 0
+                "instanceID": 37188
             },
             "ammoCount": 0
         },
@@ -36,37 +36,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 3,
             "weaponData": {
-                "instanceID": 0
-            },
-            "ammoCount": 0
-        },
-        {
-            "key": "M4",
-            "weaponEuiped": false,
-            "weaponDraw": false,
-            "weaponEquipSlot": 0,
-            "weaponData": {
-                "instanceID": 0
-            },
-            "ammoCount": 0
-        },
-        {
-            "key": "M4",
-            "weaponEuiped": false,
-            "weaponDraw": false,
-            "weaponEquipSlot": 0,
-            "weaponData": {
-                "instanceID": 0
-            },
-            "ammoCount": 0
-        },
-        {
-            "key": "M4",
-            "weaponEuiped": false,
-            "weaponDraw": false,
-            "weaponEquipSlot": 0,
-            "weaponData": {
-                "instanceID": 0
+                "instanceID": 37318
             },
             "ammoCount": 0
         }
@@ -80,7 +50,7 @@
         {
             "weapontype": 1,
             "key": "",
-            "count": 610
+            "count": 810
         },
         {
             "weapontype": 2,
@@ -124,18 +94,5 @@
         }
     ],
     "userItems": [],
-    "userDungeons": [
-        {
-            "key": "",
-            "clearCount": 0,
-            "tryCount": 0,
-            "killCount": 0
-        },
-        {
-            "key": "Dungeon1",
-            "clearCount": 0,
-            "tryCount": 2,
-            "killCount": 0
-        }
-    ]
+    "userDungeons": []
 }
