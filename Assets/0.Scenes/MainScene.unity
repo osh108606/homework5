@@ -1513,7 +1513,7 @@ GameObject:
   - component: {fileID: 308710216}
   - component: {fileID: 308710218}
   - component: {fileID: 308710217}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LegCollider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5096,63 +5096,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862536972}
   m_CullTransparentMesh: 1
---- !u!1001 &883481866
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1276975157786200349, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_Name
-      value: RangedEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8674079477195380820, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 9.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8674079477195380820, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 8674079477195380820, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8674079477195380820, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8674079477195380820, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8674079477195380820, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8674079477195380820, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8674079477195380820, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8674079477195380820, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8674079477195380820, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 75fdb90591f42b0468b0fbded0aca71a, type: 3}
 --- !u!1 &914877776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6183,7 +6126,7 @@ GameObject:
   - component: {fileID: 1193846177}
   - component: {fileID: 1193846179}
   - component: {fileID: 1193846178}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeadCollider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -9660,7 +9603,7 @@ GameObject:
   - component: {fileID: 1796410865}
   - component: {fileID: 1796410867}
   - component: {fileID: 1796410866}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BodyCollider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -10019,8 +9962,8 @@ MonoBehaviour:
   slotIdx: 0
   mhp: 100
   hp: 0
-  moveSpeed: 20
-  runSpeed: 1.2
+  moveSpeed: 7
+  runSpeed: 2
   runTrigger: 0
 --- !u!4 &1836596457
 Transform:
@@ -11078,4 +11021,3 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1053854366}
   - {fileID: 680343259}
-  - {fileID: 883481866}

@@ -9,7 +9,6 @@ public class UserManager : MonoBehaviour
     {
         instance = this;
         userData = SaveManager.LoadData<UserData>("UserData.json"); //저장된 데이터 불러오기
-        
         if (userData == null)// 저장된 데이터가 없을경우
         {
             userData = new UserData();//새 데이터 생성

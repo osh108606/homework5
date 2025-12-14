@@ -167,3 +167,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movespeed: 90
   enemyInfo: {fileID: 0}
+  hitTargetLayer:
+    serializedVersion: 2
+    m_Bits: 8

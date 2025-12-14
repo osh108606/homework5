@@ -10,7 +10,7 @@ public class EnemyBullet : MonoBehaviour
     public EnemyInfo enemyInfo; //적정보
     float bulletLifeTime = 0; //총알 수명
     Vector2 direction; //총알 방향
-
+    public LayerMask hitTargetLayer;
 
     public void Shoot(Vector2 dir)
     {
@@ -20,6 +20,16 @@ public class EnemyBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction , movespeed * Time.deltaTime, hitTargetLayer);
+        if(hit.collider != null)
+        {
+            Player player = hit.collider.GetComponentInParent<Player>();
+            HitBox playerHitBox = hit.collider.GetComponent<HitBox>();
+            player.TakeDamage(enemyInfo.attackDamage, playerHitBox);
+            Destroy(gameObject);
+            return;
+        }
+
         //총알 삭제시간
         bulletLifeTime += Time.deltaTime;
         if (bulletLifeTime > 1f)
@@ -28,17 +38,5 @@ public class EnemyBullet : MonoBehaviour
         }
         //방향
         transform.position = (Vector2)transform.position + direction * movespeed * Time.deltaTime;
-    }
-
-
-    public virtual void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            Player player = collision.GetComponentInParent<Player>();
-            HitBox playerHitBox = collision.GetComponent<HitBox>();
-            player.TakeDamage(enemyInfo.attackDamage, playerHitBox.hitbox);
-            Destroy(gameObject);
-        }
     }
 }

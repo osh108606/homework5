@@ -64,7 +64,6 @@ public class Weapon : MonoBehaviour
             Shoot();
             nextFireTime = Time.time + fireInterval;
         }
-        Aim();
     }
 
 
@@ -81,22 +80,15 @@ public class Weapon : MonoBehaviour
         if(userAmmo.count <= 0) 
             return;
         if (userWeapon.ammoCount < maxAmmo)
-        {
             StartCoroutine(CoReload1());
-        }
         else if (userWeapon.ammoCount == maxAmmo)//일부총기 한정 약실시스템
-        {
             StartCoroutine(CoReload2());
-        }
-        
-
         else if (userWeapon.ammoCount >= maxAmmo + 1)
             return;
             
     }
     
-    
-    public virtual IEnumerator CoReload1()
+    public virtual IEnumerator CoReload1()//탄창변경
     {
         reLoading = true;
         reloadTimer = maxReloadTime;
@@ -120,7 +112,7 @@ public class Weapon : MonoBehaviour
         userWeapon.ammoCount += (maxAmmo - userWeapon.ammoCount);
             reLoading = false;
     }
-    public virtual IEnumerator CoReload2()
+    public virtual IEnumerator CoReload2()//약실장전
     {
         reLoading = true;
         reloadTimer = maxReloadTime/2;
@@ -140,26 +132,15 @@ public class Weapon : MonoBehaviour
         reLoading = false;
     }
 
-    public virtual void Aim()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            CamaraManager.Instance.StartZoom();
-        }
-        else if (Input.GetMouseButtonDown(0))
-        {
-            CamaraManager.Instance.EndZoom();
-        }
-    }
+   
     public virtual bool Shoot()
     {
         if (userWeapon.ammoCount <= 0) //총알 없으면 발사 불가
-        {
             return false;
-        }
-            
+
         if (reLoading == true) //재장전 중이면 발사 불가
             return false;
+
         userWeapon.ammoCount--;//사용중인 총알
 
         // 마우스 방향으로 조준 회전
