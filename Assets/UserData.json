@@ -6,7 +6,7 @@
             "weaponDraw": true,
             "weaponEquipSlot": 0,
             "weaponData": {
-                "instanceID": 37194
+                "instanceID": 37198
             },
             "ammoCount": 0
         },
@@ -16,7 +16,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 1,
             "weaponData": {
-                "instanceID": 37264
+                "instanceID": 37268
             },
             "ammoCount": 0
         },
@@ -26,7 +26,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 2,
             "weaponData": {
-                "instanceID": 37196
+                "instanceID": 37200
             },
             "ammoCount": 0
         },
@@ -36,7 +36,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 3,
             "weaponData": {
-                "instanceID": 37326
+                "instanceID": 37332
             },
             "ammoCount": 0
         }
@@ -50,7 +50,7 @@
         {
             "weapontype": 1,
             "key": "",
-            "count": 810
+            "count": 160
         },
         {
             "weapontype": 2,

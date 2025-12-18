@@ -5,6 +5,9 @@ using UnityEngine.Animations;
 
 public class Player : MonoBehaviour
 {
+    // 기준 우선순위 1.자료형 2.보호타입
+    // 자료형 순서 1.클래스 2.변수
+    // 보호타입 순서 1.public 2.private 3.none
     public static Player instance;
     public Animator animator;
     public Rigidbody2D rb2d;
@@ -13,16 +16,22 @@ public class Player : MonoBehaviour
     public AmmorSlot[] ammorSlots = new AmmorSlot[6];
     public Ammor[] ammors;
     public Transform rootTr;
-    public HitBox middleHitBoxe;
+    public Transform upperTransform;
     Camera mainCamera;
 
-    public int slotIdx;
-    public float mhp; //최대 체력
-    public float hp; // 현재 체력
+    public int slotIdx; //무기슬롯 인덱스
+    public float maxHealthPoint; //최대 체력
+    public float healthPoint; // 현재 체력
+    public float maxAmmorPoint; //최대 방어도
+    public float ammorPoint; //현제 방어도
     public float moveSpeed = 7;
     public float runSpeed = 2f;
     public bool runTrigger;
     public bool aimTrigger;
+    public bool attackTrigger;
+
+    private float currentX = 0f;
+    private float currentY = 0f;
 
     private void Awake()
     {
@@ -30,11 +39,12 @@ public class Player : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         weaponSlots = GetComponentsInChildren<WeaponSlot>();
         animator = GetComponentInChildren<Animator>();
-        middleHitBoxe = GetComponentInChildren<HitBox>();
         mainCamera = Camera.main;
-        hp = mhp;
+        healthPoint = maxHealthPoint;
+        ammorPoint = maxAmmorPoint;
         runTrigger = false;
-        aimTrigger= false;
+        aimTrigger = false;
+        attackTrigger = false;
     }
 
     private void Start()
@@ -48,53 +58,41 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))//R키 입력 (재장전)
             currentWeapon.Reload();
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(0))//마우스 오른쪽 입력 (조준상태 전환)
+        {
+            attackTrigger = true;
+            runTrigger = false;
+        }
+        else
+            attackTrigger = false;
+
+        if (Input.GetMouseButton(1))//마우스 오른쪽 입력 (조준상태 전환)
+        { 
             aimTrigger = true;
+            runTrigger = false;
+        }
         else
             aimTrigger = false;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && aimTrigger == false && attackTrigger == false)//왼쪽쉬프트 입력 (달리기상태 전환)
             runTrigger = true;
         else
             runTrigger = false;
 
-        
-        Vector3 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = (worldPos - transform.position).normalized;
-      
-        if (aimTrigger == true && dir.x > 0)  //조준시 마우스 방향따라가도록 //오른쪽
-            rootTr.localScale = new Vector2(1, 1);
-        else if(aimTrigger == true && dir.x < 0)//왼쪽
-            rootTr.localScale = new Vector2(-1, 1);
-        else if(aimTrigger == false && Input.GetKey(KeyCode.D))//비조준시 이동향에따라가도록 //오른쪽
-            rootTr.localScale = new Vector2(1, 1);
-        else if (aimTrigger == false && Input.GetKey(KeyCode.A))//왼쪽
-            rootTr.localScale = new Vector2(-1, 1);
-
-
-
-        float angle = Vector2.Angle(transform.up, dir);
-        //Debug.Log(angle);
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (InventoryCanvas.Instance.gameObject.activeSelf == false)
-                InventoryCanvas.Instance.OpenMainInventory();
-            else
-                InventoryCanvas.Instance.OpenMainInventory();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.F))//상호작용
+        if (Input.GetKeyDown(KeyCode.I))//I키 입력 (인벤토리 on/off)
+            InventoryCanvas.Instance.OpenMainInventory();
+    
+        if (Input.GetKeyDown(KeyCode.F))//F키 입력 (상호작용)
         {
             PickUp();
             Talk();
 
         }
 
-        //q와e로 무기슬롯 변경
+        //q&e키 입력 (무기슬롯 변경)
         if (Input.GetKeyDown(KeyCode.E))
         {
             slotIdx++;
@@ -114,7 +112,7 @@ public class Player : MonoBehaviour
             ChangeDrawWeapon(slotIdx);
         }
 
-        //숫자키 무기슬롯변경
+        //숫자키 입력 (무기슬롯변경)
         if (Input.GetKeyDown(KeyCode.Alpha1))
             ChangeDrawWeapon(0);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -124,24 +122,46 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha4))
             ChangeDrawWeapon(3);
 
-        Aim();
+        Fire();
         Move();
     }
-
-    public virtual void Aim()
+   
+    public virtual void Fire()
     {
+        Vector3 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dir = (worldPos - upperTransform.transform.position).normalized;
+        float angle = Vector2.Angle(upperTransform.transform.up, dir);
         int idx = animator.GetLayerIndex("UpperAim");
-        if (aimTrigger == true)
+
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
             animator.SetLayerWeight(idx, 1);
+            animator.SetFloat("Angle", angle);
+
+            if (dir.x > 0)  // 마우스방향 //오른쪽
+                rootTr.localScale = new Vector2(1, 1);
+            else if (dir.x < 0)//왼쪽
+                rootTr.localScale = new Vector2(-1, 1);
+        }
+        else
+        {
+            animator.SetLayerWeight(idx, 0);
+
+            if (Input.GetKey(KeyCode.D))// 이동방향 //오른쪽
+                rootTr.localScale = new Vector2(1, 1);
+            else if (Input.GetKey(KeyCode.A))//왼쪽
+                rootTr.localScale = new Vector2(-1, 1);
+        }
+
+        if (aimTrigger == true)
+        {
             animator.SetBool("Aim",true);
-            CamaraManager.Instance.StartZoom();
+            CamaraManager.Instance.StartZoom();        
         }
         else if (aimTrigger == false)
         {
-            animator.SetLayerWeight(idx, 0);
             animator.SetBool("Aim", false);
-            CamaraManager.Instance.EndZoom();
+            CamaraManager.Instance.EndZoom();            
         }
     }
 
@@ -228,8 +248,7 @@ public class Player : MonoBehaviour
     }
     
 
-    private float currentX = 0f;
-    private float currentY = 0f;
+    
     public void Move()
     {
         float x = Input.GetAxis("Horizontal");
@@ -248,18 +267,14 @@ public class Player : MonoBehaviour
         float backWalk = 1f;
         if (Input.GetKey(KeyCode.A))
         {
-            if (aimTrigger == true && rootTr.localScale.x > 0)
-            {
+            if ((attackTrigger == true || aimTrigger == true) && rootTr.localScale.x > 0)
                 backWalk = 0.4f;
-            }       
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            if (aimTrigger == true && rootTr.localScale.x < 0)
-            {
+            if ((attackTrigger == true || aimTrigger == true) && rootTr.localScale.x < 0)
                 backWalk = 0.4f;
-            }
         }
 
 
@@ -284,28 +299,30 @@ public class Player : MonoBehaviour
             dir.Normalize();
         }
         //rb2d.linearVelocity = dir.normalized * moveSpeed
-        if (runTrigger == false)//걷기
+        if (runTrigger == false || attackTrigger == true || aimTrigger == true)//걷기
         {
             rb2d.linearVelocity = dir.normalized * moveSpeed * backWalk;
             //animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
         }
-        else if (runTrigger == true)//달릴때
+        else if (runTrigger == true && attackTrigger != true && aimTrigger != true)//달릴때
         {
             aimTrigger = false;
             rb2d.linearVelocity = dir.normalized * moveSpeed * runSpeed;
             //animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
         }
-
-        //if (runTrigger == false)
-        //{
-        //    rb2d.linearVelocity = dir * moveSpeed * backWalk;
-        //    animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
-        //}//기본
-        //else if (runTrigger == true)
-        //{
-        //    rb2d.linearVelocity = dir * moveSpeed * runSpeed * backWalk;
-        //    animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
-        //}//달릴때
+        //또다른 이동 구현방식
+        /*
+        if (runTrigger == false)
+        {
+            rb2d.linearVelocity = dir * moveSpeed * backWalk;
+            animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
+        }//기본
+        else if (runTrigger == true)
+        {
+            rb2d.linearVelocity = dir * moveSpeed * runSpeed * backWalk;
+            animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
+        }//달릴때
+        */
     }
 
     public void UpdateWeaponSlot()//슬롯에 장착된 무기 업데이트
@@ -319,39 +336,52 @@ public class Player : MonoBehaviour
             return;
 
         float damageMultiplier = hitBox.GetDamageMultiplier();
-        hp -= damage * damageMultiplier;
+        healthPoint -= damage * damageMultiplier;
 
-        Debug.Log(hp);
-        if (hp <= 0)
+        Debug.Log(healthPoint);
+        if (healthPoint <= 0)
         {
             //FallDown();
             PlayerDie();
         }
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage)// 피해를 입는 기능
     {
-        hp -= damage;
-        Debug.Log(hp);
-        if (hp <= 0)
+        if (ammorPoint <= 0)
+        {
+            healthPoint -= damage;
+            Debug.Log(healthPoint);
+        }
+        else if (ammorPoint >= 0)
+        { 
+            ammorPoint -= damage;
+            //Debug.Log(ammorPoint);
+        }
+        else if (ammorPoint >= 0 && ammorPoint < damage)
+        { 
+            healthPoint -= (damage - ammorPoint);
+            ammorPoint = 0;
+            Debug.Log(healthPoint);
+        }
+
+        if (healthPoint <= 0)
         {
             //FallDown();
             PlayerDie();
         }
     }
-    public void Rebone()
+    public void Rebone()// 다운상태에서 회복
     {
-        hp = mhp;
+        healthPoint = maxHealthPoint;
     }
-    public void FallDown()
+    public void FallDown()// 다운상태 (미구현)
     {
         //다운 애니메이션->다운상태 대기
         //다운상태 전환 함수
     }
-    public void PlayerDie()
+    public void PlayerDie()//사망
     {
         if(DungeonManager.instance.curDungeon != null)
-        {
             DungeonManager.instance.curDungeon.DungeonFail();
-        }
     }
 }

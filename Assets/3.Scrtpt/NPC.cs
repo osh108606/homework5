@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
-    public float mhp; //최대 체력
-    public float hp; // 현재 체력
+    public float maxHealthPoint; //최대 체력
+    public float healthPoint; // 현재 체력
     public float moveSpeed; // 이동 속도
 
     
@@ -21,12 +21,12 @@ public class NPC : MonoBehaviour
 
     public virtual void Start()
     {
-        hp = mhp;
+        healthPoint = maxHealthPoint;
     }
    
     public virtual void Update()
     {
-        HpBar.fillAmount = hp / mhp;
+        HpBar.fillAmount = healthPoint / maxHealthPoint;
 
         //float distance = Vector2.Distance(transform.position, desPoint);
         //if (arrived == false)
@@ -74,8 +74,8 @@ public class NPC : MonoBehaviour
     //NPC가 데미지를 입을때 발동
     public virtual void TakeDamage(float damage)
     {
-        hp -= damage;
-        if (hp <= 0)
+        healthPoint -= damage;
+        if (healthPoint <= 0)
         {
             Death();
             Destroy(this.gameObject);

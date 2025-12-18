@@ -8,7 +8,11 @@ public class UserManager : MonoBehaviour
     public void Awake()
     {
         instance = this;
-        userData = SaveManager.LoadData<UserData>("UserData.json"); //저장된 데이터 불러오기
+
+        //int saveOrder = TitleSceneManager.instance.LoadGame();
+        //string saveName = TitleSceneManager.instance.userSaveData.saveSlots[saveOrder].userDataFileName;
+        //userData = SaveManager.LoadData<UserData>(saveName); //저장된 데이터 불러오기
+        userData = SaveManager.LoadData<UserData>("UserData.json");
         if (userData == null)// 저장된 데이터가 없을경우
         {
             userData = new UserData();//새 데이터 생성

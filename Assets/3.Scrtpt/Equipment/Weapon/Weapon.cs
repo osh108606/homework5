@@ -61,6 +61,7 @@ public class Weapon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime && Player.instance.currentWeapon == this)
         {
+            Player.instance.animator.SetLayerWeight(idx, 1);
             Shoot();
             nextFireTime = Time.time + fireInterval;
         }

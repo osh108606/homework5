@@ -31,8 +31,8 @@ public class CamaraManager : MonoBehaviour
     {
         if(isZooming)
         {
-            Vector2 worldPos = mainCamear.ScreenToWorldPoint(Input.mousePosition);
-            zoomCamera.transform.position = worldPos;
+            //Vector2 worldPos = mainCamear.ScreenToWorldPoint(Input.mousePosition);
+            //zoomCamera.transform.position = worldPos;
         }
     }
 }
