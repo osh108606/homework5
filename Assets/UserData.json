@@ -3,20 +3,20 @@
         {
             "key": "M4",
             "weaponEuiped": true,
-            "weaponDraw": true,
+            "weaponDraw": false,
             "weaponEquipSlot": 0,
             "weaponData": {
-                "instanceID": 37198
+                "instanceID": 0
             },
             "ammoCount": 0
         },
         {
             "key": "MP5",
             "weaponEuiped": true,
-            "weaponDraw": false,
+            "weaponDraw": true,
             "weaponEquipSlot": 1,
             "weaponData": {
-                "instanceID": 37268
+                "instanceID": 0
             },
             "ammoCount": 0
         },
@@ -36,7 +36,7 @@
             "weaponDraw": false,
             "weaponEquipSlot": 3,
             "weaponData": {
-                "instanceID": 37332
+                "instanceID": 0
             },
             "ammoCount": 0
         }

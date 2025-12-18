@@ -58,9 +58,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))//R키 입력 (재장전)
-            currentWeapon.Reload();
-
+        #region Aim&Shot
         if (Input.GetMouseButton(0))//마우스 오른쪽 입력 (조준상태 전환)
         {
             attackTrigger = true;
@@ -76,6 +74,10 @@ public class Player : MonoBehaviour
         }
         else
             aimTrigger = false;
+        #endregion
+
+        if (Input.GetKeyDown(KeyCode.R))//R키 입력 (재장전)
+            currentWeapon.Reload();
 
         if (Input.GetKey(KeyCode.LeftShift) && aimTrigger == false && attackTrigger == false)//왼쪽쉬프트 입력 (달리기상태 전환)
             runTrigger = true;
@@ -91,9 +93,10 @@ public class Player : MonoBehaviour
             Talk();
 
         }
-
-        //q&e키 입력 (무기슬롯 변경)
-        if (Input.GetKeyDown(KeyCode.E))
+        #region WeaponSlotCange
+        //마우스 휠 (무기슬롯 변경)
+        float wheelInput = Input.GetAxis("Mouse ScrollWheel");
+        if (wheelInput > 0)
         {
             slotIdx++;
 
@@ -102,7 +105,7 @@ public class Player : MonoBehaviour
 
             ChangeDrawWeapon(slotIdx);
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (wheelInput < 0)
         {
             slotIdx--;
 
@@ -121,6 +124,7 @@ public class Player : MonoBehaviour
             ChangeDrawWeapon(2);
         else if (Input.GetKeyDown(KeyCode.Alpha4))
             ChangeDrawWeapon(3);
+        #endregion
 
         Fire();
         Move();
