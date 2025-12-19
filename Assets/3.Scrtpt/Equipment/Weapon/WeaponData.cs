@@ -1,22 +1,22 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Scriptable Objects/WeaponData")]
 public class WeaponData : ScriptableObject
 {
-    public string key;//ÃÑ±â Å°°ª
-    public int idx;//ÃÑ±â °íÀ¯ ¹øÈ£
-    public string weaponName;//ÃÑ±â ÀÌ¸§
+    public string key;//ì´ê¸° í‚¤ê°’
+    public int idx;//ì´ê¸° ê³ ìœ  ë²ˆí˜¸
+    public string weaponName;//ì´ê¸° ì´ë¦„
 
-    public float damage;//ÃÑ±â µ¥¹ÌÁö
-    public float RPM;//°ø°İ ¼Óµµ
-    public float reloadTime;//ÀåÀü¼Óµµ
-    public int maxAmmo;//ÃÖ´ë ÅºÃ¢
-    public int Pellets;//ÇÑ¹ß¿¡ ³ª°¡´Â ÃÑ¾Ë ¼ö
-    public bool auto;//ÀÚµ¿»ç°İ ¿©ºÎ
-    public bool SpreadShot;//»êÅº ¿©ºÎ
+    public float damage;//ì´ê¸° ë°ë¯¸ì§€
+    public float RPM;//ê³µê²© ì†ë„
+    public float reloadTime;//ì¥ì „ì†ë„
+    public int maxAmmo;//ìµœëŒ€ íƒ„ì°½
+    public int Pellets;//í•œë°œì— ë‚˜ê°€ëŠ” ì´ì•Œ ìˆ˜
+    public bool auto;//ìë™ì‚¬ê²© ì—¬ë¶€
+    public bool SpreadShot;//ì‚°íƒ„ ì—¬ë¶€
 
     public Sprite sprite;
     public Bullet bulletPrefab;
-    public WeaponType weaponType;//¹«±â Á¾·ù
-    public WeaponSlotType weaponSlotType;//¹«±â ÀåÂø½½·Ô
+    public WeaponType weaponType;//ë¬´ê¸° ì¢…ë¥˜
+    public WeaponSlotType weaponSlotType;//ë¬´ê¸° ì¥ì°©ìŠ¬ë¡¯
 }
