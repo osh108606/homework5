@@ -19,6 +19,7 @@ public class UserManager : MonoBehaviour
 
             //기본아이템 지급
             //*무기*
+            #region Weapon
             UserWeapon userWeapon1 = new UserWeapon();//1번무기
             userWeapon1.weaponDraw = true;
             userWeapon1.weaponEuiped = true;
@@ -26,7 +27,7 @@ public class UserManager : MonoBehaviour
             userWeapon1.weaponEquipSlot = WeaponEquipSlot.main1;
             userWeapon1.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon1.key);
             userData.userWeapons.Add(userWeapon1);
-
+            userData.userWeapons[0].ammoCount = userWeapon1.weaponData.maxAmmo;
 
             UserWeapon userWeapon2 = new UserWeapon();//2번무기
             userWeapon2.weaponDraw = false;
@@ -35,7 +36,7 @@ public class UserManager : MonoBehaviour
             userWeapon2.weaponEquipSlot = WeaponEquipSlot.main2;
             userWeapon2.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon2.key);
             userData.userWeapons.Add(userWeapon2);
-            
+            userData.userWeapons[1].ammoCount = userWeapon2.weaponData.maxAmmo;
 
             UserWeapon userWeapon3 = new UserWeapon();//3번무기
             userWeapon3.weaponDraw = false;
@@ -44,7 +45,7 @@ public class UserManager : MonoBehaviour
             userWeapon3.weaponEquipSlot = WeaponEquipSlot.sub;
             userWeapon3.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon3.key);
             userData.userWeapons.Add(userWeapon3);
-            
+            userData.userWeapons[2].ammoCount = userWeapon3.weaponData.maxAmmo;
 
             UserWeapon userWeapon4 = new UserWeapon();//4번무기
             userWeapon4.weaponDraw = false;
@@ -53,67 +54,90 @@ public class UserManager : MonoBehaviour
             userWeapon4.weaponEquipSlot = WeaponEquipSlot.special;
             userWeapon4.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon4.key);
             userData.userWeapons.Add(userWeapon4);
-
-
+            userData.userWeapons[3].ammoCount = userWeapon4.weaponData.maxAmmo;
+            #endregion
             //*장비*
-            UserAmmor userAmmor = new UserAmmor();
-            userAmmor.ammorEuiped = true;
-            userAmmor.key = "Ammor1-1";
-            userData.userAmmors.Add(userAmmor);
+            #region Ammor          
+            UserAmmor userAmmor1 = new UserAmmor();
+            userAmmor1.ammorEuiped = true;
+            userAmmor1.key = "Ammor1-1";
+            userData.userAmmors.Add(userAmmor1);
 
+            UserAmmor userAmmor2 = new UserAmmor();
+            userAmmor2.ammorEuiped = true;
+            userAmmor2.key = "Ammor1-2";
+            userData.userAmmors.Add(userAmmor2);
 
+            UserAmmor userAmmor3 = new UserAmmor();
+            userAmmor3.ammorEuiped = true;
+            userAmmor3.key = "Ammor1-3";
+            userData.userAmmors.Add(userAmmor3);
+
+            UserAmmor userAmmor4 = new UserAmmor();
+            userAmmor4.ammorEuiped = true;
+            userAmmor4.key = "Ammor1-4";
+            userData.userAmmors.Add(userAmmor4);
+
+            UserAmmor userAmmor5 = new UserAmmor();
+            userAmmor5.ammorEuiped = true;
+            userAmmor5.key = "Ammor1-5";
+            userData.userAmmors.Add(userAmmor5);
+
+            UserAmmor userAmmor6 = new UserAmmor();
+            userAmmor6.ammorEuiped = true;
+            userAmmor6.key = "Ammor1-6";
+            userData.userAmmors.Add(userAmmor6);
+            #endregion
             //*총알*
-            {
-                UserAmmo userAmmo0 = new UserAmmo();
-                WeaponType type0 = WeaponType.HG;
-                userAmmo0.count = 900;
-                userAmmo0.weapontype = type0;
-                userData.userAmmos.Add(userAmmo0);
+            #region Ammo
+            UserAmmo userAmmo0 = new UserAmmo();
+            WeaponType type0 = WeaponType.HG;
+            userAmmo0.count = 900;
+            userAmmo0.weapontype = type0;
+            userData.userAmmos.Add(userAmmo0);
 
-                UserAmmo userAmmo1 = new UserAmmo();
-                WeaponType type1 = WeaponType.AR;
-                userAmmo1.count = 810;
-                userAmmo1.weapontype = type1;
-                userData.userAmmos.Add(userAmmo1);
+            UserAmmo userAmmo1 = new UserAmmo();
+            WeaponType type1 = WeaponType.AR;
+            userAmmo1.count = 810;
+            userAmmo1.weapontype = type1;
+            userData.userAmmos.Add(userAmmo1);
 
-                UserAmmo userAmmo2 = new UserAmmo();
-                WeaponType type2 = WeaponType.SMG;
-                userAmmo2.count = 900;
-                userAmmo2.weapontype = type2;
-                userData.userAmmos.Add(userAmmo2);
+            UserAmmo userAmmo2 = new UserAmmo();
+            WeaponType type2 = WeaponType.SMG;
+            userAmmo2.count = 900;
+            userAmmo2.weapontype = type2;
+            userData.userAmmos.Add(userAmmo2);
 
-                UserAmmo userAmmo3 = new UserAmmo();
-                WeaponType type3 = WeaponType.MG;
-                userAmmo3.count = 900;
-                userAmmo3.weapontype = type3;
-                userData.userAmmos.Add(userAmmo3);
+            UserAmmo userAmmo3 = new UserAmmo();
+            WeaponType type3 = WeaponType.MG;
+            userAmmo3.count = 900;
+            userAmmo3.weapontype = type3;
+            userData.userAmmos.Add(userAmmo3);
 
-                UserAmmo userAmmo4 = new UserAmmo();
-                WeaponType type4 = WeaponType.RF;
-                userAmmo4.count = 420;
-                userAmmo4.weapontype = type4;
-                userData.userAmmos.Add(userAmmo4);
+            UserAmmo userAmmo4 = new UserAmmo();
+            WeaponType type4 = WeaponType.RF;
+            userAmmo4.count = 420;
+            userAmmo4.weapontype = type4;
+            userData.userAmmos.Add(userAmmo4);
 
-                UserAmmo userAmmo5 = new UserAmmo();
-                WeaponType type5 = WeaponType.SR;
-                userAmmo5.count = 120;
-                userAmmo5.weapontype = type5;
-                userData.userAmmos.Add(userAmmo5);
+            UserAmmo userAmmo5 = new UserAmmo();
+            WeaponType type5 = WeaponType.SR;
+            userAmmo5.count = 120;
+            userAmmo5.weapontype = type5;
+            userData.userAmmos.Add(userAmmo5);
 
-                UserAmmo userAmmo6 = new UserAmmo();
-                WeaponType type6 = WeaponType.SG;
-                userAmmo6.count = 144;
-                userAmmo6.weapontype = type6;
-                userData.userAmmos.Add(userAmmo6);
+            UserAmmo userAmmo6 = new UserAmmo();
+            WeaponType type6 = WeaponType.SG;
+            userAmmo6.count = 144;
+            userAmmo6.weapontype = type6;
+            userData.userAmmos.Add(userAmmo6);
 
-                UserAmmo userAmmo7 = new UserAmmo();
-                WeaponType type7 = WeaponType.SP;
-                userAmmo7.count = 24;
-                userAmmo7.weapontype = type7;
-                userData.userAmmos.Add(userAmmo7);
-            }
-
-            //Player.instance.currentWeapon = Player.instance.slots[0].weapon;
+            UserAmmo userAmmo7 = new UserAmmo();
+            WeaponType type7 = WeaponType.SP;
+            userAmmo7.count = 24;
+            userAmmo7.weapontype = type7;
+            userData.userAmmos.Add(userAmmo7);
+            #endregion
             //저장
             SaveManager.SaveData("UserData.json", userData);
         }
@@ -426,7 +450,7 @@ public class UserWeapon
     public bool weaponDraw; //들고있는지
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponData weaponData;
-    public int ammoCount; //현제 장착중인 총의 총알갯수
+    public int ammoCount; //현재 장착중인 총의 총알갯수
 }
 [System.Serializable]
 public class UserAmmor

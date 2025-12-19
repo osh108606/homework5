@@ -76,13 +76,13 @@ public class Player : MonoBehaviour
             aimTrigger = false;
         #endregion
 
-        if (Input.GetKeyDown(KeyCode.R))//R키 입력 (재장전)
-            currentWeapon.Reload();
-
         if (Input.GetKey(KeyCode.LeftShift) && aimTrigger == false && attackTrigger == false)//왼쪽쉬프트 입력 (달리기상태 전환)
             runTrigger = true;
         else
             runTrigger = false;
+
+        if (Input.GetKeyDown(KeyCode.R))//R키 입력 (재장전)
+            currentWeapon.Reload();
 
         if (Input.GetKeyDown(KeyCode.I))//I키 입력 (인벤토리 on/off)
             InventoryCanvas.Instance.OpenMainInventory();
@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
 
             ChangeDrawWeapon(slotIdx);
         }
-        if (wheelInput < 0)
+        else if (wheelInput < 0)
         {
             slotIdx--;
 
