@@ -23,7 +23,7 @@ public class DropItem : MonoBehaviour
             canvasObjede.SetActive(false);
         }      
     }
-    public void SetItemKey(string key)
+    public virtual void Drop(string key)
     {
        this.key = key;
     }

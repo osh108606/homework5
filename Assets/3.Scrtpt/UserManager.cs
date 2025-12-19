@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class UserManager : MonoBehaviour
@@ -11,16 +11,16 @@ public class UserManager : MonoBehaviour
 
         //int saveOrder = TitleSceneManager.instance.LoadGame();
         //string saveName = TitleSceneManager.instance.userSaveData.saveSlots[saveOrder].userDataFileName;
-        //userData = SaveManager.LoadData<UserData>(saveName); //ÀúÀåµÈ µ¥ÀÌÅÍ ºÒ·¯¿À±â
+        //userData = SaveManager.LoadData<UserData>(saveName); //ì €ì¥ëœ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
         userData = SaveManager.LoadData<UserData>("UserData.json");
-        if (userData == null)// ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ¾øÀ»°æ¿ì
+        if (userData == null)// ì €ì¥ëœ ë°ì´í„°ê°€ ì—†ì„ê²½ìš°
         {
-            userData = new UserData();//»õ µ¥ÀÌÅÍ »ı¼º
+            userData = new UserData();//ìƒˆ ë°ì´í„° ìƒì„±
 
-            //±âº»¾ÆÀÌÅÛ Áö±Ş
-            //*¹«±â*
+            //ê¸°ë³¸ì•„ì´í…œ ì§€ê¸‰
+            //*ë¬´ê¸°*
             #region Weapon
-            UserWeapon userWeapon1 = new UserWeapon();//1¹ø¹«±â
+            UserWeapon userWeapon1 = new UserWeapon();//1ë²ˆë¬´ê¸°
             userWeapon1.weaponDraw = true;
             userWeapon1.weaponEuiped = true;
             userWeapon1.key = "M4";
@@ -29,7 +29,7 @@ public class UserManager : MonoBehaviour
             userData.userWeapons.Add(userWeapon1);
             userData.userWeapons[0].ammoCount = userWeapon1.weaponData.maxAmmo;
 
-            UserWeapon userWeapon2 = new UserWeapon();//2¹ø¹«±â
+            UserWeapon userWeapon2 = new UserWeapon();//2ë²ˆë¬´ê¸°
             userWeapon2.weaponDraw = false;
             userWeapon2.weaponEuiped = true;
             userWeapon2.key = "MP5";
@@ -38,7 +38,7 @@ public class UserManager : MonoBehaviour
             userData.userWeapons.Add(userWeapon2);
             userData.userWeapons[1].ammoCount = userWeapon2.weaponData.maxAmmo;
 
-            UserWeapon userWeapon3 = new UserWeapon();//3¹ø¹«±â
+            UserWeapon userWeapon3 = new UserWeapon();//3ë²ˆë¬´ê¸°
             userWeapon3.weaponDraw = false;
             userWeapon3.weaponEuiped = true;
             userWeapon3.key = "Glock";
@@ -47,7 +47,7 @@ public class UserManager : MonoBehaviour
             userData.userWeapons.Add(userWeapon3);
             userData.userWeapons[2].ammoCount = userWeapon3.weaponData.maxAmmo;
 
-            UserWeapon userWeapon4 = new UserWeapon();//4¹ø¹«±â
+            UserWeapon userWeapon4 = new UserWeapon();//4ë²ˆë¬´ê¸°
             userWeapon4.weaponDraw = false;
             userWeapon4.weaponEuiped = true;
             userWeapon4.key = "grenadelauncher";
@@ -56,7 +56,7 @@ public class UserManager : MonoBehaviour
             userData.userWeapons.Add(userWeapon4);
             userData.userWeapons[3].ammoCount = userWeapon4.weaponData.maxAmmo;
             #endregion
-            //*Àåºñ*
+            //*ì¥ë¹„*
             #region Ammor          
             UserAmmor userAmmor1 = new UserAmmor();
             userAmmor1.ammorEuiped = true;
@@ -88,7 +88,7 @@ public class UserManager : MonoBehaviour
             userAmmor6.key = "Ammor1-6";
             userData.userAmmors.Add(userAmmor6);
             #endregion
-            //*ÃÑ¾Ë*
+            //*ì´ì•Œ*
             #region Ammo
             UserAmmo userAmmo0 = new UserAmmo();
             WeaponType type0 = WeaponType.HG;
@@ -138,7 +138,7 @@ public class UserManager : MonoBehaviour
             userAmmo7.weapontype = type7;
             userData.userAmmos.Add(userAmmo7);
             #endregion
-            //ÀúÀå
+            //ì €ì¥
             SaveManager.SaveData("UserData.json", userData);
         }
     }
@@ -158,7 +158,7 @@ public class UserManager : MonoBehaviour
 
         SaveManager.SaveData("UserData.json", userData);
     }
-    //¾ÆÀÌÅÛ Ãß°¡
+    //ì•„ì´í…œ ì¶”ê°€
     public void Additem(string key)
     {
         UserItem userItem = GetUserItem(key);
@@ -177,19 +177,21 @@ public class UserManager : MonoBehaviour
     public void AddWeapon(string key)
     {
         UserWeapon userWeapon = new UserWeapon();
+        WeaponAbility weaponAbility = new WeaponAbility();
+
         userWeapon.key = key;
         userWeapon.weaponEuiped = false;
         userData.userWeapons.Add(userWeapon);
     }
-    public void Addammor(string key)
+    public void AddAmmor(string key)
     {
         UserAmmor userAmmor = new UserAmmor();
         userAmmor.key = key;
         userAmmor.ammorEuiped = false;
         userData.userAmmors.Add(userAmmor);
     }
-    // ±âÁ¸¾ÆÀÌÅÛ ÀåÂø ºñÈ°¼ºÈ­ »õ¹«±â ÀåÂø
-    public void ChangeWeapon(string key)//¹«±â
+    // ê¸°ì¡´ì•„ì´í…œ ì¥ì°© ë¹„í™œì„±í™” ìƒˆë¬´ê¸° ì¥ì°©
+    public void ChangeWeapon(string key)//ë¬´ê¸°
     {
         UserWeapon preUserWeapon = GetEuipedUserWeapon();
         if (preUserWeapon != null)
@@ -204,21 +206,21 @@ public class UserManager : MonoBehaviour
 
         SaveManager.SaveData("UserData.json", userData);
     }
-    // ÀåÂøÁßÀÎ ¹«±âÁß µé°íÀÖ´Â°Å º¯°æ
+    // ì¥ì°©ì¤‘ì¸ ë¬´ê¸°ì¤‘ ë“¤ê³ ìˆëŠ”ê±° ë³€ê²½
     public void ChangeDrawWeapon(string key)
     {
-        UserWeapon preUserWeapon = GetDrawUserWeapon();//±âÁ¸¿¡ µé°íÀÖ´ø ¹«±â
+        UserWeapon preUserWeapon = GetDrawUserWeapon();//ê¸°ì¡´ì— ë“¤ê³ ìˆë˜ ë¬´ê¸°
         if (preUserWeapon != null)
             preUserWeapon.weaponDraw = false;
 
-        UserWeapon userWeapon = GetEuipedUserWeapon(key);//ÀåÂøÁß µé°Ô¸¸µé ¹«±â
+        UserWeapon userWeapon = GetEuipedUserWeapon(key);//ì¥ì°©ì¤‘ ë“¤ê²Œë§Œë“¤ ë¬´ê¸°
         userWeapon.weaponDraw = true;
 
 
         SaveManager.SaveData("UserData.json", userData);
     }
 
-    public void ChangeAmmor(string key)//Àåºñ
+    public void ChangeAmmor(string key)//ì¥ë¹„
     {
         UserAmmor preUserAmmor = GetUserAmmor();
         if (preUserAmmor != null)
@@ -231,8 +233,8 @@ public class UserManager : MonoBehaviour
         SaveManager.SaveData("UserData.json", userData);
     }
 
-    // Æ¯Á¤À¯Àú¾ÆÀÌÅÛ ¹İÈ¯
-    public UserWeapon GetUserWeapon(string key)//¹«±â
+    // íŠ¹ì •ìœ ì €ì•„ì´í…œ ë°˜í™˜
+    public UserWeapon GetUserWeapon(string key)//ë¬´ê¸°
     {
         for (int i = 0; i < userData.userWeapons.Count; i++)
         {
@@ -275,7 +277,7 @@ public class UserManager : MonoBehaviour
         return null;
     }
 
-    public UserAmmor GetUserAmmor(string key)//Àåºñ
+    public UserAmmor GetUserAmmor(string key)//ì¥ë¹„
     {
         for (int i = 0; i < userData.userAmmors.Count; i++)
         {
@@ -288,7 +290,7 @@ public class UserManager : MonoBehaviour
         return null;
     }
 
-    public UserItem GetUserItem(string key)//¾ÆÀÌÅÛ
+    public UserItem GetUserItem(string key)//ì•„ì´í…œ
     {
         for (int i = 0; i < userData.userItems.Count; i++)
         {
@@ -300,8 +302,8 @@ public class UserManager : MonoBehaviour
         return null;
     }
 
-    //ÇöÀç µé°íÀÖ´Â ¹«±â »óÅÂ¸¦ ¹İÈ¯
-    public UserWeapon GetDrawUserWeapon()//1°³
+    //í˜„ì¬ ë“¤ê³ ìˆëŠ” ë¬´ê¸° ìƒíƒœë¥¼ ë°˜í™˜
+    public UserWeapon GetDrawUserWeapon()//1ê°œ
     {
         for (int i = 0; i < userData.userWeapons.Count; i++)
         {
@@ -313,9 +315,9 @@ public class UserManager : MonoBehaviour
         return null;
     }
 
-    //ÇöÀç ÀåÂøÁßÀÎ ¾ÆÀÌÅÛÀÇ »óÅÂ¸¦ ¹İÈ¯
-    //*¹«±â*
-    public UserWeapon GetEuipedUserWeapon()//1°³
+    //í˜„ì¬ ì¥ì°©ì¤‘ì¸ ì•„ì´í…œì˜ ìƒíƒœë¥¼ ë°˜í™˜
+    //*ë¬´ê¸°*
+    public UserWeapon GetEuipedUserWeapon()//1ê°œ
     {
         for (int i = 0; i < userData.userWeapons.Count; i++)
         {
@@ -327,7 +329,7 @@ public class UserManager : MonoBehaviour
         return null;
     }
  
-    public UserWeapon GetEuipedUserWeapon(string key)//1°³
+    public UserWeapon GetEuipedUserWeapon(string key)//1ê°œ
     {
         for (int i = 0; i < userData.userWeapons.Count; i++)
         {
@@ -338,7 +340,7 @@ public class UserManager : MonoBehaviour
         }
         return null;
     }
-    public UserWeapon GetEuipedUserWeapons(int index)//¿©·¯°³
+    public UserWeapon GetEuipedUserWeapons(int index)//ì—¬ëŸ¬ê°œ
     {
         int equippedCount = 0;
         for (int i=0; i < userData.userWeapons.Count; i++)
@@ -355,7 +357,7 @@ public class UserManager : MonoBehaviour
         return null;
     }
 
-    public UserAmmor GetUserAmmor()//Àåºñ
+    public UserAmmor GetUserAmmor()//ì¥ë¹„
     {
         for (int i = 0; i < userData.userAmmors.Count; i++)
         {
@@ -384,12 +386,12 @@ public class UserManager : MonoBehaviour
         
         return null;
     }
-    //¾ÆÀÌÅÛ Á¦°Å
-    public void RemoveWeapon(UserWeapon userWeapon)//¹«±â
+    //ì•„ì´í…œ ì œê±°
+    public void RemoveWeapon(UserWeapon userWeapon)//ë¬´ê¸°
     {
         userData.userWeapons.Remove(userWeapon);
     }
-    public void RemoveAmmor(UserAmmor userAmmor)//Àåºñ
+    public void RemoveAmmor(UserAmmor userAmmor)//ì¥ë¹„
     {
         userData.userAmmors.Remove(userAmmor);
     }
@@ -423,15 +425,15 @@ public class UserManager : MonoBehaviour
 [System.Serializable]
 public class UserData
 {
-    public List<UserWeapon> userWeapons = new List<UserWeapon>();//¹«±â
-    public List<UserAmmo> userAmmos = new List<UserAmmo>();//ÃÑ¾Ë
-    public List<UserAmmor> userAmmors = new List<UserAmmor>();//°©¿Ê
+    public List<UserWeapon> userWeapons = new List<UserWeapon>();//ë¬´ê¸°
+    public List<UserAmmo> userAmmos = new List<UserAmmo>();//ì´ì•Œ
+    public List<UserAmmor> userAmmors = new List<UserAmmor>();//ê°‘ì˜·
 
    
-    public List<UserItem> userItems = new List<UserItem>();// ±âÅ¸¸ğµç ¾ÆÀÌÅÛ
+    public List<UserItem> userItems = new List<UserItem>();// ê¸°íƒ€ëª¨ë“  ì•„ì´í…œ
 
 
-    public List<UserDungeon> userDungeons = new List<UserDungeon>();// ´øÀü Å¬¸®¾î Á¤º¸
+    public List<UserDungeon> userDungeons = new List<UserDungeon>();// ë˜ì „ í´ë¦¬ì–´ ì •ë³´
 }
 
 [System.Serializable]
@@ -446,17 +448,27 @@ public class UserAmmo
 public class UserWeapon
 {
     public string key;
-    public bool weaponEuiped; //ÀåÂøÁßÀÎÁö
-    public bool weaponDraw; //µé°íÀÖ´ÂÁö
+    public bool weaponEuiped; //ì¥ì°©ì¤‘ì¸ì§€
+    public bool weaponDraw; //ë“¤ê³ ìˆëŠ”ì§€
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponData weaponData;
-    public int ammoCount; //ÇöÀç ÀåÂøÁßÀÎ ÃÑÀÇ ÃÑ¾Ë°¹¼ö
+    public int ammoCount; //í˜„ì¬ ì¥ì°©ì¤‘ì¸ ì´ì˜ ì´ì•Œê°¯ìˆ˜
+
+
+    public WeaponAbility weaponAbility;
 }
+
+public class WeaponAbility
+{
+    public string weaponName;
+    public int grade;
+}
+
 [System.Serializable]
 public class UserAmmor
 {
     public string key;
-    public bool ammorEuiped; //ÀåÂøÁßÀÎÁö
+    public bool ammorEuiped; //ì¥ì°©ì¤‘ì¸ì§€
     public AmmorEquipSlot ammorEquipSlot;
     public AmmorData ammorData;
 }

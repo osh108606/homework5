@@ -152,7 +152,7 @@ public class Enemy : NPC
     public override void Death()
     {
         GameObject drop = Instantiate(dropItemPrifap);
-        drop.GetComponent<DropItem>().SetItemKey("Weapon2");
+        drop.GetComponent<DropItem>().Drop("Weapon2");
         drop.transform.position = transform.position;
         IEnemySpawner zone = GetComponentInParent<IEnemySpawner>();
         if (zone != null)
