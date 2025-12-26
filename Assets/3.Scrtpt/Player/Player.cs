@@ -196,13 +196,14 @@ public class Player : MonoBehaviour
         
         if(item.itemType == ItemType.Weapon)
         {
-            DropWeaponItem weaponItem = cols[0].GetComponent<DropWeaponItem>();
-            UserManager.instance.AddWeapon(weaponItem.key);
+            DropWeaponItem weaponItem = (DropWeaponItem)item;
+            UserManager.instance.AddWeapon(weaponItem.key, weaponItem.grade);
             SaveManager.SaveData("UserData.json", UserManager.instance.userData);
         }
         else if(item.itemType == ItemType.Ammor)
         {
-            UserManager.instance.AddWeapon(item.key);
+            DropAmmorItem ammorItem = (DropAmmorItem)item;
+            UserManager.instance.AddAmmor(ammorItem.key, ammorItem.grade);
             SaveManager.SaveData("UserData.json", UserManager.instance.userData);
         }
         else if (item.itemType == ItemType.Consume)

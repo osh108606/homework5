@@ -37,6 +37,7 @@ public class Weapon : MonoBehaviour
     public WeaponData weaponData;
     public UserAmmo userAmmo; 
     public UserWeapon userWeapon;
+    public WeaponAbility weaponAbility;
     public WeaponType weaponType;
     public WeaponSlotType weaponSlotType;
 

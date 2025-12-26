@@ -19,4 +19,8 @@ public class WeaponData : ScriptableObject
     public Bullet bulletPrefab;
     public WeaponType weaponType;//무기 종류
     public WeaponSlotType weaponSlotType;//무기 장착슬롯
+    public WeaponTypeDamage weaponTypeDamage; // 무기데미지
+    public WeaponSubElement weaponSubElement; // 무기고정보조능력치
+    public WeaponSubElement weaponSubElement1; // 무기유동보조능력치
+    public WeaponTelent weaponTelent; //무기 특수효과
 }

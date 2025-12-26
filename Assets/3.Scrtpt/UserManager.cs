@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UserManager : MonoBehaviour
@@ -174,20 +175,24 @@ public class UserManager : MonoBehaviour
         userItem.count += 1;
     }
 
-    public void AddWeapon(string key)
+    public void AddWeapon(string key, int grade)
     {
         UserWeapon userWeapon = new UserWeapon();
-        WeaponAbility weaponAbility = new WeaponAbility();
 
         userWeapon.key = key;
         userWeapon.weaponEuiped = false;
+        userWeapon.weaponAbility = new WeaponAbility();
+        userWeapon.weaponAbility.grade = grade;
         userData.userWeapons.Add(userWeapon);
     }
-    public void AddAmmor(string key)
+    public void AddAmmor(string key, int grade)
     {
         UserAmmor userAmmor = new UserAmmor();
+
         userAmmor.key = key;
         userAmmor.ammorEuiped = false;
+        userAmmor.ammorAbility = new AmmorAbility();
+        userAmmor.ammorAbility.grade = grade;
         userData.userAmmors.Add(userAmmor);
     }
     // 기존아이템 장착 비활성화 새무기 장착
@@ -457,11 +462,12 @@ public class UserWeapon
 
     public WeaponAbility weaponAbility;
 }
-
+[System.Serializable]
 public class WeaponAbility
 {
     public string weaponName;
     public int grade;
+    public ItemGrade itemGrade;
 }
 
 [System.Serializable]
@@ -471,7 +477,16 @@ public class UserAmmor
     public bool ammorEuiped; //장착중인지
     public AmmorEquipSlot ammorEquipSlot;
     public AmmorData ammorData;
+
+    public AmmorAbility ammorAbility;
 }
+[System.Serializable]
+public class AmmorAbility
+{
+    public string ammorName;
+    public int grade;
+}
+
 [System.Serializable]
 public class UserItem
 {
