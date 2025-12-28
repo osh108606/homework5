@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.T))
         {
             Vector2 ranfomPos = Player.instance.transform.position + (Vector3)Random.insideUnitCircle * 3f;
             GameObject drop = Instantiate(dropItemPrifap);

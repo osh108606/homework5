@@ -3,14 +3,15 @@ using UnityEngine;
 
 public enum WeaponType
 {
-    HG,
     AR,
     SMG,
     MG,
     RF,
     SR,
     SG,
-    SP
+    HG,
+    SP,
+    Count,
 }
 
 public enum WeaponSlotType
@@ -46,6 +47,7 @@ public class Weapon : MonoBehaviour
     public void Awake()
     {
         weaponData = Resources.Load<WeaponData>("WeaponData/"+ key);
+        weaponType = weaponData.weaponType;
         reLoading = false;
         SpreadShot = weaponData.SpreadShot;
         auto = weaponData.auto;
@@ -56,6 +58,15 @@ public class Weapon : MonoBehaviour
         fireInterval = 60f / rpm;
         nextFireTime = 0f;
         maxReloadTime = weaponData.reloadTime;
+        int typeIdx = (int)weaponType;
+        weaponAbility.weaponTypeDamageData.weaponTypeDamage = (WeaponTypeDamage)typeIdx;
+        weaponAbility.weaponSubElementData.weaponSubElement = (WeaponSubElement)typeIdx;
+        if(weaponAbility.grade == 0)
+        {
+            weaponAbility.weaponSubElementData.weaponSubElement = WeaponSubElement.Null;
+            weaponAbility.weaponSubElementDatas.Clear();
+            weaponAbility.weaponTelent.Clear();
+        }
     }
     
     public virtual void Update()

@@ -3,61 +3,72 @@ using UnityEngine;
 
 public enum ItemGrade
 {
-    Common,
-    Normal,
-    Rare,
-    Epic,
-    Legendary,
-    Exotic,
-    Set
+    Common,//회색
+    Normal,//연초록
+    Rare,//파랑
+    Epic,//보라
+    Legendary,//노랑 
+    Count,
+    Named,//진노랑 Legendary와 같은 등급
+    Exotic,//빨강 Legendary와 같은 등급
+    Set,//진초록 Legendary와 같은 등급
+    Unfixed,//지정안됨 랜덤일경우
 }
 public enum WeaponTypeDamage
-{
-    HG,
+{//max15%
     AR,
     SMG,
     MG,
     RF,
     SR,
     SG,
+    HG,
+    SP,
+    Count
 }
 
 public enum WeaponSubElement
 {
+    HPDamage, //AR
+    CriticalChance, //SMG
+    UnCoverDamage, //MG
+    CriticalDamage, //RF
+    HeadShotDamage, //SR 
+    APDamage, //SG
+    Accuracy, // random
+    Recoil,
+    Count,
     Null,
     Unfixed,//지정안됨 랜덤일경우
-    CriticalDamage,
-    CriticalChance,
-    HeadShotDamage,
-    Accuracy,
-    Recoil,
-    APDamage,
-    HPDamage,
-    UnCoverDamage
 }
 
 public enum WeaponTelent
 {
-    Null, 
     Telent1,
     Telent2,
     Telent3,
+    Count,
+    Null,
+    Unfixed,//지정안됨 랜덤일경우
 }
 
 public enum AmmorMainElement
 {
-    Null,
+    
     Attack,
     Defense,
-    Skill
+    Skill,
+    Count,
+    Null
 }
 public enum AmmorSubElement
 {
-    Null,
-    Unfixed,//지정안됨 랜덤일경우
     CriticalDamage,
     CriticalChance,
     HeadShotDamage,
+    Count,
+    Null,
+    Unfixed,//지정안됨 랜덤일경우
 }
 public enum AmmorTelent
 {
@@ -68,15 +79,5 @@ public enum AmmorTelent
 }
 public class ItemElement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

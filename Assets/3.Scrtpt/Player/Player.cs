@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
         if(item.itemType == ItemType.Weapon)
         {
             DropWeaponItem weaponItem = (DropWeaponItem)item;
-            UserManager.instance.AddWeapon(weaponItem.key, weaponItem.grade);
+            UserManager.instance.AddWeapon(weaponItem.key, weaponItem.grade, weaponItem);
             SaveManager.SaveData("UserData.json", UserManager.instance.userData);
         }
         else if(item.itemType == ItemType.Ammor)

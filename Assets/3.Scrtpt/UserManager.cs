@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class UserManager : MonoBehaviour
 {
     public static UserManager instance;
     public UserData userData;
+    
     public void Awake()
     {
         instance = this;
@@ -21,41 +23,14 @@ public class UserManager : MonoBehaviour
             //기본아이템 지급
             //*무기*
             #region Weapon
-            UserWeapon userWeapon1 = new UserWeapon();//1번무기
-            userWeapon1.weaponDraw = true;
-            userWeapon1.weaponEuiped = true;
-            userWeapon1.key = "M4";
-            userWeapon1.weaponEquipSlot = WeaponEquipSlot.main1;
-            userWeapon1.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon1.key);
-            userData.userWeapons.Add(userWeapon1);
-            userData.userWeapons[0].ammoCount = userWeapon1.weaponData.maxAmmo;
-
-            UserWeapon userWeapon2 = new UserWeapon();//2번무기
-            userWeapon2.weaponDraw = false;
-            userWeapon2.weaponEuiped = true;
-            userWeapon2.key = "MP5";
-            userWeapon2.weaponEquipSlot = WeaponEquipSlot.main2;
-            userWeapon2.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon2.key);
-            userData.userWeapons.Add(userWeapon2);
-            userData.userWeapons[1].ammoCount = userWeapon2.weaponData.maxAmmo;
-
-            UserWeapon userWeapon3 = new UserWeapon();//3번무기
-            userWeapon3.weaponDraw = false;
-            userWeapon3.weaponEuiped = true;
-            userWeapon3.key = "Glock";
-            userWeapon3.weaponEquipSlot = WeaponEquipSlot.sub;
-            userWeapon3.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon3.key);
-            userData.userWeapons.Add(userWeapon3);
-            userData.userWeapons[2].ammoCount = userWeapon3.weaponData.maxAmmo;
-
-            UserWeapon userWeapon4 = new UserWeapon();//4번무기
-            userWeapon4.weaponDraw = false;
-            userWeapon4.weaponEuiped = true;
-            userWeapon4.key = "grenadelauncher";
-            userWeapon4.weaponEquipSlot = WeaponEquipSlot.special;
-            userWeapon4.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon4.key);
-            userData.userWeapons.Add(userWeapon4);
-            userData.userWeapons[3].ammoCount = userWeapon4.weaponData.maxAmmo;
+            AddDebugWeapon("M4", 0, WeaponEquipSlot.main1);//1번무기
+            userData.userWeapons[0].ammoCount = userData.userWeapons[0].weaponData.maxAmmo;
+            AddDebugWeapon("MP5", 0, WeaponEquipSlot.main2);//2번무기
+            userData.userWeapons[1].ammoCount = userData.userWeapons[1].weaponData.maxAmmo;
+            AddDebugWeapon("Glock", 0, WeaponEquipSlot.sub);//3번무기
+            userData.userWeapons[2].ammoCount = userData.userWeapons[2].weaponData.maxAmmo;
+            AddDebugWeapon("grenadelauncher", 0, WeaponEquipSlot.special);//4번무기
+            userData.userWeapons[3].ammoCount = userData.userWeapons[3].weaponData.maxAmmo;
             #endregion
             //*장비*
             #region Ammor          
@@ -143,6 +118,66 @@ public class UserManager : MonoBehaviour
             SaveManager.SaveData("UserData.json", userData);
         }
     }
+    public void AddDebugWeapon(string key, int grade, WeaponEquipSlot weaponEquipSlot)//디버그용
+    {
+        UserWeapon userWeapon = new UserWeapon();
+
+        userWeapon.key = key;
+        userWeapon.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon.key);
+        userWeapon.weaponEquipSlot = weaponEquipSlot;
+
+        userWeapon.weaponEuiped = true;
+        if (userWeapon.weaponEquipSlot == WeaponEquipSlot.main1)
+            userWeapon.weaponDraw = true;
+        userWeapon.weaponAbility = new WeaponAbility();
+        userWeapon.weaponAbility.grade = grade;
+        userWeapon.weaponAbility.itemGrade = (ItemGrade)grade;
+
+        int typeIdx = (int)userWeapon.weaponData.weaponType;
+        userWeapon.weaponAbility.weaponTypeDamageData.weaponTypeDamage = userWeapon.weaponData.weaponAbility.weaponTypeDamageData.weaponTypeDamage;
+        userWeapon.weaponAbility.weaponSubElementData.weaponSubElement = (WeaponSubElement)typeIdx;
+        int randomIdx = Random.Range(0, (int)WeaponSubElement.Count);
+        if (userWeapon.weaponAbility.grade == 0)//WeaponTypeDamage
+        {
+            userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(1f, 3f);
+            userWeapon.weaponAbility.weaponSubElementData.weaponSubElement = WeaponSubElement.Null;
+            userWeapon.weaponAbility.weaponSubElementDatas.Clear();
+            userWeapon.weaponAbility.weaponTelent.Clear();
+        }
+        else if (userWeapon.weaponAbility.grade == 1)//WeaponTypeDamage & WeaponSubElement
+        {
+            userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(3f, 6f);
+            userWeapon.weaponAbility.weaponSubElementData.value = Random.Range(3f, 6f);
+            userWeapon.weaponAbility.weaponSubElementDatas.Clear();
+            userWeapon.weaponAbility.weaponTelent.Clear();
+        }
+        else if (userWeapon.weaponAbility.grade == 2)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random)
+        {
+            userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(6f, 9f);
+            userWeapon.weaponAbility.weaponSubElementData.value = Random.Range(6f, 9f);
+            userWeapon.weaponAbility.weaponSubElementDatas[0].weaponSubElement = (WeaponSubElement)randomIdx;
+            userWeapon.weaponAbility.weaponSubElementDatas[0].value = Random.Range(6f, 9f);
+            userWeapon.weaponAbility.weaponTelent.Clear();
+        }
+        else if (userWeapon.weaponAbility.grade == 3)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTelent(random)
+        {
+            userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(9f, 12f);
+            userWeapon.weaponAbility.weaponSubElementData.value = Random.Range(9f, 12f);
+            userWeapon.weaponAbility.weaponSubElementDatas[0].weaponSubElement = (WeaponSubElement)randomIdx;
+            userWeapon.weaponAbility.weaponSubElementDatas[0].value = Random.Range(6f, 9f);
+            userWeapon.weaponAbility.weaponTelent[0] = (WeaponTelent)randomIdx;
+        }
+        else if (userWeapon.weaponAbility.grade == 4)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTelent(random)
+        {
+            userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(12f, 15f);
+            userWeapon.weaponAbility.weaponSubElementData.value = Random.Range(12f, 15f);
+            userWeapon.weaponAbility.weaponSubElementDatas[0].weaponSubElement = (WeaponSubElement)randomIdx;
+            userWeapon.weaponAbility.weaponSubElementDatas[0].value = Random.Range(12f, 15f);
+            userWeapon.weaponAbility.weaponTelent[0] = (WeaponTelent)randomIdx;
+        }
+        userData.userWeapons.Add(userWeapon);
+    }
+
     public void Relord(Weapon weapon ,UserWeapon userWeapon)
     {
         if (weapon.userWeapon.ammoCount < 0)
@@ -174,15 +209,14 @@ public class UserManager : MonoBehaviour
         }
         userItem.count += 1;
     }
-
-    public void AddWeapon(string key, int grade)
+    
+    public void AddWeapon(string key, int grade, DropWeaponItem dropWeaponItem)
     {
         UserWeapon userWeapon = new UserWeapon();
 
         userWeapon.key = key;
         userWeapon.weaponEuiped = false;
-        userWeapon.weaponAbility = new WeaponAbility();
-        userWeapon.weaponAbility.grade = grade;
+        userWeapon.weaponAbility = dropWeaponItem.weaponAbility;
         userData.userWeapons.Add(userWeapon);
     }
     public void AddAmmor(string key, int grade)
@@ -465,9 +499,27 @@ public class UserWeapon
 [System.Serializable]
 public class WeaponAbility
 {
-    public string weaponName;
     public int grade;
     public ItemGrade itemGrade;
+    public WeaponTypeDamageData weaponTypeDamageData = new WeaponTypeDamageData();
+    public WeaponSubElementData weaponSubElementData = new WeaponSubElementData();
+    public List<WeaponSubElementData> weaponSubElementDatas = new List<WeaponSubElementData>();
+    public List<WeaponTelent> weaponTelent = new List<WeaponTelent>();
+}
+
+[System.Serializable]
+public class WeaponTypeDamageData
+{
+    //public WeaponType weaponType;
+    public WeaponTypeDamage weaponTypeDamage;
+    public float value;
+}
+
+[System.Serializable]
+public class WeaponSubElementData
+{
+    public WeaponSubElement weaponSubElement;
+    public float value;
 }
 
 [System.Serializable]
@@ -485,6 +537,7 @@ public class AmmorAbility
 {
     public string ammorName;
     public int grade;
+    
 }
 
 [System.Serializable]

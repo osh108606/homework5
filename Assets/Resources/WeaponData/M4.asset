@@ -15,6 +15,7 @@ MonoBehaviour:
   key: M4
   idx: 0
   weaponName: M4
+  weaponBase: 
   damage: 1
   RPM: 950
   reloadTime: 3
@@ -24,5 +25,16 @@ MonoBehaviour:
   SpreadShot: 0
   sprite: {fileID: 0}
   bulletPrefab: {fileID: 1746735079809394367, guid: d5af7bc4839f81d43a724562cab550a3, type: 3}
-  weaponType: 1
-  weaponSoltType: 0
+  weaponType: 0
+  weaponSlotType: 0
+  weaponAbility:
+    grade: 0
+    itemGrade: 0
+    weaponTypeDamageData:
+      weaponTypeDamage: 0
+      value: 1.8969758
+    weaponSubElementData:
+      weaponSubElement: 9
+      value: 0
+    weaponSubElementDatas: []
+    weaponTelent: 

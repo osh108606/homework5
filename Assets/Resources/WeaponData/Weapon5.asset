@@ -15,11 +15,26 @@ MonoBehaviour:
   key: Weapon5
   idx: 0
   weaponName: Weapon5
+  weaponBase: 
   damage: 1
-  atkSpeed: 0.2
+  RPM: 0
+  reloadTime: 0
   maxAmmo: 10
   Pellets: 1
   auto: 0
   SpreadShot: 0
   sprite: {fileID: 0}
   bulletPrefab: {fileID: -4520408312267104753, guid: 2ee526ac8ab30d544ad645af3967b01f, type: 3}
+  weaponType: 4
+  weaponSlotType: 0
+  weaponAbility:
+    grade: 0
+    itemGrade: 9
+    weaponTypeDamageData:
+      weaponTypeDamage: 4
+      value: 0
+    weaponSubElementData:
+      weaponSubElement: 10
+      value: 0
+    weaponSubElementDatas: []
+    weaponTelent: 

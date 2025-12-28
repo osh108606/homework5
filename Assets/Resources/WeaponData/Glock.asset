@@ -15,6 +15,7 @@ MonoBehaviour:
   key: Glock
   idx: 0
   weaponName: Glock
+  weaponBase: 
   damage: 1
   RPM: 500
   reloadTime: 3
@@ -24,5 +25,16 @@ MonoBehaviour:
   SpreadShot: 0
   sprite: {fileID: 0}
   bulletPrefab: {fileID: 1746735079809394367, guid: d5af7bc4839f81d43a724562cab550a3, type: 3}
-  weaponType: 0
-  weaponSoltType: 1
+  weaponType: 6
+  weaponSlotType: 0
+  weaponAbility:
+    grade: 0
+    itemGrade: 0
+    weaponTypeDamageData:
+      weaponTypeDamage: 6
+      value: 2.246734
+    weaponSubElementData:
+      weaponSubElement: 9
+      value: 0
+    weaponSubElementDatas: []
+    weaponTelent: 

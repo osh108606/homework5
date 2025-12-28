@@ -15,6 +15,7 @@ MonoBehaviour:
   key: grenadelauncher
   idx: 0
   weaponName: grenadelauncher
+  weaponBase: 
   damage: 2
   RPM: 0
   reloadTime: 3
@@ -25,4 +26,15 @@ MonoBehaviour:
   sprite: {fileID: 0}
   bulletPrefab: {fileID: 7239680103594177017, guid: 1769464c9eddb224dbb50e7e99278813, type: 3}
   weaponType: 7
-  weaponSoltType: 2
+  weaponSlotType: 2
+  weaponAbility:
+    grade: 0
+    itemGrade: 0
+    weaponTypeDamageData:
+      weaponTypeDamage: 7
+      value: 1.1139767
+    weaponSubElementData:
+      weaponSubElement: 9
+      value: 0
+    weaponSubElementDatas: []
+    weaponTelent: 
