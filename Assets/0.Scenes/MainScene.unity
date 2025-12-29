@@ -411,7 +411,7 @@ MonoBehaviour:
       grade: 0
       itemGrade: 0
       weaponTypeDamageData:
-        weaponTypeDamage: 0
+        weaponType: 0
         value: 0
       weaponSubElementData:
         weaponSubElement: 0
@@ -8976,6 +8976,230 @@ MonoBehaviour:
   weaponPanels: []
   weaponEquipSlot: 0
   weaponSlotType: 0
+--- !u!1 &1626341630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1626341632}
+  - component: {fileID: 1626341631}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1626341631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626341630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5416d117ef038004d81f29585761e3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponTypeElementDatas:
+  - weaponType: 0
+    addWeaponDamageDataValues:
+    - {x: 1, y: 3}
+    - {x: 3, y: 6}
+    - {x: 6, y: 9}
+    - {x: 9, y: 12}
+    - {x: 12, y: 15}
+    fixWeaponSubElement: 4
+    fixWeaponSubElementValues:
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
+    randomElementCounts: 0000000001000000010000000100000001000000
+  - weaponType: 1
+    addWeaponDamageDataValues:
+    - {x: 1, y: 3}
+    - {x: 3, y: 6}
+    - {x: 6, y: 9}
+    - {x: 9, y: 12}
+    - {x: 12, y: 15}
+    fixWeaponSubElement: 0
+    fixWeaponSubElementValues:
+    - {x: 0.1, y: 1.2}
+    - {x: 1.2, y: 2.4}
+    - {x: 2.4, y: 3.6}
+    - {x: 3.6, y: 4.8}
+    - {x: 4.8, y: 6}
+    randomElementCounts: 0000000001000000010000000100000001000000
+  - weaponType: 2
+    addWeaponDamageDataValues:
+    - {x: 1, y: 3}
+    - {x: 3, y: 6}
+    - {x: 6, y: 9}
+    - {x: 9, y: 12}
+    - {x: 12, y: 15}
+    fixWeaponSubElement: 6
+    fixWeaponSubElementValues:
+    - {x: 0.1, y: 1.6}
+    - {x: 1.6, y: 3.2}
+    - {x: 3.2, y: 4.8}
+    - {x: 4.8, y: 6.4}
+    - {x: 6.4, y: 8}
+    randomElementCounts: 0000000001000000010000000100000001000000
+  - weaponType: 3
+    addWeaponDamageDataValues:
+    - {x: 1, y: 3}
+    - {x: 3, y: 6}
+    - {x: 6, y: 9}
+    - {x: 9, y: 12}
+    - {x: 12, y: 15}
+    fixWeaponSubElement: 1
+    fixWeaponSubElementValues:
+    - {x: 0.1, y: 2.4}
+    - {x: 2.4, y: 4.8}
+    - {x: 4.8, y: 7.2}
+    - {x: 7.2, y: 9.6}
+    - {x: 9.6, y: 12}
+    randomElementCounts: 0000000001000000010000000100000001000000
+  - weaponType: 4
+    addWeaponDamageDataValues:
+    - {x: 1, y: 3}
+    - {x: 3, y: 6}
+    - {x: 6, y: 9}
+    - {x: 9, y: 12}
+    - {x: 12, y: 15}
+    fixWeaponSubElement: 2
+    fixWeaponSubElementValues:
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
+    randomElementCounts: 0000000001000000010000000100000001000000
+  - weaponType: 5
+    addWeaponDamageDataValues:
+    - {x: 1, y: 3}
+    - {x: 3, y: 6}
+    - {x: 6, y: 9}
+    - {x: 9, y: 12}
+    - {x: 12, y: 15}
+    fixWeaponSubElement: 5
+    fixWeaponSubElementValues:
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
+    randomElementCounts: 0000000001000000010000000100000001000000
+  - weaponType: 6
+    addWeaponDamageDataValues:
+    - {x: 1, y: 3}
+    - {x: 3, y: 6}
+    - {x: 6, y: 9}
+    - {x: 9, y: 12}
+    - {x: 12, y: 15}
+    fixWeaponSubElement: 3
+    fixWeaponSubElementValues:
+    - {x: 0.1, y: 1.6}
+    - {x: 1.6, y: 3.2}
+    - {x: 3.2, y: 4.8}
+    - {x: 4.8, y: 6.4}
+    - {x: 6.4, y: 8}
+    randomElementCounts: 0000000001000000010000000100000001000000
+  - weaponType: 7
+    addWeaponDamageDataValues:
+    - {x: 1, y: 3}
+    - {x: 3, y: 6}
+    - {x: 6, y: 9}
+    - {x: 9, y: 12}
+    - {x: 12, y: 15}
+    fixWeaponSubElement: 10
+    fixWeaponSubElementValues: []
+    randomElementCounts: 0000000001000000010000000100000001000000
+  randomWeaponSubElementDatas:
+  - weaponSubElement: 0
+    weaponSubElementValues:
+    - {x: 0.1, y: 1.2}
+    - {x: 1.2, y: 2.4}
+    - {x: 2.4, y: 3.6}
+    - {x: 3.6, y: 4.8}
+    - {x: 4.8, y: 6}
+  - weaponSubElement: 1
+    weaponSubElementValues:
+    - {x: 0.1, y: 2.4}
+    - {x: 2.4, y: 4.8}
+    - {x: 4.8, y: 7.2}
+    - {x: 7.2, y: 9.6}
+    - {x: 9.6, y: 12}
+  - weaponSubElement: 2
+    weaponSubElementValues:
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
+  - weaponSubElement: 3
+    weaponSubElementValues:
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
+  - weaponSubElement: 4
+    weaponSubElementValues:
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
+  - weaponSubElement: 5
+    weaponSubElementValues:
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
+  - weaponSubElement: 6
+    weaponSubElementValues:
+    - {x: 0.1, y: 1.6}
+    - {x: 1.6, y: 3.2}
+    - {x: 3.2, y: 4.8}
+    - {x: 4.8, y: 6.4}
+    - {x: 6.4, y: 8}
+  - weaponSubElement: 7
+    weaponSubElementValues:
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
+  - weaponSubElement: 8
+    weaponSubElementValues:
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
+--- !u!4 &1626341632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626341630}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1631940323
 GameObject:
   m_ObjectHideFlags: 0
@@ -11431,3 +11655,4 @@ SceneRoots:
   - {fileID: 1053854366}
   - {fileID: 680343259}
   - {fileID: 829981652}
+  - {fileID: 1626341632}

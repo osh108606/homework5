@@ -31,10 +31,10 @@ MonoBehaviour:
     grade: 0
     itemGrade: 0
     weaponTypeDamageData:
-      weaponTypeDamage: 0
-      value: 1.8969758
+      weaponType: 0
+      value: 0
     weaponSubElementData:
-      weaponSubElement: 9
+      weaponSubElement: 10
       value: 0
     weaponSubElementDatas: []
     weaponTelent: 

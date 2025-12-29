@@ -58,9 +58,8 @@ public class Weapon : MonoBehaviour
         fireInterval = 60f / rpm;
         nextFireTime = 0f;
         maxReloadTime = weaponData.reloadTime;
-        int typeIdx = (int)weaponType;
-        weaponAbility.weaponTypeDamageData.weaponTypeDamage = (WeaponTypeDamage)typeIdx;
-        weaponAbility.weaponSubElementData.weaponSubElement = (WeaponSubElement)typeIdx;
+        weaponAbility.weaponTypeDamageData.weaponType = weaponType;
+        weaponAbility.weaponSubElementData.weaponSubElement = WeaponManager.Instance.GetWeaponTypeElementData(weaponType).fixWeaponSubElement;
         if(weaponAbility.grade == 0)
         {
             weaponAbility.weaponSubElementData.weaponSubElement = WeaponSubElement.Null;

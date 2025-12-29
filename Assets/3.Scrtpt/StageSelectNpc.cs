@@ -5,7 +5,7 @@ public class StageSelectNpc : NPC
     public Collider2D col;
     public GameObject canvasObjede;
     public StageSelect stageSelect;
-
+    
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

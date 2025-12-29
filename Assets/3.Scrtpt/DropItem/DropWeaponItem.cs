@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DropWeaponItem : DropItem
@@ -13,66 +15,55 @@ public class DropWeaponItem : DropItem
         itemGrade = (ItemGrade)grade;
         weaponAbility.grade = grade;
         weaponAbility.itemGrade = itemGrade;
+        WeaponType weaponType = Resources.Load<WeaponData>("WeaponData/" + weaponName).weaponType;
+        WeaponTypeElementData elementData = WeaponManager.Instance.GetWeaponTypeElementData(weaponType);
+        
         //고정타입
-        int typeIdx = (int)Resources.Load<WeaponData>("WeaponData/" + weaponName).weaponType;
-        WeaponTypeDamage weaponTypeDamage = (WeaponTypeDamage)typeIdx;
-        WeaponSubElement subElement = (WeaponSubElement)typeIdx;//값범위도 타입따라 다를예정
-        //랜덤타입
-        int randomIdx = Random.Range(0, (int)WeaponSubElement.Count);
-        WeaponSubElement subRandomElement = (WeaponSubElement)randomIdx;
-        int telIdx = Random.Range(0,(int)WeaponTelent.Count);
+        //무기 타입별 추가데미지
+        weaponAbility.weaponTypeDamageData = new WeaponTypeDamageData();
+        weaponAbility.weaponTypeDamageData.weaponType = weaponType;
+        weaponAbility.weaponTypeDamageData.value = Random.Range(elementData.addWeaponDamageDataValues[grade].x, elementData.addWeaponDamageDataValues[grade].y);
+
+        //무기 타입 별 능력치
+        if(weaponAbility.grade >= 1 )
+        {
+            WeaponSubElement subElement = elementData.fixWeaponSubElement;
+            weaponAbility.weaponSubElementData = new WeaponSubElementData();
+            weaponAbility.weaponSubElementData.weaponSubElement = subElement;
+            weaponAbility.weaponSubElementData.value = Random.Range(elementData.fixWeaponSubElementValues[grade].x, elementData.fixWeaponSubElementValues[grade].y);
+        }
+        else
+        {
+            weaponAbility.weaponSubElementData.weaponSubElement = WeaponSubElement.Null;
+            weaponAbility.weaponSubElementData.value = 0;
+        }
+
+            //보조능력치 풀
+            List<WeaponSubElement> elements = new List<WeaponSubElement>();
+        for(int i=0; i<(int)WeaponSubElement.Count; i++)
+        {
+            elements.Add((WeaponSubElement)i);
+        }
+        if(elementData.fixWeaponSubElement != WeaponSubElement.Null)
+            elements.Remove(elementData.fixWeaponSubElement);
+
+        //랜덤 타입별 능력치 설정
+        for (int i = 0; i < elementData.randomElementCounts[grade];i++)
+        {
+            int randomIdx = Random.Range(0, elements.Count);
+            WeaponSubElement subRandomElement = elements[randomIdx];
+
+            WeaponSubElementData weaponRandomSubElementData = new WeaponSubElementData();
+            weaponRandomSubElementData.weaponSubElement = subRandomElement;
+            RandomWeaponSubElementData randomElementData = WeaponManager.Instance.GetRandomElementData(weaponRandomSubElementData.weaponSubElement);
+            weaponRandomSubElementData.value = Random.Range(randomElementData.weaponSubElementValues[grade].x, randomElementData.weaponSubElementValues[grade].y);
+            weaponAbility.weaponSubElementDatas.Add(weaponRandomSubElementData);
+
+            if (weaponRandomSubElementData.weaponSubElement != WeaponSubElement.Null)
+                elements.Remove(subRandomElement);
+        }
+        int telIdx = Random.Range(0, (int)WeaponTelent.Count);
         WeaponTelent weaponTelent = (WeaponTelent)telIdx;
-
-        WeaponTypeDamageData weaponTypeDamageData = new WeaponTypeDamageData();
-        weaponTypeDamageData.weaponTypeDamage = weaponTypeDamage;
-
-        WeaponSubElementData weaponSubElementData = new WeaponSubElementData();
-        weaponSubElementData.weaponSubElement = subElement;
-
-        WeaponSubElementData weaponRandomSubElementData = new WeaponSubElementData();
-        weaponRandomSubElementData.weaponSubElement = subRandomElement;
-        if (grade == 0)//WeaponTypeDamage
-        {
-            weaponTypeDamageData.value = Random.Range(1f, 3f);
-            weaponAbility.weaponTypeDamageData = weaponTypeDamageData;
-        }
-        else if (grade == 1)//WeaponTypeDamage & WeaponSubElement
-        {
-            weaponTypeDamageData.value = Random.Range(3f, 6f);
-            weaponAbility.weaponTypeDamageData = weaponTypeDamageData;
-            weaponSubElementData.value = Random.Range(3f, 6f);
-            weaponAbility.weaponSubElementData = weaponSubElementData;
-        }
-        else if (grade == 2)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random)
-        {
-            weaponTypeDamageData.value = Random.Range(6f, 9f);
-            weaponAbility.weaponTypeDamageData = weaponTypeDamageData;
-            weaponSubElementData.value = Random.Range(6f, 9f);
-            weaponAbility.weaponSubElementData = weaponSubElementData;
-            weaponRandomSubElementData.value = Random.Range(6f, 9f);
-            weaponAbility.weaponSubElementDatas.Add(weaponRandomSubElementData);
-        }
-        else if(grade == 3)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTelent(random)
-        {
-            weaponTypeDamageData.value = Random.Range(9f, 12f);
-            weaponAbility.weaponTypeDamageData = weaponTypeDamageData;
-            weaponSubElementData.value = Random.Range(9f, 12f);
-            weaponAbility.weaponSubElementData = weaponSubElementData;
-            weaponRandomSubElementData.value = Random.Range(6f, 9f);
-            weaponAbility.weaponSubElementDatas.Add(weaponRandomSubElementData);
-            weaponAbility.weaponTelent.Add(weaponTelent);
-        }
-        else if (grade == 4)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTelent(random)
-        {
-            weaponTypeDamageData.value = Random.Range(12f, 15f);
-            weaponAbility.weaponTypeDamageData = weaponTypeDamageData;
-            weaponSubElementData.value = Random.Range(12f, 15f);
-            weaponAbility.weaponSubElementData = weaponSubElementData;
-            weaponRandomSubElementData.value = Random.Range(6f, 9f);
-            weaponAbility.weaponSubElementDatas.Add(weaponRandomSubElementData);
-            weaponAbility.weaponTelent.Add(weaponTelent);
-        }
-
     }
 }
 

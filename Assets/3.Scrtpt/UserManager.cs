@@ -129,51 +129,53 @@ public class UserManager : MonoBehaviour
         userWeapon.weaponEuiped = true;
         if (userWeapon.weaponEquipSlot == WeaponEquipSlot.main1)
             userWeapon.weaponDraw = true;
+
         userWeapon.weaponAbility = new WeaponAbility();
         userWeapon.weaponAbility.grade = grade;
         userWeapon.weaponAbility.itemGrade = (ItemGrade)grade;
+        WeaponTypeElementData elementData = WeaponManager.Instance.GetWeaponTypeElementData(userWeapon.weaponData.weaponType);
 
-        int typeIdx = (int)userWeapon.weaponData.weaponType;
-        userWeapon.weaponAbility.weaponTypeDamageData.weaponTypeDamage = userWeapon.weaponData.weaponAbility.weaponTypeDamageData.weaponTypeDamage;
-        userWeapon.weaponAbility.weaponSubElementData.weaponSubElement = (WeaponSubElement)typeIdx;
-        int randomIdx = Random.Range(0, (int)WeaponSubElement.Count);
-        if (userWeapon.weaponAbility.grade == 0)//WeaponTypeDamage
+        userWeapon.weaponAbility.weaponTypeDamageData.weaponType = userWeapon.weaponData.weaponType;
+        userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(elementData.addWeaponDamageDataValues[grade].x, elementData.addWeaponDamageDataValues[grade].y);
+        if(userWeapon.weaponAbility.grade != 0)
         {
-            userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(1f, 3f);
+            userWeapon.weaponAbility.weaponSubElementData.weaponSubElement = elementData.fixWeaponSubElement;
+            userWeapon.weaponAbility.weaponSubElementData.value = Random.Range(elementData.fixWeaponSubElementValues[userWeapon.weaponAbility.grade].x, elementData.fixWeaponSubElementValues[userWeapon.weaponAbility.grade].y);
+        }
+        else
+        {
             userWeapon.weaponAbility.weaponSubElementData.weaponSubElement = WeaponSubElement.Null;
-            userWeapon.weaponAbility.weaponSubElementDatas.Clear();
-            userWeapon.weaponAbility.weaponTelent.Clear();
+            userWeapon.weaponAbility.weaponSubElementData.value = 0;
         }
-        else if (userWeapon.weaponAbility.grade == 1)//WeaponTypeDamage & WeaponSubElement
+
+
+            List<WeaponSubElement> elements = new List<WeaponSubElement>();
+        for (int i = 0; i < (int)WeaponSubElement.Count; i++)
         {
-            userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(3f, 6f);
-            userWeapon.weaponAbility.weaponSubElementData.value = Random.Range(3f, 6f);
-            userWeapon.weaponAbility.weaponSubElementDatas.Clear();
-            userWeapon.weaponAbility.weaponTelent.Clear();
+            elements.Add((WeaponSubElement)i);
         }
-        else if (userWeapon.weaponAbility.grade == 2)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random)
+        elements.Remove(elementData.fixWeaponSubElement);
+
+        for (int i = 0; i < elementData.randomElementCounts[grade]; i++)
         {
-            userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(6f, 9f);
-            userWeapon.weaponAbility.weaponSubElementData.value = Random.Range(6f, 9f);
-            userWeapon.weaponAbility.weaponSubElementDatas[0].weaponSubElement = (WeaponSubElement)randomIdx;
-            userWeapon.weaponAbility.weaponSubElementDatas[0].value = Random.Range(6f, 9f);
-            userWeapon.weaponAbility.weaponTelent.Clear();
+            int randomIdx = Random.Range(0, elements.Count);
+            WeaponSubElement subRandomElement = elements[randomIdx];
+
+            WeaponSubElementData weaponRandomSubElementData = new WeaponSubElementData();
+            weaponRandomSubElementData.weaponSubElement = subRandomElement;
+            RandomWeaponSubElementData randomElementData = WeaponManager.Instance.GetRandomElementData(weaponRandomSubElementData.weaponSubElement);
+            weaponRandomSubElementData.value = Random.Range(randomElementData.weaponSubElementValues[grade].x, randomElementData.weaponSubElementValues[grade].y);
+            userWeapon.weaponAbility.weaponSubElementDatas.Add(weaponRandomSubElementData);
+            elements.Remove(subRandomElement);
         }
-        else if (userWeapon.weaponAbility.grade == 3)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTelent(random)
+        int randomTelIdx = Random.Range(0, (int)WeaponTelent.Count);
+        if (userWeapon.weaponAbility.grade == 3)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTelent(random)
         {
-            userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(9f, 12f);
-            userWeapon.weaponAbility.weaponSubElementData.value = Random.Range(9f, 12f);
-            userWeapon.weaponAbility.weaponSubElementDatas[0].weaponSubElement = (WeaponSubElement)randomIdx;
-            userWeapon.weaponAbility.weaponSubElementDatas[0].value = Random.Range(6f, 9f);
-            userWeapon.weaponAbility.weaponTelent[0] = (WeaponTelent)randomIdx;
+            userWeapon.weaponAbility.weaponTelent[0] = (WeaponTelent)randomTelIdx;
         }
         else if (userWeapon.weaponAbility.grade == 4)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTelent(random)
         {
-            userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(12f, 15f);
-            userWeapon.weaponAbility.weaponSubElementData.value = Random.Range(12f, 15f);
-            userWeapon.weaponAbility.weaponSubElementDatas[0].weaponSubElement = (WeaponSubElement)randomIdx;
-            userWeapon.weaponAbility.weaponSubElementDatas[0].value = Random.Range(12f, 15f);
-            userWeapon.weaponAbility.weaponTelent[0] = (WeaponTelent)randomIdx;
+            userWeapon.weaponAbility.weaponTelent[0] = (WeaponTelent)randomTelIdx;
         }
         userData.userWeapons.Add(userWeapon);
     }
@@ -510,8 +512,7 @@ public class WeaponAbility
 [System.Serializable]
 public class WeaponTypeDamageData
 {
-    //public WeaponType weaponType;
-    public WeaponTypeDamage weaponTypeDamage;
+    public WeaponType weaponType;
     public float value;
 }
 

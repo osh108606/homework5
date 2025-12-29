@@ -29,9 +29,9 @@ MonoBehaviour:
   weaponSlotType: 0
   weaponAbility:
     grade: 0
-    itemGrade: 9
+    itemGrade: 0
     weaponTypeDamageData:
-      weaponTypeDamage: 4
+      weaponType: 4
       value: 0
     weaponSubElementData:
       weaponSubElement: 10

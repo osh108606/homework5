@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class NPC : MonoBehaviour
 
     
     public Image HpBar;
-    
+    public bool ignoreDamage;
     public bool arrived = false;
     public float y;
     public Vector2 desPoint;
@@ -26,7 +27,8 @@ public class NPC : MonoBehaviour
    
     public virtual void Update()
     {
-        HpBar.fillAmount = healthPoint / maxHealthPoint;
+        if(ignoreDamage != false)
+            HpBar.fillAmount = healthPoint / maxHealthPoint;
 
         //float distance = Vector2.Distance(transform.position, desPoint);
         //if (arrived == false)
@@ -74,11 +76,15 @@ public class NPC : MonoBehaviour
     //NPC가 데미지를 입을때 발동
     public virtual void TakeDamage(float damage)
     {
-        healthPoint -= damage;
-        if (healthPoint <= 0)
+        if (ignoreDamage == false)
         {
-            Death();
-            Destroy(this.gameObject);
+            healthPoint -= damage;
+            if (healthPoint <= 0)
+            {
+                Death();
+                Destroy(this.gameObject);
+            }
+
         }
     }
     //NPC가 죽을때 발동

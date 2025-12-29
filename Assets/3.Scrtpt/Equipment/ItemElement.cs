@@ -14,27 +14,16 @@ public enum ItemGrade
     Set,//진초록 Legendary와 같은 등급
     Unfixed,//지정안됨 랜덤일경우
 }
-public enum WeaponTypeDamage
-{//max15%
-    AR,
-    SMG,
-    MG,
-    RF,
-    SR,
-    SG,
-    HG,
-    SP,
-    Count
-}
 
 public enum WeaponSubElement
 {
-    HPDamage, //AR
     CriticalChance, //SMG
-    UnCoverDamage, //MG
     CriticalDamage, //RF
-    HeadShotDamage, //SR 
+    HeadShotDamage, //SR
+    BodyShotDamage,
+    HPDamage, //AR
     APDamage, //SG
+    UnCoverDamage, //MG
     Accuracy, // random
     Recoil,
     Count,
