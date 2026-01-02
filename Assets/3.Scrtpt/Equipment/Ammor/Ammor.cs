@@ -27,6 +27,6 @@ public class Ammor : MonoBehaviour
     public void Awake()
     {
         ammorData = Resources.Load<AmmorData>("EquipmentData/" + key);
-        ammorMainElement = ammorData.ammorMainElement1;
+        //ammorMainElement = ammorData.ammorMainElement1;
     }
 }

@@ -4,39 +4,24 @@ public class DropAmmorItem : DropItem
 {
     public int grade;
     public ItemGrade itemGrade;
-    public override void Drop(string key)
+    public AmmorAbility ammorAbility;
+    public override void Drop(string ammorName)
     {
-        base.Drop(key);
-        grade = Random.Range(0, 6);
-        switch (grade)
+        base.Drop(ammorName);
         {
-            case 0:
-                itemGrade = ItemGrade.Common;
-                break;
-                
-            case 1:
-                itemGrade = ItemGrade.Normal;
-                break;
-                
-            case 2:
-                itemGrade = ItemGrade.Rare;
-                break;
-                
-            case 3:
-                itemGrade = ItemGrade.Epic;
-                break;
-            case 4:
-                itemGrade = ItemGrade.Legendary;
-                break;
-            case 5:
-                itemGrade = ItemGrade.Exotic;
-                break;
-            case 6:
-                itemGrade = ItemGrade.Set;
-                break;
-            default:
-                break;
+            ammorAbility = new AmmorAbility();
+            grade = Random.Range(0, (int)ItemGrade.Count);
+            itemGrade = (ItemGrade)grade;
+            ammorAbility.grade = grade;
+            ammorAbility.itemGrade = itemGrade;
+            AmmorEquipSlot ammorEquipSlot = Resources.Load<AmmorData>("AmmorData/" + ammorName).ammorEquipSlot;
+            AmmorMainElementData ammorMainElementData = AmmorManager.Instance.GetAmmorElementData(Resources.Load<AmmorData>("AmmorData/" + ammorName).ammorBrand);
 
+            // 고정타입
+            // 브랜드 혹은 아머타입(슬롯)별 고정 능력치
+
+            ammorAbility.ammorMainsElementData = new AmmorMainsElementData();
+            ammorAbility.ammorMainsElementData.ammorMainElement = Resources.Load<AmmorData>("AmmorData/" + ammorName).ammorMainElements[0];
         }
     }
 }

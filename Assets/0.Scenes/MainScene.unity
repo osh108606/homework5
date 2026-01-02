@@ -424,8 +424,11 @@ MonoBehaviour:
     ammorEquipSlot: 0
     ammorData: {fileID: 0}
     ammorAbility:
-      ammorName: 
       grade: 0
+      itemGrade: 0
+      ammorMainsElementData:
+        ammorMainElement: 0
+        value: 0
   weaponInventory: {fileID: 1604296282}
   weaponSlotPanels: []
   ammorInventory: {fileID: 0}
@@ -2304,7 +2307,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2329,7 +2332,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6124,6 +6127,7 @@ MonoBehaviour:
   healthPoint: 0
   moveSpeed: 0
   HpBar: {fileID: 1047631708}
+  ignoreDamage: 1
   arrived: 0
   y: 0
   desPoint: {x: 0, y: 0}
@@ -9013,13 +9017,13 @@ MonoBehaviour:
     - {x: 6, y: 9}
     - {x: 9, y: 12}
     - {x: 12, y: 15}
-    fixWeaponSubElement: 4
+    fixWeaponSubElement: 1
     fixWeaponSubElementValues:
-    - {x: 0.1, y: 2}
-    - {x: 2, y: 4}
-    - {x: 4, y: 6}
-    - {x: 6, y: 8}
-    - {x: 8, y: 10}
+    - {x: 0.1, y: 2.4}
+    - {x: 2.4, y: 4.8}
+    - {x: 4.8, y: 7.2}
+    - {x: 7.2, y: 9.6}
+    - {x: 9.6, y: 12}
     randomElementCounts: 0000000001000000010000000100000001000000
   - weaponType: 1
     addWeaponDamageDataValues:
@@ -9043,13 +9047,13 @@ MonoBehaviour:
     - {x: 6, y: 9}
     - {x: 9, y: 12}
     - {x: 12, y: 15}
-    fixWeaponSubElement: 6
+    fixWeaponSubElement: 5
     fixWeaponSubElementValues:
-    - {x: 0.1, y: 1.6}
-    - {x: 1.6, y: 3.2}
-    - {x: 3.2, y: 4.8}
-    - {x: 4.8, y: 6.4}
-    - {x: 6.4, y: 8}
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
     randomElementCounts: 0000000001000000010000000100000001000000
   - weaponType: 3
     addWeaponDamageDataValues:
@@ -9058,13 +9062,13 @@ MonoBehaviour:
     - {x: 6, y: 9}
     - {x: 9, y: 12}
     - {x: 12, y: 15}
-    fixWeaponSubElement: 1
+    fixWeaponSubElement: 6
     fixWeaponSubElementValues:
-    - {x: 0.1, y: 2.4}
-    - {x: 2.4, y: 4.8}
-    - {x: 4.8, y: 7.2}
-    - {x: 7.2, y: 9.6}
-    - {x: 9.6, y: 12}
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
     randomElementCounts: 0000000001000000010000000100000001000000
   - weaponType: 4
     addWeaponDamageDataValues:
@@ -9073,7 +9077,7 @@ MonoBehaviour:
     - {x: 6, y: 9}
     - {x: 9, y: 12}
     - {x: 12, y: 15}
-    fixWeaponSubElement: 2
+    fixWeaponSubElement: 3
     fixWeaponSubElementValues:
     - {x: 0.1, y: 2}
     - {x: 2, y: 4}
@@ -9088,7 +9092,7 @@ MonoBehaviour:
     - {x: 6, y: 9}
     - {x: 9, y: 12}
     - {x: 12, y: 15}
-    fixWeaponSubElement: 5
+    fixWeaponSubElement: 2
     fixWeaponSubElementValues:
     - {x: 0.1, y: 2}
     - {x: 2, y: 4}
@@ -9103,13 +9107,13 @@ MonoBehaviour:
     - {x: 6, y: 9}
     - {x: 9, y: 12}
     - {x: 12, y: 15}
-    fixWeaponSubElement: 3
+    fixWeaponSubElement: 6
     fixWeaponSubElementValues:
-    - {x: 0.1, y: 1.6}
-    - {x: 1.6, y: 3.2}
-    - {x: 3.2, y: 4.8}
-    - {x: 4.8, y: 6.4}
-    - {x: 6.4, y: 8}
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
     randomElementCounts: 0000000001000000010000000100000001000000
   - weaponType: 7
     addWeaponDamageDataValues:
@@ -9122,6 +9126,13 @@ MonoBehaviour:
     fixWeaponSubElementValues: []
     randomElementCounts: 0000000001000000010000000100000001000000
   randomWeaponSubElementDatas:
+  - weaponSubElement: 0
+    weaponSubElementValues:
+    - {x: 0.1, y: 1.2}
+    - {x: 1.2, y: 2.4}
+    - {x: 2.4, y: 3.6}
+    - {x: 3.6, y: 4.8}
+    - {x: 4.8, y: 6}
   - weaponSubElement: 0
     weaponSubElementValues:
     - {x: 0.1, y: 1.2}
@@ -9150,13 +9161,6 @@ MonoBehaviour:
     - {x: 4, y: 6}
     - {x: 6, y: 8}
     - {x: 8, y: 10}
-  - weaponSubElement: 4
-    weaponSubElementValues:
-    - {x: 0.1, y: 2}
-    - {x: 2, y: 4}
-    - {x: 4, y: 6}
-    - {x: 6, y: 8}
-    - {x: 8, y: 10}
   - weaponSubElement: 5
     weaponSubElementValues:
     - {x: 0.1, y: 2}
@@ -9166,18 +9170,18 @@ MonoBehaviour:
     - {x: 8, y: 10}
   - weaponSubElement: 6
     weaponSubElementValues:
-    - {x: 0.1, y: 1.6}
-    - {x: 1.6, y: 3.2}
-    - {x: 3.2, y: 4.8}
-    - {x: 4.8, y: 6.4}
-    - {x: 6.4, y: 8}
-  - weaponSubElement: 7
-    weaponSubElementValues:
     - {x: 0.1, y: 2}
     - {x: 2, y: 4}
     - {x: 4, y: 6}
     - {x: 6, y: 8}
     - {x: 8, y: 10}
+  - weaponSubElement: 7
+    weaponSubElementValues:
+    - {x: 0.1, y: 1.6}
+    - {x: 1.6, y: 3.2}
+    - {x: 3.2, y: 4.8}
+    - {x: 4.8, y: 6.4}
+    - {x: 6.4, y: 8}
   - weaponSubElement: 8
     weaponSubElementValues:
     - {x: 0.1, y: 2}
@@ -10869,6 +10873,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881661370}
   m_CullTransparentMesh: 1
+--- !u!1 &1886990799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1886990801}
+  - component: {fileID: 1886990800}
+  m_Layer: 0
+  m_Name: AmmorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1886990800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886990799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5be7a725170a34d8a15d4039e6bf71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammorMainElementDatas: []
+  randomAmmorSubElementDatas: []
+--- !u!4 &1886990801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886990799}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1918645358
 GameObject:
   m_ObjectHideFlags: 0
@@ -11656,3 +11706,4 @@ SceneRoots:
   - {fileID: 680343259}
   - {fileID: 829981652}
   - {fileID: 1626341632}
+  - {fileID: 1886990801}

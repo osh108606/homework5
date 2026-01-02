@@ -523,6 +523,7 @@ public class WeaponSubElementData
     public float value;
 }
 
+
 [System.Serializable]
 public class UserAmmor
 {
@@ -533,12 +534,20 @@ public class UserAmmor
 
     public AmmorAbility ammorAbility;
 }
+
 [System.Serializable]
 public class AmmorAbility
 {
-    public string ammorName;
     public int grade;
-    
+    public ItemGrade itemGrade;
+    public AmmorMainsElementData ammorMainsElementData;
+}
+
+[System.Serializable]
+public class AmmorMainsElementData
+{
+    public AmmorMainElement ammorMainElement;
+    public float value;
 }
 
 [System.Serializable]

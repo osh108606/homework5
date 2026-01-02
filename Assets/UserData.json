@@ -1,0 +1,242 @@
+{
+    "userWeapons": [
+        {
+            "key": "M4",
+            "weaponEuiped": true,
+            "weaponDraw": true,
+            "weaponEquipSlot": 0,
+            "weaponData": {
+                "instanceID": 37126
+            },
+            "ammoCount": 25,
+            "weaponAbility": {
+                "grade": 0,
+                "itemGrade": 0,
+                "weaponTypeDamageData": {
+                    "weaponType": 0,
+                    "value": 2.111708402633667
+                },
+                "weaponSubElementData": {
+                    "weaponSubElement": 11,
+                    "value": 0.0
+                },
+                "weaponSubElementDatas": [],
+                "weaponTelent": []
+            }
+        },
+        {
+            "key": "MP5",
+            "weaponEuiped": true,
+            "weaponDraw": false,
+            "weaponEquipSlot": 1,
+            "weaponData": {
+                "instanceID": 37172
+            },
+            "ammoCount": 30,
+            "weaponAbility": {
+                "grade": 0,
+                "itemGrade": 0,
+                "weaponTypeDamageData": {
+                    "weaponType": 1,
+                    "value": 1.230133056640625
+                },
+                "weaponSubElementData": {
+                    "weaponSubElement": 11,
+                    "value": 0.0
+                },
+                "weaponSubElementDatas": [],
+                "weaponTelent": []
+            }
+        },
+        {
+            "key": "Glock",
+            "weaponEuiped": true,
+            "weaponDraw": false,
+            "weaponEquipSlot": 2,
+            "weaponData": {
+                "instanceID": 37128
+            },
+            "ammoCount": 15,
+            "weaponAbility": {
+                "grade": 0,
+                "itemGrade": 0,
+                "weaponTypeDamageData": {
+                    "weaponType": 6,
+                    "value": 1.6221407651901246
+                },
+                "weaponSubElementData": {
+                    "weaponSubElement": 11,
+                    "value": 0.0
+                },
+                "weaponSubElementDatas": [],
+                "weaponTelent": []
+            }
+        },
+        {
+            "key": "grenadelauncher",
+            "weaponEuiped": true,
+            "weaponDraw": false,
+            "weaponEquipSlot": 3,
+            "weaponData": {
+                "instanceID": 37216
+            },
+            "ammoCount": 6,
+            "weaponAbility": {
+                "grade": 0,
+                "itemGrade": 0,
+                "weaponTypeDamageData": {
+                    "weaponType": 7,
+                    "value": 1.2289698123931885
+                },
+                "weaponSubElementData": {
+                    "weaponSubElement": 11,
+                    "value": 0.0
+                },
+                "weaponSubElementDatas": [],
+                "weaponTelent": []
+            }
+        }
+    ],
+    "userAmmos": [
+        {
+            "weapontype": 6,
+            "key": "",
+            "count": 900
+        },
+        {
+            "weapontype": 0,
+            "key": "",
+            "count": 810
+        },
+        {
+            "weapontype": 1,
+            "key": "",
+            "count": 900
+        },
+        {
+            "weapontype": 2,
+            "key": "",
+            "count": 900
+        },
+        {
+            "weapontype": 3,
+            "key": "",
+            "count": 420
+        },
+        {
+            "weapontype": 4,
+            "key": "",
+            "count": 120
+        },
+        {
+            "weapontype": 5,
+            "key": "",
+            "count": 144
+        },
+        {
+            "weapontype": 7,
+            "key": "",
+            "count": 24
+        }
+    ],
+    "userAmmors": [
+        {
+            "key": "Ammor1-1",
+            "ammorEuiped": true,
+            "ammorEquipSlot": 0,
+            "ammorData": {
+                "instanceID": 0
+            },
+            "ammorAbility": {
+                "grade": 0,
+                "itemGrade": 0,
+                "ammorMainsElementData": {
+                    "ammorMainElement": 0,
+                    "value": 0.0
+                }
+            }
+        },
+        {
+            "key": "Ammor1-2",
+            "ammorEuiped": true,
+            "ammorEquipSlot": 0,
+            "ammorData": {
+                "instanceID": 0
+            },
+            "ammorAbility": {
+                "grade": 0,
+                "itemGrade": 0,
+                "ammorMainsElementData": {
+                    "ammorMainElement": 0,
+                    "value": 0.0
+                }
+            }
+        },
+        {
+            "key": "Ammor1-3",
+            "ammorEuiped": true,
+            "ammorEquipSlot": 0,
+            "ammorData": {
+                "instanceID": 0
+            },
+            "ammorAbility": {
+                "grade": 0,
+                "itemGrade": 0,
+                "ammorMainsElementData": {
+                    "ammorMainElement": 0,
+                    "value": 0.0
+                }
+            }
+        },
+        {
+            "key": "Ammor1-4",
+            "ammorEuiped": true,
+            "ammorEquipSlot": 0,
+            "ammorData": {
+                "instanceID": 0
+            },
+            "ammorAbility": {
+                "grade": 0,
+                "itemGrade": 0,
+                "ammorMainsElementData": {
+                    "ammorMainElement": 0,
+                    "value": 0.0
+                }
+            }
+        },
+        {
+            "key": "Ammor1-5",
+            "ammorEuiped": true,
+            "ammorEquipSlot": 0,
+            "ammorData": {
+                "instanceID": 0
+            },
+            "ammorAbility": {
+                "grade": 0,
+                "itemGrade": 0,
+                "ammorMainsElementData": {
+                    "ammorMainElement": 0,
+                    "value": 0.0
+                }
+            }
+        },
+        {
+            "key": "Ammor1-6",
+            "ammorEuiped": true,
+            "ammorEquipSlot": 0,
+            "ammorData": {
+                "instanceID": 0
+            },
+            "ammorAbility": {
+                "grade": 0,
+                "itemGrade": 0,
+                "ammorMainsElementData": {
+                    "ammorMainElement": 0,
+                    "value": 0.0
+                }
+            }
+        }
+    ],
+    "userItems": [],
+    "userDungeons": []
+}

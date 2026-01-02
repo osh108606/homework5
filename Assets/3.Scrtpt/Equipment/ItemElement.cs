@@ -18,15 +18,21 @@ public enum ItemGrade
 public enum WeaponSubElement
 {
     CriticalChance, //SMG
-    CriticalDamage, //RF
-    HeadShotDamage, //SR
-    BodyShotDamage,
-    HPDamage, //AR
-    APDamage, //SG
-    UnCoverDamage, //MG
+    CriticalDamage, //AR
+
+    HealthPointDamage, //SG 
+    ArmorPointDamage, //RF
+
+    PrecisionDamage, //SR    
+    ArmorPlateDamage,//MG
+    WeakPointDamage, // HG
+
+    UnCoverDamage,//어쩌면 또다른 무기군
+
+    Count,
     Accuracy, // random
     Recoil,
-    Count,
+    
     Null,
     Unfixed,//지정안됨 랜덤일경우
 }
@@ -41,6 +47,19 @@ public enum WeaponTelent
     Unfixed,//지정안됨 랜덤일경우
 }
 
+public enum AmmorBrand
+{
+    Brand1,
+    Brand2,
+    Brand3,
+    Brand4,
+    Brand5,
+    Brand6,
+    Brand7,
+    Brand8,
+    Count
+}
+
 public enum AmmorMainElement
 {
     
@@ -52,9 +71,10 @@ public enum AmmorMainElement
 }
 public enum AmmorSubElement
 {
-    CriticalDamage,
-    CriticalChance,
-    HeadShotDamage,
+    CriticalChance, 
+    CriticalDamage, 
+    HeadShotDamage, 
+    Handleing,
     Count,
     Null,
     Unfixed,//지정안됨 랜덤일경우
