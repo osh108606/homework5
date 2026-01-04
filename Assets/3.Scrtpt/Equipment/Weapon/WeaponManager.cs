@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 public class WeaponManager : MonoBehaviour
 {
     public static WeaponManager Instance;

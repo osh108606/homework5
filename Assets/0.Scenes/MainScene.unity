@@ -404,19 +404,19 @@ MonoBehaviour:
     key: 
     weaponEuiped: 0
     weaponDraw: 0
+    ammoCount: 0
     weaponEquipSlot: 0
     weaponData: {fileID: 0}
-    ammoCount: 0
     weaponAbility:
       grade: 0
       itemGrade: 0
       weaponTypeDamageData:
         weaponType: 0
         value: 0
-      weaponSubElementData:
+      weaponFixSubElementData:
         weaponSubElement: 0
         value: 0
-      weaponSubElementDatas: []
+      weaponRandomSubElementDatas: []
       weaponTelent: 
   selectAmmor:
     key: 
@@ -9197,7 +9197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626341630}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10536,6 +10536,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9811ca647f5b04c97be5d7c64db315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAbility:
+    initCrtChance: 0
+    initCrtDamage: 0
+    initHealthPointDamage: 0
+    initArmorPointDamage: 0
+    initPrecisionDamage: 0
+    initArmorPlateDamage: 0
+    initWeakPointDamage: 0
+    initUnCoverDamage: 0
+    initAccuracy: 0
+    initRecoil: 0
+    initHealthPoint: 0
+    initArmorPoint: 0
+    initMoveSpeed: 0
+    initRunSpeed: 0
+    curWeapon: {fileID: 0}
   animator: {fileID: 0}
   rb2d: {fileID: 1836596454}
   currentWeapon: {fileID: 0}
@@ -10555,12 +10571,6 @@ MonoBehaviour:
   rootTr: {fileID: 1346565631}
   upperTransform: {fileID: 1524643332}
   slotIdx: 0
-  maxHealthPoint: 0
-  healthPoint: 0
-  maxAmmorPoint: 0
-  ammorPoint: 0
-  moveSpeed: 7
-  runSpeed: 2
   runTrigger: 0
   aimTrigger: 0
   attackTrigger: 0
@@ -10912,7 +10922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886990799}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11688,6 +11698,8 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1626341632}
+  - {fileID: 1886990801}
   - {fileID: 1423205969}
   - {fileID: 1328358788}
   - {fileID: 2121606740}
@@ -11705,5 +11717,3 @@ SceneRoots:
   - {fileID: 1053854366}
   - {fileID: 680343259}
   - {fileID: 829981652}
-  - {fileID: 1626341632}
-  - {fileID: 1886990801}

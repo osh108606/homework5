@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     // 기준 우선순위 1.자료형 2.보호타입
     // 자료형 순서 1.클래스 2.변수
     // 보호타입 순서 1.public 2.private 3.none
+    public PlayerAbility playerAbility;
     public static Player instance;
     public Animator animator;
     public Rigidbody2D rb2d;
@@ -20,12 +21,12 @@ public class Player : MonoBehaviour
     Camera mainCamera;
 
     public int slotIdx; //무기슬롯 인덱스
-    public float maxHealthPoint; //최대 체력
-    public float healthPoint; // 현재 체력
-    public float maxAmmorPoint; //최대 방어도
-    public float ammorPoint; //현제 방어도
-    public float moveSpeed = 7;
-    public float runSpeed = 2f;
+    float maxHealthPoint; //최대 체력
+    float healthPoint; // 현재 체력
+    float maxAmmorPoint; //최대 방어도
+    float ammorPoint; //현제 방어도
+    float moveSpeed;
+    float runSpeed;
     public bool runTrigger;
     public bool aimTrigger;
     public bool attackTrigger;
@@ -35,13 +36,18 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        playerAbility = new PlayerAbility();
         instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         weaponSlots = GetComponentsInChildren<WeaponSlot>();
         animator = GetComponentInChildren<Animator>();
         mainCamera = Camera.main;
+        maxHealthPoint = playerAbility.initHealthPoint;
+        maxAmmorPoint = playerAbility.initArmorPoint;
         healthPoint = maxHealthPoint;
         ammorPoint = maxAmmorPoint;
+        moveSpeed = playerAbility.initMoveSpeed;
+        runSpeed = playerAbility.initRunSpeed;
         runTrigger = false;
         aimTrigger = false;
         attackTrigger = false;
@@ -241,6 +247,7 @@ public class Player : MonoBehaviour
             if (key == weaponSlots  [i].weapon.key)
             {
                 currentWeapon = weaponSlots[i].weapon;
+                playerAbility.SetWeapon(currentWeapon);
                 break;
             }
         }
@@ -390,5 +397,86 @@ public class Player : MonoBehaviour
     {
         if(DungeonManager.instance.curDungeon != null)
             DungeonManager.instance.curDungeon.DungeonFail();
+    }
+}
+
+[System.Serializable]
+public class PlayerAbility
+{
+    public float Damage
+    {
+        get
+        {
+            return curWeapon.Damage;
+        }
+    }
+
+    public float CrtChance
+    {
+        get
+        {
+            return initCrtChance + curWeapon.weaponAbility.GetValue(WeaponSubElement.CriticalChance);
+        }
+    }
+    
+    public float crtDamage
+    {
+        get
+        {
+            return initCrtDamage + curWeapon.weaponAbility.GetValue(WeaponSubElement.CriticalDamage);
+        }
+    }
+    //공격-데미지
+    public float initCrtChance;
+    public float initCrtDamage;
+    public float initHealthPointDamage;
+    public float initArmorPointDamage;
+    public float initPrecisionDamage; //헤드샷데미지 역할
+    public float initArmorPlateDamage;
+    public float initWeakPointDamage;
+    public float initUnCoverDamage;
+    //공격-유틸
+    public float initReload;
+    public float initAccuracy;
+    public float initRecoil;
+    //방어
+    public float initHealthPoint;
+    public float initArmorPoint;    
+    //생존
+    public float initMoveSpeed;
+    public float initRunSpeed;
+    public float initInvincibleTime;
+    //스킬관련
+
+    public void Init()
+    {
+        //공격-데미지
+        initHealthPoint = 100;
+        initArmorPoint = 100;
+        initCrtChance = 1f;
+        initCrtDamage = 1.5f;
+        initHealthPointDamage = 0;
+        initArmorPointDamage = 0;
+        initPrecisionDamage = 1.5f; //헤드샷데미지 역할
+        initArmorPlateDamage = 0;
+        initWeakPointDamage = 0;
+        initUnCoverDamage = 0;
+        //공격-유틸
+        initReload = 0;
+        initAccuracy = 0;
+        initRecoil = 0;
+        //방어
+        initHealthPoint = 100;
+        initArmorPoint = 100;
+        //생존
+        initMoveSpeed = 7;
+        initRunSpeed = 2;
+        //스킬
+    }
+
+    public Weapon curWeapon;
+    public void SetWeapon(Weapon weapon)
+    {
+        curWeapon = weapon;
     }
 }

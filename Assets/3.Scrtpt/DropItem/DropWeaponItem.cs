@@ -28,14 +28,14 @@ public class DropWeaponItem : DropItem
         if(weaponAbility.grade >= 1 )
         {
             WeaponSubElement subElement = elementData.fixWeaponSubElement;
-            weaponAbility.weaponSubElementData = new WeaponSubElementData();
-            weaponAbility.weaponSubElementData.weaponSubElement = subElement;
-            weaponAbility.weaponSubElementData.value = Random.Range(elementData.fixWeaponSubElementValues[grade].x, elementData.fixWeaponSubElementValues[grade].y);
+            weaponAbility.weaponFixSubElementData = new WeaponSubElementData();
+            weaponAbility.weaponFixSubElementData.weaponSubElement = subElement;
+            weaponAbility.weaponFixSubElementData.value = Random.Range(elementData.fixWeaponSubElementValues[grade].x, elementData.fixWeaponSubElementValues[grade].y);
         }
         else
         {
-            weaponAbility.weaponSubElementData.weaponSubElement = WeaponSubElement.Null;
-            weaponAbility.weaponSubElementData.value = 0;
+            weaponAbility.weaponFixSubElementData.weaponSubElement = WeaponSubElement.Null;
+            weaponAbility.weaponFixSubElementData.value = 0;
         }
 
             //보조능력치 풀
@@ -57,7 +57,7 @@ public class DropWeaponItem : DropItem
             weaponRandomSubElementData.weaponSubElement = subRandomElement;
             RandomWeaponSubElementData randomElementData = WeaponManager.Instance.GetRandomElementData(weaponRandomSubElementData.weaponSubElement);
             weaponRandomSubElementData.value = Random.Range(randomElementData.weaponSubElementValues[grade].x, randomElementData.weaponSubElementValues[grade].y);
-            weaponAbility.weaponSubElementDatas.Add(weaponRandomSubElementData);
+            weaponAbility.weaponRandomSubElementDatas.Add(weaponRandomSubElementData);
 
             if (weaponRandomSubElementData.weaponSubElement != WeaponSubElement.Null)
                 elements.Remove(subRandomElement);

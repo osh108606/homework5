@@ -1,6 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class UserManager : MonoBehaviour
@@ -11,15 +10,18 @@ public class UserManager : MonoBehaviour
     public void Awake()
     {
         instance = this;
-
+        
         //int saveOrder = TitleSceneManager.instance.LoadGame();
         //string saveName = TitleSceneManager.instance.userSaveData.saveSlots[saveOrder].userDataFileName;
         //userData = SaveManager.LoadData<UserData>(saveName); //저장된 데이터 불러오기
         userData = SaveManager.LoadData<UserData>("UserData.json");
+        
+    }
+    public void Start()
+    {
         if (userData == null)// 저장된 데이터가 없을경우
         {
             userData = new UserData();//새 데이터 생성
-
             //기본아이템 지급
             //*무기*
             #region Weapon
@@ -121,35 +123,34 @@ public class UserManager : MonoBehaviour
     public void AddDebugWeapon(string key, int grade, WeaponEquipSlot weaponEquipSlot)//디버그용
     {
         UserWeapon userWeapon = new UserWeapon();
-
         userWeapon.key = key;
-        userWeapon.weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon.key);
-        userWeapon.weaponEquipSlot = weaponEquipSlot;
-
         userWeapon.weaponEuiped = true;
         if (userWeapon.weaponEquipSlot == WeaponEquipSlot.main1)
             userWeapon.weaponDraw = true;
+        userWeapon.weaponEquipSlot = weaponEquipSlot;
+        userWeapon.weaponData = Resources.Load<WeaponData>("WeaponData/" + key);
 
         userWeapon.weaponAbility = new WeaponAbility();
         userWeapon.weaponAbility.grade = grade;
         userWeapon.weaponAbility.itemGrade = (ItemGrade)grade;
+
         WeaponTypeElementData elementData = WeaponManager.Instance.GetWeaponTypeElementData(userWeapon.weaponData.weaponType);
 
-        userWeapon.weaponAbility.weaponTypeDamageData.weaponType = userWeapon.weaponData.weaponType;
+        userWeapon.weaponAbility.weaponTypeDamageData.weaponType = elementData.weaponType;
         userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(elementData.addWeaponDamageDataValues[grade].x, elementData.addWeaponDamageDataValues[grade].y);
         if(userWeapon.weaponAbility.grade != 0)
         {
-            userWeapon.weaponAbility.weaponSubElementData.weaponSubElement = elementData.fixWeaponSubElement;
-            userWeapon.weaponAbility.weaponSubElementData.value = Random.Range(elementData.fixWeaponSubElementValues[userWeapon.weaponAbility.grade].x, elementData.fixWeaponSubElementValues[userWeapon.weaponAbility.grade].y);
+            userWeapon.weaponAbility.weaponFixSubElementData.weaponSubElement = elementData.fixWeaponSubElement;
+            userWeapon.weaponAbility.weaponFixSubElementData.value = Random.Range(elementData.fixWeaponSubElementValues[grade].x, elementData.fixWeaponSubElementValues[grade].y);
         }
         else
         {
-            userWeapon.weaponAbility.weaponSubElementData.weaponSubElement = WeaponSubElement.Null;
-            userWeapon.weaponAbility.weaponSubElementData.value = 0;
+            userWeapon.weaponAbility.weaponFixSubElementData.weaponSubElement = WeaponSubElement.Null;
+            userWeapon.weaponAbility.weaponFixSubElementData.value = 0;
         }
 
 
-            List<WeaponSubElement> elements = new List<WeaponSubElement>();
+        List<WeaponSubElement> elements = new List<WeaponSubElement>();
         for (int i = 0; i < (int)WeaponSubElement.Count; i++)
         {
             elements.Add((WeaponSubElement)i);
@@ -165,7 +166,7 @@ public class UserManager : MonoBehaviour
             weaponRandomSubElementData.weaponSubElement = subRandomElement;
             RandomWeaponSubElementData randomElementData = WeaponManager.Instance.GetRandomElementData(weaponRandomSubElementData.weaponSubElement);
             weaponRandomSubElementData.value = Random.Range(randomElementData.weaponSubElementValues[grade].x, randomElementData.weaponSubElementValues[grade].y);
-            userWeapon.weaponAbility.weaponSubElementDatas.Add(weaponRandomSubElementData);
+            userWeapon.weaponAbility.weaponRandomSubElementDatas.Add(weaponRandomSubElementData);
             elements.Remove(subRandomElement);
         }
         int randomTelIdx = Random.Range(0, (int)WeaponTelent.Count);
@@ -490,12 +491,11 @@ public class UserWeapon
 {
     public string key;
     public bool weaponEuiped; //장착중인지
-    public bool weaponDraw; //들고있는지
+    public bool weaponDraw; //들고있는지 
+    public int ammoCount; //현재 장착중인 총의 총알갯수
+    
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponData weaponData;
-    public int ammoCount; //현재 장착중인 총의 총알갯수
-
-
     public WeaponAbility weaponAbility;
 }
 [System.Serializable]
@@ -504,9 +504,36 @@ public class WeaponAbility
     public int grade;
     public ItemGrade itemGrade;
     public WeaponTypeDamageData weaponTypeDamageData = new WeaponTypeDamageData();
-    public WeaponSubElementData weaponSubElementData = new WeaponSubElementData();
-    public List<WeaponSubElementData> weaponSubElementDatas = new List<WeaponSubElementData>();
+    public WeaponSubElementData weaponFixSubElementData = new WeaponSubElementData();
+    public List<WeaponSubElementData> weaponRandomSubElementDatas = new List<WeaponSubElementData>();
     public List<WeaponTelent> weaponTelent = new List<WeaponTelent>();
+
+    public float GetValue(WeaponSubElement element)
+    {
+        float value = 0;
+        if (element == weaponFixSubElementData.weaponSubElement)
+        {
+            value += weaponFixSubElementData.value;
+        }
+
+        for (int i = 0; i < weaponRandomSubElementDatas.Count; i++)
+        {
+            if (weaponRandomSubElementDatas[i].weaponSubElement == element)
+            {
+                value += weaponRandomSubElementDatas[i].value;
+            }
+        }
+        return value;
+    }
+
+    public float GetFixValue(WeaponSubElement element)
+    {
+        if (element == weaponFixSubElementData.weaponSubElement)
+        {
+            return weaponFixSubElementData.value;
+        }
+        return 0;
+    }
 }
 
 [System.Serializable]

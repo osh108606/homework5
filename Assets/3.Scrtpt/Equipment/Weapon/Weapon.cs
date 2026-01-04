@@ -41,8 +41,14 @@ public class Weapon : MonoBehaviour
     public WeaponAbility weaponAbility;
     public WeaponType weaponType;
     public WeaponSlotType weaponSlotType;
+    public float Damage
+    {
+        get
+        {
+            return weaponData.damage + weaponAbility.weaponTypeDamageData.value;
+        }
+    }
 
-   
 
     public void Awake()
     {
@@ -58,23 +64,16 @@ public class Weapon : MonoBehaviour
         fireInterval = 60f / rpm;
         nextFireTime = 0f;
         maxReloadTime = weaponData.reloadTime;
-        weaponAbility.weaponTypeDamageData.weaponType = weaponType;
-        weaponAbility.weaponSubElementData.weaponSubElement = WeaponManager.Instance.GetWeaponTypeElementData(weaponType).fixWeaponSubElement;
-        if(weaponAbility.grade == 0)
-        {
-            weaponAbility.weaponSubElementData.weaponSubElement = WeaponSubElement.Null;
-            weaponAbility.weaponSubElementDatas.Clear();
-            weaponAbility.weaponTelent.Clear();
-        }
     }
     
     public virtual void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime && Player.instance.currentWeapon == this)
+        nextFireTime += Time.deltaTime;
+        if (Input.GetMouseButtonDown(0) && nextFireTime >= fireInterval && Player.instance.currentWeapon == this)
         {
             Player.instance.animator.SetLayerWeight(idx, 1);
             Shoot();
-            nextFireTime = Time.time + fireInterval;
+            nextFireTime = 0;
         }
     }
 
@@ -82,6 +81,7 @@ public class Weapon : MonoBehaviour
     public void Equipped(UserWeapon userWeapon)
     {
         this.userWeapon = userWeapon;
+        weaponAbility = userWeapon.weaponAbility;
         userAmmo = UserManager.instance.GetUserAmmo(weaponType);
     }
 
