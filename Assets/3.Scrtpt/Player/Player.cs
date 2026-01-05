@@ -427,6 +427,7 @@ public class PlayerAbility
         }
     }
     //공격-데미지
+    public float initWeaponDamage;
     public float initCrtChance;
     public float initCrtDamage;
     public float initHealthPointDamage;
@@ -451,6 +452,7 @@ public class PlayerAbility
     public void Init()
     {
         //공격-데미지
+        initWeaponDamage = 0;
         initHealthPoint = 100;
         initArmorPoint = 100;
         initCrtChance = 1f;
