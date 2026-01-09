@@ -6,7 +6,8 @@ public class PiercingBullet : Bullet
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<Enemy>().TakeDamage(weapon.weaponData.damage);
+            damagInfo.Calculate();
+            collision.GetComponent<Enemy>().TakeDamage(damagInfo.damage, damagInfo.isCrt);
         }
     }
 }

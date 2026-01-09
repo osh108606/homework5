@@ -73,7 +73,7 @@ public class WeaponInventory : SubInventory
         }
 
         UserManager.instance.ChangeWeapon(weaponData.key);
-        Player.instance.ChangeWeapon(weaponData.key);
+        Player.Instance.ChangeWeapon(weaponData.key);
 
 
 

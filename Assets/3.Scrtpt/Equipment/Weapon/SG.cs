@@ -41,7 +41,7 @@ public class SG : Weapon
         Vector2 leftDir = (Quaternion.Euler(0, 0, spreadAngle) * aimDir).normalized;
         Vector2 rightDir = (Quaternion.Euler(0, 0, -spreadAngle) * aimDir).normalized;
 
-        Player.instance.animator.SetTrigger("Fire");
+        Player.Instance.animator.SetTrigger("Fire");
         // ¿ÞÂÊ Åº
         Bullet bulletLeft = Instantiate(weaponData.bulletPrefab, transform.position, Quaternion.identity);
         bulletLeft.Shoot(leftDir.normalized, this);

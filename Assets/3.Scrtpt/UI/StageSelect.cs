@@ -19,7 +19,7 @@ public class StageSelect : MonoBehaviour
             if (dungeons[i].key == key)
             {
                 Debug.Log("OnCliced if (dungeons[i].key == key)");
-                Player.instance.transform.position = dungeons[i].playerSpawnPoint.transform.position;
+                Player.Instance.transform.position = dungeons[i].playerSpawnPoint.transform.position;
                 dungeons[i].DungeonStart();
                 gameObject.SetActive(false);
             }

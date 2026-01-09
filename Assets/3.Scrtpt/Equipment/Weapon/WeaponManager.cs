@@ -1,11 +1,6 @@
 using UnityEngine;
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : MonoSingleton<WeaponManager>
 {
-    public static WeaponManager Instance;
-    private void Awake()
-    {
-        Instance = this;
-    }
     public WeaponTypeElementData[] weaponTypeElementDatas;
     public RandomWeaponSubElementData[] randomWeaponSubElementDatas;
     public WeaponTypeElementData GetWeaponTypeElementData(WeaponType weaponType)

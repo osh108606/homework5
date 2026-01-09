@@ -47,8 +47,8 @@ public class Dungeon : MonoBehaviour
     {
         curZone.ZoneStart();
         int cur = curZone.order;
-        Player.instance.Rebone();
-        Player.instance.transform.position = zones[cur].playerRespawnPoint.position;
+        Player.Instance.Rebone();
+        Player.Instance.transform.position = zones[cur].playerRespawnPoint.position;
     }
 
     public void ZoneEnd()

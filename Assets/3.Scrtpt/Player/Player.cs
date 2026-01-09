@@ -3,13 +3,12 @@ using UnityEngine.Animations;
 
 
 
-public class Player : MonoBehaviour
+public class Player : MonoSingleton<Player>
 {
     // 기준 우선순위 1.자료형 2.보호타입
     // 자료형 순서 1.클래스 2.변수
     // 보호타입 순서 1.public 2.private 3.none
     public PlayerAbility playerAbility;
-    public static Player instance;
     public Animator animator;
     public Rigidbody2D rb2d;
     public Weapon currentWeapon; // 현재 "들고있는" 무기
@@ -34,10 +33,10 @@ public class Player : MonoBehaviour
     private float currentX = 0f;
     private float currentY = 0f;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         playerAbility = new PlayerAbility();
-        instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         weaponSlots = GetComponentsInChildren<WeaponSlot>();
         animator = GetComponentInChildren<Animator>();

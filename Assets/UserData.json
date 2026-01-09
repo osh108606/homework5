@@ -3,7 +3,7 @@
         {
             "key": "M4",
             "weaponEuiped": true,
-            "weaponDraw": false,
+            "weaponDraw": true,
             "ammoCount": 25,
             "weaponEquipSlot": 0,
             "weaponData": {
@@ -14,7 +14,7 @@
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 0,
-                    "value": 2.8409736156463625
+                    "value": 2.786053419113159
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -38,7 +38,7 @@
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 1,
-                    "value": 1.456430196762085
+                    "value": 1.0240139961242676
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -62,7 +62,7 @@
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 6,
-                    "value": 1.3937568664550782
+                    "value": 1.2653346061706544
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -86,7 +86,7 @@
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 7,
-                    "value": 1.2583897113800049
+                    "value": 1.4602806568145753
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,

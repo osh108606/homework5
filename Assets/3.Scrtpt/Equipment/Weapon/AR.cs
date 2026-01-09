@@ -6,7 +6,7 @@ public class AR : Weapon
     {
         base.Update();
         
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && Player.instance.currentWeapon == this)
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && Player.Instance.currentWeapon == this)
         {
             Shoot();
             nextFireTime = Time.time + fireInterval;

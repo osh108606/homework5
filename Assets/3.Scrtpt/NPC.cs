@@ -74,7 +74,7 @@ public class NPC : MonoBehaviour
     }
 
     //NPC가 데미지를 입을때 발동
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage, bool crt)
     {
         if (ignoreDamage == false)
         {

@@ -30,7 +30,8 @@ public class BombBullet : Bullet
             {
                 if(cols[i].CompareTag("Enemy"))
                 {
-                    cols[i].GetComponent<Enemy>().TakeDamage(sDamge);
+                    damagInfo.Calculate();
+                    //cols[i].GetComponent<Enemy>().TakeDamage(sDamge);
                 }
             }
             

@@ -8,8 +8,8 @@ public class RangedEnemy : Enemy
     public override void Attack()
     {
         base.Attack();
-        //Vector2 directtion = Player.instance.Bodytr.transform.position - attackPointTr.transform.position;
-        Vector2 directtion = Player.instance.upperTransform.transform.position - attackPointTr.transform.position;
+        //Vector2 directtion = Player.Instance.Bodytr.transform.position - attackPointTr.transform.position;
+        Vector2 directtion = Player.Instance.upperTransform.transform.position - attackPointTr.transform.position;
         EnemyBullet bullet = Instantiate(bulletPrefab);
         bullet.enemyInfo = this.enemyInfo;
         bullet.gameObject.transform.position = attackPointTr.transform.position;

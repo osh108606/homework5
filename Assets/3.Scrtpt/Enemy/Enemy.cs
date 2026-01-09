@@ -66,7 +66,7 @@ public class Enemy : NPC
 
     public virtual void IdleState()
     {
-        float distance = Vector2.Distance(transform.position, Player.instance.transform.position);
+        float distance = Vector2.Distance(transform.position, Player.Instance.transform.position);
         if (distance >= enemyInfo.attackRange && distance < enemyInfo.sightRange)// 조건 좀더 생각해볼것
         {
             SetState(EnemyState.Approching);
@@ -82,7 +82,7 @@ public class Enemy : NPC
     public virtual void ApprochingState()
     {
         // 벡터 (방향 * 크기)= 목적지 - 출발지
-        Vector2 dir = (Player.instance.transform.position - transform.position).normalized;
+        Vector2 dir = (Player.Instance.transform.position - transform.position).normalized;
         if (dir.x > 0)
         {
             //오른쪽
@@ -93,7 +93,7 @@ public class Enemy : NPC
             //왼쪽
             rootTr.localScale = new Vector2(1, 1);
         }
-        float distance = Vector2.Distance(transform.position, Player.instance.transform.position);
+        float distance = Vector2.Distance(transform.position, Player.Instance.transform.position);
         if (distance > enemyInfo.sightRange)
         {
             SetState(EnemyState.Approching);
@@ -137,8 +137,11 @@ public class Enemy : NPC
             transform.position = new Vector2(transform.position.x, y);
         }
     }
-    public override void TakeDamage(float damage)
+    public override void TakeDamage(float damage ,bool crt)
     {
+        DamageText dText = DamageText.Instantiate();
+        dText.Show(transform.position + new Vector3(0, 2), damage.ToString("D0"));
+
         healthPoint -= damage;
         if (healthPoint <= 0)
         {

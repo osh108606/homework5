@@ -17,16 +17,16 @@ public class MainUI : MonoBehaviour
     
     void Update()
     {
-        if (Player.instance.currentWeapon != null &&  Player.instance.currentWeapon.weaponData != null && Player.instance.currentWeapon.weaponData.weaponType != WeaponType.HG)
+        if (Player.Instance.currentWeapon != null &&  Player.Instance.currentWeapon.weaponData != null && Player.Instance.currentWeapon.weaponData.weaponType != WeaponType.HG)
         {
-            ammoStat.text = $"{Player.instance.currentWeapon.userWeapon.ammoCount}\n{Player.instance.currentWeapon.userAmmo.count}";
+            ammoStat.text = $"{Player.Instance.currentWeapon.userWeapon.ammoCount}\n{Player.Instance.currentWeapon.userAmmo.count}";
         }
-        else if(Player.instance.currentWeapon != null && Player.instance.currentWeapon.weaponData != null)
+        else if(Player.Instance.currentWeapon != null && Player.Instance.currentWeapon.weaponData != null)
         {
-            ammoStat.text = $"{Player.instance.currentWeapon.userWeapon.ammoCount}\n{"endless"}";
+            ammoStat.text = $"{Player.Instance.currentWeapon.userWeapon.ammoCount}\n{"endless"}";
         }
 
-        if (Player.instance.currentWeapon.reLoading)
+        if (Player.Instance.currentWeapon.reLoading)
         {
             ReloadFill();
         }
@@ -37,7 +37,7 @@ public class MainUI : MonoBehaviour
     }
     public void ReloadFill()
     {
-        reloadImage.fillAmount = Player.instance.currentWeapon.reloadTimer / Player.instance.currentWeapon.maxReloadTime;
+        reloadImage.fillAmount = Player.Instance.currentWeapon.reloadTimer / Player.Instance.currentWeapon.maxReloadTime;
     }
 
 }

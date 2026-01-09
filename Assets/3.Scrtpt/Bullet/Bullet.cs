@@ -8,10 +8,13 @@ public class Bullet : MonoBehaviour
     public Weapon weapon;
     public Vector2 direction;
     float t = 0f;
+    protected DamagInfo damagInfo = new DamagInfo();
+
     public void Shoot (Vector2 dir, Weapon weapon)
     {
         direction = dir;
         this.weapon = weapon;
+        damagInfo.Init();
     }
 
     // Update is called once per frame
@@ -28,8 +31,35 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<Enemy>().TakeDamage(weapon.Damage);
+            damagInfo.Calculate();
+            collision.GetComponent<Enemy>().TakeDamage(damagInfo.damage, damagInfo.isCrt);
             Destroy(this.gameObject);
+        }
+    }
+}
+
+[System.Serializable]
+public class DamagInfo
+{
+    public float damage;
+    public float crtChance;
+    public float crtDamage;
+    public bool isCrt;
+
+    public void Init()
+    {
+        crtChance = Player.Instance.playerAbility.CrtChance;
+        crtDamage = Player.Instance.playerAbility.crtDamage;
+    }
+
+
+    public void Calculate()
+    {
+        isCrt = Random.Range(0, 100) == Player.Instance.playerAbility.CrtChance;
+        damage = Player.Instance.playerAbility.Damage;
+        if (isCrt)
+        {
+            damage *= Player.Instance.playerAbility.crtDamage;
         }
     }
 }

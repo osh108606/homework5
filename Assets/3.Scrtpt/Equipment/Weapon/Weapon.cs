@@ -69,9 +69,9 @@ public class Weapon : MonoBehaviour
     public virtual void Update()
     {
         nextFireTime += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0) && nextFireTime >= fireInterval && Player.instance.currentWeapon == this)
+        if (Input.GetMouseButtonDown(0) && nextFireTime >= fireInterval && Player.Instance.currentWeapon == this)
         {
-            Player.instance.animator.SetLayerWeight(idx, 1);
+            Player.Instance.animator.SetLayerWeight(idx, 1);
             Shoot();
             nextFireTime = 0;
         }
@@ -110,7 +110,7 @@ public class Weapon : MonoBehaviour
             if (reloadTimer <= 0)
                 break;
 
-            if(Player.instance.currentWeapon != this)
+            if(Player.Instance.currentWeapon != this)
             {
                 reLoading = false;
                 yield break;
@@ -170,9 +170,9 @@ public class Weapon : MonoBehaviour
         Vector2 directtion = worldPoint - (Vector2)transform.position;
 
 
-        //Player.instance.animator.SetTrigger("Fire");
-        int idx = Player.instance.animator.GetLayerIndex("UpperAim");
-        Player.instance.animator.Play("UP_fire light front",idx,0);
+        //Player.Instance.animator.SetTrigger("Fire");
+        int idx = Player.Instance.animator.GetLayerIndex("UpperAim");
+        Player.Instance.animator.Play("UP_fire light front",idx,0);
         Bullet bullet = Instantiate(weaponData.bulletPrefab, transform.position, Quaternion.identity);
         bullet.Shoot(directtion.normalized, this);
         UserManager.instance.Save();
