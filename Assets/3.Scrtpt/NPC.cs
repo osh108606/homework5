@@ -5,10 +5,11 @@ using UnityEngine.UI;
 public class NPC : MonoBehaviour
 {
     public float maxHealthPoint; //최대 체력
-    public float healthPoint; // 현재 체력
-    public float moveSpeed; // 이동 속도
+    public float maxAmmorPoint; //최대 방어도
+    public float healthPoint; //현재 체력
+    public float ammorPoint; //현재 방어도
+    public float moveSpeed; //이동 속도
 
-    
     public Image HpBar;
     public bool ignoreDamage;
     public bool arrived = false;
@@ -23,6 +24,7 @@ public class NPC : MonoBehaviour
     public virtual void Start()
     {
         healthPoint = maxHealthPoint;
+        ammorPoint = maxAmmorPoint;
     }
    
     public virtual void Update()
@@ -78,13 +80,31 @@ public class NPC : MonoBehaviour
     {
         if (ignoreDamage == false)
         {
+            DamageText dText;
+            if (ammorPoint > 0)
+            {
+                ammorPoint -= damage;
+                damage = 0;
+                dText = DamageText.Instantiate(true,crt);
+                dText.Show(transform.position + new Vector3(0, 2), damage.ToString("D0"));
+
+            }
+            else if(damage > ammorPoint)
+            {
+                damage -= ammorPoint;
+                ammorPoint = 0;
+                dText = DamageText.Instantiate(true, crt);
+                dText.Show(transform.position + new Vector3(0, 2), damage.ToString("D0"));
+            }
             healthPoint -= damage;
+            dText = DamageText.Instantiate(false, crt);
+            dText.Show(transform.position + new Vector3(0, 2), damage.ToString("D0"));
+
             if (healthPoint <= 0)
             {
                 Death();
                 Destroy(this.gameObject);
             }
-
         }
     }
     //NPC가 죽을때 발동

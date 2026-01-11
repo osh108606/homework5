@@ -5,7 +5,8 @@ public class EnemyInfo : ScriptableObject
 {
     public EnemyType enemyType; // 적 타입
     public Enemyfaction enemyFaction; // 적 진형
-    public float Maxhp; // 최대체력
+    public float MaxHp; // 최대체력
+    public float MaxAp;
     public float moveSpeed; // 이동속도
     public float attackDamage; // 공격력
     public float attackRange; // 공격 범위

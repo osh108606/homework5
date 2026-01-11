@@ -62,7 +62,7 @@ public class AmmorInventory : SubInventory
         }
 
         UserManager.instance.ChangeWeapon(ammorData.key);
-        Player.Instance.ChangeWeapon(ammorData.key);
+        //Player.Instance.ChangeWeapon(ammorData.key);
 
 
 

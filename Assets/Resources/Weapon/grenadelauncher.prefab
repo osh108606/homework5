@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4597912806517799530}
-  - component: {fileID: 7788248394210845902}
+  - component: {fileID: -560343457279351191}
   m_Layer: 3
   m_Name: grenadelauncher
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 159973302830831628}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7788248394210845902
+--- !u!114 &-560343457279351191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,15 +42,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5679836513645765694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df8c67f53ba12174a858e3cf51db7eac, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a0b4250198531643b5b21a7810f1bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   key: grenadelauncher
   idx: 3
   pellets: 0
+  maxAmmo: 0
   rpm: 600
   fireInterval: 0
-  lastFireTime: 0
+  nextFireTime: 0
+  reloadTimer: 0
+  maxReloadTime: 3
   reLoading: 0
   auto: 0
   SpreadShot: 0
@@ -59,10 +62,37 @@ MonoBehaviour:
     weapontype: 0
     key: 
     count: 0
+  userWeapon:
+    key: 
+    weaponEuiped: 0
+    weaponDraw: 0
+    ammoCount: 0
+    weaponEquipSlot: 0
+    weaponData: {fileID: 0}
+    weaponAbility:
+      grade: 0
+      itemGrade: 0
+      weaponTypeDamageData:
+        weaponType: 0
+        value: 0
+      weaponFixSubElementData:
+        weaponSubElement: 0
+        value: 0
+      weaponRandomSubElementDatas: []
+      weaponTelent: 
+  weaponAbility:
+    grade: 0
+    itemGrade: 0
+    weaponTypeDamageData:
+      weaponType: 0
+      value: 0
+    weaponFixSubElementData:
+      weaponSubElement: 0
+      value: 0
+    weaponRandomSubElementDatas: []
+    weaponTelent: 
   weaponType: 7
-  weaponSoltType: 2
-  reloadTimer: 0
-  maxReloadTime: 3
+  weaponSlotType: 2
 --- !u!1 &7121604367188884689
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,13 +25,13 @@ public class UserManager : MonoBehaviour
             //기본아이템 지급
             //*무기*
             #region Weapon
-            AddDebugWeapon("M4", 0, WeaponEquipSlot.main1);//1번무기
+            AddDebugWeapon("M4", 0, WeaponEquipSlot.main1,true);//1번무기
             userData.userWeapons[0].ammoCount = userData.userWeapons[0].weaponData.maxAmmo;
-            AddDebugWeapon("MP5", 0, WeaponEquipSlot.main2);//2번무기
+            AddDebugWeapon("MP5", 0, WeaponEquipSlot.main2,false);//2번무기
             userData.userWeapons[1].ammoCount = userData.userWeapons[1].weaponData.maxAmmo;
-            AddDebugWeapon("Glock", 0, WeaponEquipSlot.sub);//3번무기
+            AddDebugWeapon("Glock", 0, WeaponEquipSlot.sub, false);//3번무기
             userData.userWeapons[2].ammoCount = userData.userWeapons[2].weaponData.maxAmmo;
-            AddDebugWeapon("grenadelauncher", 0, WeaponEquipSlot.special);//4번무기
+            AddDebugWeapon("grenadelauncher", 0, WeaponEquipSlot.special, false);//4번무기
             userData.userWeapons[3].ammoCount = userData.userWeapons[3].weaponData.maxAmmo;
             #endregion
             //*장비*
@@ -120,13 +120,16 @@ public class UserManager : MonoBehaviour
             SaveManager.SaveData("UserData.json", userData);
         }
     }
-    public void AddDebugWeapon(string key, int grade, WeaponEquipSlot weaponEquipSlot)//디버그용
+    public void AddDebugWeapon(string key, int grade, WeaponEquipSlot weaponEquipSlot , bool draw)//디버그용
     {
         UserWeapon userWeapon = new UserWeapon();
         userWeapon.key = key;
         userWeapon.weaponEuiped = true;
-        if (userWeapon.weaponEquipSlot == WeaponEquipSlot.main1)
+        if (draw == true)
             userWeapon.weaponDraw = true;
+        else
+            userWeapon.weaponDraw = false;
+
         userWeapon.weaponEquipSlot = weaponEquipSlot;
         userWeapon.weaponData = Resources.Load<WeaponData>("WeaponData/" + key);
 

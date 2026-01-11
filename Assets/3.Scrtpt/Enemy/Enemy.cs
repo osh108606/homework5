@@ -17,7 +17,8 @@ public class Enemy : NPC
         base.Awake();
         rootTr = transform.Find("Root");
         enemyInfo = Resources.Load<EnemyInfo>($"Enemy/{enemyType}");
-        maxHealthPoint = enemyInfo.Maxhp;
+        maxHealthPoint = enemyInfo.MaxHp;
+        maxAmmorPoint = enemyInfo.MaxAp;
         attackDelay = enemyInfo.attackDelay;
         moveSpeed = enemyInfo.moveSpeed;
     }
@@ -30,9 +31,6 @@ public class Enemy : NPC
         //EnemyController.instance.enemiesCount++;
         //EnemyController.instance.cheak++;
     }
-
-    
-
     
     public override void Update()
     {
@@ -139,10 +137,8 @@ public class Enemy : NPC
     }
     public override void TakeDamage(float damage ,bool crt)
     {
-        DamageText dText = DamageText.Instantiate();
-        dText.Show(transform.position + new Vector3(0, 2), damage.ToString("D0"));
-
-        healthPoint -= damage;
+        base.TakeDamage(damage ,crt);
+        
         if (healthPoint <= 0)
         {
             //EnemyController.instance.enemiesCount--;

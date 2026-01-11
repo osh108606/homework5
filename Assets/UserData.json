@@ -4,17 +4,17 @@
             "key": "M4",
             "weaponEuiped": true,
             "weaponDraw": true,
-            "ammoCount": 25,
+            "ammoCount": 2,
             "weaponEquipSlot": 0,
             "weaponData": {
-                "instanceID": 37134
+                "instanceID": 37142
             },
             "weaponAbility": {
                 "grade": 0,
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 0,
-                    "value": 2.786053419113159
+                    "value": 2.6505908966064455
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -27,18 +27,18 @@
         {
             "key": "MP5",
             "weaponEuiped": true,
-            "weaponDraw": true,
+            "weaponDraw": false,
             "ammoCount": 30,
             "weaponEquipSlot": 1,
             "weaponData": {
-                "instanceID": 37180
+                "instanceID": 37188
             },
             "weaponAbility": {
                 "grade": 0,
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 1,
-                    "value": 1.0240139961242676
+                    "value": 2.7500061988830568
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -51,18 +51,18 @@
         {
             "key": "Glock",
             "weaponEuiped": true,
-            "weaponDraw": true,
+            "weaponDraw": false,
             "ammoCount": 15,
             "weaponEquipSlot": 2,
             "weaponData": {
-                "instanceID": 37136
+                "instanceID": 37144
             },
             "weaponAbility": {
                 "grade": 0,
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 6,
-                    "value": 1.2653346061706544
+                    "value": 2.788483142852783
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -75,18 +75,18 @@
         {
             "key": "grenadelauncher",
             "weaponEuiped": true,
-            "weaponDraw": true,
+            "weaponDraw": false,
             "ammoCount": 6,
             "weaponEquipSlot": 3,
             "weaponData": {
-                "instanceID": 37224
+                "instanceID": 37232
             },
             "weaponAbility": {
                 "grade": 0,
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 7,
-                    "value": 1.4602806568145753
+                    "value": 2.8611626625061037
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -106,7 +106,7 @@
         {
             "weapontype": 0,
             "key": "",
-            "count": 810
+            "count": 760
         },
         {
             "weapontype": 1,

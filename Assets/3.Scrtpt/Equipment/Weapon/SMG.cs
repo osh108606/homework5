@@ -6,11 +6,10 @@ public class SMG : Weapon
     public override void Update()
     {
         base.Update();
-
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && Player.Instance.currentWeapon == this)
+        if (Input.GetMouseButton(0) && nextFireTime >= fireInterval && Player.Instance.currentWeapon == this)
         {
             Shoot();
-            nextFireTime = Time.time + fireInterval;
+            nextFireTime = 0;
         }
     }
 }

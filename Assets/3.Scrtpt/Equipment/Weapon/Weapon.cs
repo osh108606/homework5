@@ -157,7 +157,7 @@ public class Weapon : MonoBehaviour
 
         // 마우스 방향으로 조준 회전
         Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 aimDir = (mouseWorld - (Vector2)transform.position).normalized;
+        Vector2 aimDir = (mouseWorld - (Vector2)Player.Instance.upperTransform.transform.position).normalized;
 
         float aimAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(aimAngle - 90, Vector3.forward);
@@ -167,13 +167,13 @@ public class Weapon : MonoBehaviour
         Debug.Log("화면클릭");
         Vector2 screenPoint = Input.mousePosition;
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
-        Vector2 directtion = worldPoint - (Vector2)transform.position;
+        Vector2 directtion = worldPoint - (Vector2)Player.Instance.upperTransform.transform.position;
 
 
         //Player.Instance.animator.SetTrigger("Fire");
         int idx = Player.Instance.animator.GetLayerIndex("UpperAim");
         Player.Instance.animator.Play("UP_fire light front",idx,0);
-        Bullet bullet = Instantiate(weaponData.bulletPrefab, transform.position, Quaternion.identity);
+        Bullet bullet = Instantiate(weaponData.bulletPrefab, Player.Instance.upperTransform.transform.position, Quaternion.identity);
         bullet.Shoot(directtion.normalized, this);
         UserManager.instance.Save();
         return true;

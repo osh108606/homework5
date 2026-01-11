@@ -24,8 +24,7 @@ public class Player : MonoSingleton<Player>
     float healthPoint; // 현재 체력
     float maxAmmorPoint; //최대 방어도
     float ammorPoint; //현제 방어도
-    float moveSpeed;
-    float runSpeed;
+
     public bool runTrigger;
     public bool aimTrigger;
     public bool attackTrigger;
@@ -45,21 +44,21 @@ public class Player : MonoSingleton<Player>
         maxAmmorPoint = playerAbility.initArmorPoint;
         healthPoint = maxHealthPoint;
         ammorPoint = maxAmmorPoint;
-        moveSpeed = playerAbility.initMoveSpeed;
-        runSpeed = playerAbility.initRunSpeed;
         runTrigger = false;
         aimTrigger = false;
         attackTrigger = false;
+        playerAbility.Init();
     }
 
     private void Start()
     {
         UpdateWeaponSlot();
         UserWeapon userWeapon = UserManager.instance.GetDrawUserWeapon();
-        ChangeDrawWeapon(userWeapon.key);   
+        ChangeWeapon(userWeapon.key, userWeapon.weaponDraw);   
     }
-
     
+
+
 
     private void Update()
     {
@@ -225,33 +224,27 @@ public class Player : MonoSingleton<Player>
         currentWeapon = weaponSlots[Idx].weapon;
         UserManager.instance.ChangeDrawWeapon(currentWeapon.key);
     }
-    public void ChangeDrawWeapon(string key)
-    {
-        for (int i = 0; i < weaponSlots.Length; i++)
-        {
-            if (weaponSlots[i].weapon.key == key)
-            {
-                currentWeapon = weaponSlots[i].weapon;
-                slotIdx = i;
-                break;
-            }
-        }
-        UserManager.instance.ChangeDrawWeapon(currentWeapon.key);
-    }
     //인벤토리에서 무기장착변경
-    public void ChangeWeapon(string key)
-    {
-        for (int i = 0; i < weaponSlots.Length; i++)
+    public void ChangeWeapon(string key , bool draw)
+    {  
+        if(draw == true) 
         {
-            if (key == weaponSlots  [i].weapon.key)
+            for (int i = 0; i < weaponSlots.Length; i++)
             {
-                currentWeapon = weaponSlots[i].weapon;
-                playerAbility.SetWeapon(currentWeapon);
-                break;
+                if (weaponSlots[i].weapon.key == key)
+                {
+                    currentWeapon = weaponSlots[i].weapon;
+                    playerAbility.SetWeapon(currentWeapon);
+                    slotIdx = i;
+                    break;
+                }
             }
+            UserManager.instance.ChangeDrawWeapon(currentWeapon.key);
         }
-        
-        UserManager.instance.ChangeWeapon(currentWeapon.key);
+        else
+        { 
+            UserManager.instance.ChangeWeapon(currentWeapon.key);
+        }
     }
 
     public void ChangeEquipment(string key)
@@ -314,13 +307,13 @@ public class Player : MonoSingleton<Player>
         //rb2d.linearVelocity = dir.normalized * moveSpeed
         if (runTrigger == false || attackTrigger == true || aimTrigger == true)//걷기
         {
-            rb2d.linearVelocity = dir.normalized * moveSpeed * backWalk;
+            rb2d.linearVelocity = dir.normalized * playerAbility.initMoveSpeed * backWalk;
             //animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
         }
         else if (runTrigger == true && attackTrigger != true && aimTrigger != true)//달릴때
         {
             aimTrigger = false;
-            rb2d.linearVelocity = dir.normalized * moveSpeed * runSpeed;
+            rb2d.linearVelocity = dir.normalized * playerAbility.initMoveSpeed * playerAbility.initRunSpeed;
             //animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
         }
         //또다른 이동 구현방식
@@ -360,22 +353,19 @@ public class Player : MonoSingleton<Player>
     }
     public void TakeDamage(float damage)// 피해를 입는 기능
     {
-        if (ammorPoint <= 0)
+        if (ammorPoint >= 0)
         {
-            healthPoint -= damage;
-            Debug.Log(healthPoint);
-        }
-        else if (ammorPoint >= 0)
-        { 
             ammorPoint -= damage;
+            damage = 0;
             //Debug.Log(ammorPoint);
         }
-        else if (ammorPoint >= 0 && ammorPoint < damage)
-        { 
-            healthPoint -= (damage - ammorPoint);
-            ammorPoint = 0;
-            Debug.Log(healthPoint);
+        else if (damage > ammorPoint)
+        {
+            damage -= ammorPoint;
+            ammorPoint = 0;           
         }
+        healthPoint -= damage;
+        Debug.Log(healthPoint);
 
         if (healthPoint <= 0)
         {
