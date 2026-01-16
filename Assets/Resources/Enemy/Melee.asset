@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Melee
   m_EditorClassIdentifier: 
   enemyType: 0
-  enemyfaction: 0
-  Maxhp: 5
+  enemyFaction: 0
+  MaxHp: 50
+  MaxAp: 50
   moveSpeed: 5
   attackDamage: 1
   attackRange: 2

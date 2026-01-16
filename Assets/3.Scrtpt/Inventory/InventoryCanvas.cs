@@ -17,12 +17,12 @@ public class InventoryCanvas : MonoBehaviour
     }
     public MainInventory mainInventory;
     public WeaponInventory weaponInventory;
-    public AmmorInventory ammorInventory;
+    public ArmorInventory armorInventory;
     public void Awake()
     {
         mainInventory = GetComponentInChildren<MainInventory>(true);
         weaponInventory = GetComponentInChildren<WeaponInventory>(true);
-        ammorInventory = GetComponentInChildren<AmmorInventory>(true);
+        armorInventory = GetComponentInChildren<ArmorInventory>(true);
     }
 
     public void Update()
@@ -37,9 +37,9 @@ public class InventoryCanvas : MonoBehaviour
                 weaponInventory.Close();
                 mainInventory.Open();
             }
-            if (ammorInventory.gameObject.activeSelf == true)
+            if (armorInventory.gameObject.activeSelf == true)
             {
-                ammorInventory.Close();
+                armorInventory.Close();
                 mainInventory.Open();
             }
         }
@@ -54,7 +54,7 @@ public class InventoryCanvas : MonoBehaviour
         }
         else
         {
-            ammorInventory.Close();
+            armorInventory.Close();
             weaponInventory.Close();
             mainInventory.Open();
         }
@@ -65,9 +65,9 @@ public class InventoryCanvas : MonoBehaviour
         weaponInventory.Open(weaponEquipSlot, weaponSlotType); 
     }
 
-    public void OpenAmmorInventory(AmmorEquipSlot ammorEquipSlot)
+    public void OpenArmorInventory(ArmorEquipSlot armorEquipSlot)
     {
         mainInventory.Close();
-        ammorInventory.Open(ammorEquipSlot);
+        armorInventory.Open(armorEquipSlot);
     }
 }

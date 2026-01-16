@@ -1,16 +1,8 @@
-using UnityEngine;
+using DG.Tweening;
 using TMPro;
+using UnityEngine;
 public class DamageText : MonoBehaviour
 {
-    float t = 0f;
-    public void Update()
-    {
-        t += Time.deltaTime;
-        if (t > 1f)
-        {
-            Destroy(this.gameObject);
-        }
-    }
     public static DamageText Instantiate(bool APorHP,bool crt)
     {
         DamageText damageTextPrefab;
@@ -23,7 +15,7 @@ public class DamageText : MonoBehaviour
         }
         else if (APorHP == true && crt == false)
         {
-            damageTextPrefab = Resources.Load<DamageText>("UI/AmmorDamageText");
+            damageTextPrefab = Resources.Load<DamageText>("UI/ArmorDamageText");
             damageText = Instantiate(damageTextPrefab);
             return damageText;
         }
@@ -44,6 +36,13 @@ public class DamageText : MonoBehaviour
         transform.position = pos;
         damageText.text = damage;
 
-        Destroy(gameObject,1);
+        Destroy(gameObject,3);
+
+        transform.localScale = Vector3.zero;
+        transform.DOScale(1.1f, 0.3f).WaitForCompletion();
+        new WaitForSeconds(0.4f);
+        transform.DOMoveY(pos.y + 1, 0.7f).WaitForCompletion();
+        transform.DOScale(0f, 0.3f).WaitForCompletion();
+
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class NPC : MonoBehaviour
 {
     public float maxHealthPoint; //최대 체력
-    public float maxAmmorPoint; //최대 방어도
+    public float maxArmorPoint; //최대 방어도
     public float healthPoint; //현재 체력
-    public float ammorPoint; //현재 방어도
+    public float armorPoint; //현재 방어도
     public float moveSpeed; //이동 속도
 
     public Image HpBar;
@@ -24,7 +24,7 @@ public class NPC : MonoBehaviour
     public virtual void Start()
     {
         healthPoint = maxHealthPoint;
-        ammorPoint = maxAmmorPoint;
+        armorPoint = maxArmorPoint;
     }
    
     public virtual void Update()
@@ -81,24 +81,20 @@ public class NPC : MonoBehaviour
         if (ignoreDamage == false)
         {
             DamageText dText;
-            if (ammorPoint > 0)
+            if (armorPoint > 0)
             {
-                ammorPoint -= damage;
-                damage = 0;
+                armorPoint -= damage;
+                damage = -armorPoint;
                 dText = DamageText.Instantiate(true,crt);
-                dText.Show(transform.position + new Vector3(0, 2), damage.ToString("D0"));
+                dText.Show(transform.position + new Vector3(0, 2) + (Vector3)Random.insideUnitCircle, ((int)damage).ToString("D0"));
+            }
+            else
+            {
 
             }
-            else if(damage > ammorPoint)
-            {
-                damage -= ammorPoint;
-                ammorPoint = 0;
-                dText = DamageText.Instantiate(true, crt);
-                dText.Show(transform.position + new Vector3(0, 2), damage.ToString("D0"));
-            }
-            healthPoint -= damage;
+                healthPoint -= damage;
             dText = DamageText.Instantiate(false, crt);
-            dText.Show(transform.position + new Vector3(0, 2), damage.ToString("D0"));
+            dText.Show(transform.position + new Vector3(0, 2), ((int)damage).ToString("D0"));
 
             if (healthPoint <= 0)
             {

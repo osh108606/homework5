@@ -18,7 +18,9 @@ public class Enemy : NPC
         rootTr = transform.Find("Root");
         enemyInfo = Resources.Load<EnemyInfo>($"Enemy/{enemyType}");
         maxHealthPoint = enemyInfo.MaxHp;
-        maxAmmorPoint = enemyInfo.MaxAp;
+        maxArmorPoint = enemyInfo.MaxAp;
+        healthPoint = maxHealthPoint;
+        armorPoint = maxArmorPoint;                  
         attackDelay = enemyInfo.attackDelay;
         moveSpeed = enemyInfo.moveSpeed;
     }
@@ -106,7 +108,7 @@ public class Enemy : NPC
     }
     public virtual void AttackState()
     {
-        Debug.Log("Enemy Attack");
+        //Debug.Log("Enemy Attack");
 
         rg2d.linearVelocity = Vector2.zero;
         if (enemyInfo.attackSpeed <= attackDelay) //공격할 수 있음!
@@ -138,7 +140,7 @@ public class Enemy : NPC
     public override void TakeDamage(float damage ,bool crt)
     {
         base.TakeDamage(damage ,crt);
-        
+        Debug.Log("attack");
         if (healthPoint <= 0)
         {
             //EnemyController.instance.enemiesCount--;

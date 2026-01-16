@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public enum WeaponType
 {
     AR,
@@ -68,6 +68,9 @@ public class Weapon : MonoBehaviour
     
     public virtual void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         nextFireTime += Time.deltaTime;
         if (Input.GetMouseButtonDown(0) && nextFireTime >= fireInterval && Player.Instance.currentWeapon == this)
         {
@@ -164,17 +167,17 @@ public class Weapon : MonoBehaviour
 
         transform.rotation = q;
 
-        Debug.Log("화면클릭");
+        //Debug.Log("화면클릭");
         Vector2 screenPoint = Input.mousePosition;
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
-        Vector2 directtion = worldPoint - (Vector2)Player.Instance.upperTransform.transform.position;
+        Vector2 direction = worldPoint - (Vector2)Player.Instance.upperTransform.transform.position;
 
 
         //Player.Instance.animator.SetTrigger("Fire");
         int idx = Player.Instance.animator.GetLayerIndex("UpperAim");
         Player.Instance.animator.Play("UP_fire light front",idx,0);
         Bullet bullet = Instantiate(weaponData.bulletPrefab, Player.Instance.upperTransform.transform.position, Quaternion.identity);
-        bullet.Shoot(directtion.normalized, this);
+        bullet.Shoot(direction.normalized, this);
         UserManager.instance.Save();
         return true;
     }

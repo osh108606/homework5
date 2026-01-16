@@ -47,7 +47,7 @@ public enum WeaponTelent
     Unfixed,//지정안됨 랜덤일경우
 }
 
-public enum AmmorBrand
+public enum ArmorBrand
 {
     Brand1,
     Brand2,
@@ -60,7 +60,7 @@ public enum AmmorBrand
     Count
 }
 
-public enum AmmorMainElement
+public enum ArmorMainElement
 {
     
     Attack,
@@ -69,7 +69,7 @@ public enum AmmorMainElement
     Count,
     Null
 }
-public enum AmmorSubElement
+public enum ArmorSubElement
 {
     CriticalChance, 
     CriticalDamage, 
@@ -79,7 +79,7 @@ public enum AmmorSubElement
     Null,
     Unfixed,//지정안됨 랜덤일경우
 }
-public enum AmmorTelent
+public enum ArmorTelent
 {
     Null,
     Telent1,

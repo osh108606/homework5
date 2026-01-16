@@ -31,6 +31,6 @@ public class DropItem : MonoBehaviour
 public enum ItemType
 {
     Weapon,
-    Ammor,
+    Armor,
     Consume
 }

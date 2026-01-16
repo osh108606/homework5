@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8150334464918317080}
   - component: {fileID: 2660954395473624154}
   - component: {fileID: 1079902629703547095}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,8 +78,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1188280431
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1079902629703547095
@@ -186,8 +186,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8109363647908179976}
   - component: {fileID: 3378006965564167465}
-  m_Layer: 0
-  m_Name: AmmorDamageText
+  m_Layer: 5
+  m_Name: ArmorDamageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

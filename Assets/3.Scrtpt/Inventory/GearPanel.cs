@@ -15,7 +15,7 @@ public class GearPanel : MonoBehaviour
     {
         
     }
-    public virtual void SetData(UserAmmor userAmmor)
+    public virtual void SetData(UserArmor userArmor)
     {
 
     }

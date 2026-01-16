@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Animations;
 
 
 
@@ -13,8 +12,8 @@ public class Player : MonoSingleton<Player>
     public Rigidbody2D rb2d;
     public Weapon currentWeapon; // 현재 "들고있는" 무기
     public WeaponSlot[] weaponSlots = new WeaponSlot[4];// 무기슬롯
-    public AmmorSlot[] ammorSlots = new AmmorSlot[6];
-    public Ammor[] ammors;
+    public ArmorSlot[] armorSlots = new ArmorSlot[6];
+    public Armor[] armors;
     public Transform rootTr;
     public Transform upperTransform;
     Camera mainCamera;
@@ -22,8 +21,8 @@ public class Player : MonoSingleton<Player>
     public int slotIdx; //무기슬롯 인덱스
     float maxHealthPoint; //최대 체력
     float healthPoint; // 현재 체력
-    float maxAmmorPoint; //최대 방어도
-    float ammorPoint; //현제 방어도
+    float maxArmorPoint; //최대 방어도
+    float armorPoint; //현제 방어도
 
     public bool runTrigger;
     public bool aimTrigger;
@@ -41,9 +40,9 @@ public class Player : MonoSingleton<Player>
         animator = GetComponentInChildren<Animator>();
         mainCamera = Camera.main;
         maxHealthPoint = playerAbility.initHealthPoint;
-        maxAmmorPoint = playerAbility.initArmorPoint;
+        maxArmorPoint = playerAbility.initArmorPoint;
         healthPoint = maxHealthPoint;
-        ammorPoint = maxAmmorPoint;
+        armorPoint = maxArmorPoint;
         runTrigger = false;
         aimTrigger = false;
         attackTrigger = false;
@@ -204,10 +203,10 @@ public class Player : MonoSingleton<Player>
             UserManager.instance.AddWeapon(weaponItem.key, weaponItem.grade, weaponItem);
             SaveManager.SaveData("UserData.json", UserManager.instance.userData);
         }
-        else if(item.itemType == ItemType.Ammor)
+        else if(item.itemType == ItemType.Armor)
         {
-            DropAmmorItem ammorItem = (DropAmmorItem)item;
-            UserManager.instance.AddAmmor(ammorItem.key, ammorItem.grade);
+            DropArmorItem armorItem = (DropArmorItem)item;
+            UserManager.instance.AddArmor(armorItem.key, armorItem.grade);
             SaveManager.SaveData("UserData.json", UserManager.instance.userData);
         }
         else if (item.itemType == ItemType.Consume)
@@ -353,16 +352,16 @@ public class Player : MonoSingleton<Player>
     }
     public void TakeDamage(float damage)// 피해를 입는 기능
     {
-        if (ammorPoint >= 0)
+        if (armorPoint >= 0)
         {
-            ammorPoint -= damage;
+            armorPoint -= damage;
             damage = 0;
-            //Debug.Log(ammorPoint);
+            //Debug.Log(armorPoint);
         }
-        else if (damage > ammorPoint)
+        else if (damage > armorPoint)
         {
-            damage -= ammorPoint;
-            ammorPoint = 0;           
+            damage -= armorPoint;
+            armorPoint = 0;           
         }
         healthPoint -= damage;
         Debug.Log(healthPoint);
@@ -437,11 +436,19 @@ public class PlayerAbility
     public float initRunSpeed;
     public float initInvincibleTime;
     //스킬관련
-
+    //총알
+    public int initHGAmmoLimit;
+    public int initARAmmoLimit;
+    public int initSMGAmmoLimit;
+    public int initMGAmmoLimit;
+    public int initRFAmmoLimit;
+    public int initSGAmmoLimit;
+    public int initSRAmmoLimit;
+    public int initSPAmmoLimit;
     public void Init()
     {
         //공격-데미지
-        initWeaponDamage = 0;
+        initWeaponDamage = 0;// 일반damage랑 다름 damage에 주는 보너스
         initHealthPoint = 100;
         initArmorPoint = 100;
         initCrtChance = 1f;
@@ -463,6 +470,15 @@ public class PlayerAbility
         initMoveSpeed = 7;
         initRunSpeed = 2;
         //스킬
+
+        initHGAmmoLimit = 100;
+        initARAmmoLimit = 810;
+        initSMGAmmoLimit = 900;
+        initMGAmmoLimit = 900;
+        initRFAmmoLimit = 420;
+        initSGAmmoLimit = 144;
+        initSRAmmoLimit = 120;
+        initSPAmmoLimit = 24;
     }
 
     public Weapon curWeapon;

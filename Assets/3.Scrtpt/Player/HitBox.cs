@@ -18,7 +18,7 @@ public class HitBox : MonoBehaviour
     }
     public float GetDamageMultiplier()
     {
-            Debug.Log(bodyParts);
+            //Debug.Log(bodyParts);
         return damageMultiplier;
     }
 }

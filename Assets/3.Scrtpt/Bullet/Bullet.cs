@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public GameObject Enemy;
     public float movespeed;
     public Weapon weapon;
     public Vector2 direction;
@@ -31,6 +30,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            //Debug.Log("attack");
             damagInfo.Calculate();
             collision.GetComponent<Enemy>().TakeDamage(damagInfo.damage, damagInfo.isCrt);
             Destroy(this.gameObject);

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Ranged
   m_EditorClassIdentifier: 
   enemyType: 1
-  enemyfaction: 0
-  Maxhp: 5
+  enemyFaction: 0
+  MaxHp: 50
+  MaxAp: 50
   moveSpeed: 5
   attackDamage: 1
   attackRange: 10

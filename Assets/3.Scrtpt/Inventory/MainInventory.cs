@@ -9,23 +9,23 @@ public class MainInventory : MonoBehaviour
     
     
     public UserWeapon selectWeapon;
-    public UserAmmor selectAmmor;
+    public UserArmor selectArmor;
     public WeaponInventory weaponInventory;
     public WeaponSlotPanel[] weaponSlotPanels;
-    public AmmorInventory ammorInventory;
-    public AmmorPanel[] ammorPanels;
+    public ArmorInventory armorInventory;
+    public ArmorPanel[] armorPanels;
     
 
     private void OnEnable()
     {
         if (weaponInventory == null) 
             weaponInventory = GetComponentInChildren<WeaponInventory>(true);
-        if (ammorInventory == null) 
-            ammorInventory = GetComponentInChildren<AmmorInventory>(true);
+        if (armorInventory == null) 
+            armorInventory = GetComponentInChildren<ArmorInventory>(true);
         if (weaponSlotPanels == null || weaponSlotPanels.Length == 0)
             weaponSlotPanels = GetComponentsInChildren<WeaponSlotPanel>(true);
-        if (ammorPanels == null || ammorPanels.Length == 0)
-            ammorPanels = GetComponentsInChildren<AmmorPanel>(true);
+        if (armorPanels == null || armorPanels.Length == 0)
+            armorPanels = GetComponentsInChildren<ArmorPanel>(true);
         Refresh();
     }
 

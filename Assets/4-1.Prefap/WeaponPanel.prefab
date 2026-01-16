@@ -332,8 +332,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GearPanel, Assembly-CSharp
+      - m_Target: {fileID: 4063851386348870980}
+        m_TargetAssemblyTypeName: WeaponPanel, Assembly-CSharp
         m_MethodName: OnClickedRemove
         m_Mode: 1
         m_Arguments:
@@ -624,9 +624,23 @@ MonoBehaviour:
     key: 
     weaponEuiped: 0
     weaponDraw: 0
+    ammoCount: 0
     weaponEquipSlot: 0
     weaponData: {fileID: 0}
+    weaponAbility:
+      grade: 0
+      itemGrade: 0
+      weaponTypeDamageData:
+        weaponType: 0
+        value: 0
+      weaponFixSubElementData:
+        weaponSubElement: 0
+        value: 0
+      weaponRandomSubElementDatas: []
+      weaponTelent: 
   weaponData: {fileID: 0}
+  weaponEquipSlot: 0
+  weaponSlotType: 0
 --- !u!1 &9113672046689056696
 GameObject:
   m_ObjectHideFlags: 0

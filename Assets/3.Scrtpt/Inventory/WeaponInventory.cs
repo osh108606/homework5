@@ -10,7 +10,7 @@ public class WeaponInventory : SubInventory
     public List<GameObject> weaponPanels;
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponSlotType weaponSlotType;
-    
+
     public override void OnEnable()
     {
         weaponList = GetComponentInChildren<GridLayoutGroup>();
@@ -42,7 +42,9 @@ public class WeaponInventory : SubInventory
                 weaponPanels.Add(panel);
             }
         }
-        WeaponSelected(null);
+
+        UserWeapon uWeapon = UserManager.instance.GetEuipedUserWeapon(EquipSlot);
+        WeaponSelected(uWeapon);
     }
     public void Close()
     {
@@ -63,20 +65,20 @@ public class WeaponInventory : SubInventory
         curEuiptmentImage.sprite = weapnData.sprite;
     }
 
-    public void WeaponSelected(WeaponData weaponData)
+    public void WeaponSelected(UserWeapon userWeapon)
     {
-        if (weaponData == null)
+        if (userWeapon == null)
         {
             curEuiptmentNameText.enabled = false;
             curEuiptmentImage.enabled = false;
             return;
         }
 
-        UserManager.instance.ChangeWeapon(weaponData.key);
-        Player.Instance.ChangeWeapon(weaponData.key,false);
+        UserManager.instance.ChangeWeapon(userWeapon.key);
+        Player.Instance.ChangeWeapon(userWeapon.key,false);
 
 
-
+        WeaponData weaponData = Resources.Load<WeaponData>($"WeaponData/{userWeapon.key}");
         curEuiptmentNameText.enabled = true;
         curEuiptmentImage.enabled = true;
 
