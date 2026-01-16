@@ -13,17 +13,35 @@ public class CamaraManager : MonoBehaviour
 
     public CinemachineCamera followCamera;
     public CinemachineCamera zoomCamera;
+    public CinemachineCamera mainInentoryCamera;
     public bool isZooming;
+
+    public void OpenMainIventoryCamera()
+    {
+        Debug.Log("MainIventoryCarmera Start");
+        followCamera.gameObject.SetActive(false);
+        mainInentoryCamera.gameObject.SetActive(true);
+    }
+    public void CloseMainIventoryCamera()
+    {
+        Debug.Log("MainIventoryCarmera End");
+        followCamera.gameObject.SetActive(true);
+        mainInentoryCamera.gameObject.SetActive(false);
+    }
     public void StartZoom()
     {
-        isZooming=true;
+        Debug.Log("carmera zoomStart");
+
+        isZooming =true;
         followCamera.gameObject.SetActive(false);
         zoomCamera.gameObject.SetActive(true);
         //zoomCamera.Lens.OrthographicSize = 7;
     }
     public void EndZoom()
     {
-        isZooming=false;
+        Debug.Log("carmera zoomEnd");
+
+        isZooming =false;
         followCamera.gameObject.SetActive(true);
         zoomCamera.gameObject.SetActive(false);
     }

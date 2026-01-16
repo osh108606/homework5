@@ -18,6 +18,7 @@ public class InventoryCanvas : MonoBehaviour
     public MainInventory mainInventory;
     public WeaponInventory weaponInventory;
     public ArmorInventory armorInventory;
+    public bool canInteraction;
     public void Awake()
     {
         mainInventory = GetComponentInChildren<MainInventory>(true);
@@ -37,12 +38,19 @@ public class InventoryCanvas : MonoBehaviour
                 weaponInventory.Close();
                 mainInventory.Open();
             }
+
             if (armorInventory.gameObject.activeSelf == true)
             {
                 armorInventory.Close();
                 mainInventory.Open();
             }
         }
+        if(mainInventory.gameObject.activeSelf == true
+            || weaponInventory.gameObject.activeSelf == true 
+            || armorInventory.gameObject.activeSelf == true)
+            canInteraction = false;
+        else
+            canInteraction = true;
     }
 
     public void OpenMainInventory()

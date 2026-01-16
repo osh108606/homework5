@@ -79,7 +79,8 @@ public class Player : MonoSingleton<Player>
             aimTrigger = false;
         #endregion
 
-        if (Input.GetKey(KeyCode.LeftShift) && aimTrigger == false && attackTrigger == false)//왼쪽쉬프트 입력 (달리기상태 전환)
+        if (Input.GetKey(KeyCode.LeftShift) && aimTrigger == false && attackTrigger == false
+            && InventoryCanvas.Instance.canInteraction == false)//왼쪽쉬프트 입력 (달리기상태 전환)
             runTrigger = true;
         else
             runTrigger = false;
@@ -135,6 +136,8 @@ public class Player : MonoSingleton<Player>
    
     public virtual void Fire()
     {
+        if (InventoryCanvas.Instance.canInteraction == false)
+            return;
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = (worldPos - upperTransform.transform.position).normalized;
         float angle = Vector2.Angle(upperTransform.transform.up, dir);
@@ -168,12 +171,14 @@ public class Player : MonoSingleton<Player>
         else if (aimTrigger == false)
         {
             animator.SetBool("Aim", false);
-            CamaraManager.Instance.EndZoom();            
+            //CamaraManager.Instance.EndZoom();            
         }
     }
 
     public void Talk()
-    { 
+    {
+        if (InventoryCanvas.Instance.canInteraction == false)
+            return;
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 3);
 
         if (cols.Length <= 0)
@@ -191,6 +196,8 @@ public class Player : MonoSingleton<Player>
     
     public void PickUp()
     {
+        if (InventoryCanvas.Instance.canInteraction == false)
+            return;
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 3,LayerMask.GetMask("DropItem"));
         if (cols.Length <= 0)
             return;
@@ -256,6 +263,8 @@ public class Player : MonoSingleton<Player>
     
     public void Move()
     {
+        if (InventoryCanvas.Instance.canInteraction == false)
+            return;
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         {

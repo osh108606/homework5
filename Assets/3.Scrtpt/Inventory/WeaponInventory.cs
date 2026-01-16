@@ -5,16 +5,17 @@ using UnityEngine.UI;
 
 public class WeaponInventory : SubInventory
 {
-    public GameObject weaponPanelPrefab;
+    public WeaponPanel weaponPanelPrefab;
     public GridLayoutGroup weaponList;
-    public List<GameObject> weaponPanels;
+    public UserWeapon uWeapon;
+    public List<WeaponPanel> weaponPanels;
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponSlotType weaponSlotType;
 
     public override void OnEnable()
     {
         weaponList = GetComponentInChildren<GridLayoutGroup>();
-        curEuiptmentImage = GetComponentInChildren<Image>();
+
         curEuiptmentNameText = GetComponentInChildren<TMP_Text>();
     }
     public void Open(WeaponEquipSlot EquipSlot, WeaponSlotType SlotType)
@@ -23,10 +24,10 @@ public class WeaponInventory : SubInventory
         weaponSlotType = SlotType;
         gameObject.SetActive(true);
 
-        UpdateCanvas();
+        //UpdateCanvas();
         for (int i = 0; i < weaponPanels.Count; i++)
         {
-            Destroy(weaponPanels[i]);
+            Destroy(weaponPanels[i].gameObject);           
         }
         weaponPanels.Clear();
 
@@ -36,33 +37,19 @@ public class WeaponInventory : SubInventory
             WeaponData weaponData = Resources.Load<WeaponData>("WeaponData/" + key);
             if (weaponData.weaponSlotType == weaponSlotType)
             {
-                GameObject panel = Instantiate(weaponPanelPrefab, weaponList.transform);
+                WeaponPanel panel = Instantiate(weaponPanelPrefab, weaponList.transform);
                 UserWeapon userWeapon = UserManager.instance.userData.userWeapons[i];
-                panel.GetComponent<WeaponPanel>().SetData(userWeapon);
+                panel.SetData(userWeapon);
                 weaponPanels.Add(panel);
             }
         }
 
-        UserWeapon uWeapon = UserManager.instance.GetEuipedUserWeapon(EquipSlot);
+        uWeapon = UserManager.instance.GetEuipedUserWeapon(EquipSlot);
         WeaponSelected(uWeapon);
     }
     public void Close()
     {
         gameObject.SetActive(false);
-    }
-
-    public override void UpdateCanvas()
-    {
-
-        //for (int i = 0; i < weaponPanels.Count; i++)
-        //{
-        //    selectWeapon = weaponPanels[i].GetComponent<GearPanel>().OnClicked();
-        //}
-        UserWeapon selectWeapon = UserManager.instance.GetEuipedUserWeapon();
-        //UserManager.Instance.GetCurrentUserWeapon();
-        WeaponData weapnData = Resources.Load<WeaponData>("WeaponData/" + selectWeapon.key);
-        curEuiptmentNameText.text = weapnData.weaponName;
-        curEuiptmentImage.sprite = weapnData.sprite;
     }
 
     public void WeaponSelected(UserWeapon userWeapon)
@@ -74,8 +61,8 @@ public class WeaponInventory : SubInventory
             return;
         }
 
-        UserManager.instance.ChangeWeapon(userWeapon.key);
-        Player.Instance.ChangeWeapon(userWeapon.key,false);
+        //UserManager.instance.ChangeWeapon(userWeapon.key);
+        //Player.Instance.ChangeWeapon(userWeapon.key, false);
 
 
         WeaponData weaponData = Resources.Load<WeaponData>($"WeaponData/{userWeapon.key}");
@@ -84,5 +71,11 @@ public class WeaponInventory : SubInventory
 
         curEuiptmentNameText.text = weaponData.weaponName;
         curEuiptmentImage.sprite = weaponData.sprite;
+
+
+        for (int i = 0; i < weaponPanels.Count; i++)
+        {
+            weaponPanels[i].UpdatePanel();
+        }
     }
 }

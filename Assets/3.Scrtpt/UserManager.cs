@@ -15,7 +15,25 @@ public class UserManager : MonoBehaviour
         //string saveName = TitleSceneManager.instance.userSaveData.saveSlots[saveOrder].userDataFileName;
         //userData = SaveManager.LoadData<UserData>(saveName); //저장된 데이터 불러오기
         userData = SaveManager.LoadData<UserData>("UserData.json");
+        if (userData != null)
+        { 
+            for (int i = 0; i< userData.userWeapons.Count;i++)
+            {
+                if(userData.userWeapons[i].weaponEuiped == true)
+                {               
+                    for (int j = 0; j < userData.userAmmos.Count; j++)
+                    { 
+                        if(userData.userAmmos[j].weapontype == userData.userWeapons[i].weaponData.weaponType)
+                        {
+                            userData.userAmmos[j].count -= (userData.userWeapons[i].weaponData.maxAmmo - userData.userWeapons[i].ammoCount);
+                        }
+                    }
+                    userData.userWeapons[i].ammoCount = userData.userWeapons[i].weaponData.maxAmmo;
+                }
+            }
+        }
         
+
     }
     public void Start()
     {

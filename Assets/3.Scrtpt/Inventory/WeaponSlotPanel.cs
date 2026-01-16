@@ -13,7 +13,7 @@ public class WeaponSlotPanel : MonoBehaviour
 
     public void Awake()
     {
-        thumImage = GetComponentInChildren<Image>();
+        thumImage =transform.Find("GPImage").GetComponentInChildren<Image>();
         weaponName = GetComponentInChildren<TMP_Text>();
     }
 
@@ -29,6 +29,7 @@ public class WeaponSlotPanel : MonoBehaviour
             //WeaponPanel SetData
             weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon.key);
             thumImage.enabled = true;
+            thumImage.sprite = weaponData.sprite;
             weaponName.text = weaponData.weaponName;
             weaponSlotType = weaponData.weaponSlotType;
 

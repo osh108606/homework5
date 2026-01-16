@@ -46,11 +46,13 @@ public class MainInventory : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
+        CamaraManager.Instance.OpenMainIventoryCamera();
     }
 
     public void Close()
     { 
-        gameObject.SetActive(false); 
+        gameObject.SetActive(false);
+        CamaraManager.Instance.CloseMainIventoryCamera();
     }
 
     public void OnClick(WeaponSlotType weaponSlotType)

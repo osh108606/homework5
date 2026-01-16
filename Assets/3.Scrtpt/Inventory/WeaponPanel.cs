@@ -7,7 +7,13 @@ public class WeaponPanel : GearPanel
     public WeaponData weaponData;
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponSlotType weaponSlotType;
-    
+
+    public override void Awake()
+    {
+        base.Awake();
+        image = transform.Find("GPImage").GetComponentInChildren<Image>();
+        text = transform.Find("GPWeaponName").GetComponentInChildren<TMP_Text>();
+    }
     public override void SetData(UserWeapon userWeapon)
     {
         weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon.key);
@@ -29,17 +35,12 @@ public class WeaponPanel : GearPanel
     public override void OnClicked()
     {
         //1번클릭했을시 선택상태
-        //if (select == false)
-        //{
-        //    select = true;
-        //    GetComponentInParent<WeaponInventory>().WeaponSelected(weaponData);
-        //}
-        //else
-        //{
-        //    select = false;
-        //    GetComponentInParent<WeaponInventory>().WeaponSelected(null);
-        //}
-        //InventoryCanvas.Instance.OpenWeaponInventory();
+        if (select == false)
+        {
+            select = true;
+            GetComponentInParent<WeaponInventory>().uWeapon = userWeapon;
+            GetComponentInParent<WeaponInventory>().WeaponSelected(userWeapon);
+        }
     }
     public void OnClickedRemove()
     {
@@ -49,11 +50,18 @@ public class WeaponPanel : GearPanel
             UserManager.instance.RemoveWeapon(userWeapon);
             Destroy(this.gameObject);
         }
-        else
-        {
+        
+    }
 
-        }
-
-
+    public void UpdatePanel()
+    {
+       if(userWeapon == GetComponentInParent<WeaponInventory>().uWeapon)
+       {
+            select = true;
+       }
+       else
+       {
+            select = false;
+       }
     }
 }

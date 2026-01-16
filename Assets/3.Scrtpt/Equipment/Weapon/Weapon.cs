@@ -68,6 +68,8 @@ public class Weapon : MonoBehaviour
     
     public virtual void Update()
     {
+        if (InventoryCanvas.Instance.canInteraction == false)
+            return;
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
@@ -90,6 +92,8 @@ public class Weapon : MonoBehaviour
 
     public virtual void Reload()
     {
+        if (InventoryCanvas.Instance.canInteraction == false)
+            return;
         if (reLoading == true)
             return;
         if(userAmmo.count <= 0) 
