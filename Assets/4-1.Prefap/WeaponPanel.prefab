@@ -620,6 +620,8 @@ MonoBehaviour:
   image: {fileID: 2289562442655531060}
   text: {fileID: 1676213633908177173}
   select: 0
+  backGround: {fileID: 9035973121646083018}
+  innerGround: {fileID: 6519617329504420356}
   userWeapon:
     key: 
     weaponEuiped: 0

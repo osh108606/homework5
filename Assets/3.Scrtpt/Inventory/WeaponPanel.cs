@@ -3,8 +3,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class WeaponPanel : GearPanel
 {
+    public Image backGround;
+    public Image innerGround;
     public UserWeapon userWeapon;
-    public WeaponData weaponData;
+    public WeaponData weaponData;    
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponSlotType weaponSlotType;
 
@@ -12,7 +14,16 @@ public class WeaponPanel : GearPanel
     {
         base.Awake();
         image = transform.Find("GPImage").GetComponentInChildren<Image>();
+        backGround = transform.Find("GPBackGround").GetComponentInChildren<Image>();
+        innerGround = transform.Find("GPInnerGround").GetComponentInChildren<Image>();
         text = transform.Find("GPWeaponName").GetComponentInChildren<TMP_Text>();
+    }
+    public void Update()
+    {
+        if (select == true)
+            backGround.color = Color.black;
+        else
+            backGround.color = Color.gray;
     }
     public override void SetData(UserWeapon userWeapon)
     {
@@ -25,19 +36,19 @@ public class WeaponPanel : GearPanel
         this.userWeapon = userWeapon;
         if (userWeapon.weaponEuiped == true)
         {
-            image.color = Color.white;
+            innerGround.color = Color.white;
         }
         else
         {
-            image.color = Color.black;
-        }
+            innerGround.color = Color.gray;
+        }       
     }
     public override void OnClicked()
     {
         //1번클릭했을시 선택상태
         if (select == false)
         {
-            select = true;
+            select = true;           
             GetComponentInParent<WeaponInventory>().uWeapon = userWeapon;
             GetComponentInParent<WeaponInventory>().WeaponSelected(userWeapon);
         }

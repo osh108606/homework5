@@ -2081,7 +2081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &471897575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2414,7 +2414,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2439,7 +2439,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: -6, z: -10}
+  m_LocalPosition: {x: 0, y: -4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5879,6 +5879,7 @@ MonoBehaviour:
   mainInventory: {fileID: 0}
   weaponInventory: {fileID: 0}
   armorInventory: {fileID: 0}
+  canInteraction: 0
 --- !u!1 &1053854364
 GameObject:
   m_ObjectHideFlags: 0
@@ -5911,6 +5912,7 @@ MonoBehaviour:
   mainCamear: {fileID: 0}
   followCamera: {fileID: 1328358787}
   zoomCamera: {fileID: 680343258}
+  mainInentoryCamera: {fileID: 471897576}
   isZooming: 0
 --- !u!4 &1053854366
 Transform:
@@ -9080,8 +9082,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curEuiptmentNameText: {fileID: 2014275259}
   curEuiptmentImage: {fileID: 1231291846}
-  weaponPanelPrefab: {fileID: 8762758119239765360, guid: 93c5af5c01722b947b7484d620774818, type: 3}
+  weaponPanelPrefab: {fileID: 4063851386348870980, guid: 93c5af5c01722b947b7484d620774818, type: 3}
   weaponList: {fileID: 1792076241}
+  uWeapon:
+    key: 
+    weaponEuiped: 0
+    weaponDraw: 0
+    ammoCount: 0
+    weaponEquipSlot: 0
+    weaponData: {fileID: 0}
+    weaponAbility:
+      grade: 0
+      itemGrade: 0
+      weaponTypeDamageData:
+        weaponType: 0
+        value: 0
+      weaponFixSubElementData:
+        weaponSubElement: 0
+        value: 0
+      weaponRandomSubElementDatas: []
+      weaponTelent: 
   weaponPanels: []
   weaponEquipSlot: 0
   weaponSlotType: 0

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 public class GearPanel : MonoBehaviour
 {
-    public Image image;
+    public Image image;    
     public TMP_Text text;
     public bool select = false;
     public virtual void Awake()

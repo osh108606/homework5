@@ -9,6 +9,7 @@ public class DropItem : MonoBehaviour
     public ItemType itemType;
     public Collider2D col;
     public GameObject canvasObjede;
+    public bool isConsume = true;
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -32,5 +33,6 @@ public enum ItemType
 {
     Weapon,
     Armor,
-    Consume
+    Consume,
+    Ammo
 }

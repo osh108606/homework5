@@ -199,11 +199,12 @@ public class Player : MonoSingleton<Player>
         if (InventoryCanvas.Instance.canInteraction == false)
             return;
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 3,LayerMask.GetMask("DropItem"));
+
         if (cols.Length <= 0)
             return;
 
         DropItem item = cols[0].GetComponent<DropItem>();
-        
+        AmmoBox aBox = cols[0].GetComponent<AmmoBox>();
         if(item.itemType == ItemType.Weapon)
         {
             DropWeaponItem weaponItem = (DropWeaponItem)item;
@@ -221,8 +222,14 @@ public class Player : MonoSingleton<Player>
             UserManager.instance.Additem(item.key);
             SaveManager.SaveData("UserData.json", UserManager.instance.userData);
         }
-            
-        Destroy(item.gameObject);
+
+        if (aBox != null)
+        {
+            aBox.GetAmmo();
+            SaveManager.SaveData("UserData.json", UserManager.instance.userData);
+        }
+        if (item.isConsume == true)
+            Destroy(item.gameObject);
     }
     //무기슬롯교체
     public void ChangeDrawWeapon(int Idx)//장착중인 무기중 "들고있는 무기 변경"
@@ -481,12 +488,12 @@ public class PlayerAbility
         //스킬
 
         initHGAmmoLimit = 100;
-        initARAmmoLimit = 810;
-        initSMGAmmoLimit = 900;
-        initMGAmmoLimit = 900;
-        initRFAmmoLimit = 420;
-        initSGAmmoLimit = 144;
-        initSRAmmoLimit = 120;
+        initARAmmoLimit = 600; //30x20
+        initSMGAmmoLimit = 600; //30x20
+        initMGAmmoLimit = 2000; //100x20
+        initRFAmmoLimit = 200; //10x20
+        initSGAmmoLimit = 160; //8x20
+        initSRAmmoLimit = 100; //5x20
         initSPAmmoLimit = 24;
     }
 

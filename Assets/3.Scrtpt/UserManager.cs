@@ -225,7 +225,13 @@ public class UserManager : MonoBehaviour
         }
         userItem.count += 1;
     }
-    
+    public void AddAmmo(WeaponType weaponType, int count)
+    {
+        UserAmmo userAmmo = new UserAmmo();
+        userAmmo.weapontype = weaponType;
+        userAmmo.count = count;
+        userData.userAmmos.Add(userAmmo);
+    }
     public void AddWeapon(string key, int grade, DropWeaponItem dropWeaponItem)
     {
         UserWeapon userWeapon = new UserWeapon();
@@ -491,16 +497,20 @@ public class UserManager : MonoBehaviour
 [System.Serializable]
 public class UserData
 {
-    public List<UserWeapon> userWeapons = new List<UserWeapon>();//무기
-    public List<UserAmmo> userAmmos = new List<UserAmmo>();//총알
-    public List<UserArmor> userArmors = new List<UserArmor>();//갑옷
+    public List<UserWeapon> userWeapons = new List<UserWeapon>(); // 무기
+    public List<UserAmmo> userAmmos = new List<UserAmmo>(); // 총알
+    public List<UserArmor> userArmors = new List<UserArmor>(); // 갑옷
+    public List<UserItem> userItems = new List<UserItem>(); // 기타모든 아이템
 
-   
-    public List<UserItem> userItems = new List<UserItem>();// 기타모든 아이템
-
-
+    public UserAbility userAbility = new UserAbility(); // 유저 능력치
     public List<UserDungeon> userDungeons = new List<UserDungeon>();// 던전 클리어 정보
 }
+[System.Serializable]
+public class UserAbility
+{
+
+}
+
 
 [System.Serializable]
 public class UserAmmo
