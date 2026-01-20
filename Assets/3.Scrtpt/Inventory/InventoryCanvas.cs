@@ -30,24 +30,24 @@ public class InventoryCanvas : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (mainInventory.gameObject.activeSelf == true)
+            if (mainInventory.gameObject.activeSelf)
                 mainInventory.Close();
 
-            if (weaponInventory.gameObject.activeSelf == true)
+            if (weaponInventory.gameObject.activeSelf)
             {
                 weaponInventory.Close();
                 mainInventory.Open();
             }
 
-            if (armorInventory.gameObject.activeSelf == true)
+            if (armorInventory.gameObject.activeSelf)
             {
                 armorInventory.Close();
                 mainInventory.Open();
             }
         }
-        if(mainInventory.gameObject.activeSelf == true
-            || weaponInventory.gameObject.activeSelf == true 
-            || armorInventory.gameObject.activeSelf == true)
+        if(mainInventory.gameObject.activeSelf
+            || weaponInventory.gameObject.activeSelf 
+            || armorInventory.gameObject.activeSelf)
             canInteraction = false;
         else
             canInteraction = true;
@@ -56,7 +56,7 @@ public class InventoryCanvas : MonoBehaviour
     public void OpenMainInventory()
     {
         
-        if (mainInventory.gameObject.activeSelf == true)
+        if (mainInventory.gameObject.activeSelf)
         {
             mainInventory.Close();
         }

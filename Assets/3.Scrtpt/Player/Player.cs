@@ -16,20 +16,20 @@ public class Player : MonoSingleton<Player>
     public Armor[] armors;
     public Transform rootTr;
     public Transform upperTransform;
-    Camera mainCamera;
+    Camera _mainCamera;
 
     public int slotIdx; //무기슬롯 인덱스
-    float maxHealthPoint; //최대 체력
-    float healthPoint; // 현재 체력
-    float maxArmorPoint; //최대 방어도
-    float armorPoint; //현제 방어도
+    float _maxHealthPoint; //최대 체력
+    float _healthPoint; // 현재 체력
+    float _maxArmorPoint; //최대 방어도
+    float _armorPoint; //현제 방어도
 
     public bool runTrigger;
     public bool aimTrigger;
     public bool attackTrigger;
 
-    private float currentX = 0f;
-    private float currentY = 0f;
+    private float _currentX;
+    private float _currentY;
 
     public override void Awake()
     {
@@ -38,11 +38,11 @@ public class Player : MonoSingleton<Player>
         rb2d = GetComponent<Rigidbody2D>();
         weaponSlots = GetComponentsInChildren<WeaponSlot>();
         animator = GetComponentInChildren<Animator>();
-        mainCamera = Camera.main;
-        maxHealthPoint = playerAbility.initHealthPoint;
-        maxArmorPoint = playerAbility.initArmorPoint;
-        healthPoint = maxHealthPoint;
-        armorPoint = maxArmorPoint;
+        _mainCamera = Camera.main;
+        _maxHealthPoint = playerAbility.initHealthPoint;
+        _maxArmorPoint = playerAbility.initArmorPoint;
+        _healthPoint = _maxHealthPoint;
+        _armorPoint = _maxArmorPoint;
         runTrigger = false;
         aimTrigger = false;
         attackTrigger = false;
@@ -53,7 +53,7 @@ public class Player : MonoSingleton<Player>
     {
         UpdateWeaponSlot();
         UserWeapon userWeapon = UserManager.instance.GetDrawUserWeapon();
-        ChangeWeapon(userWeapon.key, userWeapon.weaponDraw);   
+        ChangeWeapon(userWeapon, userWeapon.weaponDraw);   
     }
     
 
@@ -62,7 +62,7 @@ public class Player : MonoSingleton<Player>
     private void Update()
     {
         #region Aim&Shot
-        if (Input.GetMouseButton(0))//마우스 오른쪽 입력 (조준상태 전환)
+        if (Input.GetMouseButton(0))//마우스 왼쪽 입력 (공격상태 전환)
         {
             attackTrigger = true;
             runTrigger = false;
@@ -138,7 +138,7 @@ public class Player : MonoSingleton<Player>
     {
         if (InventoryCanvas.Instance.canInteraction == false)
             return;
-        Vector3 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 worldPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = (worldPos - upperTransform.transform.position).normalized;
         float angle = Vector2.Angle(upperTransform.transform.up, dir);
         int idx = animator.GetLayerIndex("UpperAim");
@@ -163,7 +163,7 @@ public class Player : MonoSingleton<Player>
                 rootTr.localScale = new Vector2(-1, 1);
         }
 
-        if (aimTrigger == true)
+        if (aimTrigger)
         {
             animator.SetBool("Aim",true);
             CamaraManager.Instance.StartZoom();        
@@ -188,8 +188,8 @@ public class Player : MonoSingleton<Player>
         {
             if (cols[i].CompareTag("Npc"))
             {
-                StageSelectNpc stageSelectnNpc = cols[i].GetComponent<StageSelectNpc>();
-                stageSelectnNpc.TalkUI();
+                StageSelectNpc stageSelectNpc = cols[i].GetComponent<StageSelectNpc>();
+                stageSelectNpc.TalkUI();
             }
         }
     }
@@ -219,7 +219,7 @@ public class Player : MonoSingleton<Player>
         }
         else if (item.itemType == ItemType.Consume)
         {
-            UserManager.instance.Additem(item.key);
+            UserManager.instance.AddItem(item.key);
             SaveManager.SaveData("UserData.json", UserManager.instance.userData);
         }
 
@@ -228,23 +228,23 @@ public class Player : MonoSingleton<Player>
             aBox.GetAmmo();
             SaveManager.SaveData("UserData.json", UserManager.instance.userData);
         }
-        if (item.isConsume == true)
+        if (item.isConsume)
             Destroy(item.gameObject);
     }
     //무기슬롯교체
-    public void ChangeDrawWeapon(int Idx)//장착중인 무기중 "들고있는 무기 변경"
+    public void ChangeDrawWeapon(int idx)//장착중인 무기중 "들고있는 무기 변경"
     {
-        currentWeapon = weaponSlots[Idx].weapon;
-        UserManager.instance.ChangeDrawWeapon(currentWeapon.key);
+        currentWeapon = weaponSlots[idx].weapon;
+        UserManager.instance.ChangeWeapon(currentWeapon.userWeapon,true);
     }
     //인벤토리에서 무기장착변경
-    public void ChangeWeapon(string key , bool draw)
+    public void ChangeWeapon(UserWeapon uWeapon , bool draw)
     {  
-        if(draw == true) 
+        if(draw) 
         {
             for (int i = 0; i < weaponSlots.Length; i++)
             {
-                if (weaponSlots[i].weapon.key == key)
+                if (weaponSlots[i].weapon.userWeapon == uWeapon)
                 {
                     currentWeapon = weaponSlots[i].weapon;
                     playerAbility.SetWeapon(currentWeapon);
@@ -252,11 +252,11 @@ public class Player : MonoSingleton<Player>
                     break;
                 }
             }
-            UserManager.instance.ChangeDrawWeapon(currentWeapon.key);
+            UserManager.instance.ChangeWeapon(currentWeapon.userWeapon , draw);
         }
         else
         { 
-            UserManager.instance.ChangeWeapon(currentWeapon.key);
+            UserManager.instance.ChangeWeapon(currentWeapon.userWeapon , draw);
         }
     }
 
@@ -275,12 +275,12 @@ public class Player : MonoSingleton<Player>
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         {
-            float smoothX = Mathf.Lerp(currentX, x, Time.deltaTime);
+            float smoothX = Mathf.Lerp(_currentX, x, Time.deltaTime);
             // currentX는 클래스 내부 변수로 저장해야 함
-            currentX = smoothX;
-            float smoothY = Mathf.Lerp(currentY, y, Time.deltaTime);
+            _currentX = smoothX;
+            float smoothY = Mathf.Lerp(_currentY, y, Time.deltaTime);
             // currentX는 클래스 내부 변수로 저장해야 함
-            currentY = smoothY;
+            _currentY = smoothY;
             //Vector2 dir = new Vector2(smoothX, smoothY);
         }
         Vector2 dir = new Vector2(x, y);
@@ -288,13 +288,13 @@ public class Player : MonoSingleton<Player>
         float backWalk = 1f;
         if (Input.GetKey(KeyCode.A))
         {
-            if ((attackTrigger == true || aimTrigger == true) && rootTr.localScale.x > 0)
+            if ((attackTrigger|| aimTrigger) && rootTr.localScale.x > 0)
                 backWalk = 0.4f;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            if ((attackTrigger == true || aimTrigger == true) && rootTr.localScale.x < 0)
+            if ((attackTrigger|| aimTrigger) && rootTr.localScale.x < 0)
                 backWalk = 0.4f;
         }
 
@@ -320,15 +320,15 @@ public class Player : MonoSingleton<Player>
             dir.Normalize();
         }
         //rb2d.linearVelocity = dir.normalized * moveSpeed
-        if (runTrigger == false || attackTrigger == true || aimTrigger == true)//걷기
+        if (runTrigger == false || attackTrigger || aimTrigger )//걷기
         {
-            rb2d.linearVelocity = dir.normalized * playerAbility.initMoveSpeed * backWalk;
+            rb2d.linearVelocity = dir.normalized * (playerAbility.initMoveSpeed * backWalk);
             //animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
         }
-        else if (runTrigger == true && attackTrigger != true && aimTrigger != true)//달릴때
+        else if (runTrigger  && attackTrigger != true && aimTrigger != true)//달릴때
         {
             aimTrigger = false;
-            rb2d.linearVelocity = dir.normalized * playerAbility.initMoveSpeed * playerAbility.initRunSpeed;
+            rb2d.linearVelocity = dir.normalized * (playerAbility.initMoveSpeed * playerAbility.initRunSpeed);
             //animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
         }
         //또다른 이동 구현방식
@@ -357,10 +357,10 @@ public class Player : MonoSingleton<Player>
             return;
 
         float damageMultiplier = hitBox.GetDamageMultiplier();
-        healthPoint -= damage * damageMultiplier;
+        _healthPoint -= damage * damageMultiplier;
 
-        Debug.Log(healthPoint);
-        if (healthPoint <= 0)
+        Debug.Log(_healthPoint);
+        if (_healthPoint <= 0)
         {
             //FallDown();
             PlayerDie();
@@ -368,29 +368,29 @@ public class Player : MonoSingleton<Player>
     }
     public void TakeDamage(float damage)// 피해를 입는 기능
     {
-        if (armorPoint >= 0)
+        if (_armorPoint >= 0)
         {
-            armorPoint -= damage;
+            _armorPoint -= damage;
             damage = 0;
             //Debug.Log(armorPoint);
         }
-        else if (damage > armorPoint)
+        else if (damage > _armorPoint)
         {
-            damage -= armorPoint;
-            armorPoint = 0;           
+            damage -= _armorPoint;
+            _armorPoint = 0;           
         }
-        healthPoint -= damage;
-        Debug.Log(healthPoint);
+        _healthPoint -= damage;
+        Debug.Log(_healthPoint);
 
-        if (healthPoint <= 0)
+        if (_healthPoint <= 0)
         {
             //FallDown();
             PlayerDie();
         }
     }
-    public void Rebone()// 다운상태에서 회복
+    public void Reborn()// 다운상태에서 회복
     {
-        healthPoint = maxHealthPoint;
+        _healthPoint = _maxHealthPoint;
     }
     public void FallDown()// 다운상태 (미구현)
     {
@@ -423,7 +423,7 @@ public class PlayerAbility
         }
     }
     
-    public float crtDamage
+    public float CrtDamage
     {
         get
         {
@@ -453,14 +453,14 @@ public class PlayerAbility
     public float initInvincibleTime;
     //스킬관련
     //총알
-    public int initHGAmmoLimit;
+    public int initHgAmmoLimit;
     public int initARAmmoLimit;
-    public int initSMGAmmoLimit;
-    public int initMGAmmoLimit;
-    public int initRFAmmoLimit;
-    public int initSGAmmoLimit;
-    public int initSRAmmoLimit;
-    public int initSPAmmoLimit;
+    public int initSmgAmmoLimit;
+    public int initMgAmmoLimit;
+    public int initRfAmmoLimit;
+    public int initSgAmmoLimit;
+    public int initSrAmmoLimit;
+    public int initSpAmmoLimit;
     public void Init()
     {
         //공격-데미지
@@ -487,14 +487,14 @@ public class PlayerAbility
         initRunSpeed = 2;
         //스킬
 
-        initHGAmmoLimit = 100;
+        initHgAmmoLimit = 100;
         initARAmmoLimit = 600; //30x20
-        initSMGAmmoLimit = 600; //30x20
-        initMGAmmoLimit = 2000; //100x20
-        initRFAmmoLimit = 200; //10x20
-        initSGAmmoLimit = 160; //8x20
-        initSRAmmoLimit = 100; //5x20
-        initSPAmmoLimit = 24;
+        initSmgAmmoLimit = 600; //30x20
+        initMgAmmoLimit = 2000; //100x20
+        initRfAmmoLimit = 200; //10x20
+        initSgAmmoLimit = 160; //8x20
+        initSrAmmoLimit = 100; //5x20
+        initSpAmmoLimit = 24;
     }
 
     public Weapon curWeapon;

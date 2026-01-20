@@ -1,36 +1,37 @@
 using UnityEngine;
 using Unity.Cinemachine;
 
+
 public class CamaraManager : MonoBehaviour
 {
     public static CamaraManager Instance;
-    public Camera mainCamear;
+    public Camera mainCamera;
     private void Awake()
     {
         Instance = this;
-        mainCamear = Camera.main;
+        mainCamera = Camera.main;
     }
 
     public CinemachineCamera followCamera;
     public CinemachineCamera zoomCamera;
-    public CinemachineCamera mainInentoryCamera;
+    public CinemachineCamera mainInventoryCamera;
     public bool isZooming;
 
-    public void OpenMainIventoryCamera()
+    public void OpenMainInventoryCamera()
     {
-        Debug.Log("MainIventoryCarmera Start");
+        Debug.Log("MainInventoryCamera Start");
         followCamera.gameObject.SetActive(false);
-        mainInentoryCamera.gameObject.SetActive(true);
+        mainInventoryCamera.gameObject.SetActive(true);
     }
-    public void CloseMainIventoryCamera()
+    public void CloseMainInventoryCamera()
     {
-        Debug.Log("MainIventoryCarmera End");
+        Debug.Log("MainInventoryCamera End");
         followCamera.gameObject.SetActive(true);
-        mainInentoryCamera.gameObject.SetActive(false);
+        mainInventoryCamera.gameObject.SetActive(false);
     }
     public void StartZoom()
     {
-        Debug.Log("carmera zoomStart");
+        Debug.Log("camera zoomStart");
 
         isZooming =true;
         followCamera.gameObject.SetActive(false);
@@ -39,7 +40,7 @@ public class CamaraManager : MonoBehaviour
     }
     public void EndZoom()
     {
-        Debug.Log("carmera zoomEnd");
+        Debug.Log("camera zoomEnd");
 
         isZooming =false;
         followCamera.gameObject.SetActive(true);
@@ -49,7 +50,7 @@ public class CamaraManager : MonoBehaviour
     {
         if(isZooming)
         {
-            //Vector2 worldPos = mainCamear.ScreenToWorldPoint(Input.mousePosition);
+            //Vector2 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             //zoomCamera.transform.position = worldPos;
         }
     }

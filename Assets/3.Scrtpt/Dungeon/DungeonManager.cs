@@ -8,15 +8,5 @@ public class DungeonManager : MonoBehaviour
     {
         instance = this;
     }
-
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
-    {
-        
-    }
+    
 }

@@ -5,7 +5,7 @@ public class HG : Weapon
 {
     public override void Reload()
     {
-        if (reLoading == true)
+        if (reLoading)
             return;
         if (userAmmo.count <= 0)
             return;

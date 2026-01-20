@@ -20,10 +20,6 @@ public class Dungeon : MonoBehaviour
         zoneCount = 0;
         zones = GetComponentsInChildren<DungeonZone>();
     }
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-       
-    }
 
     public void DungeonStart()
     {
@@ -47,7 +43,7 @@ public class Dungeon : MonoBehaviour
     {
         curZone.ZoneStart();
         int cur = curZone.order;
-        Player.Instance.Rebone();
+        Player.Instance.Reborn();
         Player.Instance.transform.position = zones[cur].playerRespawnPoint.position;
     }
 
@@ -57,7 +53,7 @@ public class Dungeon : MonoBehaviour
         Debug.Log("Zone End");
         for (int i = 1; i < zones.Length; i++)
         {
-            if (zones[i - 1].zoneEnd == true && zones[i].zoneEnd == false)
+            if (zones[i - 1].zoneEnd && zones[i].zoneEnd == false)
             {
                 zones[i].ZoneStart();
                 break;

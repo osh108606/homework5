@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
+
 public enum WeaponType
 {
     AR,
@@ -34,7 +36,7 @@ public class Weapon : MonoBehaviour
     public float maxReloadTime = 3f;
     public bool reLoading;
     public bool auto;
-    public bool SpreadShot;   
+    public bool spreadShot;   
     public WeaponData weaponData;
     public UserAmmo userAmmo; 
     public UserWeapon userWeapon;
@@ -55,10 +57,10 @@ public class Weapon : MonoBehaviour
         weaponData = Resources.Load<WeaponData>("WeaponData/"+ key);
         weaponType = weaponData.weaponType;
         reLoading = false;
-        SpreadShot = weaponData.SpreadShot;
+        spreadShot = weaponData.spreadShot;
         auto = weaponData.auto;
-        rpm = weaponData.RPM;
-        pellets = weaponData.Pellets;
+        rpm = weaponData.rpm;
+        pellets = weaponData.pellets;
         weaponType = weaponData.weaponType;
         maxAmmo = weaponData.maxAmmo;
         fireInterval = 60f / rpm;
@@ -94,7 +96,7 @@ public class Weapon : MonoBehaviour
     {
         if (InventoryCanvas.Instance.canInteraction == false)
             return;
-        if (reLoading == true)
+        if (reLoading)
             return;
         if(userAmmo.count <= 0) 
             return;

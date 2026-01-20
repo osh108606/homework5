@@ -57,7 +57,7 @@ public class DropWeaponItem : DropItem
             weaponRandomSubElementData.weaponSubElement = subRandomElement;
             RandomWeaponSubElementData randomElementData = WeaponManager.Instance.GetRandomElementData(weaponRandomSubElementData.weaponSubElement);
             weaponRandomSubElementData.value = Random.Range(randomElementData.weaponSubElementValues[grade].x, randomElementData.weaponSubElementValues[grade].y);
-            weaponAbility.weaponRandomSubElementDatas.Add(weaponRandomSubElementData);
+            weaponAbility.weaponRandomSubElementDates.Add(weaponRandomSubElementData);
 
             if (weaponRandomSubElementData.weaponSubElement != WeaponSubElement.Null)
                 elements.Remove(subRandomElement);

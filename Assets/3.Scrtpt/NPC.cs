@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,15 +9,15 @@ public class NPC : MonoBehaviour
     public float armorPoint; //현재 방어도
     public float moveSpeed; //이동 속도
 
-    public Image HpBar;
+    public Image hpBar;
     public bool ignoreDamage;
-    public bool arrived = false;
+    public bool arrived;
     public float y;
     public Vector2 desPoint;
 
     public virtual void Awake()
     {
-
+        arrived = false;
     }
 
     public virtual void Start()
@@ -30,7 +29,7 @@ public class NPC : MonoBehaviour
     public virtual void Update()
     {
         if(ignoreDamage != false)
-            HpBar.fillAmount = healthPoint / maxHealthPoint;
+            hpBar.fillAmount = healthPoint / maxHealthPoint;
 
         //float distance = Vector2.Distance(transform.position, desPoint);
         //if (arrived == false)
@@ -50,7 +49,7 @@ public class NPC : MonoBehaviour
     public virtual void Move()
     {
         y = transform.position.y;
-        if (arrived == true)
+        if (arrived)
         {
             y -= Time.deltaTime * moveSpeed;
             transform.position = new Vector2(transform.position.x, y);

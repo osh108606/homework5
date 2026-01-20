@@ -74,7 +74,7 @@ public enum ArmorSubElement
     CriticalChance, 
     CriticalDamage, 
     HeadShotDamage, 
-    Handleing,
+    HandLing,
     Count,
     Null,
     Unfixed,//지정안됨 랜덤일경우

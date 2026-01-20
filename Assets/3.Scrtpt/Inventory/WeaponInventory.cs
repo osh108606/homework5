@@ -18,10 +18,10 @@ public class WeaponInventory : SubInventory
 
         curEuiptmentNameText = GetComponentInChildren<TMP_Text>();
     }
-    public void Open(WeaponEquipSlot EquipSlot, WeaponSlotType SlotType)
+    public void Open(WeaponEquipSlot equipSlot, WeaponSlotType slotType)
     {
-        weaponEquipSlot = EquipSlot;
-        weaponSlotType = SlotType;
+        weaponEquipSlot = equipSlot;
+        weaponSlotType = slotType;
         gameObject.SetActive(true);
 
         //UpdateCanvas();
@@ -44,7 +44,7 @@ public class WeaponInventory : SubInventory
             }
         }
 
-        uWeapon = UserManager.instance.GetEuipedUserWeapon(EquipSlot);
+        uWeapon = UserManager.instance.GetEuipedUserWeapon(equipSlot);
         WeaponSelected(uWeapon);
     }
     public void Close()

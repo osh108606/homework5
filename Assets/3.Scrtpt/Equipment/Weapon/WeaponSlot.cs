@@ -1,10 +1,10 @@
 using UnityEngine;
 public enum WeaponEquipSlot
 {
-    main1,
-    main2,
-    sub,
-    special
+    Main1,
+    Main2,
+    Sub,
+    Special
 }
 public class WeaponSlot : MonoBehaviour
 {

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Enemy : NPC
 {
@@ -17,8 +16,8 @@ public class Enemy : NPC
         base.Awake();
         rootTr = transform.Find("Root");
         enemyInfo = Resources.Load<EnemyInfo>($"Enemy/{enemyType}");
-        maxHealthPoint = enemyInfo.MaxHp;
-        maxArmorPoint = enemyInfo.MaxAp;
+        maxHealthPoint = enemyInfo.maxHp;
+        maxArmorPoint = enemyInfo.maxAp;
         healthPoint = maxHealthPoint;
         armorPoint = maxArmorPoint;                  
         attackDelay = enemyInfo.attackDelay;
@@ -76,7 +75,7 @@ public class Enemy : NPC
         {
             SetState(EnemyState.Attack);
         }
-            rg2d.linearVelocity = Vector2.zero;
+        rg2d.linearVelocity = Vector2.zero; 
     }
 
     public virtual void ApprochingState()

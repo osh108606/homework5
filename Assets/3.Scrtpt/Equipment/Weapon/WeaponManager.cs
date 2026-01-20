@@ -1,15 +1,17 @@
 using UnityEngine;
+
+
 public class WeaponManager : MonoSingleton<WeaponManager>
 {
-    public WeaponTypeElementData[] weaponTypeElementDatas;
-    public RandomWeaponSubElementData[] randomWeaponSubElementDatas;
+    public WeaponTypeElementData[] weaponTypeElementDates;
+    public RandomWeaponSubElementData[] randomWeaponSubElementDates;
     public WeaponTypeElementData GetWeaponTypeElementData(WeaponType weaponType)
     {
-        for (int i = 0; i < weaponTypeElementDatas.Length; i++)
+        for (int i = 0; i < weaponTypeElementDates.Length; i++)
         {
-            if (weaponTypeElementDatas[i].weaponType == weaponType)
+            if (weaponTypeElementDates[i].weaponType == weaponType)
             {
-                return weaponTypeElementDatas[i];
+                return weaponTypeElementDates[i];
             }
         }
         return null;
@@ -17,11 +19,11 @@ public class WeaponManager : MonoSingleton<WeaponManager>
 
     public RandomWeaponSubElementData GetRandomElementData(WeaponSubElement weaponSubElement)
     {
-        for(int i = 0; i< randomWeaponSubElementDatas.Length;i++)
+        for(int i = 0; i< randomWeaponSubElementDates.Length;i++)
         {
-            if (randomWeaponSubElementDatas[i].weaponSubElement == weaponSubElement)
+            if (randomWeaponSubElementDates[i].weaponSubElement == weaponSubElement)
             {
-                return randomWeaponSubElementDatas[i];
+                return randomWeaponSubElementDates[i];
             }
 
         }

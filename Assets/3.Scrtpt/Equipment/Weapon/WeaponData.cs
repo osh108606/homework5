@@ -9,12 +9,12 @@ public class WeaponData : ScriptableObject
     public string weaponBase;//총기 베이스
 
     public float damage;//총기 데미지
-    public float RPM;//공격 속도
+    public float rpm;//공격 속도
     public float reloadTime;//장전속도
     public int maxAmmo;//최대 탄창
-    public int Pellets;//한발에 나가는 총알 수
+    public int pellets;//한발에 나가는 총알 수
     public bool auto;//자동사격 여부
-    public bool SpreadShot;//산탄 여부
+    public bool spreadShot;//산탄 여부
 
     public Sprite sprite;
     public Bullet bulletPrefab;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ArmorManager : MonoBehaviour
 {
@@ -7,15 +8,15 @@ public class ArmorManager : MonoBehaviour
     {
         Instance = this;
     }
-    public ArmorMainElementData[] armorMainElementDatas;
-    public RandomArmorSubElementData[] randomArmorSubElementDatas;
+    public ArmorMainElementData[] armorMainElementDates;
+    public RandomArmorSubElementData[] randomArmorSubElementDates;
     public ArmorMainElementData GetArmorElementData(ArmorBrand armorBrand)
     {
-        for (int i = 0; i < armorMainElementDatas.Length; i++)
+        for (int i = 0; i < armorMainElementDates.Length; i++)
         {
-            if (armorMainElementDatas[i].armorBrand == armorBrand)
+            if (armorMainElementDates[i].armorBrand == armorBrand)
             {
-                return armorMainElementDatas[i];
+                return armorMainElementDates[i];
             }
         }
         return null;
@@ -23,11 +24,11 @@ public class ArmorManager : MonoBehaviour
 
     public RandomArmorSubElementData GetArmorRandomElementData(ArmorSubElement armorSubElement)
     {
-        for (int i = 0; i < randomArmorSubElementDatas.Length; i++)
+        for (int i = 0; i < randomArmorSubElementDates.Length; i++)
         {
-            if (randomArmorSubElementDatas[i].armorSubElement == armorSubElement)
+            if (randomArmorSubElementDates[i].armorSubElement == armorSubElement)
             {
-                return randomArmorSubElementDatas[i];
+                return randomArmorSubElementDates[i];
             }
 
         }

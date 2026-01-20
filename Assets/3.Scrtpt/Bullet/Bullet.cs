@@ -49,7 +49,7 @@ public class DamagInfo
     public void Init()
     {
         crtChance = Player.Instance.playerAbility.CrtChance;
-        crtDamage = Player.Instance.playerAbility.crtDamage;
+        crtDamage = Player.Instance.playerAbility.CrtDamage;
     }
 
 
@@ -59,7 +59,7 @@ public class DamagInfo
         damage = Player.Instance.playerAbility.Damage;
         if (isCrt)
         {
-            damage *= Player.Instance.playerAbility.crtDamage;
+            damage *= Player.Instance.playerAbility.CrtDamage;
         }
     }
 }

@@ -9050,8 +9050,8 @@ ScriptedImporter:
     - {x: 26, y: 27}
     - {x: 27, y: 28}
     tessellationDetail: 0
-    uvTransform: {x: 1048, y: 4}
-    spritePosition: {x: 734, y: 646}
+    uvTransform: {x: 314, y: -642}
+    spritePosition: {x: 0, y: 0}
   - name: arm front up
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -9509,8 +9509,8 @@ ScriptedImporter:
     - {x: 25, y: 26}
     - {x: 26, y: 27}
     tessellationDetail: 0
-    uvTransform: {x: 688, y: 1739}
-    spritePosition: {x: 791, y: 847}
+    uvTransform: {x: -103, y: 892}
+    spritePosition: {x: 0, y: 0}
   - name: weapon base long2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -9947,8 +9947,8 @@ ScriptedImporter:
     - {x: 34, y: 35}
     - {x: 35, y: 36}
     tessellationDetail: 0
-    uvTransform: {x: 870, y: 314}
-    spritePosition: {x: 609, y: 3}
+    uvTransform: {x: 261, y: 311}
+    spritePosition: {x: 0, y: 0}
   - name: eye
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -10515,8 +10515,8 @@ ScriptedImporter:
     - {x: 44, y: 45}
     - {x: 45, y: 46}
     tessellationDetail: 0
-    uvTransform: {x: 1355, y: 4}
-    spritePosition: {x: 990, y: 1304}
+    uvTransform: {x: 365, y: -1300}
+    spritePosition: {x: 0, y: 0}
   - name: hair side
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -11040,8 +11040,8 @@ ScriptedImporter:
     - {x: 24, y: 25}
     - {x: 25, y: 26}
     tessellationDetail: 0
-    uvTransform: {x: 417, y: 1555}
-    spritePosition: {x: 939, y: 1059}
+    uvTransform: {x: -522, y: 496}
+    spritePosition: {x: 0, y: 0}
   - name: hair top
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -11651,8 +11651,8 @@ ScriptedImporter:
     - {x: 37, y: 38}
     - {x: 38, y: 39}
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 1555}
-    spritePosition: {x: 810, y: 1233}
+    uvTransform: {x: -806, y: 322}
+    spritePosition: {x: 0, y: 0}
   - name: mouth
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -11854,8 +11854,8 @@ ScriptedImporter:
     - {x: 7, y: 8}
     - {x: 8, y: 9}
     tessellationDetail: 0
-    uvTransform: {x: 417, y: 1952}
-    spritePosition: {x: 1093, y: 1225}
+    uvTransform: {x: -676, y: 727}
+    spritePosition: {x: 0, y: 0}
   - name: head
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -12246,8 +12246,8 @@ ScriptedImporter:
     - {x: 28, y: 29}
     - {x: 29, y: 30}
     tessellationDetail: 0
-    uvTransform: {x: 506, y: 4}
-    spritePosition: {x: 842, y: 1186}
+    uvTransform: {x: -336, y: -1182}
+    spritePosition: {x: 0, y: 0}
   - name: shirt
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -12677,8 +12677,8 @@ ScriptedImporter:
     - {x: 29, y: 30}
     - {x: 30, y: 31}
     tessellationDetail: 0
-    uvTransform: {x: 506, y: 432}
-    spritePosition: {x: 822, y: 856}
+    uvTransform: {x: -316, y: -424}
+    spritePosition: {x: 0, y: 0}
   - name: skirt
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -13130,8 +13130,8 @@ ScriptedImporter:
     - {x: 32, y: 33}
     - {x: 33, y: 34}
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 1105}
-    spritePosition: {x: 785, y: 511}
+    uvTransform: {x: -781, y: 594}
+    spritePosition: {x: 0, y: 0}
   - name: leg front down
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -13652,8 +13652,8 @@ ScriptedImporter:
     - {x: 28, y: 44}
     - {x: 28, y: 29}
     tessellationDetail: 0
-    uvTransform: {x: 688, y: 1343}
-    spritePosition: {x: 740, y: 0}
+    uvTransform: {x: -52, y: 1343}
+    spritePosition: {x: 0, y: 0}
   - name: leg front up
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -14185,8 +14185,8 @@ ScriptedImporter:
     - {x: 30, y: 31}
     - {x: 31, y: 32}
     tessellationDetail: 0
-    uvTransform: {x: 506, y: 871}
-    spritePosition: {x: 800, y: 274}
+    uvTransform: {x: -294, y: 597}
+    spritePosition: {x: 0, y: 0}
   - name: leg back down
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -14665,8 +14665,8 @@ ScriptedImporter:
     - {x: 26, y: 27}
     - {x: 27, y: 28}
     tessellationDetail: 0
-    uvTransform: {x: 712, y: 871}
-    spritePosition: {x: 1080, y: 0}
+    uvTransform: {x: -368, y: 871}
+    spritePosition: {x: 0, y: 0}
   - name: leg back up
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -15207,8 +15207,8 @@ ScriptedImporter:
     - {x: 29, y: 30}
     - {x: 30, y: 31}
     tessellationDetail: 0
-    uvTransform: {x: 506, y: 1343}
-    spritePosition: {x: 1016, y: 268}
+    uvTransform: {x: -510, y: 1075}
+    spritePosition: {x: 0, y: 0}
   - name: arm back down
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -15656,8 +15656,8 @@ ScriptedImporter:
     - {x: 25, y: 26}
     - {x: 26, y: 27}
     tessellationDetail: 0
-    uvTransform: {x: 1198, y: 4}
-    spritePosition: {x: 1115, y: 665}
+    uvTransform: {x: 83, y: -661}
+    spritePosition: {x: 0, y: 0}
   - name: arm back up
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -16104,8 +16104,8 @@ ScriptedImporter:
     - {x: 24, y: 25}
     - {x: 25, y: 26}
     tessellationDetail: 0
-    uvTransform: {x: 870, y: 4}
-    spritePosition: {x: 1030, y: 847}
+    uvTransform: {x: -160, y: -843}
+    spritePosition: {x: 0, y: 0}
   - name: hair back
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -17056,8 +17056,8 @@ ScriptedImporter:
     - {x: 61, y: 62}
     - {x: 62, y: 63}
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 694, y: 451}
+    uvTransform: {x: -690, y: -447}
+    spritePosition: {x: 0, y: 0}
   sharedRigSpriteImportData: []
   mosaicSpriteImportData: []
   sharedRigCharacterData:
@@ -17420,14 +17420,6 @@ ScriptedImporter:
   generatePhysicsShape: 0
   paperDollMode: 0
   keepDupilcateSpriteName: 1
-  generateTileAssets: 0
-  tilePaletteCellLayout: 0
-  tilePaletteHexagonLayout: 0
-  tilePaletteCellSize: {x: 1, y: 1, z: 0}
-  tilePaletteCellSizing: 0
-  transparencySortMode: 0
-  transparencySortAxis: {x: 0, y: 0, z: 1}
-  tileTemplate: {instanceID: 0}
   padding: 4
   spriteSizeExpand: 0
   skeletonAssetReferenceID: 

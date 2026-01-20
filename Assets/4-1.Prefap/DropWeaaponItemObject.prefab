@@ -205,6 +205,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -380,5 +381,17 @@ MonoBehaviour:
   itemType: 0
   col: {fileID: 3534399518935743182}
   canvasObjede: {fileID: 5347412269792053293}
+  isConsume: 1
   grade: 0
   itemGrade: 0
+  weaponAbility:
+    grade: 0
+    itemGrade: 0
+    weaponTypeDamageData:
+      weaponType: 0
+      value: 0
+    weaponFixSubElementData:
+      weaponSubElement: 0
+      value: 0
+    weaponRandomSubElementDatas: []
+    weaponTelent: 

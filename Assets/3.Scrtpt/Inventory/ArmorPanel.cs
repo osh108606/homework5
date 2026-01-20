@@ -15,7 +15,7 @@ public class ArmorPanel : GearPanel
 
 
         this.userArmor = userArmor;
-        if (userArmor.armorEuiped == true)
+        if (userArmor.armorEuiped)
         {
             image.color = Color.white;
         }

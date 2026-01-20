@@ -17,7 +17,7 @@ public class SG : Weapon
         {
             return false;
         }
-        if (reLoading == true) //재장전 중이면 발사 불가
+        if (reLoading) //재장전 중이면 발사 불가
             return false;
         userWeapon.ammoCount--;//사용중인 총알
 
@@ -33,7 +33,7 @@ public class SG : Weapon
         //Debug.Log("화면클릭");
         Vector2 screenPoint = Input.mousePosition;
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
-        Vector2 directtion = worldPoint - (Vector2)transform.position;
+        Vector2 direction = worldPoint - (Vector2)transform.position;
 
 
         // 산탄 좌우 각도

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.Serialization;
+
 
 public class DungeonZone : MonoBehaviour, IEnemySpawner
 {
@@ -16,7 +17,7 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
 
     List<Enemy> enemies = new List<Enemy>();
     public Enemy enemyPrefab;
-    public int firstEnmey;
+    [FormerlySerializedAs("firstEnemey")] [FormerlySerializedAs("firstEnmey")] public int firstEnemy;
     public int waveCount;
     public bool zoneEnd;
 
@@ -24,7 +25,7 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
     {
         dungeon = GetComponentInParent<Dungeon>(); ;
         zoneEnd = false;
-        firstEnmey = 0;
+        firstEnemy = 0;
         dungeonWaves = GetComponentsInChildren<DungeonWave>();
         //enemySpawnPoints = GetComponentsInChildren<Transform>();
     }
@@ -46,14 +47,14 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
 
         dungeon.curZone = this;
         Debug.Log("DungeonZone Start");
-        firstEnmey = 0;
+        firstEnemy = 0;
         waveCount = dungeonWaves.Length;
         for (int i = 0; i < enemySpawnPoints.Length; i++)
         {
             Enemy enemy = Instantiate(enemyPrefab, enemySpawnPoints[i].transform.position, Quaternion.identity);
             enemies.Add(enemy);
             enemy.transform.parent = enemySpawnPoints[i].transform;
-            firstEnmey++;
+            firstEnemy++;
         }
 
     }
@@ -69,7 +70,7 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
         }
         for(int i = 1; i< dungeonWaves.Length; i++ )
         {
-            if( dungeonWaves[i-1].waveEnd == true && dungeonWaves[i].waveEnd == false)
+            if( dungeonWaves[i-1].waveEnd && dungeonWaves[i].waveEnd == false)
             {
                 dungeonWaves[i].StartWave();
                 break;
@@ -79,9 +80,9 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
 
     public void KilledEnemy(Enemy e)
     {
-        firstEnmey--;
-        Debug.Log(firstEnmey);
-        if (firstEnmey == 0)
+        firstEnemy--;
+        Debug.Log(firstEnemy);
+        if (firstEnemy == 0)
         {
             Debug.Log("FirstEnemy End");
             dungeonWaves[0].StartWave();

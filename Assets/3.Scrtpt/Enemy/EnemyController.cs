@@ -4,19 +4,20 @@ using System.Collections;
 public class EnemyController : MonoBehaviour
 {
     public static EnemyController instance;
-    public GameObject enemyobj;
+    public GameObject enemyObj;
     public Transform[] points;
     public Transform spawnPoint;
     
     public int spawnCount=6;
-    public int enemiesCount=0;
+    public int enemiesCount;
     //float t = 0f;
     public Enemy[] enemies;
-    public bool spawnAll = false;
+    public bool spawnAll;
     
     private void Awake()
     {
         instance = this;
+        spawnAll = false;
     }
 
     void Update()
@@ -43,19 +44,13 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(Spawn());
         }
         
-        if (spawnAll == true)
+        if (spawnAll)
         {
-            cheakArrive();
+            CheakArrive();
         }
         
     }
-
-    IEnumerator CoStart()
-    {
-        Debug.Log("CoStart() 1");
-        yield return new WaitForSeconds(5);
-        Debug.Log("CoStart() 2");
-    }
+    
     //points[idx].position
     
     IEnumerator Spawn()
@@ -69,7 +64,7 @@ public class EnemyController : MonoBehaviour
             enemiesCount++;
             yield return new WaitForSeconds(1);
             
-            GameObject obj = Instantiate(enemyobj, spawnPoint.position, Quaternion.identity);
+            GameObject obj = Instantiate(enemyObj, spawnPoint.position, Quaternion.identity);
             
             enemies[i] = obj.GetComponent<Enemy>();
             enemies[i].desPoint = points[idx].position;
@@ -78,7 +73,7 @@ public class EnemyController : MonoBehaviour
     }
     public int cheak =0;
 
-    void cheakArrive()
+    void CheakArrive()
     {
         bool arrivedAll = true;
         for (int i = 0; i < spawnCount; i++)
@@ -90,7 +85,7 @@ public class EnemyController : MonoBehaviour
             }   
         }
 
-        if(arrivedAll == true)
+        if(arrivedAll)
         {
             for (int i = 0; i < spawnCount; i++)
             {

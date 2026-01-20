@@ -1,9 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using Unity.VisualScripting;
-using System.Linq;
+
 public class MainInventory : MonoBehaviour
 {
     
@@ -29,11 +25,6 @@ public class MainInventory : MonoBehaviour
         Refresh();
     }
 
-    public void Start()
-    {
-        
-    }
-
     public void Refresh()
     {
         for (int i = 0; i < weaponSlotPanels.Length; i++)
@@ -46,13 +37,13 @@ public class MainInventory : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
-        CamaraManager.Instance.OpenMainIventoryCamera();
+        CamaraManager.Instance.OpenMainInventoryCamera();
     }
 
     public void Close()
     { 
         gameObject.SetActive(false);
-        CamaraManager.Instance.CloseMainIventoryCamera();
+        CamaraManager.Instance.CloseMainInventoryCamera();
     }
 
     public void OnClick(WeaponSlotType weaponSlotType)

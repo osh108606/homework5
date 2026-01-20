@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 //using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -7,7 +5,7 @@ public class BombBullet : Bullet
 {
     public Transform tr;
     public float sDamge;
-    public bool colCheck=false;
+    public bool colCheck;
     
 
     // Update is called once per frame

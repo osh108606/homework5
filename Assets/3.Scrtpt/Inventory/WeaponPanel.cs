@@ -20,7 +20,7 @@ public class WeaponPanel : GearPanel
     }
     public void Update()
     {
-        if (select == true)
+        if (select)
             backGround.color = Color.black;
         else
             backGround.color = Color.gray;
@@ -34,7 +34,7 @@ public class WeaponPanel : GearPanel
 
 
         this.userWeapon = userWeapon;
-        if (userWeapon.weaponEuiped == true)
+        if (userWeapon.weaponEuiped)
         {
             innerGround.color = Color.white;
         }

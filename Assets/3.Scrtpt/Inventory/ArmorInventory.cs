@@ -17,9 +17,9 @@ public class ArmorInventory : SubInventory
         curEuiptmentNameText = GetComponentInChildren<TMP_Text>();
     }
 
-    public void Open(ArmorEquipSlot EquipSlot)
+    public void Open(ArmorEquipSlot equipSlot)
     {
-        armorEquipSlot = EquipSlot;
+        armorEquipSlot = equipSlot;
         gameObject.SetActive(true);
 
         UpdateCanvas();
@@ -52,19 +52,19 @@ public class ArmorInventory : SubInventory
         curEuiptmentImage.sprite = armorData.sprite;
     }
 
-    public void ArmorSelected(ArmorData armorData)
+    public void ArmorSelected(UserArmor userArmor)
     {
-        if (armorData == null)
+        if (userArmor == null)
         {
             curEuiptmentNameText.enabled = false;
             curEuiptmentImage.enabled = false;
             return;
         }
 
-        UserManager.instance.ChangeWeapon(armorData.key);
+        //UserManager.instance.ChangeArmor(userArmor);
         //Player.Instance.ChangeWeapon(armorData.key);
 
-
+        ArmorData armorData = Resources.Load<ArmorData>($"WeaponData/{userArmor.key}");
 
         curEuiptmentNameText.enabled = true;
         curEuiptmentImage.enabled = true;
