@@ -17,12 +17,12 @@ MonoBehaviour:
   weaponName: MP5
   weaponBase: 
   damage: 1
-  RPM: 1000
+  rpm: 1100
   reloadTime: 3
   maxAmmo: 30
-  Pellets: 1
+  pellets: 0
   auto: 1
-  SpreadShot: 0
+  spreadShot: 0
   sprite: {fileID: 21300000, guid: 432b986c14441c946a6a8c3b9c29f194, type: 3}
   bulletPrefab: {fileID: 1746735079809394367, guid: d5af7bc4839f81d43a724562cab550a3, type: 3}
   weaponType: 1
@@ -36,5 +36,5 @@ MonoBehaviour:
     weaponFixSubElementData:
       weaponSubElement: 0
       value: 0
-    weaponRandomSubElementDatas: []
+    weaponRandomSubElementDates: []
     weaponTelent: 

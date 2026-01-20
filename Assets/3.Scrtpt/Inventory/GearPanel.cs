@@ -8,8 +8,6 @@ public class GearPanel : MonoBehaviour
     public bool select;
     public virtual void Awake()
     {
-        image = GetComponentInChildren<Image>();
-        text = GetComponentInChildren<TMP_Text>();
         select = false;
     }
     public virtual void SetData(UserWeapon userWeapon)

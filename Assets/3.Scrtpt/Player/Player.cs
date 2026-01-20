@@ -80,7 +80,7 @@ public class Player : MonoSingleton<Player>
         #endregion
 
         if (Input.GetKey(KeyCode.LeftShift) && aimTrigger == false && attackTrigger == false
-            && InventoryCanvas.Instance.canInteraction == false)//왼쪽쉬프트 입력 (달리기상태 전환)
+            && InventoryCanvas.Instance.canInteraction)//왼쪽쉬프트 입력 (달리기상태 전환)
             runTrigger = true;
         else
             runTrigger = false;

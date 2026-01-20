@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 
 public class WeaponSlotPanel : MonoBehaviour
@@ -8,12 +9,12 @@ public class WeaponSlotPanel : MonoBehaviour
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponSlotType weaponSlotType;
     public WeaponData weaponData;
-    public Image thumImage;
+    public Image image;
     public TMP_Text weaponName;
 
     public void Awake()
     {
-        thumImage =transform.Find("GPImage").GetComponentInChildren<Image>();
+        image = transform.Find("GPInnerGround").Find("GPImage").GetComponentInChildren<Image>();
         weaponName = GetComponentInChildren<TMP_Text>();
     }
 
@@ -21,15 +22,15 @@ public class WeaponSlotPanel : MonoBehaviour
     {
         if(userWeapon == null)
         {
-            thumImage.enabled = false;
+            image.enabled = false;
             weaponName.text = "none";
         }
         else 
         {
             //WeaponPanel SetData
             weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon.key);
-            thumImage.enabled = true;
-            thumImage.sprite = weaponData.sprite;
+            image.enabled = true;
+            image.sprite = weaponData.sprite;
             weaponName.text = weaponData.weaponName;
             weaponSlotType = weaponData.weaponSlotType;
 

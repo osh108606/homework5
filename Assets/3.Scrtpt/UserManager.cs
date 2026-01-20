@@ -149,8 +149,9 @@ public class UserManager : MonoBehaviour
 
         WeaponTypeElementData elementData = WeaponManager.Instance.GetWeaponTypeElementData(userWeapon.weaponData.weaponType);
 
-        userWeapon.weaponAbility.weaponTypeDamageData.weaponType = elementData.weaponType;
+        userWeapon.weaponAbility.weaponTypeDamageData.weaponType = userWeapon.weaponData.weaponType;
         userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(elementData.addWeaponDamageDataValues[grade].x, elementData.addWeaponDamageDataValues[grade].y);
+        
         if(userWeapon.weaponAbility.grade != 0)
         {
             userWeapon.weaponAbility.weaponFixSubElementData.weaponSubElement = elementData.fixWeaponSubElement;
@@ -257,7 +258,7 @@ public class UserManager : MonoBehaviour
         UserWeapon preUserWeapon = GetEuipedUserWeapon();
         if (preUserWeapon != null)
         {
-            preUserWeapon.weaponEuiped = false;
+            preUserWeapon.weaponEuiped = true;
             preUserWeapon.weaponDraw = false;
         }
 

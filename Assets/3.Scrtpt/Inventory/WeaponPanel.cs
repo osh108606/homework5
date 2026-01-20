@@ -13,9 +13,9 @@ public class WeaponPanel : GearPanel
     public override void Awake()
     {
         base.Awake();
-        image = transform.Find("GPImage").GetComponentInChildren<Image>();
         backGround = transform.Find("GPBackGround").GetComponentInChildren<Image>();
         innerGround = transform.Find("GPInnerGround").GetComponentInChildren<Image>();
+        image = transform.Find("GPInnerGround").Find("GPImage").GetComponentInChildren<Image>();
         text = transform.Find("GPWeaponName").GetComponentInChildren<TMP_Text>();
     }
     public void Update()
@@ -25,15 +25,15 @@ public class WeaponPanel : GearPanel
         else
             backGround.color = Color.gray;
     }
-    public override void SetData(UserWeapon userWeapon)
+    public override void SetData(UserWeapon uWeapon)
     {
-        weaponData = Resources.Load<WeaponData>("WeaponData/" + userWeapon.key);
+        weaponData = Resources.Load<WeaponData>("WeaponData/" + uWeapon.key);
         text.text = weaponData.weaponName;
         image.sprite = weaponData.sprite;
         weaponSlotType = weaponData.weaponSlotType;
 
 
-        this.userWeapon = userWeapon;
+        this.userWeapon = uWeapon;
         if (userWeapon.weaponEuiped)
         {
             innerGround.color = Color.white;

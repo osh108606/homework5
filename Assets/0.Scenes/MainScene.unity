@@ -214,6 +214,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -416,7 +417,7 @@ MonoBehaviour:
       weaponFixSubElementData:
         weaponSubElement: 0
         value: 0
-      weaponRandomSubElementDatas: []
+      weaponRandomSubElementDates: []
       weaponTelent: 
   selectArmor:
     key: 
@@ -541,7 +542,6 @@ RectTransform:
   m_Children:
   - {fileID: 705066984}
   - {fileID: 1353340423}
-  - {fileID: 1631940324}
   - {fileID: 603048257}
   m_Father: {fileID: 100791447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -573,7 +573,7 @@ MonoBehaviour:
   weaponEquipSlot: 2
   weaponSlotType: 1
   weaponData: {fileID: 0}
-  thumImage: {fileID: 0}
+  image: {fileID: 0}
   weaponName: {fileID: 0}
 --- !u!1 &135349931
 GameObject:
@@ -670,6 +670,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1026,12 +1027,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206835432}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 259962122}
+  m_Father: {fileID: 920556809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1288,7 +1289,6 @@ RectTransform:
   m_Children:
   - {fileID: 1867236024}
   - {fileID: 920556809}
-  - {fileID: 206835433}
   - {fileID: 330202985}
   m_Father: {fileID: 100791447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1320,7 +1320,7 @@ MonoBehaviour:
   weaponEquipSlot: 3
   weaponSlotType: 2
   weaponData: {fileID: 0}
-  thumImage: {fileID: 0}
+  image: {fileID: 0}
   weaponName: {fileID: 0}
 --- !u!1001 &265733038
 PrefabInstance:
@@ -1478,6 +1478,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1699,6 +1700,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1772,7 +1774,6 @@ RectTransform:
   m_Children:
   - {fileID: 1702870670}
   - {fileID: 426244242}
-  - {fileID: 424529002}
   - {fileID: 1973457829}
   m_Father: {fileID: 100791447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1803,7 +1804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorEquipSlot: 0
   armorData: {fileID: 0}
-  thumImage: {fileID: 0}
+  image: {fileID: 0}
   armorName: {fileID: 0}
 --- !u!1 &368429782
 GameObject:
@@ -1877,12 +1878,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424529001}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 338897974}
+  m_Father: {fileID: 426244242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1957,7 +1958,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 424529002}
   m_Father: {fileID: 338897974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2266,6 +2268,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2619,6 +2622,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2755,6 +2759,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2891,6 +2896,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3027,6 +3033,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3234,7 +3241,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1078420853}
   m_Father: {fileID: 2098614918}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3406,7 +3414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &680343254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3428,6 +3436,8 @@ MonoBehaviour:
       Owner: {fileID: 680343257}
       Enabled: 1
       Input:
+        InputAction: {fileID: 0}
+        Gain: 1
         LegacyInput: Mouse X
         LegacyGain: 100
         CancelDeltaTime: 0
@@ -3439,6 +3449,8 @@ MonoBehaviour:
       Owner: {fileID: 680343257}
       Enabled: 1
       Input:
+        InputAction: {fileID: 0}
+        Gain: 1
         LegacyInput: Mouse Y
         LegacyGain: -100
         CancelDeltaTime: 0
@@ -3450,6 +3462,8 @@ MonoBehaviour:
       Owner: {fileID: 680343257}
       Enabled: 1
       Input:
+        InputAction: {fileID: 0}
+        Gain: 1
         LegacyInput: Mouse ScrollWheel
         LegacyGain: -100
         CancelDeltaTime: 0
@@ -3457,6 +3471,8 @@ MonoBehaviour:
       Driver:
         AccelTime: 0
         DecelTime: 0
+  PlayerIndex: -1
+  AutoEnableInputs: 1
 --- !u!114 &680343255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3943,7 +3959,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1700936679}
   m_Father: {fileID: 1743246714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4140,6 +4157,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4351,6 +4369,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4534,6 +4553,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4600,12 +4620,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820970989}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1034430866}
+  m_Father: {fileID: 1824528426}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4913,6 +4933,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -5270,6 +5291,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -5416,7 +5438,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 206835433}
   m_Father: {fileID: 259962122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5642,7 +5665,6 @@ RectTransform:
   m_Children:
   - {fileID: 62942557}
   - {fileID: 1824528426}
-  - {fileID: 820970990}
   - {fileID: 595835576}
   m_Father: {fileID: 100791447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5673,7 +5695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorEquipSlot: 0
   armorData: {fileID: 0}
-  thumImage: {fileID: 0}
+  image: {fileID: 0}
   armorName: {fileID: 0}
 --- !u!1 &1047631705
 GameObject:
@@ -5909,10 +5931,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068a3cb5d37c6b049b521ab8987d2996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamear: {fileID: 0}
+  mainCamera: {fileID: 0}
   followCamera: {fileID: 1328358787}
   zoomCamera: {fileID: 680343258}
-  mainInentoryCamera: {fileID: 471897576}
+  mainInventoryCamera: {fileID: 471897576}
   isZooming: 0
 --- !u!4 &1053854366
 Transform:
@@ -6151,12 +6173,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078420852}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2098614918}
+  m_Father: {fileID: 617546944}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6294,13 +6316,13 @@ MonoBehaviour:
   healthPoint: 0
   armorPoint: 0
   moveSpeed: 0
-  HpBar: {fileID: 1047631708}
+  hpBar: {fileID: 1047631708}
   ignoreDamage: 1
   arrived: 0
   y: 0
   desPoint: {x: 0, y: 0}
   col: {fileID: 1157151264}
-  canvasObjede: {fileID: 1766590069}
+  canvasObject: {fileID: 0}
   stageSelect: {fileID: 1527740704}
 --- !u!58 &1157151264
 CircleCollider2D:
@@ -6434,12 +6456,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164921794}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1742529813}
+  m_Father: {fileID: 1576803893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6725,12 +6747,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198603658}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1842370539}
+  m_Father: {fileID: 1918645359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6934,7 +6956,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1700176353}
   m_Father: {fileID: 1486403066}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7206,6 +7229,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -7342,6 +7366,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -7562,12 +7587,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341137284}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1577281964}
+  m_Father: {fileID: 1448140499}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7753,7 +7778,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1631940324}
   m_Father: {fileID: 118489135}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8250,7 +8276,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1341137285}
   m_Father: {fileID: 1577281964}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8395,7 +8422,6 @@ RectTransform:
   m_Children:
   - {fileID: 823165204}
   - {fileID: 1208022503}
-  - {fileID: 1700176353}
   - {fileID: 29170572}
   m_Father: {fileID: 100791447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8426,7 +8452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorEquipSlot: 0
   armorData: {fileID: 0}
-  thumImage: {fileID: 0}
+  image: {fileID: 0}
   armorName: {fileID: 0}
 --- !u!1 &1490191222
 GameObject:
@@ -8523,6 +8549,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -8852,7 +8879,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1164921795}
   m_Father: {fileID: 1742529813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8986,7 +9014,6 @@ RectTransform:
   m_Children:
   - {fileID: 1363588423}
   - {fileID: 1448140499}
-  - {fileID: 1341137285}
   - {fileID: 1307071578}
   m_Father: {fileID: 100791447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9018,7 +9045,7 @@ MonoBehaviour:
   weaponEquipSlot: 1
   weaponSlotType: 0
   weaponData: {fileID: 0}
-  thumImage: {fileID: 0}
+  image: {fileID: 0}
   weaponName: {fileID: 0}
 --- !u!1 &1604296278
 GameObject:
@@ -9100,7 +9127,7 @@ MonoBehaviour:
       weaponFixSubElementData:
         weaponSubElement: 0
         value: 0
-      weaponRandomSubElementDatas: []
+      weaponRandomSubElementDates: []
       weaponTelent: 
   weaponPanels: []
   weaponEquipSlot: 0
@@ -9134,7 +9161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5416d117ef038004d81f29585761e3e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponTypeElementDatas:
+  weaponTypeElementDates:
   - weaponType: 0
     addWeaponDamageDataValues:
     - {x: 1, y: 3}
@@ -9187,7 +9214,7 @@ MonoBehaviour:
     - {x: 6, y: 9}
     - {x: 9, y: 12}
     - {x: 12, y: 15}
-    fixWeaponSubElement: 6
+    fixWeaponSubElement: 3
     fixWeaponSubElementValues:
     - {x: 0.1, y: 2}
     - {x: 2, y: 4}
@@ -9202,7 +9229,7 @@ MonoBehaviour:
     - {x: 6, y: 9}
     - {x: 9, y: 12}
     - {x: 12, y: 15}
-    fixWeaponSubElement: 3
+    fixWeaponSubElement: 6
     fixWeaponSubElementValues:
     - {x: 0.1, y: 2}
     - {x: 2, y: 4}
@@ -9232,7 +9259,7 @@ MonoBehaviour:
     - {x: 6, y: 9}
     - {x: 9, y: 12}
     - {x: 12, y: 15}
-    fixWeaponSubElement: 6
+    fixWeaponSubElement: 11
     fixWeaponSubElementValues:
     - {x: 0.1, y: 2}
     - {x: 2, y: 4}
@@ -9247,24 +9274,15 @@ MonoBehaviour:
     - {x: 6, y: 9}
     - {x: 9, y: 12}
     - {x: 12, y: 15}
-    fixWeaponSubElement: 10
-    fixWeaponSubElementValues: []
+    fixWeaponSubElement: 11
+    fixWeaponSubElementValues:
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
     randomElementCounts: 0000000001000000010000000100000001000000
-  randomWeaponSubElementDatas:
-  - weaponSubElement: 0
-    weaponSubElementValues:
-    - {x: 0.1, y: 1.2}
-    - {x: 1.2, y: 2.4}
-    - {x: 2.4, y: 3.6}
-    - {x: 3.6, y: 4.8}
-    - {x: 4.8, y: 6}
-  - weaponSubElement: 0
-    weaponSubElementValues:
-    - {x: 0.1, y: 1.2}
-    - {x: 1.2, y: 2.4}
-    - {x: 2.4, y: 3.6}
-    - {x: 3.6, y: 4.8}
-    - {x: 4.8, y: 6}
+  randomWeaponSubElementDates:
   - weaponSubElement: 1
     weaponSubElementValues:
     - {x: 0.1, y: 2.4}
@@ -9272,7 +9290,14 @@ MonoBehaviour:
     - {x: 4.8, y: 7.2}
     - {x: 7.2, y: 9.6}
     - {x: 9.6, y: 12}
-  - weaponSubElement: 2
+  - weaponSubElement: 0
+    weaponSubElementValues:
+    - {x: 0.1, y: 1.2}
+    - {x: 1.2, y: 2.4}
+    - {x: 2.4, y: 3.6}
+    - {x: 3.6, y: 4.8}
+    - {x: 4.8, y: 6}
+  - weaponSubElement: 5
     weaponSubElementValues:
     - {x: 0.1, y: 2}
     - {x: 2, y: 4}
@@ -9286,7 +9311,7 @@ MonoBehaviour:
     - {x: 4, y: 6}
     - {x: 6, y: 8}
     - {x: 8, y: 10}
-  - weaponSubElement: 5
+  - weaponSubElement: 2
     weaponSubElementValues:
     - {x: 0.1, y: 2}
     - {x: 2, y: 4}
@@ -9300,14 +9325,14 @@ MonoBehaviour:
     - {x: 4, y: 6}
     - {x: 6, y: 8}
     - {x: 8, y: 10}
-  - weaponSubElement: 7
+  - weaponSubElement: 4
     weaponSubElementValues:
-    - {x: 0.1, y: 1.6}
-    - {x: 1.6, y: 3.2}
-    - {x: 3.2, y: 4.8}
-    - {x: 4.8, y: 6.4}
-    - {x: 6.4, y: 8}
-  - weaponSubElement: 8
+    - {x: 0.1, y: 2}
+    - {x: 2, y: 4}
+    - {x: 4, y: 6}
+    - {x: 6, y: 8}
+    - {x: 8, y: 10}
+  - weaponSubElement: 7
     weaponSubElementValues:
     - {x: 0.1, y: 2}
     - {x: 2, y: 4}
@@ -9354,12 +9379,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631940323}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 118489135}
+  m_Father: {fileID: 1353340423}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9620,6 +9645,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -9686,12 +9712,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700176352}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1486403066}
+  m_Father: {fileID: 1208022503}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9761,12 +9787,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700936678}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1743246714}
+  m_Father: {fileID: 731287140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10010,7 +10036,6 @@ RectTransform:
   m_Children:
   - {fileID: 1352909627}
   - {fileID: 1576803893}
-  - {fileID: 1164921795}
   - {fileID: 1676317791}
   m_Father: {fileID: 100791447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10041,7 +10066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorEquipSlot: 0
   armorData: {fileID: 0}
-  thumImage: {fileID: 0}
+  image: {fileID: 0}
   armorName: {fileID: 0}
 --- !u!1 &1743246713
 GameObject:
@@ -10075,7 +10100,6 @@ RectTransform:
   m_Children:
   - {fileID: 736242241}
   - {fileID: 731287140}
-  - {fileID: 1700936679}
   - {fileID: 1490191223}
   m_Father: {fileID: 100791447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10106,7 +10130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorEquipSlot: 0
   armorData: {fileID: 0}
-  thumImage: {fileID: 0}
+  image: {fileID: 0}
   armorName: {fileID: 0}
 --- !u!1 &1766590069
 GameObject:
@@ -10502,7 +10526,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 820970990}
   m_Father: {fileID: 1034430866}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10679,14 +10704,14 @@ MonoBehaviour:
     initMoveSpeed: 0
     initRunSpeed: 0
     initInvincibleTime: 0
-    initHGAmmoLimit: 0
+    initHgAmmoLimit: 0
     initARAmmoLimit: 0
-    initSMGAmmoLimit: 0
-    initMGAmmoLimit: 0
-    initRFAmmoLimit: 0
-    initSGAmmoLimit: 0
-    initSRAmmoLimit: 0
-    initSPAmmoLimit: 0
+    initSmgAmmoLimit: 0
+    initMgAmmoLimit: 0
+    initRfAmmoLimit: 0
+    initSgAmmoLimit: 0
+    initSrAmmoLimit: 0
+    initSpAmmoLimit: 0
     curWeapon: {fileID: 0}
   animator: {fileID: 0}
   rb2d: {fileID: 1836596454}
@@ -10761,7 +10786,6 @@ RectTransform:
   m_Children:
   - {fileID: 1878421666}
   - {fileID: 1918645359}
-  - {fileID: 1198603659}
   - {fileID: 135349932}
   m_Father: {fileID: 100791447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10792,7 +10816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorEquipSlot: 0
   armorData: {fileID: 0}
-  thumImage: {fileID: 0}
+  image: {fileID: 0}
   armorName: {fileID: 0}
 --- !u!1 &1867236023
 GameObject:
@@ -11048,8 +11072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5be7a725170a34d8a15d4039e6bf71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armorMainElementDatas: []
-  randomArmorSubElementDatas: []
+  armorMainElementDates: []
+  randomArmorSubElementDates: []
 --- !u!4 &1886990801
 Transform:
   m_ObjectHideFlags: 0
@@ -11095,7 +11119,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1198603659}
   m_Father: {fileID: 1842370539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -11432,6 +11457,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -11568,6 +11594,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -11678,7 +11705,6 @@ RectTransform:
   m_Children:
   - {fileID: 1640267709}
   - {fileID: 617546944}
-  - {fileID: 1078420853}
   - {fileID: 271687663}
   m_Father: {fileID: 100791447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11710,7 +11736,7 @@ MonoBehaviour:
   weaponEquipSlot: 0
   weaponSlotType: 0
   weaponData: {fileID: 0}
-  thumImage: {fileID: 0}
+  image: {fileID: 0}
   weaponName: {fileID: 0}
 --- !u!1 &2121606736
 GameObject:
@@ -11837,6 +11863,7 @@ SceneRoots:
   - {fileID: 1626341632}
   - {fileID: 1886990801}
   - {fileID: 1423205969}
+  - {fileID: 1053854366}
   - {fileID: 1328358788}
   - {fileID: 471897577}
   - {fileID: 2121606740}
@@ -11850,7 +11877,6 @@ SceneRoots:
   - {fileID: 1388581448}
   - {fileID: 712107890}
   - {fileID: 519420032}
-  - {fileID: 1053854366}
   - {fileID: 680343259}
   - {fileID: 829981652}
   - {fileID: 1083200860}

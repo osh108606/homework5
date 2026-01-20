@@ -17,12 +17,12 @@ MonoBehaviour:
   weaponName: Glock
   weaponBase: 
   damage: 1
-  RPM: 500
+  rpm: 120
   reloadTime: 3
   maxAmmo: 15
-  Pellets: 1
+  pellets: 0
   auto: 0
-  SpreadShot: 0
+  spreadShot: 0
   sprite: {fileID: 21300000, guid: 058b753ee89338f49ab1feed9a3d38f9, type: 3}
   bulletPrefab: {fileID: 1746735079809394367, guid: d5af7bc4839f81d43a724562cab550a3, type: 3}
   weaponType: 6
@@ -36,5 +36,5 @@ MonoBehaviour:
     weaponFixSubElementData:
       weaponSubElement: 0
       value: 0
-    weaponRandomSubElementDatas: []
+    weaponRandomSubElementDates: []
     weaponTelent: 

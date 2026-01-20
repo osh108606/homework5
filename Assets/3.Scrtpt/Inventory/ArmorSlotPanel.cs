@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class ArmorSlotPanel : MonoBehaviour
 {
     public ArmorEquipSlot armorEquipSlot;
     public ArmorData armorData;
-    public Image thumImage;
+    public Image image;
     public TMP_Text armorName;
 
     public void Awake()
     {
-        thumImage = GetComponentInChildren<Image>();
+        image = transform.Find("GPInnerGround").Find("GPImage").GetComponentInChildren<Image>();
         armorName = GetComponentInChildren<TMP_Text>();
     }
 
@@ -19,13 +20,13 @@ public class ArmorSlotPanel : MonoBehaviour
     {
         if (userArmor == null)
         {
-            thumImage.enabled = false;
+            image.enabled = false;
             armorName.text = "none";
         }
         else
         {
             armorData = Resources.Load<ArmorData>("ArmorData/" + userArmor.key);
-            thumImage.enabled = true;
+            image.enabled = true;
             armorName.text = armorData.armorName;
             armorEquipSlot = armorData.armorEquipSlot;
 

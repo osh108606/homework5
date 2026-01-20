@@ -17,12 +17,12 @@ MonoBehaviour:
   weaponName: M4
   weaponBase: 
   damage: 1
-  RPM: 950
+  rpm: 800
   reloadTime: 3
   maxAmmo: 25
-  Pellets: 1
+  pellets: 0
   auto: 1
-  SpreadShot: 0
+  spreadShot: 0
   sprite: {fileID: 21300000, guid: 101c3ff3832799d40b8703adbfb34c35, type: 3}
   bulletPrefab: {fileID: 1746735079809394367, guid: d5af7bc4839f81d43a724562cab550a3, type: 3}
   weaponType: 0
@@ -36,5 +36,5 @@ MonoBehaviour:
     weaponFixSubElementData:
       weaponSubElement: 0
       value: 0
-    weaponRandomSubElementDatas: []
+    weaponRandomSubElementDates: []
     weaponTelent: 
