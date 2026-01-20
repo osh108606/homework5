@@ -15,7 +15,7 @@ public class WeaponSlot : MonoBehaviour
     public void WeaponEquip()
     {     
         if( weapon != null )
-            Destroy( weapon.gameObject );
+            Destroy(weapon.gameObject);
 
         UserWeapon userWeapon = UserManager.instance.GetEquipUserWeapon(weaponEquipSlot);
         if (userWeapon == null)

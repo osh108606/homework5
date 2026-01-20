@@ -252,34 +252,35 @@ public class UserManager : MonoBehaviour
         userData.userArmors.Add(userArmor);
     }
     // 기존아이템 장착 비활성화 새무기 장착
-    public void ChangeWeapon(string key)//무기
+    public void ChangeWeapon(UserWeapon uWeapon, bool draw)//무기
     {
-        UserWeapon preUserWeapon = GetEuipedUserWeapon();
+        UserWeapon preUserWeapon = GetEuipedUserWeapon(uWeapon.weaponEquipSlot); //어느 슬롯 있고
         if (preUserWeapon != null)
         {
             preUserWeapon.weaponEuiped = false;
             preUserWeapon.weaponDraw = false;
         }
             
-        UserWeapon userWeapon = GetUserWeapon(key);
+        UserWeapon userWeapon = uWeapon;
         userWeapon.weaponEuiped = true;
-
-
-        SaveManager.SaveData("UserData.json", userData);
-    }
-    // 장착중인 무기중 들고있는거 변경
-    public void ChangeDrawWeapon(string key)
-    {
-        UserWeapon preUserWeapon = GetDrawUserWeapon();//기존에 들고있던 무기
-        if (preUserWeapon != null)
-            preUserWeapon.weaponDraw = false;
-
-        UserWeapon userWeapon = GetEuipedUserWeapon(key);//장착중 들게만들 무기
-        userWeapon.weaponDraw = true;
-
+        userWeapon.weaponDraw = draw;
 
         SaveManager.SaveData("UserData.json", userData);
     }
+    
+    // 장착중, 무기중 들고있는거 변경
+    //public void ChangeDrawWeapon(UserWeapon uWeapon)
+    //{
+    //    UserWeapon preUserWeapon = GetDrawUserWeapon();//기존에 들고있던 무기
+    //    if (preUserWeapon != null)
+    //        preUserWeapon.weaponDraw = false;
+
+    //    UserWeapon userWeapon = uWeapon;//장착중 들게만들 무기
+    //    userWeapon.weaponDraw = true;
+
+
+    //    SaveManager.SaveData("UserData.json", userData);
+    //}
 
     public void ChangeArmor(string key)//장비
     {
@@ -378,11 +379,12 @@ public class UserManager : MonoBehaviour
 
     //현재 장착중인 아이템의 상태를 반환
     //*무기*
-    public UserWeapon GetEuipedUserWeapon()//1개
+    public UserWeapon GetEuipedUserWeapon(WeaponEquipSlot equipSlot)//1개
     {
         for (int i = 0; i < userData.userWeapons.Count; i++)
         {
-            if (userData.userWeapons[i].weaponEuiped == true)
+            if (userData.userWeapons[i].weaponEuiped == true &&
+                userData.userWeapons[i].weaponEquipSlot == equipSlot)
             {
                 return userData.userWeapons[i];
             }
@@ -390,28 +392,7 @@ public class UserManager : MonoBehaviour
         return null;
     }
     
-    public UserWeapon GetEuipedUserWeapon(string key)//1개
-    {
-        for (int i = 0; i < userData.userWeapons.Count; i++)
-        {
-            if (userData.userWeapons[i].weaponEuiped == true && userData.userWeapons[i].key == key)
-            {
-                return userData.userWeapons[i];
-            }
-        }
-        return null;
-    }
-    public UserWeapon GetEuipedUserWeapon(WeaponEquipSlot weaponEquipSlot)//1개
-    {
-        for (int i = 0; i < userData.userWeapons.Count; i++)
-        {
-            if (userData.userWeapons[i].weaponEquipSlot == weaponEquipSlot)
-            {
-                return userData.userWeapons[i];
-            }
-        }
-        return null;
-    }
+    
     public UserWeapon GetEuipedUserWeapons(int index)//여러개
     {
         int equippedCount = 0;

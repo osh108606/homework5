@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Player : MonoSingleton<Player>
 {
-    // 기준 우선순위 1.자료형 2.보호타입
-    // 자료형 순서 1.클래스 2.변수
-    // 보호타입 순서 1.public 2.private 3.none
+    // ???? ???????? 1.?????? 2.????????
+    // ?????? ???? 1.?????? 2.????
+    // ???????? ???? 1.public 2.private 3.none
     public PlayerAbility playerAbility;
     public Animator animator;
     public Rigidbody2D rb2d;
-    public Weapon currentWeapon; // 현재 "들고있는" 무기
-    public WeaponSlot[] weaponSlots = new WeaponSlot[4];// 무기슬롯
+    public Weapon currentWeapon; // ???? "????????" ????
+    public WeaponSlot[] weaponSlots = new WeaponSlot[4];// ????????
     public ArmorSlot[] armorSlots = new ArmorSlot[6];
     public Armor[] armors;
     public Transform rootTr;
     public Transform upperTransform;
     Camera mainCamera;
 
-    public int slotIdx; //무기슬롯 인덱스
-    float maxHealthPoint; //최대 체력
-    float healthPoint; // 현재 체력
-    float maxArmorPoint; //최대 방어도
-    float armorPoint; //현제 방어도
+    public int slotIdx; //???????? ??????
+    float maxHealthPoint; //???? ????
+    float healthPoint; // ???? ????
+    float maxArmorPoint; //???? ??????
+    float armorPoint; //???? ??????
 
     public bool runTrigger;
     public bool aimTrigger;
@@ -62,7 +62,7 @@ public class Player : MonoSingleton<Player>
     private void Update()
     {
         #region Aim&Shot
-        if (Input.GetMouseButton(0))//마우스 오른쪽 입력 (조준상태 전환)
+        if (Input.GetMouseButton(0))//?????? ?????? ???? (???????? ????)
         {
             attackTrigger = true;
             runTrigger = false;
@@ -70,7 +70,7 @@ public class Player : MonoSingleton<Player>
         else
             attackTrigger = false;
 
-        if (Input.GetMouseButton(1))//마우스 오른쪽 입력 (조준상태 전환)
+        if (Input.GetMouseButton(1))//?????? ?????? ???? (???????? ????)
         { 
             aimTrigger = true;
             runTrigger = false;
@@ -80,25 +80,25 @@ public class Player : MonoSingleton<Player>
         #endregion
 
         if (Input.GetKey(KeyCode.LeftShift) && aimTrigger == false && attackTrigger == false
-            && InventoryCanvas.Instance.canInteraction == false)//왼쪽쉬프트 입력 (달리기상태 전환)
+            && InventoryCanvas.Instance.canInteraction == false)//?????????? ???? (?????????? ????)
             runTrigger = true;
         else
             runTrigger = false;
 
-        if (Input.GetKeyDown(KeyCode.R))//R키 입력 (재장전)
+        if (Input.GetKeyDown(KeyCode.R))//R?? ???? (??????)
             currentWeapon.Reload();
 
-        if (Input.GetKeyDown(KeyCode.I))//I키 입력 (인벤토리 on/off)
+        if (Input.GetKeyDown(KeyCode.I))//I?? ???? (???????? on/off)
             InventoryCanvas.Instance.OpenMainInventory();
     
-        if (Input.GetKeyDown(KeyCode.F))//F키 입력 (상호작용)
+        if (Input.GetKeyDown(KeyCode.F))//F?? ???? (????????)
         {
             PickUp();
             Talk();
 
         }
         #region WeaponSlotCange
-        //마우스 휠 (무기슬롯 변경)
+        //?????? ?? (???????? ????)
         float wheelInput = Input.GetAxis("Mouse ScrollWheel");
         if (wheelInput > 0)
         {
@@ -119,7 +119,7 @@ public class Player : MonoSingleton<Player>
             ChangeDrawWeapon(slotIdx);
         }
 
-        //숫자키 입력 (무기슬롯변경)
+        //?????? ???? (????????????)
         if (Input.GetKeyDown(KeyCode.Alpha1))
             ChangeDrawWeapon(0);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -148,18 +148,18 @@ public class Player : MonoSingleton<Player>
             animator.SetLayerWeight(idx, 1);
             animator.SetFloat("Angle", angle);
 
-            if (dir.x > 0)  // 마우스방향 //오른쪽
+            if (dir.x > 0)  // ?????????? //??????
                 rootTr.localScale = new Vector2(1, 1);
-            else if (dir.x < 0)//왼쪽
+            else if (dir.x < 0)//????
                 rootTr.localScale = new Vector2(-1, 1);
         }
         else
         {
             animator.SetLayerWeight(idx, 0);
 
-            if (Input.GetKey(KeyCode.D))// 이동방향 //오른쪽
+            if (Input.GetKey(KeyCode.D))// ???????? //??????
                 rootTr.localScale = new Vector2(1, 1);
-            else if (Input.GetKey(KeyCode.A))//왼쪽
+            else if (Input.GetKey(KeyCode.A))//????
                 rootTr.localScale = new Vector2(-1, 1);
         }
 
@@ -231,13 +231,15 @@ public class Player : MonoSingleton<Player>
         if (item.isConsume == true)
             Destroy(item.gameObject);
     }
-    //무기슬롯교체
-    public void ChangeDrawWeapon(int Idx)//장착중인 무기중 "들고있는 무기 변경"
+    //????????????
+    public void ChangeDrawWeapon(int Idx)//???????? ?????? "???????? ???? ????"
     {
+        WeaponEquipSlot slot = (WeaponEquipSlot)Idx;
+        UserWeapon userWeapon = UserManager.instance.GetEquipUserWeapon(slot);
+
         currentWeapon = weaponSlots[Idx].weapon;
-        UserManager.instance.ChangeDrawWeapon(currentWeapon.key);
     }
-    //인벤토리에서 무기장착변경
+    //???????????? ????????????
     public void ChangeWeapon(string key , bool draw)
     {  
         if(draw == true) 
@@ -252,11 +254,6 @@ public class Player : MonoSingleton<Player>
                     break;
                 }
             }
-            UserManager.instance.ChangeDrawWeapon(currentWeapon.key);
-        }
-        else
-        { 
-            UserManager.instance.ChangeWeapon(currentWeapon.key);
         }
     }
 
@@ -276,10 +273,10 @@ public class Player : MonoSingleton<Player>
         float y = Input.GetAxis("Vertical");
         {
             float smoothX = Mathf.Lerp(currentX, x, Time.deltaTime);
-            // currentX는 클래스 내부 변수로 저장해야 함
+            // currentX?? ?????? ???? ?????? ???????? ??
             currentX = smoothX;
             float smoothY = Mathf.Lerp(currentY, y, Time.deltaTime);
-            // currentX는 클래스 내부 변수로 저장해야 함
+            // currentX?? ?????? ???? ?????? ???????? ??
             currentY = smoothY;
             //Vector2 dir = new Vector2(smoothX, smoothY);
         }
@@ -320,37 +317,50 @@ public class Player : MonoSingleton<Player>
             dir.Normalize();
         }
         //rb2d.linearVelocity = dir.normalized * moveSpeed
-        if (runTrigger == false || attackTrigger == true || aimTrigger == true)//걷기
+        if (runTrigger == false || attackTrigger == true || aimTrigger == true)//????
         {
             rb2d.linearVelocity = dir.normalized * playerAbility.initMoveSpeed * backWalk;
             //animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
         }
-        else if (runTrigger == true && attackTrigger != true && aimTrigger != true)//달릴때
+        else if (runTrigger == true && attackTrigger != true && aimTrigger != true)//??????
         {
             aimTrigger = false;
             rb2d.linearVelocity = dir.normalized * playerAbility.initMoveSpeed * playerAbility.initRunSpeed;
             //animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
         }
-        //또다른 이동 구현방식
+        //?????? ???? ????????
         /*
         if (runTrigger == false)
         {
             rb2d.linearVelocity = dir * moveSpeed * backWalk;
             animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
-        }//기본
+        }//????
         else if (runTrigger == true)
         {
             rb2d.linearVelocity = dir * moveSpeed * runSpeed * backWalk;
             animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
-        }//달릴때
+        }//??????
         */
     }
 
-    public void UpdateWeaponSlot()//슬롯에 장착된 무기 업데이트
+    public void UpdateWeaponSlot()//?????? ?????? ???? ????????
     {
         for (int i = 0; i < weaponSlots.Length; i++)
             weaponSlots[i].WeaponEquip();
     }
+
+    public void UpdateWeaponSlot(WeaponEquipSlot weaponEquipSlot)//?????? ?????? ???? ????????
+    {
+        for (int i = 0; i < weaponSlots.Length; i++)
+        {
+            if(weaponSlots[i].weaponEquipSlot == weaponEquipSlot)
+            {
+                weaponSlots[i].WeaponEquip();
+                return;
+            }
+        }
+    }
+
     public void TakeDamage(float damage, HitBox hitBox)
     {
         if (hitBox == null)
@@ -366,7 +376,7 @@ public class Player : MonoSingleton<Player>
             PlayerDie();
         }
     }
-    public void TakeDamage(float damage)// 피해를 입는 기능
+    public void TakeDamage(float damage)// ?????? ???? ????
     {
         if (armorPoint >= 0)
         {
@@ -388,16 +398,16 @@ public class Player : MonoSingleton<Player>
             PlayerDie();
         }
     }
-    public void Rebone()// 다운상태에서 회복
+    public void Rebone()// ???????????? ????
     {
         healthPoint = maxHealthPoint;
     }
-    public void FallDown()// 다운상태 (미구현)
+    public void FallDown()// ???????? (??????)
     {
-        //다운 애니메이션->다운상태 대기
-        //다운상태 전환 함수
+        //???? ??????????->???????? ????
+        //???????? ???? ????
     }
-    public void PlayerDie()//사망
+    public void PlayerDie()//????
     {
         if(DungeonManager.instance.curDungeon != null)
             DungeonManager.instance.curDungeon.DungeonFail();
@@ -430,29 +440,29 @@ public class PlayerAbility
             return initCrtDamage + curWeapon.weaponAbility.GetValue(WeaponSubElement.CriticalDamage);
         }
     }
-    //공격-데미지
+    //????-??????
     public float initWeaponDamage;
     public float initCrtChance;
     public float initCrtDamage;
     public float initHealthPointDamage;
     public float initArmorPointDamage;
-    public float initPrecisionDamage; //헤드샷데미지 역할
+    public float initPrecisionDamage; //???????????? ????
     public float initArmorPlateDamage;
     public float initWeakPointDamage;
     public float initUnCoverDamage;
-    //공격-유틸
+    //????-????
     public float initReload;
     public float initAccuracy;
     public float initRecoil;
-    //방어
+    //????
     public float initHealthPoint;
     public float initArmorPoint;    
-    //생존
+    //????
     public float initMoveSpeed;
     public float initRunSpeed;
     public float initInvincibleTime;
-    //스킬관련
-    //총알
+    //????????
+    //????
     public int initHGAmmoLimit;
     public int initARAmmoLimit;
     public int initSMGAmmoLimit;
@@ -463,29 +473,29 @@ public class PlayerAbility
     public int initSPAmmoLimit;
     public void Init()
     {
-        //공격-데미지
-        initWeaponDamage = 0;// 일반damage랑 다름 damage에 주는 보너스
+        //????-??????
+        initWeaponDamage = 0;// ????damage?? ???? damage?? ???? ??????
         initHealthPoint = 100;
         initArmorPoint = 100;
         initCrtChance = 1f;
         initCrtDamage = 1.5f;
         initHealthPointDamage = 0;
         initArmorPointDamage = 0;
-        initPrecisionDamage = 1.5f; //헤드샷데미지 역할
+        initPrecisionDamage = 1.5f; //???????????? ????
         initArmorPlateDamage = 0;
         initWeakPointDamage = 0;
         initUnCoverDamage = 0;
-        //공격-유틸
+        //????-????
         initReload = 0;
         initAccuracy = 0;
         initRecoil = 0;
-        //방어
+        //????
         initHealthPoint = 100;
         initArmorPoint = 100;
-        //생존
+        //????
         initMoveSpeed = 7;
         initRunSpeed = 2;
-        //스킬
+        //????
 
         initHGAmmoLimit = 100;
         initARAmmoLimit = 600; //30x20
