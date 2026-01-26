@@ -18,6 +18,7 @@ public class WeaponInventory : SubInventory
 
         curEuiptmentNameText = GetComponentInChildren<TMP_Text>();
     }
+    
     public void Open(WeaponEquipSlot equipSlot, WeaponSlotType slotType)
     {
         weaponEquipSlot = equipSlot;
@@ -45,7 +46,7 @@ public class WeaponInventory : SubInventory
         }
 
         uWeapon = UserManager.instance.GetEuipedUserWeapon(equipSlot);
-        WeaponSelected(uWeapon);
+        Updateinventory();
     }
     public void Close()
     {
@@ -64,8 +65,13 @@ public class WeaponInventory : SubInventory
         //UserManager.instance.ChangeWeapon(userWeapon.key);
         //Player.Instance.ChangeWeapon(userWeapon.key, false);
 
+        uWeapon = userWeapon;
+        Updateinventory();
+    }
 
-        WeaponData weaponData = Resources.Load<WeaponData>($"WeaponData/{userWeapon.key}");
+    public void Updateinventory()
+    {
+        WeaponData weaponData = Resources.Load<WeaponData>($"WeaponData/{uWeapon.key}");
         curEuiptmentNameText.enabled = true;
         curEuiptmentImage.enabled = true;
 
@@ -77,5 +83,6 @@ public class WeaponInventory : SubInventory
         {
             weaponPanels[i].UpdatePanel();
         }
+        
     }
 }

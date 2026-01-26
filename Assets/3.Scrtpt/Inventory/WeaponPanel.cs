@@ -9,21 +9,19 @@ public class WeaponPanel : GearPanel
     public WeaponData weaponData;    
     public WeaponEquipSlot weaponEquipSlot;
     public WeaponSlotType weaponSlotType;
+    public float timer = 0;
 
     public override void Awake()
     {
         base.Awake();
+        image = transform.Find("GPInnerGround").Find("GPImage").GetComponentInChildren<Image>();
         backGround = transform.Find("GPBackGround").GetComponentInChildren<Image>();
         innerGround = transform.Find("GPInnerGround").GetComponentInChildren<Image>();
-        image = transform.Find("GPInnerGround").Find("GPImage").GetComponentInChildren<Image>();
         text = transform.Find("GPWeaponName").GetComponentInChildren<TMP_Text>();
     }
     public void Update()
     {
-        if (select)
-            backGround.color = Color.black;
-        else
-            backGround.color = Color.gray;
+        timer += Time.deltaTime;
     }
     public override void SetData(UserWeapon uWeapon)
     {
@@ -34,25 +32,43 @@ public class WeaponPanel : GearPanel
 
 
         this.userWeapon = uWeapon;
-        if (userWeapon.weaponEuiped)
-        {
-            innerGround.color = Color.white;
-        }
-        else
-        {
-            innerGround.color = Color.gray;
-        }       
+        UpdatePanel();
     }
     public override void OnClicked()
     {
+        Debug.Log("WeaponPanel OnClicked()");
         //1번클릭했을시 선택상태
         if (select == false)
         {
-            select = true;           
+            select = true;
             GetComponentInParent<WeaponInventory>().uWeapon = userWeapon;
             GetComponentInParent<WeaponInventory>().WeaponSelected(userWeapon);
         }
+        else
+        {
+            if (timer <= 0.3f)
+            {
+                Equip();
+            }
+        }
+
+        timer = 0;
+
     }
+    
+    public void Equip()
+    {
+        Debug.Log("Equip");
+        //userWeapon ?? ????
+        if (userWeapon.weaponDraw)
+        {
+            return;
+        }
+        
+        UserManager.instance.ChangeWeapon(userWeapon, true); //?? ????? ???
+        GetComponent<WeaponInventory>().Updateinventory();
+    }
+    
     public void OnClickedRemove()
     {
         Debug.Log("작동됨");
@@ -69,10 +85,21 @@ public class WeaponPanel : GearPanel
        if(userWeapon == GetComponentInParent<WeaponInventory>().uWeapon)
        {
             select = true;
+            backGround.color = Color.black;
        }
        else
        {
             select = false;
+            backGround.color = Color.gray;
        }
+       
+       if (userWeapon.weaponEuiped)
+       {
+           innerGround.color = Color.white;
+       }
+       else
+       {
+           innerGround.color = Color.gray;
+       }       
     }
 }

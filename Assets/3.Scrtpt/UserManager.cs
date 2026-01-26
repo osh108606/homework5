@@ -23,12 +23,12 @@ public class UserManager : MonoBehaviour
                 {               
                     for (int j = 0; j < userData.userAmmos.Count; j++)
                     { 
-                        if(userData.userAmmos[j].weaponType == userData.userWeapons[i].weaponData.weaponType)
+                        if(userData.userAmmos[j].weaponType == userData.userWeapons[i].GetWeaponData().weaponType)
                         {
-                            userData.userAmmos[j].count -= (userData.userWeapons[i].weaponData.maxAmmo - userData.userWeapons[i].ammoCount);
+                            userData.userAmmos[j].count -= (userData.userWeapons[i].GetWeaponData().maxAmmo - userData.userWeapons[i].ammoCount);
                         }
                     }
-                    userData.userWeapons[i].ammoCount = userData.userWeapons[i].weaponData.maxAmmo;
+                    userData.userWeapons[i].ammoCount = userData.userWeapons[i].GetWeaponData().maxAmmo;
                 }
             }
         }
@@ -44,13 +44,13 @@ public class UserManager : MonoBehaviour
             //*무기*
             #region Weapon
             AddDebugWeapon("M4", 0, WeaponEquipSlot.Main1,true);//1번무기
-            userData.userWeapons[0].ammoCount = userData.userWeapons[0].weaponData.maxAmmo;
+            userData.userWeapons[0].ammoCount = userData.userWeapons[0].GetWeaponData().maxAmmo;
             AddDebugWeapon("MP5", 0, WeaponEquipSlot.Main2,false);//2번무기
-            userData.userWeapons[1].ammoCount = userData.userWeapons[1].weaponData.maxAmmo;
+            userData.userWeapons[1].ammoCount = userData.userWeapons[1].GetWeaponData().maxAmmo;
             AddDebugWeapon("Glock", 0, WeaponEquipSlot.Sub, false);//3번무기
-            userData.userWeapons[2].ammoCount = userData.userWeapons[2].weaponData.maxAmmo;
+            userData.userWeapons[2].ammoCount = userData.userWeapons[2].GetWeaponData().maxAmmo;
             AddDebugWeapon("grenadelauncher", 0, WeaponEquipSlot.Special, false);//4번무기
-            userData.userWeapons[3].ammoCount = userData.userWeapons[3].weaponData.maxAmmo;
+            userData.userWeapons[3].ammoCount = userData.userWeapons[3].GetWeaponData().maxAmmo;
             #endregion
             //*장비*
             #region Armor          
@@ -141,15 +141,14 @@ public class UserManager : MonoBehaviour
             userWeapon.weaponDraw = false;
 
         userWeapon.weaponEquipSlot = weaponEquipSlot;
-        userWeapon.weaponData = Resources.Load<WeaponData>("WeaponData/" + key);
-
+        
         userWeapon.weaponAbility = new WeaponAbility();
         userWeapon.weaponAbility.grade = grade;
         userWeapon.weaponAbility.itemGrade = (ItemGrade)grade;
 
-        WeaponTypeElementData elementData = WeaponManager.Instance.GetWeaponTypeElementData(userWeapon.weaponData.weaponType);
+        WeaponTypeElementData elementData = WeaponManager.Instance.GetWeaponTypeElementData(userWeapon.GetWeaponData().weaponType);
 
-        userWeapon.weaponAbility.weaponTypeDamageData.weaponType = userWeapon.weaponData.weaponType;
+        userWeapon.weaponAbility.weaponTypeDamageData.weaponType = userWeapon.GetWeaponData().weaponType;
         userWeapon.weaponAbility.weaponTypeDamageData.value = Random.Range(elementData.addWeaponDamageDataValues[grade].x, elementData.addWeaponDamageDataValues[grade].y);
         
         if(userWeapon.weaponAbility.grade != 0)
@@ -258,7 +257,7 @@ public class UserManager : MonoBehaviour
         UserWeapon preUserWeapon = GetEuipedUserWeapon();
         if (preUserWeapon != null)
         {
-            preUserWeapon.weaponEuiped = true;
+            preUserWeapon.weaponEuiped = false;
             preUserWeapon.weaponDraw = false;
         }
 
@@ -517,9 +516,17 @@ public class UserWeapon
     public int ammoCount; //현재 장착중인 총의 총알갯수
     
     public WeaponEquipSlot weaponEquipSlot;
-    public WeaponData weaponData;
+
+    private WeaponData weaponData;
+    public WeaponData GetWeaponData()
+    {
+        if (weaponData == null)
+            weaponData = Resources.Load<WeaponData>($"WeaponData/{key}");
+        return weaponData;
+    }
     public WeaponAbility weaponAbility;
 }
+
 [System.Serializable]
 public class WeaponAbility
 {
