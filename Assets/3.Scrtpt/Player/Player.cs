@@ -70,15 +70,24 @@ public class Player : MonoSingleton<Player>
         else
             attackTrigger = false;
 
-        if (Input.GetMouseButton(1))//마우스 오른쪽 입력 (조준상태 전환)
+        if (Input.GetMouseButtonDown(1))//마우스 오른쪽 입력 (조준상태 전환)
         { 
             aimTrigger = true;
             runTrigger = false;
+            
+            animator.SetBool("Aim",true);
+            CamaraManager.Instance.StartZoom();   
         }
-        else
+        else if (Input.GetMouseButtonUp(1))
+        {
             aimTrigger = false;
+            animator.SetBool("Aim", false);
+            CamaraManager.Instance.EndZoom();    
+        }
+        
         #endregion
-
+        
+        
         if (Input.GetKey(KeyCode.LeftShift) && aimTrigger == false && attackTrigger == false
             && InventoryCanvas.Instance.canInteraction)//왼쪽쉬프트 입력 (달리기상태 전환)
             runTrigger = true;
@@ -138,8 +147,15 @@ public class Player : MonoSingleton<Player>
     {
         if (InventoryCanvas.Instance.canInteraction == false)
             return;
-        Vector3 worldPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = (worldPos - upperTransform.transform.position).normalized;
+
+        Vector3 targetPos = Vector3.zero;
+        
+        if(aimTrigger == false)
+            targetPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        else
+            targetPos = CamaraManager.Instance.zoomCamera.transform.position;
+        
+        Vector2 dir = (targetPos - upperTransform.transform.position).normalized;
         float angle = Vector2.Angle(upperTransform.transform.up, dir);
         int idx = animator.GetLayerIndex("UpperAim");
 
@@ -163,16 +179,7 @@ public class Player : MonoSingleton<Player>
                 rootTr.localScale = new Vector2(-1, 1);
         }
 
-        if (aimTrigger)
-        {
-            animator.SetBool("Aim",true);
-            CamaraManager.Instance.StartZoom();        
-        }
-        else if (aimTrigger == false)
-        {
-            animator.SetBool("Aim", false);
-            //CamaraManager.Instance.EndZoom();            
-        }
+        
     }
 
     public void Talk()

@@ -85,10 +85,10 @@ public class Weapon : MonoBehaviour
     }
 
 
-    public void Equipped(UserWeapon userWeapon)
+    public void Equipped(UserWeapon uWeapon)
     {
-        this.userWeapon = userWeapon;
-        weaponAbility = userWeapon.weaponAbility;
+        userWeapon = uWeapon;
+        weaponAbility = uWeapon.weaponAbility;
         userAmmo = UserManager.instance.GetUserAmmo(weaponType);
     }
 
@@ -164,29 +164,46 @@ public class Weapon : MonoBehaviour
 
         userWeapon.ammoCount--;//사용중인 총알
 
-        // 마우스 방향으로 조준 회전
+        // 기준 위치(총구/상체)
+        Vector2 origin = Player.Instance.upperTransform.position;
+        // 마우스 월드 좌표
         Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 aimDir = (mouseWorld - (Vector2)Player.Instance.upperTransform.transform.position).normalized;
-
-        float aimAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.AngleAxis(aimAngle - 90, Vector3.forward);
-
-        transform.rotation = q;
-
-        //Debug.Log("화면클릭");
-        Vector2 screenPoint = Input.mousePosition;
-        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
-        Vector2 direction = worldPoint - (Vector2)Player.Instance.upperTransform.transform.position;
-
-
+        // 발사/조준 방향
+        Vector2 dir = (mouseWorld - origin).normalized;
+        
+        // 명중률(0~1). 1이면 완전 정확, 0이면 많이 퍼짐
+        float accuracy = userWeapon.GetWeaponData().accuracy; // 예: 0.0~1.0
+        float maxSpreadRang = userWeapon.GetWeaponData().spreadRange;            // 정확도 0일 때 최대 퍼짐 각(도)
+        // 명중률 높을수록 각도 감소
+        float spreadAngle = maxSpreadRang * (1f - Mathf.Clamp01(accuracy));
+        float randomAngle = Random.Range(-spreadAngle, spreadAngle);
+        Vector2 shotDir = Rotate2D(dir, randomAngle);
+        // 반동
+        float stability = userWeapon.GetWeaponData().stability;
+        
+        
+        
+        // 조준 회전 (스프라이트 기본 방향 보정이 -90인 기존 로직 유지)
+        float aimAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(aimAngle - 90, Vector3.forward);
+        
+        // 애니메이션
         //Player.Instance.animator.SetTrigger("Fire");
         int idx = Player.Instance.animator.GetLayerIndex("UpperAim");
         Player.Instance.animator.Play("UP_fire light front",idx,0);
-        Bullet bullet = Instantiate(weaponData.bulletPrefab, Player.Instance.upperTransform.transform.position, Quaternion.identity);
-        bullet.Shoot(direction.normalized, this);
+        
+        Bullet bullet = Instantiate(weaponData.bulletPrefab, origin, Quaternion.identity);
+        bullet.Shoot(shotDir, this);
+        
         UserManager.instance.Save();
         return true;
     }
-
     
+    private Vector2 Rotate2D(Vector2 v, float degrees)
+    {
+        float rad = degrees * Mathf.Deg2Rad;
+        float cos = Mathf.Cos(rad);
+        float sin = Mathf.Sin(rad);
+        return new Vector2(v.x * cos - v.y * sin, v.x * sin + v.y * cos);
+    }
 }

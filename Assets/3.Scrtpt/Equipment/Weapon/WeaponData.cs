@@ -11,6 +11,10 @@ public class WeaponData : ScriptableObject
     public float damage;//총기 데미지
     public float rpm;//공격 속도
     public float reloadTime;//장전속도
+    public float spreadRange;// 발사 범위 명중율의 값만큼 감소됨
+    public float accuracy;//명중율
+    public float stability;//반동
+        
     public int maxAmmo;//최대 탄창
     public int pellets;//한발에 나가는 총알 수
     public bool auto;//자동사격 여부
