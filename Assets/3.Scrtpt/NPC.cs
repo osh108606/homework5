@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class NPC : MonoBehaviour
 {
@@ -77,30 +78,85 @@ public class NPC : MonoBehaviour
     //NPC가 데미지를 입을때 발동
     public virtual void TakeDamage(float damage, bool crt)
     {
-        if (ignoreDamage == false)
+        #region 오브젝트풀링선행 변수&로직
+        bool allActive = true;
+        List <DamageText> dTextPool = new List <DamageText>();
+        DamageText dText;
+        //활성상태 체크
+        for (int i = 0; i < dTextPool.Count; i++)
         {
-            DamageText dText;
-            if (armorPoint > 0)
+            if (dTextPool[i].gameObject.activeSelf == false)
             {
-                armorPoint -= damage;
-                damage = -armorPoint;
-                dText = DamageText.Instantiate(true,crt);
-                dText.Show(transform.position + new Vector3(0, 2) + (Vector3)Random.insideUnitCircle, ((int)damage).ToString("D0"));
-            }
-            else
-            {
-
-            }
-                healthPoint -= damage;
-            dText = DamageText.Instantiate(false, crt);
-            dText.Show(transform.position + new Vector3(0, 2), ((int)damage).ToString("D0"));
-
-            if (healthPoint <= 0)
-            {
-                Death();
-                Destroy(this.gameObject);
+                allActive = false;
+                break;
             }
         }
+        #endregion
+        
+        if (dTextPool.Count <= 0 || allActive == true)  //풀링조건문
+        {
+            if (ignoreDamage == false)  //무적여부조건문
+            {
+                if (armorPoint > 0) //방어도 데미지 조건문
+                {
+                    armorPoint -= damage;
+                    damage = -armorPoint;
+                    dText = DamageText.Instantiate(true, crt);
+                    dTextPool.Add(dText);
+                    dText.Show(transform.position + new Vector3(0, 2) + (Vector3)Random.insideUnitCircle,
+                        ((int)damage).ToString("D0"));
+                }
+                else if (armorPoint <= damage)
+                {
+                    armorPoint = 0;
+                    damage -= armorPoint;
+                    healthPoint -= damage;
+                    dText = DamageText.Instantiate(false, crt);
+                    dText.Show(transform.position + new Vector3(0, 2), ((int)damage).ToString("D0"));
+                }
+                
+                
+                if (healthPoint <= 0)
+                {
+                    Death();
+                    Destroy(this.gameObject);
+                }
+            }
+        }
+        else  //풀링조건문
+        {
+            if (ignoreDamage == false)  //무적여부조건문
+            {
+                if (armorPoint > 0) //방어도 데미지 조건문
+                {
+                    for (int i = 0; i < dTextPool.Count; i++)
+                    {
+                        if (dTextPool[i].gameObject.activeSelf == false)
+                        {
+                            dTextPool[i].gameObject.SetActive(true);
+                            dTextPool[i].Show(transform.position + new Vector3(0, 2) + (Vector3)Random.insideUnitCircle,
+                                ((int)damage).ToString("D0"));
+                            break;
+                        }
+                    }
+                }
+                else if (armorPoint <= damage)
+                {
+                    armorPoint = 0;
+                    damage -= armorPoint;
+                    healthPoint -= damage;
+                    dText = DamageText.Instantiate(false, crt);
+                    dText.Show(transform.position + new Vector3(0, 2), ((int)damage).ToString("D0"));
+                }
+
+                if (healthPoint <= 0)
+                {
+                    Death();
+                    Destroy(this.gameObject);
+                }
+            }
+        }
+        
     }
     //NPC가 죽을때 발동
     public virtual void Death()

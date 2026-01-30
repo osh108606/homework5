@@ -56,9 +56,6 @@ public class Player : MonoSingleton<Player>
         ChangeWeapon(userWeapon, userWeapon.weaponDraw);   
     }
     
-
-
-
     private void Update()
     {
         #region Aim&Shot
@@ -116,7 +113,7 @@ public class Player : MonoSingleton<Player>
             if (slotIdx >= weaponSlots.Length)
                 slotIdx = 0;
 
-            ChangeDrawWeapon(slotIdx);
+            ChangeWeapon(slotIdx);
         }
         else if (wheelInput < 0)
         {
@@ -125,18 +122,18 @@ public class Player : MonoSingleton<Player>
             if (slotIdx < 0)
                 slotIdx = weaponSlots.Length - 1;
 
-            ChangeDrawWeapon(slotIdx);
+            ChangeWeapon(slotIdx);
         }
 
         //숫자키 입력 (무기슬롯변경)
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            ChangeDrawWeapon(0);
+            ChangeWeapon(0);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
-            ChangeDrawWeapon(1);
+            ChangeWeapon(1);
         else if (Input.GetKeyDown(KeyCode.Alpha3))
-            ChangeDrawWeapon(2);
+            ChangeWeapon(2);
         else if (Input.GetKeyDown(KeyCode.Alpha4))
-            ChangeDrawWeapon(3);
+            ChangeWeapon(3);
         #endregion
 
         Fire();
@@ -239,10 +236,16 @@ public class Player : MonoSingleton<Player>
             Destroy(item.gameObject);
     }
     //무기슬롯교체
-    public void ChangeDrawWeapon(int idx)//장착중인 무기중 "들고있는 무기 변경"
+    public void ChangeWeapon(int idx)//장착중인 무기중 "들고있는 무기 변경"
     {
-        currentWeapon = weaponSlots[idx].weapon;
-        UserManager.instance.ChangeWeapon(currentWeapon.userWeapon,true);
+        Weapon weapon = weaponSlots[idx].weapon;
+        if (weapon == null)
+        {
+            AlertText.Instantiate().Show(transform.position + Vector3.up*3,"무기를 교체할 수 없습니다");
+            return;
+        }
+
+        ChangeWeapon(weapon.userWeapon, true);
     }
     //인벤토리에서 무기장착변경
     public void ChangeWeapon(UserWeapon uWeapon , bool draw)
@@ -264,6 +267,18 @@ public class Player : MonoSingleton<Player>
         else
         { 
             UserManager.instance.ChangeWeapon(currentWeapon.userWeapon , draw);
+        }
+        
+        for (int i = 0; i < weaponSlots.Length; i++)
+        {
+            if (weaponSlots[i].weapon != currentWeapon)
+            {
+                weaponSlots[i].weapon.gameObject.SetActive(false);
+            }
+            else
+            {
+                weaponSlots[i].weapon.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -357,6 +372,17 @@ public class Player : MonoSingleton<Player>
     {
         for (int i = 0; i < weaponSlots.Length; i++)
             weaponSlots[i].WeaponEquip();
+        for (int i = 0; i < weaponSlots.Length; i++)
+        {
+            if (weaponSlots[i].weapon != currentWeapon)
+            {
+                weaponSlots[i].weapon.gameObject.SetActive(false);
+            }
+            else
+            {
+                weaponSlots[i].weapon.gameObject.SetActive(true);
+            }
+        }
     }
     public void TakeDamage(float damage, HitBox hitBox)
     {

@@ -31,13 +31,18 @@ public class DamageText : MonoBehaviour
 
     public TMP_Text damageText;
 
-    public void Show(Vector3 pos, string damage)
+    public void Show(Vector3 pos, string damage)//제거 관련을 비활성화로 바꾸기
     {
         transform.position = pos;
         damageText.text = damage;
-
+        /*
+        t += Time.deltaTime;
+        if (t > 2f)
+        {
+            gameObject.SetActive(false);
+        }
         Destroy(gameObject,3);
-
+        */
         transform.localScale = Vector3.zero;
         transform.DOScale(1.1f, 0.3f).WaitForCompletion();
         new WaitForSeconds(0.4f);

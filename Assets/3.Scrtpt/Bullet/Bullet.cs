@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float movespeed;
+    public float moveSpeed;
     public Weapon weapon;
     public Vector2 direction;
     float t = 0f;
@@ -21,9 +21,10 @@ public class Bullet : MonoBehaviour
         t += Time.deltaTime;
         if (t > 2f)
         {
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
-            transform.position = (Vector2)transform.position + direction* movespeed *Time.deltaTime;
+
+        transform.position = (Vector2)transform.position + direction * (moveSpeed * Time.deltaTime);
     }
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,7 +33,7 @@ public class Bullet : MonoBehaviour
             //Debug.Log("attack");
             damagInfo.Calculate();
             collision.GetComponent<Enemy>().TakeDamage(damagInfo.damage, damagInfo.isCrt);
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

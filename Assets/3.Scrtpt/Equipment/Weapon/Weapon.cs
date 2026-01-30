@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
+using System.Collections.Generic;
+
 
 public enum WeaponType
 {
@@ -36,13 +37,17 @@ public class Weapon : MonoBehaviour
     public float maxReloadTime = 3f;
     public bool reLoading;
     public bool auto;
-    public bool spreadShot;   
+    public bool spreadShot;
+    public Bullet bulletPrefab;
+    public Transform shotPoint;
     public WeaponData weaponData;
     public UserAmmo userAmmo; 
     public UserWeapon userWeapon;
     public WeaponAbility weaponAbility;
     public WeaponType weaponType;
     public WeaponSlotType weaponSlotType;
+    public List<Bullet> bulletPool = new List<Bullet>();
+    
     public float Damage
     {
         get
@@ -66,6 +71,8 @@ public class Weapon : MonoBehaviour
         fireInterval = 60f / rpm;
         nextFireTime = 0f;
         maxReloadTime = weaponData.reloadTime;
+        shotPoint = transform.Find("ShotPoint");
+        bulletPrefab = weaponData.bulletPrefab;
     }
     
     public virtual void Update()
@@ -173,15 +180,14 @@ public class Weapon : MonoBehaviour
         
         // 명중률(0~1). 1이면 완전 정확, 0이면 많이 퍼짐
         float accuracy = userWeapon.GetWeaponData().accuracy; // 예: 0.0~1.0
-        float maxSpreadRang = userWeapon.GetWeaponData().spreadRange;            // 정확도 0일 때 최대 퍼짐 각(도)
+        float maxSpreadRang = 6f; //임의값
+        //float maxSpreadRang = userWeapon.GetWeaponData().spreadRange; //능력치 적용시
         // 명중률 높을수록 각도 감소
         float spreadAngle = maxSpreadRang * (1f - Mathf.Clamp01(accuracy));
         float randomAngle = Random.Range(-spreadAngle, spreadAngle);
         Vector2 shotDir = Rotate2D(dir, randomAngle);
         // 반동
         float stability = userWeapon.GetWeaponData().stability;
-        
-        
         
         // 조준 회전 (스프라이트 기본 방향 보정이 -90인 기존 로직 유지)
         float aimAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -192,14 +198,43 @@ public class Weapon : MonoBehaviour
         int idx = Player.Instance.animator.GetLayerIndex("UpperAim");
         Player.Instance.animator.Play("UP_fire light front",idx,0);
         
-        Bullet bullet = Instantiate(weaponData.bulletPrefab, origin, Quaternion.identity);
-        bullet.Shoot(shotDir, this);
+        #region 오브젝트풀링
+        //활성상태 체크
+        bool allActive = true;
+        for (int i = 0; i < bulletPool.Count; i++)
+        {
+            if (bulletPool[i].gameObject.activeSelf == false)
+            {
+                allActive = false;
+                break;
+            }
+        }
+        //선후 생성
+        if (bulletPool.Count <= 0 || allActive == true)
+        {
+            bulletPrefab = Instantiate(weaponData.bulletPrefab, shotPoint.position, Quaternion.identity);
+            bulletPool.Add(bulletPrefab);
+            bulletPrefab.Shoot(shotDir, this);
+        }
+        else
+        {
+            for (int i = 0; i < bulletPool.Count; i++)
+            {
+                if (bulletPool[i].gameObject.activeSelf == false)
+                {
+                    bulletPool[i].gameObject.SetActive(true);
+                    bulletPool[i].Shoot(shotDir, this);
+                    break;
+                }
+            }
+        }
+        #endregion
         
         UserManager.instance.Save();
         return true;
     }
     
-    private Vector2 Rotate2D(Vector2 v, float degrees)
+    public Vector2 Rotate2D(Vector2 v, float degrees)
     {
         float rad = degrees * Mathf.Deg2Rad;
         float cos = Mathf.Cos(rad);
