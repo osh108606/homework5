@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        transform.position = (Vector2)transform.position + direction * (moveSpeed * Time.deltaTime);
+        transform.position = (Vector2)transform.position + direction * moveSpeed * Time.deltaTime;
     }
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {

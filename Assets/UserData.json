@@ -2,16 +2,16 @@
     "userWeapons": [
         {
             "key": "M4",
-            "weaponEuiped": true,
-            "weaponDraw": true,
-            "ammoCount": 0,
+            "weaponEuiped": false,
+            "weaponDraw": false,
+            "ammoCount": 2,
             "weaponEquipSlot": 0,
             "weaponAbility": {
                 "grade": 0,
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 0,
-                    "value": 2.065105676651001
+                    "value": 2.8346967697143556
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -23,7 +23,7 @@
         },
         {
             "key": "MP5",
-            "weaponEuiped": true,
+            "weaponEuiped": false,
             "weaponDraw": false,
             "ammoCount": 30,
             "weaponEquipSlot": 1,
@@ -32,7 +32,7 @@
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 1,
-                    "value": 2.1536381244659426
+                    "value": 1.5854016542434693
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -45,15 +45,15 @@
         {
             "key": "Glock",
             "weaponEuiped": true,
-            "weaponDraw": false,
-            "ammoCount": 15,
+            "weaponDraw": true,
+            "ammoCount": 13,
             "weaponEquipSlot": 2,
             "weaponAbility": {
                 "grade": 0,
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 6,
-                    "value": 1.1760940551757813
+                    "value": 2.674553632736206
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -65,7 +65,7 @@
         },
         {
             "key": "grenadelauncher",
-            "weaponEuiped": true,
+            "weaponEuiped": false,
             "weaponDraw": false,
             "ammoCount": 6,
             "weaponEquipSlot": 3,
@@ -74,7 +74,7 @@
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 7,
-                    "value": 1.771043062210083
+                    "value": 2.329571008682251
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
@@ -94,7 +94,7 @@
         {
             "weaponType": 0,
             "key": "",
-            "count": 556
+            "count": 575
         },
         {
             "weaponType": 1,
