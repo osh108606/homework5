@@ -38,7 +38,6 @@ public class Weapon : MonoBehaviour
     public bool reLoading;
     public bool auto;
     public bool spreadShot;
-    public Bullet bulletPrefab;
     public Transform shotPoint;
     public WeaponData weaponData;
     public UserAmmo userAmmo; 
@@ -71,8 +70,7 @@ public class Weapon : MonoBehaviour
         fireInterval = 60f / rpm;
         nextFireTime = 0f;
         maxReloadTime = weaponData.reloadTime;
-        shotPoint = transform.Find("ShotPoint");
-        bulletPrefab = weaponData.bulletPrefab;
+        shotPoint = transform.Find("Weapon/ShotPoint");
     }
     
     public virtual void Update()
@@ -171,10 +169,19 @@ public class Weapon : MonoBehaviour
 
         userWeapon.ammoCount--;//사용중인 총알
 
+        
         // 기준 위치(총구/상체)
         Vector2 origin = Player.Instance.upperTransform.position;
+        Vector2 mouseWorld;
         // 마우스 월드 좌표
-        Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if(Player.Instance.aimTrigger == false)
+        {
+            mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        else
+        {
+            mouseWorld =CamaraManager.Instance.zoomCamera.transform.position;
+        }
         // 발사/조준 방향
         Vector2 dir = (mouseWorld - origin).normalized;
         
@@ -191,7 +198,7 @@ public class Weapon : MonoBehaviour
         
         // 조준 회전 (스프라이트 기본 방향 보정이 -90인 기존 로직 유지)
         float aimAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(aimAngle - 90, Vector3.forward);
+        //transform.rotation = Quaternion.AngleAxis(aimAngle - 90, Vector3.forward);
         
         // 애니메이션
         //Player.Instance.animator.SetTrigger("Fire");
@@ -212,9 +219,10 @@ public class Weapon : MonoBehaviour
         //선후 생성
         if (bulletPool.Count <= 0 || allActive == true)
         {
-            bulletPrefab = Instantiate(weaponData.bulletPrefab, shotPoint.position, Quaternion.identity);
-            bulletPool.Add(bulletPrefab);
-            bulletPrefab.Shoot(shotDir, this);
+            Bullet bullet = Instantiate(weaponData.bulletPrefab, shotPoint.position, Quaternion.identity);
+            bulletPool.Add(bullet);
+            bullet.Shoot(shotDir, this);
+            Debug.Log("총알 새로 생성");
         }
         else
         {
@@ -223,6 +231,7 @@ public class Weapon : MonoBehaviour
                 if (bulletPool[i].gameObject.activeSelf == false)
                 {
                     bulletPool[i].gameObject.SetActive(true);
+                    bulletPool[i].transform.position = shotPoint.position;
                     bulletPool[i].Shoot(shotDir, this);
                     break;
                 }

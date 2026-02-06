@@ -57,9 +57,9 @@ public class SG : Weapon
         {
             for (int i = 0; i < 8; i++)
             {
-                bulletPrefab = Instantiate(weaponData.bulletPrefab, shotPoint.position, Quaternion.identity);
-                bulletPool.Add(bulletPrefab);
-                bulletPrefab.Shoot(shotDir, this);
+                Bullet bullet = Instantiate(weaponData.bulletPrefab, shotPoint.position, Quaternion.identity);
+                bulletPool.Add(bullet);
+                bullet.Shoot(shotDir, this);
             }
         }
         else

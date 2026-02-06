@@ -65,7 +65,8 @@ public class WeaponPanel : GearPanel
             return;
         }
         
-        UserManager.instance.ChangeWeapon(userWeapon, true); //?? ????? ???
+        UserManager.instance.EquipWeapon(userWeapon); //?? ????? ???
+        Player.Instance.ChangeWeapon(userWeapon,weaponEquipSlot);
         GetComponent<WeaponInventory>().Updateinventory();
     }
     

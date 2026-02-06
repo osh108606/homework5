@@ -252,7 +252,7 @@ public class UserManager : MonoBehaviour
         userData.userArmors.Add(userArmor);
     }
     // 기존아이템 장착 비활성화 새무기 장착
-    public void ChangeWeapon(UserWeapon uWeapon,bool draw)//무기
+    public void EquipWeapon(UserWeapon uWeapon)//무기
     {
         UserWeapon preUserWeapon = GetEuipedUserWeapon();
         if (preUserWeapon != null)
@@ -263,11 +263,24 @@ public class UserManager : MonoBehaviour
 
         UserWeapon userWeapon = uWeapon;
         userWeapon.weaponEuiped = true;
-        userWeapon.weaponDraw = draw;
 
         SaveManager.SaveData("UserData.json", userData);
     }
 
+    public void DrawWeapon(UserWeapon uWeapon, WeaponEquipSlot slot)
+    {
+        UserWeapon preUserWeapon = GetDrawUserWeapon();
+        if (preUserWeapon != null)
+        {
+            preUserWeapon.weaponDraw = false;
+        }
+
+        UserWeapon userWeapon = uWeapon;
+        userWeapon.weaponDraw = true;
+        userWeapon.weaponEquipSlot = slot;
+        
+        SaveManager.SaveData("UserData.json", userData);
+    }
     public void ChangeArmor(UserArmor uArmor)//장비
     {
         UserArmor preUserArmor = GetUserArmor();

@@ -46,6 +46,7 @@ public class CamaraManager : MonoBehaviour
         dragStart = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         
         Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
     public void EndZoom()
     {
@@ -56,6 +57,7 @@ public class CamaraManager : MonoBehaviour
         zoomCamera.gameObject.SetActive(false);
         
         Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
     }
     private void Update()
     {

@@ -53,7 +53,7 @@ public class Player : MonoSingleton<Player>
     {
         UpdateWeaponSlot();
         UserWeapon userWeapon = UserManager.instance.GetDrawUserWeapon();
-        ChangeWeapon(userWeapon, userWeapon.weaponDraw);   
+        ChangeWeapon(userWeapon, 0);   
     }
     
     private void Update()
@@ -245,29 +245,23 @@ public class Player : MonoSingleton<Player>
             return;
         }
 
-        ChangeWeapon(weapon.userWeapon, true);
+        ChangeWeapon(weapon.userWeapon, (WeaponEquipSlot)idx);
     }
     //인벤토리에서 무기장착변경
-    public void ChangeWeapon(UserWeapon uWeapon , bool draw)
-    {  
-        if(draw) 
+    public void ChangeWeapon(UserWeapon uWeapon , WeaponEquipSlot weaponEquipSlot)
+    {
+        for (int i = 0; i < weaponSlots.Length; i++)
         {
-            for (int i = 0; i < weaponSlots.Length; i++)
+            if (weaponSlots[i].weapon.userWeapon == uWeapon)
             {
-                if (weaponSlots[i].weapon.userWeapon == uWeapon)
-                {
-                    currentWeapon = weaponSlots[i].weapon;
-                    playerAbility.SetWeapon(currentWeapon);
-                    slotIdx = i;
-                    break;
-                }
+                currentWeapon = weaponSlots[i].weapon;
+                playerAbility.SetWeapon(currentWeapon);
+                slotIdx = i;
+                break;
             }
-            UserManager.instance.ChangeWeapon(currentWeapon.userWeapon , draw);
         }
-        else
-        { 
-            UserManager.instance.ChangeWeapon(currentWeapon.userWeapon , draw);
-        }
+        UserManager.instance.DrawWeapon(currentWeapon.userWeapon , weaponEquipSlot);
+        
         
         for (int i = 0; i < weaponSlots.Length; i++)
         {

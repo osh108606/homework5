@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
 
     public void Shoot (Vector2 dir, Weapon weapon)
     {
+        t = 0;
         direction = dir;
         this.weapon = weapon;
         damagInfo.Init();
