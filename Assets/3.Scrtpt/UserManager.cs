@@ -19,7 +19,7 @@ public class UserManager : MonoBehaviour
         { 
             for (int i = 0; i< userData.userWeapons.Count;i++)
             {
-                if(userData.userWeapons[i].weaponEuiped == true)
+                if(userData.userWeapons[i].weaponEquipped == true)
                 {               
                     for (int j = 0; j < userData.userAmmos.Count; j++)
                     { 
@@ -55,32 +55,32 @@ public class UserManager : MonoBehaviour
             //*장비*
             #region Armor          
             UserArmor userArmor1 = new UserArmor();
-            userArmor1.armorEuiped = true;
+            userArmor1.armorEquipped = true;
             userArmor1.key = "Armor1-1";
             userData.userArmors.Add(userArmor1);
 
             UserArmor userArmor2 = new UserArmor();
-            userArmor2.armorEuiped = true;
+            userArmor2.armorEquipped = true;
             userArmor2.key = "Armor1-2";
             userData.userArmors.Add(userArmor2);
 
             UserArmor userArmor3 = new UserArmor();
-            userArmor3.armorEuiped = true;
+            userArmor3.armorEquipped = true;
             userArmor3.key = "Armor1-3";
             userData.userArmors.Add(userArmor3);
 
             UserArmor userArmor4 = new UserArmor();
-            userArmor4.armorEuiped = true;
+            userArmor4.armorEquipped = true;
             userArmor4.key = "Armor1-4";
             userData.userArmors.Add(userArmor4);
 
             UserArmor userArmor5 = new UserArmor();
-            userArmor5.armorEuiped = true;
+            userArmor5.armorEquipped = true;
             userArmor5.key = "Armor1-5";
             userData.userArmors.Add(userArmor5);
 
             UserArmor userArmor6 = new UserArmor();
-            userArmor6.armorEuiped = true;
+            userArmor6.armorEquipped = true;
             userArmor6.key = "Armor1-6";
             userData.userArmors.Add(userArmor6);
             #endregion
@@ -134,7 +134,7 @@ public class UserManager : MonoBehaviour
     {
         UserWeapon userWeapon = new UserWeapon();
         userWeapon.key = key;
-        userWeapon.weaponEuiped = true;
+        userWeapon.weaponEquipped = true;
         if (draw == true)
             userWeapon.weaponDraw = true;
         else
@@ -182,19 +182,19 @@ public class UserManager : MonoBehaviour
             userWeapon.weaponAbility.weaponRandomSubElementDates.Add(weaponRandomSubElementData);
             elements.Remove(subRandomElement);
         }
-        int randomTelIdx = Random.Range(0, (int)WeaponTelent.Count);
-        if (userWeapon.weaponAbility.grade == 3)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTelent(random)
+        int randomTelIdx = Random.Range(0, (int)WeaponTalent.Count);
+        if (userWeapon.weaponAbility.grade == 3)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTalent(random)
         {
-            userWeapon.weaponAbility.weaponTelent[0] = (WeaponTelent)randomTelIdx;
+            userWeapon.weaponAbility.weaponTalent[0] = (WeaponTalent)randomTelIdx;
         }
-        else if (userWeapon.weaponAbility.grade == 4)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTelent(random)
+        else if (userWeapon.weaponAbility.grade == 4)//WeaponTypeDamage & WeaponSubElement & WeaponSubElement(random) & WeaponTalent(random)
         {
-            userWeapon.weaponAbility.weaponTelent[0] = (WeaponTelent)randomTelIdx;
+            userWeapon.weaponAbility.weaponTalent[0] = (WeaponTalent)randomTelIdx;
         }
         userData.userWeapons.Add(userWeapon);
     }
 
-    public void Relord(Weapon weapon ,UserWeapon userWeapon)
+    public void Reload(Weapon weapon ,UserWeapon userWeapon)
     {
         if (weapon.userWeapon.ammoCount < 0)
             return;
@@ -219,7 +219,7 @@ public class UserManager : MonoBehaviour
         {
             userItem = new UserItem();
             userItem.key = key;
-            userItem.itemEuiped = false;
+            userItem.itemEquipped = false;
             userItem.count = 0;
             userData.userItems.Add(userItem);
         }
@@ -237,7 +237,7 @@ public class UserManager : MonoBehaviour
         UserWeapon userWeapon = new UserWeapon();
 
         userWeapon.key = key;
-        userWeapon.weaponEuiped = false;
+        userWeapon.weaponEquipped = false;
         userWeapon.weaponAbility = dropWeaponItem.weaponAbility;
         userData.userWeapons.Add(userWeapon);
     }
@@ -246,7 +246,7 @@ public class UserManager : MonoBehaviour
         UserArmor userArmor = new UserArmor();
 
         userArmor.key = key;
-        userArmor.armorEuiped = false;
+        userArmor.armorEquipped = false;
         userArmor.armorAbility = new ArmorAbility();
         userArmor.armorAbility.grade = grade;
         userData.userArmors.Add(userArmor);
@@ -254,15 +254,15 @@ public class UserManager : MonoBehaviour
     // 기존아이템 장착 비활성화 새무기 장착
     public void EquipWeapon(UserWeapon uWeapon)//무기
     {
-        UserWeapon preUserWeapon = GetEuipedUserWeapon();
+        UserWeapon preUserWeapon = GetEquippedUserWeapon();
         if (preUserWeapon != null)
         {
-            preUserWeapon.weaponEuiped = false;
+            preUserWeapon.weaponEquipped = false;
             preUserWeapon.weaponDraw = false;
         }
 
         UserWeapon userWeapon = uWeapon;
-        userWeapon.weaponEuiped = true;
+        userWeapon.weaponEquipped = true;
 
         SaveManager.SaveData("UserData.json", userData);
     }
@@ -285,10 +285,10 @@ public class UserManager : MonoBehaviour
     {
         UserArmor preUserArmor = GetUserArmor();
         if (preUserArmor != null)
-            preUserArmor.armorEuiped = false;
+            preUserArmor.armorEquipped = false;
 
         UserArmor userArmor = uArmor;
-        userArmor.armorEuiped = true;
+        userArmor.armorEquipped = true;
 
 
         SaveManager.SaveData("UserData.json", userData);
@@ -312,7 +312,7 @@ public class UserManager : MonoBehaviour
     {
         for(int i = 0; i< userData.userWeapons.Count; i++)
         {
-            if (userData.userWeapons[i].weaponEuiped == true)
+            if (userData.userWeapons[i].weaponEquipped == true)
             {
                 if(userData.userWeapons[i].weaponEquipSlot == slot)
                 {
@@ -327,7 +327,7 @@ public class UserManager : MonoBehaviour
     {
         for (int i = 0; i < userData.userArmors.Count; i++)
         {
-            if (userData.userArmors[i].armorEuiped == true)
+            if (userData.userArmors[i].armorEquipped == true)
             {
                 if (userData.userArmors[i].armorEquipSlot == slot)
                 {
@@ -378,11 +378,11 @@ public class UserManager : MonoBehaviour
 
     //현재 장착중인 아이템의 상태를 반환
     //*무기*
-    public UserWeapon GetEuipedUserWeapon()//1개
+    public UserWeapon GetEquippedUserWeapon()//1개
     {
         for (int i = 0; i < userData.userWeapons.Count; i++)
         {
-            if (userData.userWeapons[i].weaponEuiped == true)
+            if (userData.userWeapons[i].weaponEquipped == true)
             {
                 return userData.userWeapons[i];
             }
@@ -390,18 +390,18 @@ public class UserManager : MonoBehaviour
         return null;
     }
     
-    public UserWeapon GetEuipedUserWeapon(string key)//1개
+    public UserWeapon GetEquippedUserWeapon(string key)//1개
     {
         for (int i = 0; i < userData.userWeapons.Count; i++)
         {
-            if (userData.userWeapons[i].weaponEuiped == true && userData.userWeapons[i].key == key)
+            if (userData.userWeapons[i].weaponEquipped == true && userData.userWeapons[i].key == key)
             {
                 return userData.userWeapons[i];
             }
         }
         return null;
     }
-    public UserWeapon GetEuipedUserWeapon(WeaponEquipSlot weaponEquipSlot)//1개
+    public UserWeapon GetEquippedUserWeapon(WeaponEquipSlot weaponEquipSlot)//1개
     {
         for (int i = 0; i < userData.userWeapons.Count; i++)
         {
@@ -412,12 +412,12 @@ public class UserManager : MonoBehaviour
         }
         return null;
     }
-    public UserWeapon GetEuipedUserWeapons(int index)//여러개
+    public UserWeapon GetEquippedUserWeapons(int index)//여러개
     {
         int equippedCount = 0;
         for (int i=0; i < userData.userWeapons.Count; i++)
         {
-            if (userData.userWeapons[i].weaponEuiped == true)
+            if (userData.userWeapons[i].weaponEquipped == true)
             {
                 if (equippedCount == index)
                 {
@@ -433,7 +433,7 @@ public class UserManager : MonoBehaviour
     {
         for (int i = 0; i < userData.userArmors.Count; i++)
         {
-            if (userData.userArmors[i].armorEuiped == true)
+            if (userData.userArmors[i].armorEquipped == true)
             {
                 return userData.userArmors[i];
             }
@@ -524,7 +524,7 @@ public class UserAmmo
 public class UserWeapon
 {
     public string key;
-    public bool weaponEuiped; //장착중인지
+    public bool weaponEquipped; //장착중인지
     public bool weaponDraw; //들고있는지 
     public int ammoCount; //현재 장착중인 총의 총알갯수
     
@@ -548,7 +548,7 @@ public class WeaponAbility
     public WeaponTypeDamageData weaponTypeDamageData = new WeaponTypeDamageData();
     public WeaponSubElementData weaponFixSubElementData = new WeaponSubElementData();
     public List<WeaponSubElementData> weaponRandomSubElementDates = new List<WeaponSubElementData>();
-    public List<WeaponTelent> weaponTelent = new List<WeaponTelent>();
+    public List<WeaponTalent> weaponTalent = new List<WeaponTalent>();
 
     public float GetValue(WeaponSubElement element)
     {
@@ -597,7 +597,7 @@ public class WeaponSubElementData
 public class UserArmor
 {
     public string key;
-    public bool armorEuiped; //장착중인지
+    public bool armorEquipped; //장착중인지
     public ArmorEquipSlot armorEquipSlot;
     public ArmorData armorData;
 
@@ -623,7 +623,7 @@ public class ArmorMainsElementData
 public class UserItem
 {
     public string key;
-    public bool itemEuiped;
+    public bool itemEquipped;
     public int count;
 }
 

@@ -16,7 +16,7 @@ public class CamaraManager : MonoBehaviour
     public CinemachineCamera zoomCamera;
     public CinemachineCamera mainInventoryCamera;
     public bool isZooming;
-    public bool zoomArrived;
+    private bool zoomMoving;
     
     #region 인벤토리
     //인벤토리 관련 카메라
@@ -37,12 +37,14 @@ public class CamaraManager : MonoBehaviour
     public void StartZoom()
     {
         Debug.Log("camera zoomStart");
-        zoomArrived = false;
+        zoomMoving = true;
         isZooming = true;
         followCamera.gameObject.SetActive(false);
         zoomCamera.gameObject.SetActive(true);
         zoomCamera.Lens.OrthographicSize = 7;
         
+        zoomCamera.transform.position
+            = new Vector3(Player.Instance.upperTransform.position.x, Player.Instance.transform.position.y, zoomCamera.transform.position.z);  
         dragStart = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         
         Cursor.visible = false;
@@ -61,6 +63,22 @@ public class CamaraManager : MonoBehaviour
     }
     private void Update()
     {
+        if (zoomMoving)
+        {
+            Vector2 playerPos = Player.Instance.transform.position;
+            float maxDistance = 15f;
+            Vector2 offset =(Vector2)zoomCamera.transform.position - playerPos;
+            
+            if (offset.magnitude > maxDistance || zoomCamera.transform.position == new Vector3(dragStart.x, dragStart.y, zoomCamera.transform.position.z))
+            {
+                zoomMoving = false;
+                dragStart = mainCamera.ScreenToWorldPoint((Input.mousePosition));
+                return;
+            }
+            zoomCamera.transform.position
+                = Vector3.MoveTowards((zoomCamera.transform.position), new Vector3(dragStart.x,dragStart.y,zoomCamera.transform.position.z), Time.deltaTime * 20f);
+            return;
+        }
         if(isZooming)
         {
             Vector3 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -69,7 +87,7 @@ public class CamaraManager : MonoBehaviour
             Vector3 targetPos = zoomCamera.transform.position + direction;
 
             Vector3 playerPos = Player.Instance.transform.position;
-            float maxDistance = 10f;
+            float maxDistance = 15f;
             Vector3 offset = targetPos - playerPos;
 
             if (offset.magnitude > maxDistance)

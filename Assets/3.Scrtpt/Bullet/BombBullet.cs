@@ -4,7 +4,7 @@ using UnityEngine;
 public class BombBullet : Bullet
 {
     public Transform tr;
-    public float sDamge;
+    public float sDamage;
     public bool colCheck;
     
 
@@ -28,8 +28,8 @@ public class BombBullet : Bullet
             {
                 if(cols[i].CompareTag("Enemy"))
                 {
-                    damagInfo.Calculate();
-                    //cols[i].GetComponent<Enemy>().TakeDamage(sDamge);
+                    damageInfo.Calculate();
+                    //cols[i].GetComponent<Enemy>().TakeDamage(sDamage);
                 }
             }
             

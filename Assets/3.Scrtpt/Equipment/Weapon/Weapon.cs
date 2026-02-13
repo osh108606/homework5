@@ -133,7 +133,7 @@ public class Weapon : MonoBehaviour
             yield return null;
             reloadTimer -= Time.deltaTime;
         }
-        UserManager.instance.Relord(this, userWeapon);
+        UserManager.instance.Reload(this, userWeapon);
         userAmmo.count -= (maxAmmo - userWeapon.ammoCount);
         userWeapon.ammoCount += (maxAmmo - userWeapon.ammoCount);
             reLoading = false;
@@ -151,7 +151,7 @@ public class Weapon : MonoBehaviour
             yield return null;
             reloadTimer -= Time.deltaTime;
         }
-        UserManager.instance.Relord(this,userWeapon);
+        UserManager.instance.Reload(this,userWeapon);
         userWeapon.ammoCount++;
         userAmmo.count--;
 

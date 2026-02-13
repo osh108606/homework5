@@ -395,6 +395,7 @@ public class Player : MonoSingleton<Player>
     }
     public void TakeDamage(float damage)// 피해를 입는 기능
     {
+        Debug.Log("log");
         if (_armorPoint >= 0)
         {
             _armorPoint -= damage;

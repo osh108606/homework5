@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
         //        Debug.Log(position);
 
 
-        //        Instantiate(enemyobj, position,Quaternion.identity);
+        //        Instantiate(enemyObj, position,Quaternion.identity);
         //    }
 
         //    t = 0;
@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
         
         if (spawnAll)
         {
-            CheakArrive();
+            CheckArrive();
         }
         
     }
@@ -71,9 +71,9 @@ public class EnemyController : MonoBehaviour
         }
         spawnAll = true;
     }
-    public int cheak =0;
+    public int check =0;
 
-    void CheakArrive()
+    void CheckArrive()
     {
         bool arrivedAll = true;
         for (int i = 0; i < spawnCount; i++)
@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
-        cheak = 0;
+        check = 0;
     }
     
 }

@@ -16,7 +16,7 @@ public class WeaponInventory : SubInventory
     {
         weaponList = GetComponentInChildren<GridLayoutGroup>();
 
-        curEuiptmentNameText = GetComponentInChildren<TMP_Text>();
+        curEquipmentNameText = GetComponentInChildren<TMP_Text>();
     }
     
     public void Open(WeaponEquipSlot equipSlot, WeaponSlotType slotType)
@@ -45,8 +45,8 @@ public class WeaponInventory : SubInventory
             }
         }
 
-        uWeapon = UserManager.instance.GetEuipedUserWeapon(equipSlot);
-        Updateinventory();
+        uWeapon = UserManager.instance.GetEquippedUserWeapon(equipSlot);
+        UpdateInventory();
     }
     public void Close()
     {
@@ -57,8 +57,8 @@ public class WeaponInventory : SubInventory
     {
         if (userWeapon == null)
         {
-            curEuiptmentNameText.enabled = false;
-            curEuiptmentImage.enabled = false;
+            curEquipmentNameText.enabled = false;
+            curEquipmentImage.enabled = false;
             return;
         }
 
@@ -66,17 +66,17 @@ public class WeaponInventory : SubInventory
         //Player.Instance.ChangeWeapon(userWeapon.key, false);
 
         uWeapon = userWeapon;
-        Updateinventory();
+        UpdateInventory();
     }
 
-    public void Updateinventory()
+    public void UpdateInventory()
     {
         WeaponData weaponData = Resources.Load<WeaponData>($"WeaponData/{uWeapon.key}");
-        curEuiptmentNameText.enabled = true;
-        curEuiptmentImage.enabled = true;
+        curEquipmentNameText.enabled = true;
+        curEquipmentImage.enabled = true;
 
-        curEuiptmentNameText.text = weaponData.weaponName;
-        curEuiptmentImage.sprite = weaponData.sprite;
+        curEquipmentNameText.text = weaponData.weaponName;
+        curEquipmentImage.sprite = weaponData.sprite;
 
 
         for (int i = 0; i < weaponPanels.Count; i++)

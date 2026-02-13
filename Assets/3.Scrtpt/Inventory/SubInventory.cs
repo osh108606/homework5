@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 public class SubInventory : MonoBehaviour
 {
-    public TMP_Text curEuiptmentNameText;
-    public Image curEuiptmentImage;
+    public TMP_Text curEquipmentNameText;
+    public Image curEquipmentImage;
 
     public virtual void OnEnable()
     {
-        curEuiptmentImage = GetComponentInChildren<Image>();
-        curEuiptmentNameText = GetComponentInChildren<TMP_Text>();
+        curEquipmentImage = GetComponentInChildren<Image>();
+        curEquipmentNameText = GetComponentInChildren<TMP_Text>();
     }
     public virtual void UpdateCanvas()
     {

@@ -8,25 +8,25 @@ public class DropItem : MonoBehaviour
     //상호작용 방법
     public ItemType itemType;
     public Collider2D col;
-    public GameObject canvasObjede;
+    public GameObject canvasObject;
     public bool isConsume = true;
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            canvasObjede.SetActive(true);
+            canvasObject.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            canvasObjede.SetActive(false);
+            canvasObject.SetActive(false);
         }      
     }
-    public virtual void Drop(string key)
+    public virtual void Drop(string getKey)
     {
-       this.key = key;
+       key = getKey;
     }
 }
 public enum ItemType

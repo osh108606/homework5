@@ -341,10 +341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8adcd39b767e94391024c4d785ba30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
+  key: M4
   itemType: 0
   col: {fileID: 3534399518935743182}
-  canvasObjede: {fileID: 5347412269792053293}
+  canvasObject: {fileID: 5347412269792053293}
   isConsume: 1
 --- !u!58 &3534399518935743182
 CircleCollider2D:

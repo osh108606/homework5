@@ -37,11 +37,11 @@ public enum WeaponSubElement
     Unfixed,//지정안됨 랜덤일경우
 }
 
-public enum WeaponTelent
+public enum WeaponTalent
 {
-    Telent1,
-    Telent2,
-    Telent3,
+    Talent1,
+    Talent2,
+    Talent3,
     Count,
     Null,
     Unfixed,//지정안됨 랜덤일경우
@@ -79,12 +79,12 @@ public enum ArmorSubElement
     Null,
     Unfixed,//지정안됨 랜덤일경우
 }
-public enum ArmorTelent
+public enum ArmorTalent
 {
     Null,
-    Telent1,
-    Telent2,
-    Telent3,
+    Talent1,
+    Talent2,
+    Talent3,
 }
 public class ItemElement : MonoBehaviour
 {

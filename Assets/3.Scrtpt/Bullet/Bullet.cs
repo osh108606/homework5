@@ -5,15 +5,15 @@ public class Bullet : MonoBehaviour
     public float moveSpeed;
     public Weapon weapon;
     public Vector2 direction;
-    float t = 0f;
-    protected DamagInfo damagInfo = new DamagInfo();
+    float t;
+    protected DamageInfo damageInfo = new DamageInfo();
 
-    public void Shoot (Vector2 dir, Weapon weapon)
+    public void Shoot (Vector2 dir, Weapon w)
     {
         t = 0;
         direction = dir;
-        this.weapon = weapon;
-        damagInfo.Init();
+        weapon = w;
+        damageInfo.Init();
     }
 
     // Update is called once per frame
@@ -25,22 +25,22 @@ public class Bullet : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        transform.position = (Vector2)transform.position + direction * moveSpeed * Time.deltaTime;
+        transform.position = (Vector2)transform.position + (direction * moveSpeed).normalized * Time.deltaTime;
     }
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
             //Debug.Log("attack");
-            damagInfo.Calculate();
-            collision.GetComponent<Enemy>().TakeDamage(damagInfo.damage, damagInfo.isCrt);
+            damageInfo.Calculate();
+            collision.GetComponent<Enemy>().TakeDamage(damageInfo.damage, damageInfo.isCrt);
             gameObject.SetActive(false);
         }
     }
 }
 
 [System.Serializable]
-public class DamagInfo
+public class DamageInfo
 {
     public float damage;
     public float crtChance;

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class SwictingButton : MonoBehaviour
+public class SwitchingButton : MonoBehaviour
 {
     public int clickValue;
     public void OnClickB()

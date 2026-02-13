@@ -2,43 +2,43 @@
 
 public class DungeonWave : MonoBehaviour
 {
-    public EnemySpanwer[] enemySpanwers;
-    public int squedCount;
+    public EnemySpawner[] enemySpawners;
+    public int squadCount;
     public bool waveEnd;
     public void Awake()
     {
-        enemySpanwers = GetComponentsInChildren<EnemySpanwer>();
+        enemySpawners = GetComponentsInChildren<EnemySpawner>();
     }
 
     public void Init()
     {
         waveEnd = false;
-        squedCount = 0;
-        for (int i =0; i< enemySpanwers.Length; i++)
+        squadCount = 0;
+        for (int i =0; i< enemySpawners.Length; i++)
         {
-            for(int j =0; j< enemySpanwers[i].enemies.Count; j++)
+            for(int j =0; j< enemySpawners[i].enemies.Count; j++)
             {
-                if(enemySpanwers[i].enemies[j] != null)
-                    enemySpanwers[i].enemies[j].EnemyDelete();
+                if(enemySpawners[i].enemies[j] != null)
+                    enemySpawners[i].enemies[j].EnemyDelete();
             }
-            enemySpanwers[i].enemies.Clear();
+            enemySpawners[i].enemies.Clear();
         }
     }
 
     public void StartWave()
     {
         Debug.Log("StartWave");
-        squedCount = enemySpanwers.Length;
-        for (int i = 0; i < enemySpanwers.Length; i++)
+        squadCount = enemySpawners.Length;
+        for (int i = 0; i < enemySpawners.Length; i++)
         {
-            enemySpanwers[i].StartSpawn();
+            enemySpawners[i].StartSpawn();
         }
     }
 
-    public void SquadDie(EnemySpanwer enemySpanwer)
+    public void SquadDie(EnemySpawner enemySpawner)
     {
-        squedCount--;
-        if(squedCount <= 0)
+        squadCount--;
+        if(squadCount <= 0)
         {
             waveEnd = true;
             GetComponentInParent<DungeonZone>().WaveEnd();

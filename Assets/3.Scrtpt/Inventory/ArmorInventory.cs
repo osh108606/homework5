@@ -13,8 +13,8 @@ public class ArmorInventory : SubInventory
     public override void OnEnable()
     {
         armorList = GetComponentInChildren<GridLayoutGroup>();
-        curEuiptmentImage = GetComponentInChildren<Image>();
-        curEuiptmentNameText = GetComponentInChildren<TMP_Text>();
+        curEquipmentImage = GetComponentInChildren<Image>();
+        curEquipmentNameText = GetComponentInChildren<TMP_Text>();
     }
 
     public void Open(ArmorEquipSlot equipSlot)
@@ -48,16 +48,16 @@ public class ArmorInventory : SubInventory
     {
         UserArmor selectArmor = UserManager.instance.GetUserArmor();
         ArmorData armorData = Resources.Load<ArmorData>("ArmorData/" + selectArmor.key);
-        curEuiptmentNameText.text = armorData.armorName;
-        curEuiptmentImage.sprite = armorData.sprite;
+        curEquipmentNameText.text = armorData.armorName;
+        curEquipmentImage.sprite = armorData.sprite;
     }
 
     public void ArmorSelected(UserArmor userArmor)
     {
         if (userArmor == null)
         {
-            curEuiptmentNameText.enabled = false;
-            curEuiptmentImage.enabled = false;
+            curEquipmentNameText.enabled = false;
+            curEquipmentImage.enabled = false;
             return;
         }
 
@@ -66,11 +66,11 @@ public class ArmorInventory : SubInventory
 
         ArmorData armorData = Resources.Load<ArmorData>($"WeaponData/{userArmor.key}");
 
-        curEuiptmentNameText.enabled = true;
-        curEuiptmentImage.enabled = true;
+        curEquipmentNameText.enabled = true;
+        curEquipmentImage.enabled = true;
 
-        curEuiptmentNameText.text = armorData.armorName;
-        curEuiptmentImage.sprite = armorData.sprite;
+        curEquipmentNameText.text = armorData.armorName;
+        curEquipmentImage.sprite = armorData.sprite;
     }
 
     public void Close()

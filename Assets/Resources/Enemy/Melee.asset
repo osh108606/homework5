@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 0
   enemyFaction: 0
-  MaxHp: 50
-  MaxAp: 50
+  maxHp: 10
+  maxAp: 10
   moveSpeed: 5
   attackDamage: 1
   attackRange: 2
   sightRange: 20
   attackDelay: 3
-  attackSpeed: 1
+  attackSpeed: 2

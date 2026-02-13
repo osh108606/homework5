@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy : NPC
 {
     public EnemyType enemyType;
-    public GameObject dropItemPrifap;
+    public GameObject dropItemPrefab;
     public EnemyState enemyState;
     public Rigidbody2D rg2d;
     public Transform attackPointTr;//공격 시작포인트
@@ -29,8 +29,6 @@ public class Enemy : NPC
         base.Start();
         SetState(EnemyState.Idle);
         rg2d = GetComponent<Rigidbody2D>();
-        //EnemyController.instance.enemiesCount++;
-        //EnemyController.instance.cheak++;
     }
     
     public override void Update()
@@ -41,14 +39,14 @@ public class Enemy : NPC
         {
             //어떤 계산이 필요한가요?
             //시야 범위 안에 플레이어가 있는지 판별!
-            //조건이 참이면 상태를 Approching으로 바꾸기
+            //조건이 참이면 상태를 Approaching으로 바꾸기
             IdleState();
 
 
         }
-        else if (enemyState == EnemyState.Approching)
+        else if (enemyState == EnemyState.Approaching)
         {
-            ApprochingState();
+            ApproachingState();
         }
         else if (enemyState == EnemyState.Attack)
         {
@@ -58,7 +56,7 @@ public class Enemy : NPC
         }
     }
     //상태변경
-    public void SetState(EnemyState eState)
+    public virtual void SetState(EnemyState eState)
     {
         enemyState = eState;
     }
@@ -68,7 +66,7 @@ public class Enemy : NPC
         float distance = Vector2.Distance(transform.position, Player.Instance.transform.position);
         if (distance >= enemyInfo.attackRange && distance < enemyInfo.sightRange)// 조건 좀더 생각해볼것
         {
-            SetState(EnemyState.Approching);
+            SetState(EnemyState.Approaching);
             return;
         }
         else if (distance <= enemyInfo.attackRange && enemyInfo.attackSpeed <= attackDelay)
@@ -78,7 +76,7 @@ public class Enemy : NPC
         rg2d.linearVelocity = Vector2.zero; 
     }
 
-    public virtual void ApprochingState()
+    public virtual void ApproachingState()
     {
         // 벡터 (방향 * 크기)= 목적지 - 출발지
         Vector2 dir = (Player.Instance.transform.position - transform.position).normalized;
@@ -95,7 +93,7 @@ public class Enemy : NPC
         float distance = Vector2.Distance(transform.position, Player.Instance.transform.position);
         if (distance > enemyInfo.sightRange)
         {
-            SetState(EnemyState.Approching);
+            SetState(EnemyState.Approaching);
         }
 
         if (distance <= enemyInfo.attackRange)
@@ -142,8 +140,6 @@ public class Enemy : NPC
         Debug.Log("attack");
         if (healthPoint <= 0)
         {
-            //EnemyController.instance.enemiesCount--;
-            //EnemyController.instance.cheak--;
             Death();
             Destroy(this.gameObject);
         }
@@ -151,7 +147,7 @@ public class Enemy : NPC
     
     public override void Death()
     {
-        GameObject drop = Instantiate(dropItemPrifap);
+        GameObject drop = Instantiate(dropItemPrefab);
         drop.GetComponent<DropItem>().Drop("Weapon2");
         drop.transform.position = transform.position;
         IEnemySpawner zone = GetComponentInParent<IEnemySpawner>();
@@ -172,7 +168,7 @@ public class Enemy : NPC
 public enum EnemyState
 {
     Idle,
-    Approching,
+    Approaching,
     Attack,
 }
 

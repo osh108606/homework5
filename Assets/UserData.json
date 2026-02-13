@@ -2,49 +2,49 @@
     "userWeapons": [
         {
             "key": "M4",
-            "weaponEuiped": false,
+            "weaponEquipped": true,
             "weaponDraw": true,
-            "ammoCount": 19,
+            "ammoCount": 25,
             "weaponEquipSlot": 0,
             "weaponAbility": {
                 "grade": 0,
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 0,
-                    "value": 1.570304036140442
+                    "value": 1.714905023574829
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
                     "value": 0.0
                 },
                 "weaponRandomSubElementDates": [],
-                "weaponTelent": []
+                "weaponTalent": []
             }
         },
         {
             "key": "MP5",
-            "weaponEuiped": true,
+            "weaponEquipped": true,
             "weaponDraw": false,
-            "ammoCount": 20,
+            "ammoCount": 30,
             "weaponEquipSlot": 1,
             "weaponAbility": {
                 "grade": 0,
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 1,
-                    "value": 1.5779026746749879
+                    "value": 1.1315455436706544
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
                     "value": 0.0
                 },
                 "weaponRandomSubElementDates": [],
-                "weaponTelent": []
+                "weaponTalent": []
             }
         },
         {
             "key": "Glock",
-            "weaponEuiped": true,
+            "weaponEquipped": true,
             "weaponDraw": false,
             "ammoCount": 15,
             "weaponEquipSlot": 2,
@@ -53,61 +53,35 @@
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 6,
-                    "value": 1.6917383670806885
+                    "value": 1.9422242641448975
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
                     "value": 0.0
                 },
                 "weaponRandomSubElementDates": [],
-                "weaponTelent": []
+                "weaponTalent": []
             }
         },
         {
             "key": "grenadelauncher",
-            "weaponEuiped": true,
+            "weaponEquipped": true,
             "weaponDraw": false,
-            "ammoCount": 5,
+            "ammoCount": 6,
             "weaponEquipSlot": 3,
             "weaponAbility": {
                 "grade": 0,
                 "itemGrade": 0,
                 "weaponTypeDamageData": {
                     "weaponType": 7,
-                    "value": 2.5607962608337404
+                    "value": 1.0785863399505616
                 },
                 "weaponFixSubElementData": {
                     "weaponSubElement": 11,
                     "value": 0.0
                 },
                 "weaponRandomSubElementDates": [],
-                "weaponTelent": []
-            }
-        },
-        {
-            "key": "MP5",
-            "weaponEuiped": true,
-            "weaponDraw": false,
-            "ammoCount": 0,
-            "weaponEquipSlot": 0,
-            "weaponAbility": {
-                "grade": 1,
-                "itemGrade": 1,
-                "weaponTypeDamageData": {
-                    "weaponType": 1,
-                    "value": 4.842188835144043
-                },
-                "weaponFixSubElementData": {
-                    "weaponSubElement": 0,
-                    "value": 1.3231884241104127
-                },
-                "weaponRandomSubElementDates": [
-                    {
-                        "weaponSubElement": 4,
-                        "value": 3.1653690338134767
-                    }
-                ],
-                "weaponTelent": []
+                "weaponTalent": []
             }
         }
     ],
@@ -156,7 +130,7 @@
     "userArmors": [
         {
             "key": "Armor1-1",
-            "armorEuiped": true,
+            "armorEquipped": true,
             "armorEquipSlot": 0,
             "armorData": {
                 "instanceID": 0
@@ -172,7 +146,7 @@
         },
         {
             "key": "Armor1-2",
-            "armorEuiped": true,
+            "armorEquipped": true,
             "armorEquipSlot": 0,
             "armorData": {
                 "instanceID": 0
@@ -188,7 +162,7 @@
         },
         {
             "key": "Armor1-3",
-            "armorEuiped": true,
+            "armorEquipped": true,
             "armorEquipSlot": 0,
             "armorData": {
                 "instanceID": 0
@@ -204,7 +178,7 @@
         },
         {
             "key": "Armor1-4",
-            "armorEuiped": true,
+            "armorEquipped": true,
             "armorEquipSlot": 0,
             "armorData": {
                 "instanceID": 0
@@ -220,7 +194,7 @@
         },
         {
             "key": "Armor1-5",
-            "armorEuiped": true,
+            "armorEquipped": true,
             "armorEquipSlot": 0,
             "armorData": {
                 "instanceID": 0
@@ -236,7 +210,7 @@
         },
         {
             "key": "Armor1-6",
-            "armorEuiped": true,
+            "armorEquipped": true,
             "armorEquipSlot": 0,
             "armorData": {
                 "instanceID": 0

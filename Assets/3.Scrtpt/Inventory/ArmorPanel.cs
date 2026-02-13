@@ -6,16 +6,16 @@ public class ArmorPanel : GearPanel
     public ArmorData armorData;
     public ArmorEquipSlot armorEquipSlot;
 
-    public override void SetData(UserArmor userArmor)
+    public override void SetData(UserArmor uArmor)
     {
-        armorData = Resources.Load<ArmorData>("ArmorData/" + userArmor.key);
+        armorData = Resources.Load<ArmorData>("ArmorData/" + uArmor.key);
         text.text = armorData.armorName;
         image.sprite = armorData.sprite;
         armorEquipSlot = armorData.armorEquipSlot;
 
 
-        this.userArmor = userArmor;
-        if (userArmor.armorEuiped)
+        userArmor = uArmor;
+        if (userArmor.armorEquipped)
         {
             image.color = Color.white;
         }
@@ -42,7 +42,7 @@ public class ArmorPanel : GearPanel
     public void OnClickedRemove()
     {
         Debug.Log("¿€µøµ ");
-        if (userArmor.armorEuiped == false)
+        if (userArmor.armorEquipped == false)
         {
             UserManager.instance.RemoveArmor(userArmor);
             Destroy(this.gameObject);

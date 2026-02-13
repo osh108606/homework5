@@ -21,7 +21,7 @@ public class Armor : MonoBehaviour
     public ArmorMainElement armorMainElement;
     public ArmorSubElement subElement1;
     public ArmorSubElement subElement2;
-    public ArmorTelent armorTelent;
+    public ArmorTalent armorTalent;
 
 
     public void Awake()

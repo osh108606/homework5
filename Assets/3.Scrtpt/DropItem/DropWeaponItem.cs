@@ -62,8 +62,8 @@ public class DropWeaponItem : DropItem
             if (weaponRandomSubElementData.weaponSubElement != WeaponSubElement.Null)
                 elements.Remove(subRandomElement);
         }
-        int telIdx = Random.Range(0, (int)WeaponTelent.Count);
-        WeaponTelent weaponTelent = (WeaponTelent)telIdx;
+        int telIdx = Random.Range(0, (int)WeaponTalent.Count);
+        WeaponTalent weaponTalent = (WeaponTalent)telIdx;
     }
 }
 

@@ -67,13 +67,13 @@ public class WeaponPanel : GearPanel
         
         UserManager.instance.EquipWeapon(userWeapon); //?? ????? ???
         Player.Instance.ChangeWeapon(userWeapon,weaponEquipSlot);
-        GetComponent<WeaponInventory>().Updateinventory();
+        GetComponent<WeaponInventory>().UpdateInventory();
     }
     
     public void OnClickedRemove()
     {
         Debug.Log("¿€µøµ ");
-        if (userWeapon.weaponEuiped == false)
+        if (userWeapon.weaponEquipped == false)
         {
             UserManager.instance.RemoveWeapon(userWeapon);
             Destroy(this.gameObject);
@@ -94,7 +94,7 @@ public class WeaponPanel : GearPanel
             backGround.color = Color.gray;
        }
        
-       if (userWeapon.weaponEuiped)
+       if (userWeapon.weaponEquipped)
        {
            innerGround.color = Color.white;
        }

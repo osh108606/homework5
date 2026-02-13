@@ -14,6 +14,6 @@ public class ArmorData : ScriptableObject
     public ArmorBrand armorBrand;
     public ArmorMainElement[] armorMainElements; //아머 주능력치
     public ArmorAbility armorAbility;
-    public ArmorTelent armorTelent;
+    public ArmorTalent armorTalent;
 }
 

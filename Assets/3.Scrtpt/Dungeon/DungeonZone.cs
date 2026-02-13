@@ -23,7 +23,7 @@ public class DungeonZone : MonoBehaviour, IEnemySpawner
 
     public void Awake()
     {
-        dungeon = GetComponentInParent<Dungeon>(); ;
+        dungeon = GetComponentInParent<Dungeon>();
         zoneEnd = false;
         firstEnemy = 0;
         dungeonWaves = GetComponentsInChildren<DungeonWave>();

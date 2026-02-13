@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpanwer : MonoBehaviour, IEnemySpawner
+public class EnemySpawner : MonoBehaviour, IEnemySpawner
 {
     public Enemy enemyPrefab; //소환 대상
     public int count;// 수
