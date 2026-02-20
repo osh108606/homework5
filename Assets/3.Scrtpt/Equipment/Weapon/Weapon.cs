@@ -169,7 +169,7 @@ public class Weapon : MonoBehaviour
 
         userWeapon.ammoCount--;//사용중인 총알
 
-        
+        Debug.Log("Weapon_Shoot");
         // 기준 위치(총구/상체)
         Vector2 origin = Player.Instance.upperTransform.position;
         Vector2 mouseWorld;
@@ -201,7 +201,6 @@ public class Weapon : MonoBehaviour
         //transform.rotation = Quaternion.AngleAxis(aimAngle - 90, Vector3.forward);
         
         // 애니메이션
-        //Player.Instance.animator.SetTrigger("Fire");
         int idx = Player.Instance.animator.GetLayerIndex("UpperAim");
         Player.Instance.animator.Play("UP_fire light front",idx,0);
         

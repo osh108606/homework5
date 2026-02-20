@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1405487171258378478}
   - component: {fileID: 5120356140337755722}
   - component: {fileID: -765855481074641938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RangedEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -111,21 +111,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1d9103f98dcdf44870fe0b5325f204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mhp: 5
-  hp: 0
+  maxHealthPoint: 0
+  maxArmorPoint: 0
+  healthPoint: 0
+  armorPoint: 0
   moveSpeed: 0
-  HpBar: {fileID: 7472116530664168298}
+  hpBar: {fileID: 0}
+  ignoreDamage: 0
   arrived: 0
   y: 0
   desPoint: {x: 0, y: 0}
   enemyType: 1
-  dropItemPrifap: {fileID: 5743244237139953847, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
+  dropItemPrefab: {fileID: 0}
   enemyState: 0
   rg2d: {fileID: 0}
   attackPointTr: {fileID: 3943801578288148263}
   enemyInfo: {fileID: 0}
   rootTr: {fileID: 281621467101099663}
   attackDelay: 0
+  attacking: 0
   bulletPrefab: {fileID: 507721049291743605, guid: 4a3601bd58f9bdd49ae755dc691b8af2, type: 3}
 --- !u!1 &2554914717644070083
 GameObject:

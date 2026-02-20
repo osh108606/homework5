@@ -17,16 +17,6 @@ public class EnemyBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction , moveSpeed * Time.deltaTime, hitTargetLayer);
-        if(hit.collider != null)
-        {
-            Player player = hit.collider.GetComponentInParent<Player>();
-            HitBox playerHitBox = hit.collider.GetComponent<HitBox>();
-            player.TakeDamage(enemyInfo.attackDamage, playerHitBox);
-            Destroy(gameObject);
-            return;
-        }
-
         //총알 삭제시간
         bulletLifeTime += Time.deltaTime;
         if (bulletLifeTime > 1f)
@@ -35,5 +25,15 @@ public class EnemyBullet : MonoBehaviour
         }
         //방향
         transform.position = ((Vector2)transform.position + direction * moveSpeed) * Time.deltaTime;
+        
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -direction , moveSpeed * Time.deltaTime, hitTargetLayer);
+        if(hit.collider != null)
+        {
+            Player player = hit.collider.GetComponentInParent<Player>();
+            HitBox playerHitBox = hit.collider.GetComponent<HitBox>();
+            player.TakeDamage(enemyInfo.attackDamage, playerHitBox);
+            Destroy(gameObject);
+            return;
+        }
     }
 }

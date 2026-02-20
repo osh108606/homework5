@@ -24,8 +24,15 @@ public class Bullet : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-
-        transform.position = (Vector2)transform.position + (direction * moveSpeed).normalized * Time.deltaTime;
+        
+        transform.position = (Vector2)transform.position + (direction.normalized * moveSpeed) * Time.deltaTime;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -direction, moveSpeed*Time.deltaTime, LayerMask.GetMask("Enemy"));
+        if (hit.collider != null)
+        {
+            damageInfo.Calculate();
+            hit.collider.GetComponent<Enemy>().TakeDamage(damageInfo.damage, damageInfo.isCrt);
+            gameObject.SetActive(false);
+        }
     }
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {

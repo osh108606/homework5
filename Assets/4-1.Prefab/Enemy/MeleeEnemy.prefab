@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1405487171258378478}
   - component: {fileID: 5120356140337755722}
   - component: {fileID: 7583996871576272518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MeleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -155,13 +155,14 @@ MonoBehaviour:
   y: 0
   desPoint: {x: 0, y: 0}
   enemyType: 0
-  dropItemPrifap: {fileID: 5743244237139953847, guid: 86411879ea468324fadcbfe7fb7fe691, type: 3}
+  dropItemPrefab: {fileID: 0}
   enemyState: 0
   rg2d: {fileID: 0}
   attackPointTr: {fileID: 3943801578288148263}
   enemyInfo: {fileID: 0}
   rootTr: {fileID: 82401360328887839}
   attackDelay: 0
+  attacking: 0
   attackOutline: {fileID: 61300763920732131}
   attackIndicator: {fileID: 5777118133043711352}
 --- !u!1 &2057837041528403975

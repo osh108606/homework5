@@ -10,7 +10,7 @@ public class Enemy : NPC
     public EnemyInfo enemyInfo; //적정보
     public Transform rootTr;
     public float attackDelay;  //공격행위 주기
-
+    public bool attacking;
     public override void Awake()
     {
         base.Awake();
@@ -42,7 +42,6 @@ public class Enemy : NPC
             //조건이 참이면 상태를 Approaching으로 바꾸기
             IdleState();
 
-
         }
         else if (enemyState == EnemyState.Approaching)
         {
@@ -50,7 +49,8 @@ public class Enemy : NPC
         }
         else if (enemyState == EnemyState.Attack)
         {
-            AttackState();
+            if(attacking == false)
+                AttackState();
             //총알 발사하기! + 어떤 고려사항이 필요한가요?
             //float attackTimer 
         }
@@ -79,7 +79,7 @@ public class Enemy : NPC
     public virtual void ApproachingState()
     {
         // 벡터 (방향 * 크기)= 목적지 - 출발지
-        Vector2 dir = (Player.Instance.transform.position - transform.position).normalized;
+        Vector2 dir = (Player.Instance.upperTransform.position - transform.position).normalized;
         if (dir.x > 0)
         {
             //오른쪽
@@ -90,16 +90,18 @@ public class Enemy : NPC
             //왼쪽
             rootTr.localScale = new Vector2(1, 1);
         }
-        float distance = Vector2.Distance(transform.position, Player.Instance.transform.position);
+        float distance = Vector2.Distance(transform.position, Player.Instance.upperTransform.position);
         if (distance > enemyInfo.sightRange)
         {
-            SetState(EnemyState.Approaching);
+            SetState(EnemyState.Idle);
+            return;
         }
 
         if (distance <= enemyInfo.attackRange)
         {
             SetState(EnemyState.Attack);
         }
+        
         rg2d.linearVelocity = dir * moveSpeed;
 
     }
@@ -107,10 +109,11 @@ public class Enemy : NPC
     {
         //Debug.Log("Enemy Attack");
 
-        rg2d.linearVelocity = Vector2.zero;
+        
         if (enemyInfo.attackSpeed <= attackDelay) //공격할 수 있음!
         {
             Attack();
+            rg2d.linearVelocity = Vector2.zero;
             attackDelay = 0;
         }
         else
@@ -121,7 +124,8 @@ public class Enemy : NPC
 
     public virtual void Attack()
     {
-
+        attacking = false;
+        SetState((EnemyState.Idle));
     }
 
 

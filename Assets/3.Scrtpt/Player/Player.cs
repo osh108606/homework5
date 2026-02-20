@@ -19,10 +19,8 @@ public class Player : MonoSingleton<Player>
     Camera _mainCamera;
 
     public int slotIdx; //무기슬롯 인덱스
-    float _maxHealthPoint; //최대 체력
-    float _healthPoint; // 현재 체력
-    float _maxArmorPoint; //최대 방어도
-    float _armorPoint; //현제 방어도
+    [SerializeField] float _healthPoint; // 현재 체력
+    [SerializeField] float _armorPoint; //현제 방어도
 
     public bool runTrigger;
     public bool aimTrigger;
@@ -38,15 +36,14 @@ public class Player : MonoSingleton<Player>
         rb2d = GetComponent<Rigidbody2D>();
         weaponSlots = GetComponentsInChildren<WeaponSlot>();
         animator = GetComponentInChildren<Animator>();
+        playerAbility.Init();
         _mainCamera = Camera.main;
-        _maxHealthPoint = playerAbility.initHealthPoint;
-        _maxArmorPoint = playerAbility.initArmorPoint;
-        _healthPoint = _maxHealthPoint;
-        _armorPoint = _maxArmorPoint;
+        _healthPoint = playerAbility.initHealthPoint;
+        _armorPoint = playerAbility.initArmorPoint;
         runTrigger = false;
         aimTrigger = false;
         attackTrigger = false;
-        playerAbility.Init();
+        
     }
 
     private void Start()
@@ -395,21 +392,20 @@ public class Player : MonoSingleton<Player>
     }
     public void TakeDamage(float damage)// 피해를 입는 기능
     {
-        Debug.Log("log");
-        if (_armorPoint >= 0)
+        Debug.Log("TakeDamage()");
+        if (_armorPoint > 0)
         {
             _armorPoint -= damage;
-            damage = 0;
-            //Debug.Log(armorPoint);
-        }
-        else if (damage > _armorPoint)
-        {
-            damage -= _armorPoint;
-            _armorPoint = 0;           
+            if (_armorPoint <= 0)
+            {
+                damage = _armorPoint;
+                _armorPoint = 0;
+            }
+            else
+                damage = 0;
         }
         _healthPoint -= damage;
-        Debug.Log(_healthPoint);
-
+        
         if (_healthPoint <= 0)
         {
             //FallDown();
@@ -418,7 +414,7 @@ public class Player : MonoSingleton<Player>
     }
     public void Reborn()// 다운상태에서 회복
     {
-        _healthPoint = _maxHealthPoint;
+        _healthPoint = playerAbility.initHealthPoint;
     }
     public void FallDown()// 다운상태 (미구현)
     {

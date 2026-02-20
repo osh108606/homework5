@@ -18,31 +18,36 @@ public class MeleeEnemy : Enemy
             if (cols[i].CompareTag("Player"))
             {
                 Player player = cols[i].GetComponent<Player>();
-                //if(player == null)
-                    //Debug.Log("X");
-                player.TakeDamage(enemyInfo.attackDamage);
+                HitBox hitBox = cols[i].GetComponent<HitBox>();
+                if (hitBox != null)
+                {
+                    Debug.Log("Attack()");
+                    Player.Instance.TakeDamage(enemyInfo.attackDamage);
+                    return;
+                }
             }
-        }
-    }
-
-    public override void SetState(EnemyState eState)
-    {
-        base.SetState(eState);
-        if (eState == EnemyState.Attack)
-        {
-            attackOutline.gameObject.SetActive(true);
         }
     }
 
     public override void AttackState()
     {
-        base.AttackState();
-        attackIndicator.localScale = Vector3.zero;
-        attackIndicator.DOScale(Vector3.one,enemyInfo.attackSpeed).OnComplete((() =>
+        if (enemyInfo.attackSpeed <= attackDelay) //공격할 수 있음!
         {
-            Attack();
-            attackOutline.gameObject.SetActive(false);
+            attackOutline.gameObject.SetActive(true);
+            attacking = true;
+            rg2d.linearVelocity = Vector2.zero;
+            attackIndicator.localScale = Vector3.zero;
+            attackIndicator.DOScale(Vector3.one,enemyInfo.attackSpeed).OnComplete((() =>
+            {
+                Attack();
+                attackOutline.gameObject.SetActive(false);
+            }));
             attackDelay = 0;
-        }));
+        }
+        else
+        {
+            SetState(EnemyState.Idle);
+        }
+        
     }
 }
