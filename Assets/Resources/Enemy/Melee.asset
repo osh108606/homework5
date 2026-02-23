@@ -18,7 +18,7 @@ MonoBehaviour:
   maxAp: 10
   moveSpeed: 5
   attackDamage: 1
-  attackRange: 2
+  attackRange: 2.5
   sightRange: 20
   attackDelay: 3
   attackSpeed: 2
