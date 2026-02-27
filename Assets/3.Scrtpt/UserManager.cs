@@ -6,15 +6,23 @@ public class UserManager : MonoBehaviour
 {
     public static UserManager instance;
     public UserData userData;
-    
+    public string userDataFileName;
     public void Awake()
     {
         instance = this;
-        
+        DontDestroyOnLoad(gameObject);
         //int saveOrder = TitleSceneManager.instance.LoadGame();
         //string saveName = TitleSceneManager.instance.userSaveData.saveSlots[saveOrder].userDataFileName;
         //userData = SaveManager.LoadData<UserData>(saveName); //저장된 데이터 불러오기
-        userData = SaveManager.LoadData<UserData>("UserData.json");
+    }
+    public void Start()
+    {
+        
+    }
+
+    public void Load(string fileName)
+    {
+        userData = SaveManager.LoadData<UserData>(fileName);
         if (userData != null)
         { 
             for (int i = 0; i< userData.userWeapons.Count;i++)
@@ -32,13 +40,10 @@ public class UserManager : MonoBehaviour
                 }
             }
         }
-        
-
-    }
-    public void Start()
-    {
-        if (userData == null)// 저장된 데이터가 없을경우
+        else
         {
+            if (userData == null)// 저장된 데이터가 없을경우
+            {
             userData = new UserData();//새 데이터 생성
             //기본아이템 지급
             //*무기*
@@ -127,9 +132,11 @@ public class UserManager : MonoBehaviour
             userData.userAmmos.Add(userAmmo7);
             #endregion
             //저장
-            SaveManager.SaveData("UserData.json", userData);
+            SaveManager.SaveData(userDataFileName, userData);
+            }
         }
     }
+    
     public void AddDebugWeapon(string key, int grade, WeaponEquipSlot weaponEquipSlot , bool draw)//디버그용
     {
         UserWeapon userWeapon = new UserWeapon();
@@ -208,7 +215,7 @@ public class UserManager : MonoBehaviour
         userAmmo.count -= reloadCount;
         userWeapon.ammoCount = reloadCount;
 
-        SaveManager.SaveData("UserData.json", userData);
+        SaveManager.SaveData(userDataFileName, userData);
     }
     //아이템 추가
     public void AddItem(string key)
@@ -264,7 +271,7 @@ public class UserManager : MonoBehaviour
         UserWeapon userWeapon = uWeapon;
         userWeapon.weaponEquipped = true;
 
-        SaveManager.SaveData("UserData.json", userData);
+        SaveManager.SaveData(userDataFileName, userData);
     }
 
     public void DrawWeapon(UserWeapon uWeapon, WeaponEquipSlot slot)

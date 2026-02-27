@@ -135,6 +135,7 @@ public class Player : MonoSingleton<Player>
 
         Fire();
         Move();
+        
     }
    
     public virtual void Fire()
@@ -151,11 +152,10 @@ public class Player : MonoSingleton<Player>
         
         Vector2 dir = (targetPos - upperTransform.transform.position).normalized;
         float angle = Vector2.Angle(upperTransform.transform.up, dir);
-        int idx = animator.GetLayerIndex("UpperAim");
+        
 
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+        if (aimTrigger || Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
         {
-            animator.SetLayerWeight(idx, 1);
             animator.SetFloat("Angle", angle);
 
             if (dir.x > 0)  // 마우스방향 //오른쪽
@@ -163,16 +163,24 @@ public class Player : MonoSingleton<Player>
             else if (dir.x < 0)//왼쪽
                 rootTr.localScale = new Vector2(-1, 1);
         }
-        else
+        
+        if(Input.GetMouseButtonDown(0))
         {
-            animator.SetLayerWeight(idx, 0);
-
-            if (Input.GetKey(KeyCode.D))// 이동방향 //오른쪽
-                rootTr.localScale = new Vector2(1, 1);
-            else if (Input.GetKey(KeyCode.A))//왼쪽
-                rootTr.localScale = new Vector2(-1, 1);
+            int idx = animator.GetLayerIndex("UpperAim");
+            animator.SetLayerWeight(idx, 1);
+            currentWeapon.MouseDown();
         }
-
+        else if (Input.GetMouseButton(0))
+        {
+            currentWeapon.MouseOn();
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            int idx = animator.GetLayerIndex("UpperAim");
+            animator.SetLayerWeight(idx, 0);
+            currentWeapon.MouseUp();
+        }
+        
         
     }
 
@@ -357,6 +365,12 @@ public class Player : MonoSingleton<Player>
             animator.SetFloat("MoveSpeed", rb2d.linearVelocity.magnitude / (moveSpeed * runSpeed * backWalk));
         }//달릴때
         */
+        
+        
+        if (Input.GetKey(KeyCode.D))// 이동방향 //오른쪽
+            rootTr.localScale = new Vector2(1, 1);
+        else if (Input.GetKey(KeyCode.A))//왼쪽
+            rootTr.localScale = new Vector2(-1, 1);
     }
 
     public void UpdateWeaponSlot()//슬롯에 장착된 무기 업데이트

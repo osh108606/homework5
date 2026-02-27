@@ -3,12 +3,9 @@ using UnityEngine;
 public class SG : Weapon
 {
 //샷건 8발씩 발사 풀링&범위 문제있음
-    public override bool Shoot()
+    public override bool MouseOn()
     {
-        if (userWeapon.ammoCount <= 0) //총알 없으면 발사 불가
-            return false;
-        
-        if (reLoading) //재장전 중이면 발사 불가
+        if (!CanFire())
             return false;
         
         userWeapon.ammoCount--;//사용중인 총알

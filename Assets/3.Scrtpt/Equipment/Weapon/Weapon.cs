@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 
 public enum WeaponType
@@ -79,14 +81,7 @@ public class Weapon : MonoBehaviour
             return;
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-
         nextFireTime += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0) && nextFireTime >= fireInterval && Player.Instance.currentWeapon == this)
-        {
-            Player.Instance.animator.SetLayerWeight(idx, 1);
-            Shoot();
-            nextFireTime = 0;
-        }
     }
 
 
@@ -158,18 +153,34 @@ public class Weapon : MonoBehaviour
         reLoading = false;
     }
 
-   
-    public virtual bool Shoot()
+    public virtual bool CanFire()
     {
         if (userWeapon.ammoCount <= 0) //총알 없으면 발사 불가
             return false;
-
         if (reLoading == true) //재장전 중이면 발사 불가
             return false;
+        if(nextFireTime < fireInterval)
+            return false;
+        if (Player.Instance.currentWeapon != this)
+            return false;
 
+        return true;
+    }
+
+    public virtual void MouseDown()
+    {
+        
+    }
+
+    public virtual bool MouseOn()
+    {
+        if (!CanFire())
+            return false;
+        
         userWeapon.ammoCount--;//사용중인 총알
-
+        nextFireTime = 0;
         Debug.Log("Weapon_Shoot");
+            
         // 기준 위치(총구/상체)
         Vector2 origin = Player.Instance.upperTransform.position;
         Vector2 mouseWorld;
@@ -199,10 +210,6 @@ public class Weapon : MonoBehaviour
         // 조준 회전 (스프라이트 기본 방향 보정이 -90인 기존 로직 유지)
         float aimAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         //transform.rotation = Quaternion.AngleAxis(aimAngle - 90, Vector3.forward);
-        
-        // 애니메이션
-        int idx = Player.Instance.animator.GetLayerIndex("UpperAim");
-        Player.Instance.animator.Play("UP_fire light front",idx,0);
         
         #region 오브젝트풀링
         //활성상태 체크
@@ -240,6 +247,11 @@ public class Weapon : MonoBehaviour
         
         UserManager.instance.Save();
         return true;
+    }
+
+    public virtual void MouseUp()
+    {
+        
     }
     
     public Vector2 Rotate2D(Vector2 v, float degrees)

@@ -1,9 +1,16 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject dropItemPrefab;
-    
+
+    void Awake()
+    {
+        UserManager.instance.Load(UserManager.instance.userDataFileName);
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.T))
